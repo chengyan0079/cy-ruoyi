@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+dubbo:
+  scan:
+    base-packages: com.cy.ruoyi.user.impl.service
+  protocol:
+    name: dubbo
+    # dubbo协议端口（-1表示自增，从20880开始）
+    port: -1
+  registry:
+    address: spring-cloud://localhost
+  application:
+    qos-enable: false
+  provider:
+    filter: -exception
+    TestService:
+      version: 1.0.0
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  config: classpath:logback-spring.xml

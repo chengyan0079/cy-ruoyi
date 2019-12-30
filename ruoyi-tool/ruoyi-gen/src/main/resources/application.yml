@@ -1,0 +1,21 @@
+server:
+  port: 8071
+
+dubbo:
+  protocol:
+    name: dubbo
+    # dubbo协议端口（-1表示自增，从20880开始）
+    port: -1
+  registry:
+    address: spring-cloud://localhost
+  application:
+    qos-enable: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  config: classpath:logback-spring.xml
