@@ -1,7 +1,5 @@
 package com.cy.ruoyi.common.utils.util;
 
-import com.ruoyi.common.json.JSON;
-import com.ruoyi.common.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

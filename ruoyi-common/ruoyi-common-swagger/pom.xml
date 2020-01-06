@@ -34,10 +34,17 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger.version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>io.springfox</groupId>-->
-            <!--<artifactId>springfox-bean-validators</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
+            <version>${springfox-bean-validators.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.utils</groupId>
+            <artifactId>ruoyi-common-utils</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 

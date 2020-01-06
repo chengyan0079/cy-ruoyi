@@ -33,6 +33,23 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
         </dependency>
+        <!-- 解析客户端操作系统、浏览器等 -->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>${bitwalker.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.user.api</groupId>
+            <artifactId>ruoyi-user-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.utils</groupId>
+            <artifactId>ruoyi-common-utils</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 

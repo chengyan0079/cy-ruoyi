@@ -30,13 +30,18 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.cy.ruoyi.common.core</groupId>
-            <artifactId>ruoyi-common-core</artifactId>
+            <groupId>com.cy.ruoyi.common.log</groupId>
+            <artifactId>ruoyi-common-log</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.cy.ruoyi.common.log</groupId>
-            <artifactId>ruoyi-common-log</artifactId>
+            <groupId>com.cy.ruoyi.common.redis</groupId>
+            <artifactId>ruoyi-common-redis</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.auth</groupId>
+            <artifactId>ruoyi-common-auth</artifactId>
             <version>1.0.0</version>
         </dependency>
 

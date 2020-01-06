@@ -1,20 +1,23 @@
 # cy-ruoyi
-SpringCloud Alibaba2.1 + Dubbo + MybatisPlus + Mysql + Redis 
+SpringCloud Alibaba2.1 + Dubbo + MybatisPlus + Mysql + Redis + RocketMQ
 
 ---
-# 中间件
-注册中心：Nacos
-配置中心：Nacos
-限流熔断：Sentinel
-消息队列：RocketMQ
-分布式事务：Seata
-分布式调用链：SkyWalking
-分库分表：Mycat
-分布式任务调度：XXL-Job
-日志收集：ELK
-容器：Docker
+## 中间件
+* 注册中心：Nacos
+* 配置中心：Nacos
+* 限流熔断：Sentinel
+* 消息队列：RocketMQ
+* 分布式事务：Seata
+* 分布式调用链：SkyWalking
+* 分库分表：Mycat
+* 分布式任务调度：XXL-Job
+* 日志收集：ELK
+* 容器：Docker
+
 ---
-#目录结构
+
+## 目录结构
+
  ```
 cy-ruoyi
  ├──docs //文件
@@ -27,6 +30,8 @@ cy-ruoyi
  |  ├──ruoyi-common-alipay // 支付宝（尚未）
  |  ├──ruoyi-common-utils // 通用工具包
  |  ├──ruoyi-common-swagger // 通用Swagger工具包
+ |  ├──ruoyi-common-auth // 授权工具包
+ |  ├──ruoyi-common-mail // 邮件工具包（尚未）
 ├──ruoyi-user //用户
  |  ├──ruoyi-user-application //用户启动
  |  ├──ruoyi-user-api //用户API
