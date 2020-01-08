@@ -18,7 +18,7 @@
     <description>通用模块</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -26,7 +26,6 @@
     <modules>
         <module>ruoyi-common-core</module>
         <module>ruoyi-common-utils</module>
-        <module>ruoyi-common-swagger</module>
         <module>ruoyi-common-log</module>
         <module>ruoyi-common-redis</module>
         <module>ruoyi-common-auth</module>

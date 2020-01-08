@@ -17,6 +17,10 @@ dubbo:
     filter: -exception
     TestService:
       version: 1.0.0
+    ISysOperLogService:
+      version: 1.0.0
+    ISysLogininforService:
+      version: 1.0.0
 
 management:
   endpoints:
