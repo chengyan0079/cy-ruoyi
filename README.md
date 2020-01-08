@@ -29,7 +29,6 @@ cy-ruoyi
  |  ├──ruoyi-common-log //日志工具包
  |  ├──ruoyi-common-alipay // 支付宝（尚未）
  |  ├──ruoyi-common-utils // 通用工具包
- |  ├──ruoyi-common-swagger // 通用Swagger工具包
  |  ├──ruoyi-common-auth // 授权工具包
  |  ├──ruoyi-common-mail // 邮件工具包（尚未）
 ├──ruoyi-user //用户
