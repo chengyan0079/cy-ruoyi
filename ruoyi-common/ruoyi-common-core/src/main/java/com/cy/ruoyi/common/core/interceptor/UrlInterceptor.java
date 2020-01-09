@@ -2,6 +2,7 @@ package com.cy.ruoyi.common.core.interceptor;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.cy.ruoyi.common.utils.enums.ServiceNameEnums;
 import com.cy.ruoyi.common.utils.util.IpUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,9 @@ public class UrlInterceptor extends HandlerInterceptorAdapter {
         try {
             //如果是OPTIONS的请求，不要打印日志
             if (RequestMethod.OPTIONS.toString().equals(request.getMethod())) {
+                return true;
+            }
+            if(request.getRequestURL().toString().contains("webjars") || request.getRequestURL().toString().contains("swagger") || request.getRequestURL().toString().contains("doc")){
                 return true;
             }
             log.info("请求地址:{}，请求方式:{},请求的IP:{},User-Agent:{}", request.getRequestURL(), request.getMethod(), IpUtils.getIpAddr(request), request.getHeader("User-Agent"));

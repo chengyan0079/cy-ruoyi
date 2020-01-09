@@ -21,13 +21,19 @@ public class AuthTestController extends BaseController {
 
     private static final Log log = LogFactory.get();
 
-    @Reference(version = "${dubbo.consumer.TestService.version}")
+    @Reference(validation = "true", version = "${dubbo.consumer.TestService.version}")
     private TestService testService;
 
     @PostMapping("/echo/{msg}")
     @ApiOperation(value = "测试msg")
     public String echo(@PathVariable String msg){
         return "Hello, User Test Service! " + testService.echo(msg);
+    }
+
+    @PostMapping("/testMsg/{msg}")
+    @ApiOperation(value = "测试msg")
+    public String testMsg(@PathVariable String msg){
+        return "Hello, testMsg! " + msg;
     }
 
     @PostMapping("/test/{admin}")

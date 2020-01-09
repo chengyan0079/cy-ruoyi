@@ -10,7 +10,7 @@ SpringCloud Alibaba2.1 + Dubbo + MybatisPlus + Mysql + Redis + RocketMQ
 * 分布式事务：Seata
 * 分布式调用链：SkyWalking
 * 分库分表：Mycat
-* 分布式任务调度：XXL-Job
+* 分布式任务调度：XXL-Job   
 * 日志收集：ELK
 * 容器：Docker
 

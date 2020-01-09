@@ -1,5 +1,7 @@
 package com.cy.ruoyi.common.log.aspect;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.alibaba.fastjson.JSON;
 import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.log.annotation.OperLog;
@@ -34,10 +36,11 @@ import java.util.stream.Collectors;
  * 
  */
 @Aspect
-@Slf4j
 @Component
-public class OperLogAspect
-{
+public class OperLogAspect {
+
+    private static final Log log = LogFactory.get();
+
     // 配置织入点
     @Pointcut("@annotation(com.cy.ruoyi.common.log.annotation.OperLog)")
     public void logPointCut()
@@ -69,6 +72,7 @@ public class OperLogAspect
 
     protected void handleLog(final JoinPoint joinPoint, final Exception e)
     {
+
         try
         {
             // 获得注解

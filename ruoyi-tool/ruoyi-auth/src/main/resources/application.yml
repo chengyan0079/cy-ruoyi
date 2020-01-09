@@ -14,6 +14,7 @@ dubbo:
   cloud:
     subscribed-services: ruoyi-user
   consumer:
+    check: false
     filter: -exception
     TestService:
       version: 1.0.0
@@ -21,6 +22,7 @@ dubbo:
       version: 1.0.0
     ISysLogininforService:
       version: 1.0.0
+
 
 management:
   endpoints:
