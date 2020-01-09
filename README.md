@@ -67,6 +67,7 @@ cy-ruoyi
  |  ├──ruoyi-file //文件系统
  |  ├──ruoyi-data // 数据收集（尚未）
  |  ├──ruoyi-system // 系统监控（尚未）
+ ├──ruoyi-gateway //网关
  ├──ruoyi-ant --前端 使用ant design框架
  ```
 

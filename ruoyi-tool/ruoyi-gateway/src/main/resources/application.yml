@@ -1,0 +1,70 @@
+server: 
+  port: 9527
+ 
+spring: 
+  application:
+    name: ruoyi-gateway
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        # 认证中心
+        - id: ruoyi-auth
+          uri: lb://ruoyi-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            # 验证码处理
+            - CacheRequest
+            - ImgCodeFilter
+            - StripPrefix=1
+#        # 代码生成
+#        - id: ruoyi-gen
+#          uri: lb://ruoyi-gen
+#          predicates:
+#            - Path=/gen/**
+#          filters:
+#            - StripPrefix=1
+#        # dfs
+#        - id: ruoyi-dfs
+#          uri: lb://ruoyi-dfs
+#          predicates:
+#            - Path=/dfs/**
+#          filters:
+#            - StripPrefix=1
+#        #system 模块
+#        - id: ruoyi-system
+#          uri: lb://ruoyi-system
+#          predicates:
+#            - Path=/system/**
+#          filters:
+#            # 限流配置
+#            - StripPrefix=1
+#            - name: RequestRateLimiter
+#              args:
+#                key-resolver: '#{@remoteAddrKeyResolver}'
+#                redis-rate-limiter.replenishRate: 10
+#                redis-rate-limiter.burstCapacity: 20
+#              # 降级配置
+#            - name: Hystrix
+#              args:
+#                name: fallbackcmd
+#                fallbackUri: 'forward:/fallback'
+
+#hystrix:
+#    command:
+#      default:  #default全局有效，service id指定应用有效
+#        execution:
+#          timeout:
+#            enabled: true
+#          isolation:
+#            thread:
+#              timeoutInMilliseconds: 5000 #断路器超时时间，默认1000ms
+

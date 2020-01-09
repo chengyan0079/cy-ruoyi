@@ -1,4 +1,4 @@
-package com.cy.ruoyi.common.core.util;
+package com.cy.ruoyi.common.utils.util;
 
 import java.util.HashMap;
 import java.util.Map;

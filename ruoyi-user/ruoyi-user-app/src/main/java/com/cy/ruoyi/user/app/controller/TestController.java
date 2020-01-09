@@ -3,14 +3,13 @@ package com.cy.ruoyi.user.app.controller;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
-import com.cy.ruoyi.common.core.util.R;
 import com.cy.ruoyi.common.log.annotation.OperLog;
+import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.user.api.entity.SysUser;
 import com.cy.ruoyi.user.api.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

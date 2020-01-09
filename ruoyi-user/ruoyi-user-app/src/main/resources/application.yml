@@ -86,5 +86,7 @@ hystrix:
   command:
     default: #feign的service指定的服务
       execution:
+        timeout:
+          enabled: true
         isolation:
           thread.timeoutInMilliseconds: 5000 #一次请求服务的可用时间,若经常出错便会断路保护
