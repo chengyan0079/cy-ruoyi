@@ -5,6 +5,10 @@ spring:
     name: ruoyi-auth
   main:
     allow-bean-definition-overriding: true
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
   cloud:
     nacos:
       discovery:

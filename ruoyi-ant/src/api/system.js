@@ -1,15 +1,15 @@
 import { axios } from '@/utils/request'
 
 const api = {
-  user: '/system/user',
-  role: '/system/role',
-  permission: '/system/menu',
-  dept: '/system/dept',
-  dictType: '/system/dict/type',
-  dictData: '/system/dict/data',
-  dist: '/system/districts',
-  config: '/system/config',
-  oss: '/system/oss'
+  user: '/cyuser/user',
+  role: '/cyuser/role',
+  permission: '/cyuser/menu',
+  dept: '/cyuser/dept',
+  dictType: '/cyuser/dict/type',
+  dictData: '/cyuser/dict/data',
+  dist: '/cyuser/districts',
+  config: '/cyuser/config',
+  oss: '/cyuser/oss'
 }
 
 export default api

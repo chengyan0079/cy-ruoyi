@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into sys_logininfor (login_name, status, ipaddr, login_location, browser, os, msg, login_time)
 		values (#{loginName}, #{status}, #{ipaddr}, #{loginLocation}, #{browser}, #{os}, #{msg}, sysdate())
 	</insert>
-	
+
 	<select id="selectLogininforList" parameterType="com.cy.ruoyi.user.api.entity.SysLogininfor" resultMap="SysLogininforResult">
 		select info_id,login_name,ipaddr,login_location,browser,os,status,msg,login_time from sys_logininfor
 		<where>
@@ -41,15 +41,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
 	<delete id="deleteLogininforByIds" parameterType="String">
- 		delete from sys_logininfor where info_id in
- 		<foreach collection="array" item="infoId" open="(" separator="," close=")">
- 			#{infoId}
-        </foreach> 
- 	</delete>
-    
-    <update id="cleanLogininfor">
+		delete from sys_logininfor where info_id in
+		<foreach collection="array" item="infoId" open="(" separator="," close=")">
+			#{infoId}
+		</foreach>
+	</delete>
+
+	<update id="cleanLogininfor">
         truncate table sys_logininfor
     </update>
     

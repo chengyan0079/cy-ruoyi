@@ -2,6 +2,8 @@ package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cy.ruoyi.user.api.entity.SysPost;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,7 @@ import java.util.List;
  * 
  * @author ruoyi
  */
+@Mapper
 public interface SysPostMapper extends BaseMapper<SysPost>
 {
     /**

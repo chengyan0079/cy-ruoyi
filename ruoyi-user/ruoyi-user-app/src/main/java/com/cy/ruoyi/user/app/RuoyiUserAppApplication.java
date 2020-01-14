@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableHystrixDashboard
 @EnableHystrix
-@MapperScan("com.cy.ruoyi.user.*.mapper")
+@MapperScan("com.cy.ruoyi.*.*.mapper")
 @ComponentScan(basePackages = "com.cy.ruoyi.*")
 @Configuration
 public class RuoyiUserAppApplication {

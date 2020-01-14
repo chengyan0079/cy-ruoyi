@@ -1,8 +1,8 @@
 import { axios } from '@/utils/request'
 
 const api = {
-  operLog: '/system/operLog',
-  loginLog: '/system/logininfor'
+  operLog: '/cyuser/operLog',
+  loginLog: '/cyuser/logininfor'
 }
 
 export default api

@@ -3,6 +3,7 @@ package com.cy.ruoyi.user.api.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cy.ruoyi.user.api.entity.SysConfig;
 import com.cy.ruoyi.user.api.entity.SysDept;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Set;
  * 
  * @author ruoyi
  */
+@Mapper
 public interface SysDeptMapper extends BaseMapper<SysDept>
 {
     /**

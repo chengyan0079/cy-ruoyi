@@ -24,10 +24,9 @@ public class SysLogininforController extends BaseController
      * 新增保存系统访问记录
      */
     @PostMapping("save")
-    @ApiOperation(value = "新增保存系统访问记录")
     public void addSave(@RequestBody SysLogininfor sysLogininfor)
     {
-        sysLogininforService.save(sysLogininfor);
+        sysLogininforService.insertLogininfor(sysLogininfor);
     }
 
 }

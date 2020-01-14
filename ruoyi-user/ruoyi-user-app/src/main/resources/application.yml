@@ -44,12 +44,17 @@ dubbo:
   application:
     qos-enable: false
   provider:
+    timeout: 10000
     filter: -exception
     TestService:
       version: 1.0.0
     ISysOperLogService:
       version: 1.0.0
     ISysLogininforService:
+      version: 1.0.0
+    ISysUserService:
+      version: 1.0.0
+    ISysMenuService:
       version: 1.0.0
 
 feign:

@@ -69,7 +69,7 @@ const notFoundRouter = {
  */
 export const getRouterByUser = () => {
   return axios({
-    url: '/system/menu/user',
+    url: '/cyuser/menu/user',
     method: 'get',
     dataType: 'json'
     /* headers: {

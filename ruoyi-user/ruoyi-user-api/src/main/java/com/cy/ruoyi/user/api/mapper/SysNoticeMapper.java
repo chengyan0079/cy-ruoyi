@@ -3,6 +3,8 @@ package com.cy.ruoyi.user.api.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cy.ruoyi.user.api.entity.SysMenu;
 import com.cy.ruoyi.user.api.entity.SysNotice;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,7 @@ import java.util.List;
  * 
  * @author ruoyi
  */
+@Mapper
 public interface SysNoticeMapper extends BaseMapper<SysNotice>
 {
 

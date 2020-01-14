@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service(validation = "true", version = "${dubbo.provider.TestService.version}")
+@org.springframework.stereotype.Service
 public class TestServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements TestService {
 
     private static final Log log = LogFactory.get();

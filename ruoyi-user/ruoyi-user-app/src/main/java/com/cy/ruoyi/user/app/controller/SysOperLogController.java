@@ -14,8 +14,6 @@ import java.util.List;
 /**
  * 操作日志记录 提供者
  * 
- * @author zmr
- * @date 2019-05-20
  */
 @RestController
 @RequestMapping("operLog")
@@ -29,10 +27,9 @@ public class SysOperLogController extends BaseController
      * 新增保存操作日志记录
      */
     @PostMapping("save")
-    @ApiOperation(value = "新增保存操作日志记录")
     public void addSave(@RequestBody SysOperLog sysOperLog)
     {
-        sysOperLogService.save(sysOperLog);
+        sysOperLogService.insertOperlog(sysOperLog);
     }
 
 }

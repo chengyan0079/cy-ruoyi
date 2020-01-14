@@ -27,13 +27,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from sys_oper_log
     </sql>
 
+	<insert id="insertOperlog" parameterType="com.cy.ruoyi.user.api.entity.SysOperLog">
+		insert into sys_oper_log(title, business_type, method, request_method, operator_type, oper_name, dept_name, oper_url, oper_ip, oper_location, oper_param, status, error_msg, oper_time)
+        values (#{title}, #{businessType}, #{method}, #{requestMethod}, #{operatorType}, #{operName}, #{deptName}, #{operUrl}, #{operIp}, #{operLocation}, #{operParam}, #{status}, #{errorMsg}, sysdate())
+	</insert>
+
+	<select id="selectOperLogList" parameterType="com.cy.ruoyi.user.api.entity.SysOperLog" resultMap="SysOperLogResult">
+		<include refid="selectOperLogVo"/>
+		<where>
+			<if test="title != null and title != ''">
+				AND title like concat('%', #{title}, '%')
+			</if>
+			<if test="businessType != null">
+				AND business_type = #{businessType}
+			</if>
+			<if test="status != null">
+				AND status = #{status}
+			</if>
+			<if test="operName != null and operName != ''">
+				AND oper_name like concat('%', #{operName}, '%')
+			</if>
+			<if test="beginTime != null and beginTime != ''"><!-- 开始时间检索 -->
+				and date_format(oper_time,'%y%m%d') &gt;= date_format(#{beginTime},'%y%m%d')
+			</if>
+			<if test="endTime != null and endTime != ''"><!-- 结束时间检索 -->
+				and date_format(oper_time,'%y%m%d') &lt;= date_format(#{endTime},'%y%m%d')
+			</if>
+		</where>
+	</select>
+
 	<delete id="deleteOperLogByIds" parameterType="String">
- 		delete from sys_oper_log where oper_id in
- 		<foreach collection="array" item="operId" open="(" separator="," close=")">
- 			#{operId}
-        </foreach> 
- 	</delete>
- 	
+		delete from sys_oper_log where oper_id in
+		<foreach collection="array" item="operId" open="(" separator="," close=")">
+			#{operId}
+		</foreach>
+	</delete>
+
+	<select id="selectOperLogById" parameterType="Long" resultMap="SysOperLogResult">
+		<include refid="selectOperLogVo"/>
+		where oper_id = #{operId}
+	</select>
+
 	<update id="cleanOperLog">
         truncate table sys_oper_log
     </update>

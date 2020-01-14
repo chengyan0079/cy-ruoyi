@@ -14,7 +14,7 @@ import { axios, pureAxios } from '@/utils/request'
  */
 export function login (parameter) {
   return axios({
-    url: '/auth/login',
+    url: '/cyauth/login',
     method: 'post',
     data: parameter
   })
@@ -30,7 +30,7 @@ export function getSmsCaptcha (parameter) {
 
 export function getInfo () {
   return axios({
-    url: '/system/user/info',
+    url: '/cyuser/user/info',
     method: 'get',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
@@ -40,7 +40,7 @@ export function getInfo () {
 
 export function logout (token) {
   return axios({
-    url: '/auth/logout',
+    url: '/cyauth/logout',
     method: 'post',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',

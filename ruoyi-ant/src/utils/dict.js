@@ -1,6 +1,6 @@
 import { axios } from '@/utils/request'
 const api = {
-  dictData: '/system/dict/data'
+  dictData: '/cyuser/dict/data'
 }
 
 // 字典两种用法，各有优缺点

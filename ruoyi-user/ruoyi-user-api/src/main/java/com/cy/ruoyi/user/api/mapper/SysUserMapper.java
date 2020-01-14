@@ -2,6 +2,8 @@ package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cy.ruoyi.user.api.entity.SysUser;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,7 @@ import java.util.List;
  * 
  * @author ruoyi
  */
+@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser>
 {
     /**
@@ -68,12 +71,36 @@ public interface SysUserMapper extends BaseMapper<SysUser>
     SysUser selectUserById(Long userId);
 
     /**
+     * 通过用户ID删除用户
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    public int deleteUserById(Long userId);
+
+    /**
      * 批量删除用户信息
      * 
      * @param ids 需要删除的数据ID
      * @return 结果
      */
-    int deleteUserByIds(Long[] ids);
+    public int deleteUserByIds(Long[] ids);
+
+    /**
+     * 修改用户信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    public int updateUser(SysUser user);
+
+    /**
+     * 新增用户信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    public int insertUser(SysUser user);
 
     /**
      * 校验用户名称是否唯一
@@ -81,7 +108,7 @@ public interface SysUserMapper extends BaseMapper<SysUser>
      * @param loginName 登录名称
      * @return 结果
      */
-    int checkLoginNameUnique(String loginName);
+    public int checkLoginNameUnique(String loginName);
 
     /**
      * 校验手机号码是否唯一
@@ -89,7 +116,7 @@ public interface SysUserMapper extends BaseMapper<SysUser>
      * @param phonenumber 手机号码
      * @return 结果
      */
-    SysUser checkPhoneUnique(String phonenumber);
+    public SysUser checkPhoneUnique(String phonenumber);
 
     /**
      * 校验email是否唯一
@@ -97,5 +124,5 @@ public interface SysUserMapper extends BaseMapper<SysUser>
      * @param email 用户邮箱
      * @return 结果
      */
-    SysUser checkEmailUnique(String email);
+    public SysUser checkEmailUnique(String email);
 }

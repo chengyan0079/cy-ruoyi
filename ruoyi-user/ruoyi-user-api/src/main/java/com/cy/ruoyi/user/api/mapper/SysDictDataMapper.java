@@ -3,6 +3,7 @@ package com.cy.ruoyi.user.api.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cy.ruoyi.user.api.entity.SysDept;
 import com.cy.ruoyi.user.api.entity.SysDictData;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * 
  * @author ruoyi
  */
+@Mapper
 public interface SysDictDataMapper extends BaseMapper<SysDictData>
 {
     /**

@@ -71,7 +71,7 @@ public class SysUser extends BaseEntity implements Serializable
     private Date loginDate;
 
     /** 部门对象 */
-    private SysDept           dept;
+    private SysDept dept;
 
     private List<SysRole> roles;
 
@@ -79,8 +79,26 @@ public class SysUser extends BaseEntity implements Serializable
     private List<Long> roleIds;
 
     /** 岗位组 */
-    private Long[]            postIds;
+    private Long[] postIds;
 
     private Set<String> buttons;
 
+    public boolean isAdmin()
+    {
+        return isAdmin(this.userId);
+    }
+
+    public static boolean isAdmin(Long userId)
+    {
+        return userId != null && 1L == userId;
+    }
+
+    public SysDept getDept()
+    {
+        if (dept == null)
+        {
+            dept = new SysDept();
+        }
+        return dept;
+    }
 }

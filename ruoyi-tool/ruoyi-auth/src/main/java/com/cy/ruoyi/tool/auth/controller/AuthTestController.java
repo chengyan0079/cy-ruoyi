@@ -5,6 +5,7 @@ import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.user.api.entity.SysUser;
+import com.cy.ruoyi.user.api.service.ISysUserService;
 import com.cy.ruoyi.user.api.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/cy/test")
 @Api(value = "AuthTest",description = "授权测试")
 public class AuthTestController extends BaseController {
 
@@ -23,6 +24,9 @@ public class AuthTestController extends BaseController {
 
     @Reference(validation = "true", version = "${dubbo.consumer.TestService.version}")
     private TestService testService;
+
+    @Reference(validation = "true", version = "${dubbo.consumer.ISysUserService.version}")
+    private ISysUserService userService;
 
     @PostMapping("/echo/{msg}")
     @ApiOperation(value = "测试msg")
@@ -43,6 +47,12 @@ public class AuthTestController extends BaseController {
         sysUser.setUserName(admin);
 //        log.info("调用User服务，传入参数：{}",admin);
         return R.data(testService.getList(sysUser));
+    }
+
+    @PostMapping("/userList")
+    @ApiOperation(value = "所有用户列表")
+    public R userList(SysUser user){
+        return R.data(userService.selectUserList(user));
     }
 
 }

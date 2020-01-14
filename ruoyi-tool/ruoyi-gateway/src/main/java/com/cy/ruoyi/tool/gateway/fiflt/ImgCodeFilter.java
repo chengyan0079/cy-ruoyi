@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @Component
 public class ImgCodeFilter extends AbstractGatewayFilterFactory<ImgCodeFilter.Config>
 {
-    private final static String AUTH_URL = "/auth/login";
+    private final static String AUTH_URL = "/cyauth/login";
 
     @Autowired
     private StringRedisTemplate redisTemplate;

@@ -42,7 +42,7 @@
               <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
             </a-input>
           </a-form-item>
-          <!-- <a-row :gutter="16">
+          <a-row :gutter="16">
             <a-col class="gutter-row" :span="16">
               <a-form-item>
                 <a-input size="large" type="text" placeholder="验证码" v-decorator="['captcha', {rules: [{ required: true, message: '请输入验证码' }], validateTrigger: 'blur'}]">
@@ -53,7 +53,7 @@
             <a-col class="gutter-row" :span="8">
               <img class="getCaptcha" :src="codesrc" @click="getImgCode">
             </a-col>
-          </a-row> -->
+          </a-row>
         </a-tab-pane>
         <a-tab-pane key="tab2" tab="手机号登录">
           <a-form-item>
@@ -201,8 +201,7 @@ export default {
 
       state.loginBtn = true
 
-      // const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password', 'captcha'] : ['mobile', 'captcha']
-      const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']
+      const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password', 'captcha'] : ['mobile', 'captcha']
 
       validateFields(validateFieldsKey, { force: true }, (err, values) => {
         if (!err) {

@@ -19,12 +19,29 @@ spring:
         - id: ruoyi-auth
           uri: lb://ruoyi-auth
           predicates:
-            - Path=/auth/**
+            - Path=/cyauth/**
           filters:
             # 验证码处理
             - CacheRequest
             - ImgCodeFilter
             - StripPrefix=1
+        - id: ruoyi-user
+          uri: lb://ruoyi-user
+          predicates:
+            - Path=/cyuser/**
+          filters:
+            # 限流配置
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@remoteAddrKeyResolver}'
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+              # 降级配置
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: 'forward:/fallback'
 #        # 代码生成
 #        - id: ruoyi-gen
 #          uri: lb://ruoyi-gen

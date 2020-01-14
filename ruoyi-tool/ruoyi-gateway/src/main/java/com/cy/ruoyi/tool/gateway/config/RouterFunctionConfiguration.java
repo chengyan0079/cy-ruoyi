@@ -15,6 +15,9 @@
  */
 package com.cy.ruoyi.tool.gateway.config;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
+import com.cy.ruoyi.tool.gateway.handler.HystrixFallbackHandler;
 import com.cy.ruoyi.tool.gateway.handler.ImgCodeHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -29,9 +32,9 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
  */
 @Configuration
 @AllArgsConstructor
-public class RouterFunctionConfiguration
-{
-//    private final HystrixFallbackHandler hystrixFallbackHandler;
+public class RouterFunctionConfiguration {
+
+    private final HystrixFallbackHandler hystrixFallbackHandler;
 
     private final ImgCodeHandler imgCodeHandler;
 
@@ -39,9 +42,9 @@ public class RouterFunctionConfiguration
     public RouterFunction<?> routerFunction()
     {
         return RouterFunctions
-//                .route(RequestPredicates.path("/fallback").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
-//                        hystrixFallbackHandler)
-                .route(RequestPredicates.GET("/code").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
+                .route(RequestPredicates.path("/fallback").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
+                        hystrixFallbackHandler)
+                .andRoute(RequestPredicates.GET("/code").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
                         imgCodeHandler);
     }
 }

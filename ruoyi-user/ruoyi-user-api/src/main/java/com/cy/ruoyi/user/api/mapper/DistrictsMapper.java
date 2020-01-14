@@ -2,6 +2,8 @@ package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cy.ruoyi.user.api.entity.Districts;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,7 @@ import java.util.List;
  * @author ruoyi
  * @date 2018-12-19
  */
+@Mapper
 public interface DistrictsMapper extends BaseMapper<Districts>
 {
 	/**

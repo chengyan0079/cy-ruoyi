@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 public class ImgCodeHandler implements HandlerFunction<ServerResponse>
 {
-    private final Producer            producer;
+    private final Producer  producer;
 
     private final StringRedisTemplate redisTemplate;
 
