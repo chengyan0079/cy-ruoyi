@@ -2,7 +2,6 @@ package com.cy.ruoyi.user.api.feign;
 
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.user.api.entity.SysUser;
-import com.cy.ruoyi.user.api.feign.factory.RemoteLogFallbackFactory;
 import com.cy.ruoyi.user.api.feign.factory.RemoteUserFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

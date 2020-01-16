@@ -40,33 +40,21 @@
             <version>${bitwalker.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.cy.ruoyi.user.api</groupId>
-            <artifactId>ruoyi-user-api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.cy.ruoyi.common.utils</groupId>
             <artifactId>ruoyi-common-utils</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.aspectj</groupId>-->
-            <!--<artifactId>aspectjrt</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.aspectj</groupId>-->
-            <!--<artifactId>aspectjweaver</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.cy.ruoyi.common.core</groupId>
+            <artifactId>ruoyi-common-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 

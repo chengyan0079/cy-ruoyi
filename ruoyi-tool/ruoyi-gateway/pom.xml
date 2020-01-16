@@ -29,10 +29,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
-        <!--</dependency>-->
         <!--验证码 -->
         <dependency>
             <groupId>com.github.penggle</groupId>
@@ -76,11 +72,6 @@
             <artifactId>ruoyi-common-redis</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.cy.ruoyi.user.api</groupId>-->
-            <!--<artifactId>ruoyi-user-api</artifactId>-->
-            <!--<version>1.0.0</version>-->
-        <!--</dependency>-->
 
     </dependencies>
 
@@ -90,6 +81,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--<configuration>-->
+                    <!--<fork>true</fork> &lt;!&ndash; 如果没有该配置，devtools不会生效 &ndash;&gt;-->
+                <!--</configuration>-->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

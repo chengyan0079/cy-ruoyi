@@ -24,7 +24,6 @@
     </properties>
 
     <modules>
-        <module>ruoyi-file</module>
         <module>ruoyi-auth</module>
         <module>ruoyi-gen</module>
         <module>ruoyi-gateway</module>

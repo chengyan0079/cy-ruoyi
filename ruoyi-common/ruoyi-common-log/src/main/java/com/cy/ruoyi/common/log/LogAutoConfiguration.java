@@ -1,8 +1,8 @@
 package com.cy.ruoyi.common.log;
 
 import com.cy.ruoyi.common.log.aspect.OperLogAspect;
+import com.cy.ruoyi.common.log.feign.RemoteLogService;
 import com.cy.ruoyi.common.log.listen.LogListener;
-import com.cy.ruoyi.user.api.feign.RemoteLogService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;

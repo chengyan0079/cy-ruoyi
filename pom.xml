@@ -42,7 +42,6 @@
         <module>ruoyi-user</module>
         <module>ruoyi-common</module>
         <module>ruoyi-tool</module>
-        <module>ruoyi-order</module>
     </modules>
 
     <dependencyManagement>

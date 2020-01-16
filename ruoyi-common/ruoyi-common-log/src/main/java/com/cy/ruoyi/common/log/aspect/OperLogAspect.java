@@ -4,6 +4,7 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.fastjson.JSON;
 import com.cy.ruoyi.common.core.util.ServletUtils;
+import com.cy.ruoyi.common.log.DTO.SysOperLogDTO;
 import com.cy.ruoyi.common.log.annotation.OperLog;
 import com.cy.ruoyi.common.log.event.SysOperLogEvent;
 import com.cy.ruoyi.common.utils.constants.Constants;
@@ -11,9 +12,7 @@ import com.cy.ruoyi.common.utils.util.AddressUtils;
 import com.cy.ruoyi.common.utils.util.IpUtils;
 import com.cy.ruoyi.common.utils.util.SpringContextHolder;
 import com.cy.ruoyi.common.utils.util.StringUtils;
-import com.cy.ruoyi.user.api.entity.SysOperLog;
 import com.cy.ruoyi.common.log.enums.BusinessStatus;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -82,7 +81,7 @@ public class OperLogAspect {
                 return;
             }
             // *========数据库日志=========*//
-            SysOperLog operLog = new SysOperLog();
+            SysOperLogDTO operLog = new SysOperLogDTO();
             operLog.setStatus(BusinessStatus.SUCCESS.ordinal());
             // 请求的地址
             HttpServletRequest request = ServletUtils.getRequest();
@@ -125,7 +124,7 @@ public class OperLogAspect {
      * @param operLog 操作日志
      * @throws Exception
      */
-    public void getControllerMethodDescription(OperLog log, SysOperLog operLog, Object[] args) throws Exception
+    public void getControllerMethodDescription(OperLog log, SysOperLogDTO operLog, Object[] args) throws Exception
     {
         // 设置action动作
         operLog.setBusinessType(log.businessType().ordinal());
@@ -147,7 +146,7 @@ public class OperLogAspect {
      * @param operLog 操作日志
      * @throws Exception 异常
      */
-    private void setRequestValue(SysOperLog operLog, Object[] args) throws Exception
+    private void setRequestValue(SysOperLogDTO operLog, Object[] args) throws Exception
     {
         List<?> param = new ArrayList<>(Arrays.asList(args)).stream().filter(p -> !(p instanceof ServletResponse))
                 .collect(Collectors.toList());

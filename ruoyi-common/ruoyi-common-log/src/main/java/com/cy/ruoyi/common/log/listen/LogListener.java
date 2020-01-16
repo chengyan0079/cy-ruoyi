@@ -1,10 +1,10 @@
 package com.cy.ruoyi.common.log.listen;
 
+import com.cy.ruoyi.common.log.DTO.SysLogininforDTO;
+import com.cy.ruoyi.common.log.DTO.SysOperLogDTO;
 import com.cy.ruoyi.common.log.event.SysLogininforEvent;
 import com.cy.ruoyi.common.log.event.SysOperLogEvent;
-import com.cy.ruoyi.user.api.entity.SysLogininfor;
-import com.cy.ruoyi.user.api.entity.SysOperLog;
-import com.cy.ruoyi.user.api.feign.RemoteLogService;
+import com.cy.ruoyi.common.log.feign.RemoteLogService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -25,7 +25,7 @@ public class LogListener
     @EventListener(SysOperLogEvent.class)
     public void listenOperLog(SysOperLogEvent event)
     {
-        SysOperLog sysOperLog = (SysOperLog) event.getSource();
+        SysOperLogDTO sysOperLog = (SysOperLogDTO) event.getSource();
         remoteLogService.insertOperlog(sysOperLog);
         log.info("远程操作日志记录成功：{}", sysOperLog);
     }
@@ -35,7 +35,7 @@ public class LogListener
     @EventListener(SysLogininforEvent.class)
     public void listenLoginifor(SysLogininforEvent event)
     {
-        SysLogininfor sysLogininfor = (SysLogininfor) event.getSource();
+        SysLogininforDTO sysLogininfor = (SysLogininforDTO) event.getSource();
         remoteLogService.insertLoginlog(sysLogininfor);
         log.info("远程访问日志记录成功：{}", sysLogininfor);
     }

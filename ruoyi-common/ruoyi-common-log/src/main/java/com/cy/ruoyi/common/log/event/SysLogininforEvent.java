@@ -1,6 +1,6 @@
 package com.cy.ruoyi.common.log.event;
 
-import com.cy.ruoyi.user.api.entity.SysLogininfor;
+import com.cy.ruoyi.common.log.DTO.SysLogininforDTO;
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -11,7 +11,7 @@ public class SysLogininforEvent extends ApplicationEvent
     //
     private static final long serialVersionUID = -9084676463718966036L;
 
-    public SysLogininforEvent(SysLogininfor source)
+    public SysLogininforEvent(SysLogininforDTO source)
     {
         super(source);
     }

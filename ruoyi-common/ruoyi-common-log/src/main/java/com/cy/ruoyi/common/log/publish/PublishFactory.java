@@ -1,14 +1,13 @@
 package com.cy.ruoyi.common.log.publish;
 
 import com.cy.ruoyi.common.core.util.ServletUtils;
+import com.cy.ruoyi.common.log.DTO.SysLogininforDTO;
 import com.cy.ruoyi.common.log.event.SysLogininforEvent;
 import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.util.AddressUtils;
 import com.cy.ruoyi.common.utils.util.IpUtils;
 import com.cy.ruoyi.common.utils.util.SpringContextHolder;
-import com.cy.ruoyi.user.api.entity.SysLogininfor;
 import eu.bitwalker.useragentutils.UserAgent;
-
 import javax.servlet.http.HttpServletRequest;
 
 public class PublishFactory
@@ -32,7 +31,7 @@ public class PublishFactory
         // 获取客户端浏览器
         String browser = userAgent.getBrowser().getName();
         // 封装对象
-        SysLogininfor logininfor = new SysLogininfor();
+        SysLogininforDTO logininfor = new SysLogininforDTO();
         logininfor.setLoginName(username);
         logininfor.setIpaddr(ip);
         logininfor.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
