@@ -1,5 +1,6 @@
 package com.cy.ruoyi.common.core.basic.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -38,11 +39,14 @@ public class BaseEntity implements Serializable
     /** 备注 */
     private String remark;
 
+    @TableField(exist = false)
     private String beginTime;
 
+    @TableField(exist = false)
     private String endTime;
 
     /** 请求参数 */
+    @TableField(exist = false)
     private Map<String, Object> params;
 
 }

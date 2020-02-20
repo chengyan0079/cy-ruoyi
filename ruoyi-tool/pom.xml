@@ -27,6 +27,7 @@
         <module>ruoyi-auth</module>
         <module>ruoyi-gen</module>
         <module>ruoyi-gateway</module>
+        <module>ruoyi-demo</module>
     </modules>
 
 </project>

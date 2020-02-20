@@ -2,7 +2,13 @@ package com.cy.ruoyi.user.impl.service;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.user.api.entity.*;
 import com.cy.ruoyi.user.api.mapper.*;
@@ -461,4 +467,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 //        }
 //        return userMapper.updateUser(user);
 //    }
+
+    @Override
+    public PageUtils selectPageUserList(PageDomain pageDomain, SysUser sysUser){
+        //此处新建对象是为了防止下面条件查询空指针,若查询条件很多就会有很多 "cbpTransferRe != null&&" 要写,jdk11的gc很牛,不用担心
+        if (RegexUtil.isNull(sysUser)) {
+            sysUser = new SysUser();
+        }
+        IPage<SysUser> page = this.page(
+                new Query<SysUser>(pageDomain).getPage(),
+                //若存在ID,则模糊查询
+                new QueryWrapper<SysUser>()
+        );
+
+        return new PageUtils(page);
+    }
 }

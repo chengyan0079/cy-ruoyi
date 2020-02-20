@@ -1,6 +1,7 @@
 package com.cy.ruoyi.user.api.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
@@ -31,6 +32,7 @@ public class SysUser extends BaseEntity implements Serializable
     private Long deptId;
 
     /** 部门父ID */
+    @TableField(exist = false)
     private Long parentId;
 
     /** 登录名称 */
@@ -71,16 +73,21 @@ public class SysUser extends BaseEntity implements Serializable
     private Date loginDate;
 
     /** 部门对象 */
+    @TableField(exist = false)
     private SysDept dept;
 
+    @TableField(exist = false)
     private List<SysRole> roles;
 
     /** 角色组 */
+    @TableField(exist = false)
     private List<Long> roleIds;
 
     /** 岗位组 */
+    @TableField(exist = false)
     private Long[] postIds;
 
+    @TableField(exist = false)
     private Set<String> buttons;
 
     public boolean isAdmin()

@@ -1,8 +1,13 @@
 package com.cy.ruoyi.common.core.basic.controller;
 
 import com.cy.ruoyi.common.core.util.ServletUtils;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.TableSupport;
+import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.util.DateUtils;
 import com.cy.ruoyi.common.utils.util.R;
+import com.cy.ruoyi.common.utils.util.SqlUtil;
+import com.cy.ruoyi.common.utils.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
@@ -13,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.beans.PropertyEditorSupport;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * web层通用数据处理
@@ -43,21 +45,6 @@ public class BaseController
         });
     }
 
-//    /**
-//     * 设置请求分页数据
-//     */
-//    protected void startPage()
-//    {
-//        PageDomain pageDomain = TableSupport.buildPageRequest();
-//        Integer pageNum = pageDomain.getPageNum();
-//        Integer pageSize = pageDomain.getPageSize();
-//        if (null != pageNum && null != pageSize)
-//        {
-//            String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
-//            PageHelper.startPage(pageNum, pageSize, orderBy);
-//        }
-//    }
-
     /**
      * 获取request
      */
@@ -82,44 +69,20 @@ public class BaseController
         return getRequest().getSession();
     }
 
-//    public long getCurrentUserId()
-//    {
-//        String currentId = getRequest().getHeader(Constants.CURRENT_ID);
-//        if (StringUtils.isNotBlank(currentId))
-//        {
-//            return Long.valueOf(currentId);
-//        }
-//        return 0l;
-//    }
+    public long getCurrentUserId()
+    {
+        String currentId = getRequest().getHeader(Constants.CURRENT_ID);
+        if (StringUtils.isNotBlank(currentId))
+        {
+            return Long.valueOf(currentId);
+        }
+        return 0L;
+    }
 
-//    public String getLoginName()
-//    {
-//        return getRequest().getHeader(Constants.CURRENT_USERNAME);
-//    }
-
-//    /**
-//     * 响应请求分页数据
-//     */
-//    @SuppressWarnings({"rawtypes", "unchecked"})
-//    protected TableDataInfo getDataTable(List<?> list)
-//    {
-//        TableDataInfo rspData = new TableDataInfo();
-//        rspData.setCode(0);
-//        rspData.setRows(list);
-//        rspData.setTotal(new PageInfo(list).getTotal());
-//        return rspData;
-//    }
-
-    @SuppressWarnings({"rawtypes", "unchecked"})
-//    protected R result(List<?> list)
-//    {
-//        PageInfo<?> pageInfo = new PageInfo(list);
-//        Map<String, Object> m = new HashMap<String, Object>();
-//        m.put("rows", list);
-//        m.put("pageNum", pageInfo.getPageNum());
-//        m.put("total", pageInfo.getTotal());
-//        return R.ok(m);
-//    }
+    public String getLoginName()
+    {
+        return getRequest().getHeader(Constants.CURRENT_USERNAME);
+    }
 
     /**
      * 响应返回结果
@@ -142,4 +105,20 @@ public class BaseController
     {
         return result ? R.ok() : R.error();
     }
+
+    /**
+     *  获取分页数据
+     * @return
+     */
+    protected PageDomain getPageInfo(){
+        PageDomain pageDomain = TableSupport.buildPageRequest();
+        Integer pageNum = pageDomain.getPageNum();
+        Integer pageSize = pageDomain.getPageSize();
+        if (null != pageNum && null != pageSize)
+        {
+            String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
+        }
+        return pageDomain;
+    }
+
 }

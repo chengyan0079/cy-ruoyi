@@ -9,6 +9,8 @@ public enum ServiceNameEnums
 
     AUTH_APP("auth","授权服务"),
 
+    GEN_APP("gen","代码生成"),
+
     ;
     public final String code;
     public final String msg;

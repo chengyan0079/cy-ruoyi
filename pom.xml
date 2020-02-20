@@ -35,6 +35,7 @@
         <bitwalker.version>1.21</bitwalker.version>
         <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
         <kaptcha.version>2.3.2</kaptcha.version>
+        <velocity.version>1.7</velocity.version>
 
     </properties>
 

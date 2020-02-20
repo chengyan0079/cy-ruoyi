@@ -34,6 +34,23 @@
             <artifactId>ruoyi-common-core</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.log</groupId>
+            <artifactId>ruoyi-common-log</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.utils</groupId>
+            <artifactId>ruoyi-common-utils</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!--velocity代码生成使用模板 -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>${velocity.version}</version>
+        </dependency>
+
     </dependencies>
 
 

@@ -1,60 +1,89 @@
 package com.cy.ruoyi.common.utils.util;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.cy.ruoyi.common.utils.enums.ResultEnum;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
- *  通用返回结果类
+ * @annocation :请求返回类型
  */
-public class R extends HashMap<String, Object> {
+@Data
+public class R<T> implements Serializable {
 
-	private static final long serialVersionUID = -8157613083634272196L;
+	private static final long serialVersionUID = 4145720818048417499L;
+	private String retCode;
+	private String retMsg;
+	private T retData;
 
-	public R() {
-		put("code", 0);
-		put("msg", "success");
-	}
 
 	public static R error() {
-		return error(500, "未知异常，请联系管理员");
+
+		return error(ResultEnum.FAIL.code, ResultEnum.FAIL.desc);
+
+	}
+	public static R error(TradeErrorEnum errorEnum) {
+
+		return error(errorEnum.code,errorEnum.msg);
+
 	}
 
 	public static R error(String msg) {
-		return error(500, msg);
+
+		return error(ResultEnum.FAIL.code, msg);
 	}
 
-	public static R error(int code, String msg) {
+	public static<T> R error(String msg , T retData) {
+
+		return error(ResultEnum.FAIL.code, msg, retData);
+	}
+
+	public static R error(String retCode, String msg) {
 		R r = new R();
-		r.put("code", code);
-		r.put("msg", msg);
+		r.setRetCode(retCode);
+		r.setRetMsg(msg);
 		return r;
 	}
 
-	public static R ok(String msg) {
+	@SuppressWarnings("unchecked")
+	public static<T> R error(String retCode, String msg, T retData) {
 		R r = new R();
-		r.put("msg", msg);
-		return r;
-	}
-
-	public static R data(Object obj) {
-		R r = new R();
-		r.put("data", obj);
-		return r;
-	}
-
-	public static R ok(Map<String, Object> map) {
-		R r = new R();
-		r.putAll(map);
+		r.setRetCode(retCode);
+		r.setRetMsg(msg);
+		r.setRetData(retData);
 		return r;
 	}
 
 	public static R ok() {
-		return new R();
+		R r = new R();
+		r.setRetCode(ResultEnum.SUCCESS.code);
+		r.setRetMsg(ResultEnum.SUCCESS.desc);
+		return r;
+	}
+	@SuppressWarnings("unchecked")
+	public static<T> R ok(T retData) {
+		R r = new R();
+		r.setRetCode(ResultEnum.SUCCESS.code);
+		r.setRetData(retData);
+		r.setRetMsg(ResultEnum.SUCCESS.desc);
+		return r;
+	}
+	@SuppressWarnings("unchecked")
+	public static<T> R ok(T retData, String msg) {
+		R r = new R();
+		r.setRetCode(ResultEnum.SUCCESS.code);
+		r.setRetData(retData);
+		r.setRetMsg(msg);
+		return r;
+	}
+	@Override
+	public String toString() {
+		return "Result{" +
+				"retCode='" + retCode + '\'' +
+				", retMsg='" + retMsg + '\'' +
+				", retData=" + retData +
+				'}';
 	}
 
-	@Override
-	public R put(String key, Object value) {
-		super.put(key, value);
-		return this;
-	}
 }

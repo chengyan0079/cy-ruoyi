@@ -3,20 +3,17 @@ package com.cy.ruoyi.user.app.controller;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
-import com.cy.ruoyi.common.log.annotation.OperLog;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.user.api.entity.SysUser;
 import com.cy.ruoyi.user.api.service.ISysMenuService;
 import com.cy.ruoyi.user.api.service.ISysUserService;
 import com.cy.ruoyi.user.api.service.TestService;
-import com.cy.ruoyi.user.app.annotation.LoginUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  *  测试Controller
@@ -48,19 +45,28 @@ public class TestController extends BaseController {
     public R getList(@PathVariable String loginName){
         SysUser user = new SysUser();
         user.setLoginName(loginName);
-        return R.data(testService.getList(user));
+        return R.ok(testService.getList(user));
     }
 
     @PostMapping("/userList")
     @ApiOperation(value = "所有用户列表")
     public R userList(SysUser user){
-        return R.data(userService.selectUserList(user));
+        return R.ok(userService.selectUserList(user));
     }
 
     @PostMapping("/menuList/{id}")
     @ApiOperation(value = "所有菜单列表")
     public R menuList(@PathVariable Long id){
-        return R.data(menuService.selectPermsByUserId(id));
+        return R.ok(menuService.selectPermsByUserId(id));
+    }
+
+    @GetMapping("/getPageUserList")
+    @ApiOperation(value = "分页用户列表")
+    public R getPageUserList(SysUser user){
+        PageDomain pageDomain = getPageInfo();
+        log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
+        PageUtils page = userService.selectPageUserList(pageDomain, user);
+        return R.ok(page);
     }
 
 }

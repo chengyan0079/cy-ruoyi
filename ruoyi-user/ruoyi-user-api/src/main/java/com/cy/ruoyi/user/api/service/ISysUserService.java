@@ -1,6 +1,8 @@
 package com.cy.ruoyi.user.api.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.user.api.entity.SysOperLog;
 import com.cy.ruoyi.user.api.entity.SysUser;
 
@@ -175,4 +177,13 @@ public interface ISysUserService extends IService<SysUser>
 //     * @return 结果
 //     */
 //    public int changeStatus(SysUser user);
+
+
+    /**
+     *  分页获取用户数据
+     * @param pageDomain
+     * @param sysUser
+     * @return
+     */
+    PageUtils selectPageUserList(PageDomain pageDomain, SysUser sysUser);
 }
