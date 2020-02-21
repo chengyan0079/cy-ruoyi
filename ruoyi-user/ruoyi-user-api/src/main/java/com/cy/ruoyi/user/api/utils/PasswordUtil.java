@@ -12,6 +12,12 @@ public class PasswordUtil
 
     public static String encryptPassword(String username, String password, String salt)
     {
-        return Md5Utils.hash(username + password + salt);
+        return Md5Utils.hash(password + salt);
     }
+
+    public static void main(String[] args) {
+        Md5Utils.hash("admin123" + "JWaMVc");
+        System.out.println(Md5Utils.hash("admin123" + "JWaMVc"));
+    }
+
 }

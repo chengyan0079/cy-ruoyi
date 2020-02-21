@@ -1,6 +1,7 @@
 package com.cy.ruoyi.user.app.resolver;
 
 import com.cy.ruoyi.common.utils.constants.Constants;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.user.api.entity.SysUser;
 import com.cy.ruoyi.user.api.service.ISysUserService;
 import com.cy.ruoyi.user.app.annotation.LoginUser;
@@ -37,7 +38,7 @@ public class LoginUserHandlerResolver implements HandlerMethodArgumentResolver
         HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
         // 获取用户ID
         Long userid = Long.valueOf(request.getHeader(Constants.CURRENT_ID));
-        if (userid == null)
+        if (RegexUtil.isNull(userid))
         {
             return null;
         }

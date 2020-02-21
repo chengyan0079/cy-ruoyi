@@ -46,13 +46,7 @@ public class AuthTestController extends BaseController {
         SysUser sysUser = new SysUser();
         sysUser.setUserName(admin);
 //        log.info("调用User服务，传入参数：{}",admin);
-        return R.data(testService.getList(sysUser));
-    }
-
-    @PostMapping("/userList")
-    @ApiOperation(value = "所有用户列表")
-    public R userList(SysUser user){
-        return R.data(userService.selectUserList(user));
+        return R.ok(testService.getList(sysUser));
     }
 
 }

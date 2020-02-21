@@ -80,7 +80,7 @@ public class AuthFilter implements GlobalFilter, Ordered
         byte[] response = null;
         try
         {
-            response = JSON.toJSONString(R.error(401, msg)).getBytes(Constants.UTF8);
+            response = JSON.toJSONString(R.error(msg)).getBytes(Constants.UTF8);
         }
         catch (UnsupportedEncodingException e)
         {

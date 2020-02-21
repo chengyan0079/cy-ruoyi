@@ -21,7 +21,7 @@ public interface ISysUserService extends IService<SysUser>
      * @param user 用户信息
      * @return 用户信息集合信息
      */
-    List<SysUser> selectUserList(SysUser user);
+    PageUtils selectUserList(PageDomain pageDomain, SysUser user);
 //
 //    /**
 //     * 根据条件分页查询已分配用户角色列表

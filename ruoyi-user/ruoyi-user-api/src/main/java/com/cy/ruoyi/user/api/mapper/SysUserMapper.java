@@ -1,8 +1,11 @@
 package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cy.ruoyi.user.api.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -125,4 +128,7 @@ public interface SysUserMapper extends BaseMapper<SysUser>
      * @return 结果
      */
     public SysUser checkEmailUnique(String email);
+
+
+    IPage<SysUser> selectUserList(Page page, @Param("user") SysUser sysUser);
 }

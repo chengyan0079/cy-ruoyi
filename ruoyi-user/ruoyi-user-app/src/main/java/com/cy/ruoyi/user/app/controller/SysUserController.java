@@ -1,6 +1,10 @@
 package com.cy.ruoyi.user.app.controller;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.log.annotation.OperLog;
 import com.cy.ruoyi.common.log.enums.BusinessType;
 import com.cy.ruoyi.common.utils.util.R;
@@ -11,7 +15,9 @@ import com.cy.ruoyi.user.api.service.ISysUserService;
 import com.cy.ruoyi.user.api.utils.PasswordUtil;
 import com.cy.ruoyi.user.app.annotation.LoginUser;
 import com.cy.ruoyi.user.impl.constants.UserConstants;
+import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +31,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("user")
 public class SysUserController extends BaseController
 {
+    private static final Log log = LogFactory.get();
+
     @Reference(validation = "true", version = "${dubbo.provider.ISysUserService.version}")
     private ISysUserService sysUserService;
 
@@ -56,15 +64,18 @@ public class SysUserController extends BaseController
         return sysUserService.selectUserByLoginName(username);
     }
 
-//    /**
-//     * 查询用户列表
-//     */
-//    @GetMapping("list")
-//    public R list(SysUser sysUser)
-//    {
-//        startPage();
-//        return result(sysUserService.selectUserList(sysUser));
-//    }
+    /**
+     * 查询用户列表
+     */
+    @GetMapping("list")
+    @ApiOperation(value = "分页用户列表")
+    public R list(SysUser sysUser)
+    {
+        PageDomain pageDomain = getPageInfo();
+        log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
+        PageUtils page = sysUserService.selectUserList(pageDomain, sysUser);
+        return R.ok(page);
+    }
 
 //    /**
 //     * 新增保存用户

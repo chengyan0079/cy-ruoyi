@@ -13,9 +13,9 @@ import java.io.Serializable;
 public class R<T> implements Serializable {
 
 	private static final long serialVersionUID = 4145720818048417499L;
-	private String retCode;
-	private String retMsg;
-	private T retData;
+	private String code;
+	private String msg;
+	private T data;
 
 
 	public static R error() {
@@ -34,55 +34,55 @@ public class R<T> implements Serializable {
 		return error(ResultEnum.FAIL.code, msg);
 	}
 
-	public static<T> R error(String msg , T retData) {
+	public static<T> R error(String msg , T data) {
 
-		return error(ResultEnum.FAIL.code, msg, retData);
+		return error(ResultEnum.FAIL.code, msg, data);
 	}
 
-	public static R error(String retCode, String msg) {
+	public static R error(String code, String msg) {
 		R r = new R();
-		r.setRetCode(retCode);
-		r.setRetMsg(msg);
+		r.setCode(code);
+		r.setMsg(msg);
 		return r;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static<T> R error(String retCode, String msg, T retData) {
+	public static<T> R error(String code, String msg, T data) {
 		R r = new R();
-		r.setRetCode(retCode);
-		r.setRetMsg(msg);
-		r.setRetData(retData);
+		r.setCode(code);
+		r.setMsg(msg);
+		r.setData(data);
 		return r;
 	}
 
 	public static R ok() {
 		R r = new R();
-		r.setRetCode(ResultEnum.SUCCESS.code);
-		r.setRetMsg(ResultEnum.SUCCESS.desc);
+		r.setCode(ResultEnum.SUCCESS.code);
+		r.setMsg(ResultEnum.SUCCESS.desc);
 		return r;
 	}
 	@SuppressWarnings("unchecked")
-	public static<T> R ok(T retData) {
+	public static<T> R ok(T data) {
 		R r = new R();
-		r.setRetCode(ResultEnum.SUCCESS.code);
-		r.setRetData(retData);
-		r.setRetMsg(ResultEnum.SUCCESS.desc);
+		r.setCode(ResultEnum.SUCCESS.code);
+		r.setData(data);
+		r.setMsg(ResultEnum.SUCCESS.desc);
 		return r;
 	}
 	@SuppressWarnings("unchecked")
-	public static<T> R ok(T retData, String msg) {
+	public static<T> R ok(T data, String msg) {
 		R r = new R();
-		r.setRetCode(ResultEnum.SUCCESS.code);
-		r.setRetData(retData);
-		r.setRetMsg(msg);
+		r.setCode(ResultEnum.SUCCESS.code);
+		r.setData(data);
+		r.setMsg(msg);
 		return r;
 	}
 	@Override
 	public String toString() {
 		return "Result{" +
-				"retCode='" + retCode + '\'' +
-				", retMsg='" + retMsg + '\'' +
-				", retData=" + retData +
+				"code='" + code + '\'' +
+				", msg='" + msg + '\'' +
+				", data=" + data +
 				'}';
 	}
 

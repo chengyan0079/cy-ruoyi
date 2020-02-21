@@ -48,11 +48,11 @@ public class TestController extends BaseController {
         return R.ok(testService.getList(user));
     }
 
-    @PostMapping("/userList")
-    @ApiOperation(value = "所有用户列表")
-    public R userList(SysUser user){
-        return R.ok(userService.selectUserList(user));
-    }
+//    @PostMapping("/userList")
+//    @ApiOperation(value = "所有用户列表")
+//    public R userList(SysUser user){
+//        return R.ok(userService.selectUserList(user));
+//    }
 
     @PostMapping("/menuList/{id}")
     @ApiOperation(value = "所有菜单列表")

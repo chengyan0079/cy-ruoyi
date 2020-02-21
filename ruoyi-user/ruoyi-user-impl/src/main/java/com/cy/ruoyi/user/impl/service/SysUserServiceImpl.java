@@ -57,11 +57,16 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return 用户信息集合信息
      */
     @Override
-//    @DataScope(deptAlias = "d", userAlias = "u")
-    public List<SysUser> selectUserList(SysUser user)
+    public PageUtils selectUserList(PageDomain pageDomain, SysUser user)
     {
-        return userMapper.selectUserList(user);
+        if (RegexUtil.isNull(user)) {
+            user = new SysUser();
+        }
+        IPage<SysUser> page = userMapper.selectUserList(new Query<SysUser>(pageDomain).getPage(), user);
+        return new PageUtils(page);
     }
+
+
 
 //    /**
 //     * 根据条件分页查询已分配用户角色列表

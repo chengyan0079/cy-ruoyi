@@ -61,30 +61,34 @@
     </sql>
 
 	<select id="selectUserList" parameterType="com.cy.ruoyi.user.api.entity.SysUser" resultMap="SysUserResult">
-		select u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.password, u.sex, u.avatar, u.salt, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, d.dept_name,ur.role_id from sys_user u
+		select u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.password, u.sex, u.avatar, u.salt, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, d.dept_name,ur.role_id
+		from sys_user u
 		left join sys_dept d on u.dept_id = d.dept_id
 		left join sys_user_role ur ON ur.user_id = u.user_id
 		where u.del_flag = '0'
-		<if test="loginName != null and loginName != ''">
-			AND u.login_name like concat('%', #{loginName}, '%')
+		<if test="user.loginName != null and user.loginName != ''">
+			AND u.login_name like concat('%', #{user.loginName}, '%')
 		</if>
-		<if test="status != null and status != ''">
+		<if test="user.status != null and user.status != ''">
 			AND u.status = #{status}
 		</if>
-		<if test="phonenumber != null and phonenumber != ''">
-			AND u.phonenumber like concat('%', #{phonenumber}, '%')
+		<if test="user.phonenumber != null and user.phonenumber != ''">
+			AND u.phonenumber like concat('%', #{user.phonenumber}, '%')
 		</if>
-		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-			AND date_format(u.create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+		<!--<if test="user.params.beginTime != null and user.params.beginTime != ''">&lt;!&ndash; 开始时间检索 &ndash;&gt;
+			AND date_format(u.create_time,'%y%m%d') &gt;= date_format(#{user.params.beginTime},'%y%m%d')
 		</if>
-		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-			AND date_format(u.create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
-		</if>
-		<if test="deptId != null and deptId != 0">
-			AND (u.dept_id = #{deptId} OR u.dept_id IN ( SELECT t.dept_id FROM sys_dept t WHERE FIND_IN_SET (#{deptId},ancestors) ))
+		<if test="user.params.endTime != null and user.params.endTime != ''">&lt;!&ndash; 结束时间检索 &ndash;&gt;
+			AND date_format(u.create_time,'%y%m%d') &lt;= date_format(#{user.params.endTime},'%y%m%d')
+		</if>-->
+		<if test="user.deptId != null and user.deptId != 0">
+			AND (u.dept_id = #{user.deptId} OR u.dept_id IN (
+				SELECT t.dept_id FROM sys_dept t
+				WHERE FIND_IN_SET (#{user.deptId},ancestors) )
+			)
 		</if>
 		<!-- 数据范围过滤 -->
-		${params.dataScope}
+		<!-- ${user.params.dataScope} -->
 	</select>
 
 	<select id="selectAllocatedList" parameterType="com.cy.ruoyi.user.api.entity.SysUser" resultMap="SysUserResult">
