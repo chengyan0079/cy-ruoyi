@@ -6,17 +6,17 @@ package com.cy.ruoyi.common.utils.enums;
  */
 public enum TradeErrorEnum {
     //系统错误信息
-    CBP000001("","CBP000001","用户未登陆或登陆过期,请重新登陆！"),
-
-    //字段非空校验
-    CBP010001("id","CBP010001","主键[id]不能为空!"),
+//    CBP000001("","CBP000001","用户未登陆或登陆过期,请重新登陆！"),
+//
+//    //字段非空校验
+//    CBP010001("id","CBP010001","主键[id]不能为空!"),
     ;
 
-    public final String code;
+    public final Integer code;
     public final String msg;
     public final String column;
 
-    TradeErrorEnum(String column, String mCode, String mMsg){
+    TradeErrorEnum(String column, Integer mCode, String mMsg){
         this.column=column;
         code = mCode;
         msg = mMsg;
@@ -27,7 +27,7 @@ public enum TradeErrorEnum {
      * @param mCode
      * @return
      */
-    public static String getByCode(String mCode){
+    public static String getByCode(Integer mCode){
         for(TradeErrorEnum tradeErrorEnum: TradeErrorEnum.values()){
             if(mCode.equals(tradeErrorEnum.code) ){
                 return tradeErrorEnum.msg;

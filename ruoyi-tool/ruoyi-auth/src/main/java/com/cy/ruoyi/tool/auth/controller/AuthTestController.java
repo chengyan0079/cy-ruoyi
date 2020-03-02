@@ -20,33 +20,33 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "AuthTest",description = "授权测试")
 public class AuthTestController extends BaseController {
 
-    private static final Log log = LogFactory.get();
-
-    @Reference(validation = "true", version = "${dubbo.consumer.TestService.version}")
-    private TestService testService;
-
-    @Reference(validation = "true", version = "${dubbo.consumer.ISysUserService.version}")
-    private ISysUserService userService;
-
-    @PostMapping("/echo/{msg}")
-    @ApiOperation(value = "测试msg")
-    public String echo(@PathVariable String msg){
-        return "Hello, User Test Service! " + testService.echo(msg);
-    }
-
-    @PostMapping("/testMsg/{msg}")
-    @ApiOperation(value = "测试msg")
-    public String testMsg(@PathVariable String msg){
-        return "Hello, testMsg! " + msg;
-    }
-
-    @PostMapping("/test/{admin}")
-    @ApiOperation(value = "测试admin")
-    public R test(@PathVariable String admin){
-        SysUser sysUser = new SysUser();
-        sysUser.setUserName(admin);
-//        log.info("调用User服务，传入参数：{}",admin);
-        return R.ok(testService.getList(sysUser));
-    }
+//    private static final Log log = LogFactory.get();
+//
+//    @Reference(validation = "true", version = "${dubbo.consumer.TestService.version}")
+//    private TestService testService;
+//
+//    @Reference(validation = "true", version = "${dubbo.consumer.ISysUserService.version}")
+//    private ISysUserService userService;
+//
+//    @PostMapping("/echo/{msg}")
+//    @ApiOperation(value = "测试msg")
+//    public String echo(@PathVariable String msg){
+//        return "Hello, User Test Service! " + testService.echo(msg);
+//    }
+//
+//    @PostMapping("/testMsg/{msg}")
+//    @ApiOperation(value = "测试msg")
+//    public String testMsg(@PathVariable String msg){
+//        return "Hello, testMsg! " + msg;
+//    }
+//
+//    @PostMapping("/test/{admin}")
+//    @ApiOperation(value = "测试admin")
+//    public R test(@PathVariable String admin){
+//        SysUser sysUser = new SysUser();
+//        sysUser.setUserName(admin);
+////        log.info("调用User服务，传入参数：{}",admin);
+//        return R.ok(testService.getList(sysUser));
+//    }
 
 }

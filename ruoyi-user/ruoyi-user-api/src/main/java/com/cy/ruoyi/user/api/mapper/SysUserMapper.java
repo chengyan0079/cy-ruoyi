@@ -11,8 +11,6 @@ import java.util.List;
 
 /**
  * 用户表 数据层
- * 
- * @author ruoyi
  */
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser>
@@ -23,7 +21,7 @@ public interface SysUserMapper extends BaseMapper<SysUser>
      * @param sysUser 用户信息
      * @return 用户信息集合信息
      */
-    List<SysUser> selectUserList(SysUser sysUser);
+//    List<SysUser> selectUserList(SysUser sysUser);
 
     /**
      * 根据条件分页查询未已配用户角色列表
@@ -129,6 +127,11 @@ public interface SysUserMapper extends BaseMapper<SysUser>
      */
     public SysUser checkEmailUnique(String email);
 
-
+    /**
+     * 根据条件分页查询用户列表
+     * @param page
+     * @param sysUser
+     * @return
+     */
     IPage<SysUser> selectUserList(Page page, @Param("user") SysUser sysUser);
 }

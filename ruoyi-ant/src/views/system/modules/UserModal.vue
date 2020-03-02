@@ -148,7 +148,7 @@ export default {
     },
     loadRoleAll () {
       getRoleAll().then(res => {
-        this.roleAll = res.rows
+        this.roleAll = res.data.rows
         console.log('roleALl', this.roleAll)
       })
     },

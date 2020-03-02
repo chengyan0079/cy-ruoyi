@@ -118,7 +118,7 @@ export default {
   },
   created () {
     getDeptList().then(res => {
-      this.buildtree(res.rows, this.depts, 0)
+      this.buildtree(res.data.rows, this.depts, 0)
     })
   },
   methods: {

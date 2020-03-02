@@ -1,15 +1,17 @@
 package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cy.ruoyi.user.api.entity.SysDept;
 import com.cy.ruoyi.user.api.entity.SysRole;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
  * 角色表 数据层
- * 
- * @author ruoyi
  */
 @Mapper
 public interface SysRoleMapper extends BaseMapper<SysRole>
@@ -20,7 +22,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole>
      * @param role 角色信息
      * @return 角色数据集合信息
      */
-    List<SysRole> selectRoleList(SysRole role);
+//    List<SysRole> selectRoleList(SysRole role);
 
     /**
      * 根据用户ID查询角色
@@ -69,4 +71,12 @@ public interface SysRoleMapper extends BaseMapper<SysRole>
      * @return 角色信息
      */
     SysRole checkRoleKeyUnique(String roleKey);
+
+    /**
+     * 根据条件分页查询角色数据
+     * @param page
+     * @param role
+     * @return
+     */
+    IPage<SysRole> selectRoleList(Page page, @Param("role") SysRole role);
 }

@@ -36,26 +36,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectRoleList" parameterType="com.cy.ruoyi.user.api.entity.SysRole" resultMap="SysRoleResult">
 		<include refid="selectRoleContactVo"/>
 		where r.del_flag = '0'
-		<if test="roleName != null and roleName != ''">
-			AND r.role_name like concat('%', #{roleName}, '%')
+		<if test="role.roleName != null and role.roleName != ''">
+			AND r.role_name like concat('%', #{role.roleName}, '%')
 		</if>
-		<if test="status != null and status != ''">
-			AND r.status = #{status}
+		<if test="role.status != null and role.status != ''">
+			AND r.status = #{role.status}
 		</if>
-		<if test="roleKey != null and roleKey != ''">
-			AND r.role_key like concat('%', #{roleKey}, '%')
+		<if test="role.roleKey != null and role.roleKey != ''">
+			AND r.role_key like concat('%', #{role.roleKey}, '%')
 		</if>
-		<if test="dataScope != null and dataScope != ''">
-			AND r.data_scope = #{dataScope}
+		<if test="role.dataScope != null and role.dataScope != ''">
+			AND r.data_scope = #{role.dataScope}
 		</if>
-		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+		<!--<if test="params.beginTime != null and params.beginTime != ''">&lt;!&ndash; 开始时间检索 &ndash;&gt;
 			and date_format(r.create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
 		</if>
-		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+		<if test="params.endTime != null and params.endTime != ''">&lt;!&ndash; 结束时间检索 &ndash;&gt;
 			and date_format(r.create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
-		</if>
+		</if>-->
 		<!-- 数据范围过滤 -->
-		${params.dataScope}
+		<!-- ${params.dataScope} -->
 	</select>
 
 	<select id="selectRolesByUserId" parameterType="Long" resultMap="SysRoleResult">

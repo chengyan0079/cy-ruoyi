@@ -41,6 +41,7 @@ dubbo:
     port: -1
   registry:
     address: spring-cloud://localhost
+#    address: spring-cloud://192.168.31.138
   application:
     qos-enable: false
   provider:
@@ -55,6 +56,10 @@ dubbo:
     ISysUserService:
       version: 1.0.0
     ISysMenuService:
+      version: 1.0.0
+    ISysDeptService:
+      version: 1.0.0
+    ISysRoleService:
       version: 1.0.0
 
 feign:

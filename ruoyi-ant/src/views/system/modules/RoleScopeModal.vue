@@ -103,7 +103,7 @@ export default {
   },
   created () {
     getDeptList().then(res => {
-      this.buildtree(res.rows, this.deptTree, 0)
+      this.buildtree(res.data.rows, this.deptTree, 0)
     })
   },
   methods: {

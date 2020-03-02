@@ -1,8 +1,11 @@
 package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cy.ruoyi.user.api.entity.SysConfig;
 import com.cy.ruoyi.user.api.entity.SysDept;
+import com.cy.ruoyi.user.api.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,8 +14,6 @@ import java.util.Set;
 
 /**
  * 部门管理 数据层
- * 
- * @author ruoyi
  */
 @Mapper
 public interface SysDeptMapper extends BaseMapper<SysDept>
@@ -39,7 +40,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept>
      * @param dept 部门信息
      * @return 部门信息集合
      */
-    List<SysDept> selectDeptList(SysDept dept);
+//    List<SysDept> selectDeptList(SysDept dept);
 
     /**
      * 删除部门管理信息
@@ -103,4 +104,12 @@ public interface SysDeptMapper extends BaseMapper<SysDept>
      * @author zmr
      */
     Set<String> selectRoleDeptIds(Long roleId);
+
+    /**
+     * 查询部门管理数据
+     * @param page
+     * @param dept
+     * @return
+     */
+    IPage<SysDept> selectDeptList(Page page, @Param("dept") SysDept dept);
 }

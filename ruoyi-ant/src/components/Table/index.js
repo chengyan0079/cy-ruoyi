@@ -173,14 +173,14 @@ export default {
       if ((typeof result === 'object' || typeof result === 'function') && typeof result.then === 'function') {
         result.then(r => {
           this.localPagination = this.showPagination && Object.assign({}, this.localPagination, {
-            current: r.pageNum, // 返回结果中的当前分页数
-            total: r.total, // 返回结果中的总记录数
+            current: r.data.pageNum, // 返回结果中的当前分页数
+            total: r.data.total, // 返回结果中的总记录数
             showSizeChanger: this.showSizeChanger,
             pageSize: (pagination && pagination.pageSize) ||
               this.localPagination.pageSize
           }) || false
           // 为防止删除数据后导致页面当前页面数据长度为 0 ,自动翻页到上一页
-          if (r.rows.length === 0 && this.showPagination && this.localPagination.current > 1) {
+          if (r.data.rows.length === 0 && this.showPagination && this.localPagination.current > 1) {
             this.localPagination.current--
             this.loadData()
             return
@@ -189,13 +189,13 @@ export default {
           // 这里用于判断接口是否有返回 r.totalCount 且 this.showPagination = true 且 pageNo 和 pageSize 存在 且 totalCount 小于等于 pageNo * pageSize 的大小
           // 当情况满足时，表示数据不满足分页大小，关闭 table 分页功能
           try {
-            if ((['auto', true].includes(this.showPagination) && r.total <= (r.pageNum * this.localPagination.pageSize))) {
+            if ((['auto', true].includes(this.showPagination) && r.data.total <= (r.data.pageNum * this.localPagination.pageSize))) {
               this.localPagination.hideOnSinglePage = true
             }
           } catch (e) {
             this.localPagination = false
           }
-          this.localDataSource = r.rows // 返回结果中的数组数据
+          this.localDataSource = r.data.rows // 返回结果中的数组数据
           this.localLoading = false
         })
       }

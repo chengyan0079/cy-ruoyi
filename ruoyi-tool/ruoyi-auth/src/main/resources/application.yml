@@ -38,6 +38,7 @@ dubbo:
     port: -1
   registry:
     address: spring-cloud://localhost
+#    address: spring-cloud://192.168.31.138
   application:
     qos-enable: false
   # 订阅接口提供者服务名，用","分割
@@ -47,14 +48,6 @@ dubbo:
     timeout: 10000
     check: false
     filter: -exception
-    TestService:
-      version: 1.0.0
-    ISysOperLogService:
-      version: 1.0.0
-    ISysLogininforService:
-      version: 1.0.0
-    ISysUserService:
-      version: 1.0.0
 
 management:
   endpoints:

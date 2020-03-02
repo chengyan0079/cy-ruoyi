@@ -38,17 +38,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectDeptList" parameterType="com.cy.ruoyi.user.api.entity.SysDept" resultMap="SysDeptResult">
         <include refid="selectDeptVo"/>
         where d.del_flag = '0'
-        <if test="parentId != null and parentId != 0">
-			AND parent_id = #{parentId}
+        <if test="dept.parentId != null and dept.parentId != 0">
+			AND parent_id = #{dept.parentId}
 		</if>
-		<if test="deptName != null and deptName != ''">
-			AND dept_name like concat('%', #{deptName}, '%')
+		<if test="dept.deptName != null and dept.deptName != ''">
+			AND dept_name like concat('%', #{dept.deptName}, '%')
 		</if>
-		<if test="status != null and status != ''">
-			AND status = #{status}
+		<if test="dept.status != null and dept.status != ''">
+			AND status = #{dept.status}
 		</if>
 		<!-- 数据范围过滤 -->
-		${params.dataScope}
+		<!-- ${params.dataScope} -->
 		order by d.order_num
     </select>
 	

@@ -16,10 +16,11 @@ public class PageUtils implements Serializable {
 	 * 总记录数
 	 */
 	private long total;
+
 	/**
-	 *  返回代码
+	 *  当前页
 	 */
-	private int code;
+	private long pageNum;
 	/**
 	 * 列表数据
 	 */
@@ -46,7 +47,7 @@ public class PageUtils implements Serializable {
 	public PageUtils(IPage<?> page) {
 		this.rows = page.getRecords();
 		this.total = page.getTotal();
-		this.code = 0;
+		this.pageNum = page.getCurrent();
 	}
 
 }

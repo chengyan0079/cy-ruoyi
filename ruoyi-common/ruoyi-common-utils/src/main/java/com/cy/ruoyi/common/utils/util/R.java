@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class R<T> implements Serializable {
 
 	private static final long serialVersionUID = 4145720818048417499L;
-	private String code;
+	private Integer code;
 	private String msg;
 	private T data;
 
@@ -39,7 +39,7 @@ public class R<T> implements Serializable {
 		return error(ResultEnum.FAIL.code, msg, data);
 	}
 
-	public static R error(String code, String msg) {
+	public static R error(Integer code, String msg) {
 		R r = new R();
 		r.setCode(code);
 		r.setMsg(msg);
@@ -47,7 +47,7 @@ public class R<T> implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static<T> R error(String code, String msg, T data) {
+	public static<T> R error(Integer code, String msg, T data) {
 		R r = new R();
 		r.setCode(code);
 		r.setMsg(msg);

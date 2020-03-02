@@ -9,7 +9,8 @@ spring:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 127.0.0.1:8848
+        server-addr: localhost:8848
+#        server-addr: 192.168.31.138:8848
     gateway:
       discovery:
         locator:

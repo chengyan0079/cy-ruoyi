@@ -30,6 +30,7 @@ public class TestServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
     public List<SysUser> getList(SysUser sysUser) {
 
 //        log.info("进入TestService实现类！接收参数:{}", sysUser);
-        return sysUserMapper.selectUserList(sysUser);
+//        return sysUserMapper.selectUserList(sysUser);
+        return null;
     }
 }

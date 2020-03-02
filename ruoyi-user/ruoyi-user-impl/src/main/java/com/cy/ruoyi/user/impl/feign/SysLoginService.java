@@ -41,27 +41,27 @@ public class SysLoginService
 //         }
 
         // 用户名或密码为空 错误
-//        if (StringUtils.isAnyBlank(username, password))
-//        {
-//            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("not.null"));
-//            throw new RuoyiException("密码不能为空！");
-//        }
-//        // 密码如果不在指定范围内 错误
-//        if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
-//                || password.length() > UserConstants.PASSWORD_MAX_LENGTH)
-//        {
-//            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-//                    MessageUtils.message("user.password.not.match"));
-//            throw new RuoyiException("user.password.not.match");
-//        }
-//        // 用户名不在指定范围内 错误
-//        if (username.length() < UserConstants.USERNAME_MIN_LENGTH
-//                || username.length() > UserConstants.USERNAME_MAX_LENGTH)
-//        {
-//            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-//                    MessageUtils.message("user.password.not.match"));
-//            throw new RuoyiException("user.password.not.match");
-//        }
+        if (StringUtils.isAnyBlank(username, password))
+        {
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("not.null"));
+            throw new RuoyiException(MessageUtils.message("not.null"));
+        }
+        // 密码如果不在指定范围内 错误
+        if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
+                || password.length() > UserConstants.PASSWORD_MAX_LENGTH)
+        {
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
+                    MessageUtils.message("user.password.not.match"));
+            throw new RuoyiException(MessageUtils.message("user.password.not.match"));
+        }
+        // 用户名不在指定范围内 错误
+        if (username.length() < UserConstants.USERNAME_MIN_LENGTH
+                || username.length() > UserConstants.USERNAME_MAX_LENGTH)
+        {
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
+                    MessageUtils.message("user.password.not.match"));
+            throw new RuoyiException(MessageUtils.message("user.password.not.match"));
+        }
         // 查询用户信息
         SysUser user = userService.selectSysUserByUsername(username);
 //         if (user == null && maybeMobilePhoneNumber(username))

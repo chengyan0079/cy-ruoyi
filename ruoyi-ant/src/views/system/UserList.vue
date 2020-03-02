@@ -174,7 +174,7 @@ export default {
   },
   created () {
     getDeptList().then(res => {
-      const data = res.rows
+      const data = res.data.rows
       this.buildtree(data, this.deptTree, 0)
       this.expandedKeys = data.map(m => m.parentId)
       this.dataList = data.map(m => {

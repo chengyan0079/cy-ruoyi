@@ -70,7 +70,7 @@
 			AND u.login_name like concat('%', #{user.loginName}, '%')
 		</if>
 		<if test="user.status != null and user.status != ''">
-			AND u.status = #{status}
+			AND u.status = #{user.status}
 		</if>
 		<if test="user.phonenumber != null and user.phonenumber != ''">
 			AND u.phonenumber like concat('%', #{user.phonenumber}, '%')

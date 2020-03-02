@@ -166,7 +166,7 @@ export default {
     fetch () {
       this.loading = true
       getDeptList(Object.assign(this.queryParam)).then(res => {
-        this.data = treeData(res.rows, 'deptId')
+        this.data = treeData(res.data.rows, 'deptId')
         this.loading = false
         console.log(this.data)
       })
