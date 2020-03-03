@@ -14,7 +14,6 @@ import java.util.Set;
 /**
  * 菜单 业务层
  * 
- * @author ruoyi
  */
 public interface ISysMenuService extends IService<SysMenu>
 {

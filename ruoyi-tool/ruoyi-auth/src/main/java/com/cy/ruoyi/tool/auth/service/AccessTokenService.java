@@ -1,4 +1,4 @@
-package com.cy.ruoyi.user.impl.feign;
+package com.cy.ruoyi.tool.auth.service;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.log.Log;

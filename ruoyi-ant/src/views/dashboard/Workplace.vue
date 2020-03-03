@@ -2,7 +2,7 @@
   <page-view :avatar="avatar" :title="false">
     <div slot="headerContent">
       <div class="title">{{ timeFix }}，{{ user.userName }}<span class="welcome-text">，{{ welcome }}</span></div>
-      <div>前端工程师 | 蚂蚁金服 - 某某某事业群 - VUE平台</div>
+      <div>高级后端工程师</div>
     </div>
     <div slot="extra">
       <a-row class="more-info">

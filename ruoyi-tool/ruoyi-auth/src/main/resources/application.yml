@@ -49,6 +49,7 @@ dubbo:
     check: false
     filter: -exception
 
+
 management:
   endpoints:
     web:

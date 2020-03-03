@@ -2,7 +2,7 @@
   <page-view :avatar="avatar" :title="false">
     <div slot="headerContent">
       <div class="title">{{ timeFix }}，{{ user.userName }}<span class="welcome-text">，{{ welcome }}</span></div>
-      <div>前端工程师 | 蚂蚁金服 - 某某某事业群 - VUE平台</div>
+      <div>高级后端工程师</div>
     </div>
     <div slot="extra">
       <a-row class="more-info">
@@ -21,27 +21,21 @@
     <div>
       <a-row :gutter="24">
         <a-col :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
-          <a-card :bordered="false" title="RuoYi Cloud">
-            <p><strong>Spring Cloud</strong> 版本的若依,集成 <strong>Spring Cloud</strong> 的几大神兽: <strong>eureka,gateway,hystrix,feign,config... </strong>自定义token实现授权，直接存到redis</p>
-            <p><strong>文档地址 </strong><a href="http://doc.rycloud.zmrit.com" target="_blank">http://doc.rycloud.zmrit.com</a></p>
-            <p><strong>RuoYi Cloud</strong> 承诺永久开源，不会出商业版之类的东西</p>
-            <p><strong>RuoYi Cloud</strong> 是采用 MIT 许可的开源项目，使用完全免费。 但为了项目能够健康持续的发展下去，我们期望获得相应的资金支持。 你可以通过下列的方法来赞助我们的开发。</p>
-            <ul>
-              <li><h3>一次性赞助</h3></li>
-              <p>捐赠者信息将会在文档捐赠页展示 <a href="http://doc.rycloud.zmrit.com/#/donate" target="_blank">捐赠名单</a></p>
-              <li><h3>周期性赞助</h3></li>
-              <p>周期性赞助可以获得额外的回报，比如你的名字会出现在 GitHub 仓库中，再比如你的公司 logo 会出现在我们的官网上</p>
-            </ul>
-            <p><strong>Spring Cloud 从零开始免费教程 </strong><a href="http://club.zmrit.com/cloud-zero/" target="_blank">http://club.zmrit.com/cloud-zero/</a></p>
-          </a-card>
-
-          <a-card title="更新日志" :bordered="false">
-            <a-timeline mode="left">
-              <a-timeline-item :color="item.color" :key="index" v-for="(item, index) in changeList">
-                <p><strong>{{ item.title }}</strong></p>
-                <p :key="i" v-for="(c, i) in item.list" class="changList">{{ c }}</p>
-              </a-timeline-item>
-            </a-timeline>
+          <a-card :bordered="false" title="CY-RuoYi">
+            <p><strong>Spring Cloud Alibaba</strong> 版本的若依后台管理系统，集成 <strong>SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis</strong>，自定义token实现授权，直接存到Redis。</p>
+            <p><strong>Github地址： </strong><a href="https://github.com/chengyan0079/cy-ruoyi.git" target="_blank">https://github.com/chengyan0079/cy-ruoyi.git</a></p>
+            <p><strong>中间件：</strong></p>
+            <li>注册中心：Nacos</li>
+            <li>配置中心：Nacos</li>
+            <li>限流熔断：Sentinel</li>
+            <li>消息队列：RocketMQ</li>
+            <li>分布式事务：Seata</li>
+            <li>分布式调用链：SkyWalking</li>
+            <li>分库分表：Mycat</li>
+            <li>分布式任务调度：XXL-Job</li>
+            <li>日志收集：ELK</li>
+            <li>容器：Docker</li>
+            
           </a-card>
         </a-col>
         <a-col
@@ -51,22 +45,9 @@
           :md="24"
           :sm="24"
           :xs="24">
-          <a-card title="捐赠" style="margin-bottom: 24px" :bordered="false" :body-style="{padding: 0}">
-            <h3 style="margin: 12px 26px">请作者喝杯咖啡或者建设演示服务器</h3>
-            <img style="width:100%" src="http://upload.ouliu.net/i/20191021180958e1ek5.png"/>
-          </a-card>
-          <!-- <a-card title="更新日志" style="margin-bottom: 24px" :bordered="false" :body-style="{padding: 0}">
-            <a-collapse defaultActiveKey="0" accordion :bordered="false">
-              <a-collapse-panel :header="item.title" :key="index" v-for="(item, index) in changeList">
-                <p :key="i" v-for="(c, i) in item.list">{{ c }}</p>
-              </a-collapse-panel>
-            </a-collapse>
-          </a-card> -->
-          <a-card title="联系信息" :bordered="false" >
-            <a-row>
-              <a-col :span="4"><a-icon type="qq" />QQ群：</a-col>
-              <a-col :span="20"><a href="https://jq.qq.com/?_wv=1027&k=5JGXHPD" target="_blank"><a-button type="primary" size="small">755109875</a-button></a> 点击按钮入群</a-col>
-            </a-row>
+          <a-card title="作者微信" style="margin-bottom: 24px" :bordered="false" :body-style="{padding: 0}">
+            <h3 style="margin: 12px 26px"></h3>
+            <img style="width:100%" src="../../assets/wechat.png"/>
           </a-card>
         </a-col>
       </a-row>
@@ -188,7 +169,7 @@ export default {
           ]
         }
       ],
-      radarData: []
+      radarData: [],
     }
   },
   computed: {

@@ -1,6 +1,5 @@
 package com.cy.ruoyi.user.impl.service;
 
-
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -10,13 +9,13 @@ import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
+import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.*;
 import com.cy.ruoyi.user.api.mapper.SysRoleDeptMapper;
 import com.cy.ruoyi.user.api.mapper.SysRoleMapper;
 import com.cy.ruoyi.user.api.mapper.SysRoleMenuMapper;
 import com.cy.ruoyi.user.api.mapper.SysUserRoleMapper;
 import com.cy.ruoyi.user.api.service.ISysRoleService;
-import com.cy.ruoyi.user.impl.constants.UserConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -231,8 +231,6 @@
         <!--</encoder>-->
     <!--</appender>-->
 
-
-    <!--<logger name="com.cy.user.basic.mapper" level="DEBUG" />-->
     <root level="INFO">
         <!--<appender-ref ref="KafkaAppender"/>-->
         <!--<appender-ref ref="logstash"/>-->

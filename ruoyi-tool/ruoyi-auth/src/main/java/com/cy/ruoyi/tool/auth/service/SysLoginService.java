@@ -1,19 +1,20 @@
-package com.cy.ruoyi.user.impl.feign;
+package com.cy.ruoyi.tool.auth.service;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.exception.RuoyiException;
 import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.log.publish.PublishFactory;
 import com.cy.ruoyi.common.utils.constants.Constants;
-import com.cy.ruoyi.common.utils.constants.ShiroConstants;
 import com.cy.ruoyi.common.utils.util.DateUtils;
 import com.cy.ruoyi.common.utils.util.IpUtils;
 import com.cy.ruoyi.common.utils.util.MessageUtils;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
+import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.SysUser;
+import com.cy.ruoyi.user.api.enums.UserStatus;
 import com.cy.ruoyi.user.api.feign.RemoteUserService;
 import com.cy.ruoyi.user.api.utils.PasswordUtil;
-import com.cy.ruoyi.user.impl.constants.UserConstants;
-import com.cy.ruoyi.user.impl.enums.UserStatus;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SysLoginService
 {
+
+    private static final Log log = LogFactory.get();
 
     @Autowired
     private RemoteUserService userService;
@@ -30,6 +33,7 @@ public class SysLoginService
      */
     public SysUser login(String username, String password)
     {
+        log.info("进入登陆请求。。。");
         // 验证码校验
 //         if
 //         (!StringUtils.isEmpty(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA)))
@@ -75,19 +79,19 @@ public class SysLoginService
         if (RegexUtil.isNull(user))
         {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.not.exists"));
-            throw new RuoyiException("user.not.exists");
+            throw new RuoyiException(MessageUtils.message("user.not.exists"));
         }
         if (UserStatus.DELETED.getCode().equals(user.getDelFlag()))
         {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
                     MessageUtils.message("user.password.delete"));
-            throw new RuoyiException("user.password.delete");
+            throw new RuoyiException(MessageUtils.message("user.password.delete"));
         }
         if (UserStatus.DISABLE.getCode().equals(user.getStatus()))
         {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
                     MessageUtils.message("user.blocked", user.getRemark()));
-            throw new RuoyiException("user.blocked");
+            throw new RuoyiException(MessageUtils.message("user.blocked"));
         }
         if (!PasswordUtil.matches(user, password))
         {
@@ -115,10 +119,11 @@ public class SysLoginService
 //     }
 //     return true;
 //     }
+
     /**
      * 记录登录信息
      */
-    public void recordLoginInfo(SysUser user)
+    private void recordLoginInfo(SysUser user)
     {
         user.setLoginIp(IpUtils.getIpAddr(ServletUtils.getRequest()));
         user.setLoginDate(DateUtils.getNowDate());

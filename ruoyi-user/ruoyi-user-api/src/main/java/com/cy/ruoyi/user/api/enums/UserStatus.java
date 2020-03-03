@@ -1,4 +1,4 @@
-package com.cy.ruoyi.user.impl.enums;
+package com.cy.ruoyi.user.api.enums;
 
 /**
  * 用户状态

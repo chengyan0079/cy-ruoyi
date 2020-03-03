@@ -5,11 +5,14 @@ import cn.hutool.log.LogFactory;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.utils.text.Convert;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
+import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.*;
 import com.cy.ruoyi.user.api.mapper.*;
 import com.cy.ruoyi.user.api.service.ISysUserService;
@@ -23,7 +26,6 @@ import java.util.List;
 /**
  * 用户 业务层处理
  * 
- * @author ruoyi
  */
 @Service(validation = "true", version = "${dubbo.provider.ISysUserService.version}")
 @org.springframework.stereotype.Service
@@ -155,46 +157,46 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 //        userPostMapper.deleteUserPostByUserId(userId);
 //        return userMapper.deleteUserById(userId);
 //    }
-//
-//    /**
-//     * 批量删除用户信息
-//     *
-//     * @param ids 需要删除的数据ID
-//     * @return 结果
-//     */
-//    @Override
-//    public int deleteUserByIds(String ids) throws BusinessException
-//    {
-//        Long[] userIds = Convert.toLongArray(ids);
-//        for (Long userId : userIds)
-//        {
-//            if (SysUser.isAdmin(userId))
-//            {
-//                throw new BusinessException("不允许删除超级管理员用户");
-//            }
-//        }
-//        return userMapper.deleteUserByIds(userIds);
-//    }
-//
-//    /**
-//     * 新增保存用户信息
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    @Override
-//    @Transactional
-//    public int insertUser(SysUser user)
-//    {
-//        // 新增用户信息
-//        int rows = userMapper.insertUser(user);
-//        // 新增用户岗位关联
-//        insertUserPost(user);
-//        // 新增用户与角色管理
-//        insertUserRole(user);
-//        return rows;
-//    }
-//
+
+    /**
+     * 批量删除用户信息
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    @Override
+    public int deleteUserByIds(String ids) throws BusinessException
+    {
+        Long[] userIds = Convert.toLongArray(ids);
+        for (Long userId : userIds)
+        {
+            if (SysUser.isAdmin(userId))
+            {
+                throw new BusinessException("不允许删除超级管理员用户");
+            }
+        }
+        return userMapper.deleteUserByIds(userIds);
+    }
+
+    /**
+     * 新增保存用户信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    @Override
+    @Transactional
+    public int insertUser(SysUser user)
+    {
+        // 新增用户信息
+        int rows = userMapper.insertUser(user);
+        // 新增用户岗位关联
+        insertUserPost(user);
+        // 新增用户与角色管理
+        insertUserRole(user);
+        return rows;
+    }
+
     /**
      * 修改保存用户信息
      *
@@ -217,30 +219,30 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return userMapper.updateUser(user);
     }
 
-//    /**
-//     * 修改用户个人详细信息
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    @Override
-//    public int updateUserInfo(SysUser user)
-//    {
-//        return userMapper.updateUser(user);
-//    }
-//
-//    /**
-//     * 修改用户密码
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    @Override
-//    public int resetUserPwd(SysUser user)
-//    {
-//        return updateUserInfo(user);
-//    }
-//
+    /**
+     * 修改用户个人详细信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    @Override
+    public int updateUserInfo(SysUser user)
+    {
+        return userMapper.updateUser(user);
+    }
+
+    /**
+     * 修改用户密码
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    @Override
+    public int resetUserPwd(SysUser user)
+    {
+        return updateUserInfo(user);
+    }
+
     /**
      * 新增用户角色信息
      *
@@ -292,59 +294,59 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             }
         }
     }
-//
-//    /**
-//     * 校验用户名称是否唯一
-//     *
-//     * @param loginName 用户名
-//     * @return
-//     */
-//    @Override
-//    public String checkLoginNameUnique(String loginName)
-//    {
-//        int count = userMapper.checkLoginNameUnique(loginName);
-//        if (count > 0)
-//        {
-//            return UserConstants.USER_NAME_NOT_UNIQUE;
-//        }
-//        return UserConstants.USER_NAME_UNIQUE;
-//    }
-//
-//    /**
-//     * 校验用户名称是否唯一
-//     *
-//     * @param user 用户信息
-//     * @return
-//     */
-//    @Override
-//    public String checkPhoneUnique(SysUser user)
-//    {
-//        Long userId = StringUtils.isNull(user.getUserId()) ? -1L : user.getUserId();
-//        SysUser info = userMapper.checkPhoneUnique(user.getPhonenumber());
-//        if (StringUtils.isNotNull(info) && info.getUserId().longValue() != userId.longValue())
-//        {
-//            return UserConstants.USER_PHONE_NOT_UNIQUE;
-//        }
-//        return UserConstants.USER_PHONE_UNIQUE;
-//    }
-//
-//    /**
-//     * 校验email是否唯一
-//     *
-//     * @param user 用户信息
-//     * @return
-//     */
-//    @Override
-//    public String checkEmailUnique(SysUser user)
-//    {
-//        Long userId = StringUtils.isNull(user.getUserId()) ? -1L : user.getUserId();
-//        SysUser info = userMapper.checkEmailUnique(user.getEmail());
-//        if (StringUtils.isNotNull(info) && info.getUserId().longValue() != userId.longValue())
-//        {
-//            return UserConstants.USER_EMAIL_NOT_UNIQUE;
-//        }
-//        return UserConstants.USER_EMAIL_UNIQUE;
-//    }
+
+    /**
+     * 校验用户名称是否唯一
+     *
+     * @param loginName 用户名
+     * @return
+     */
+    @Override
+    public String checkLoginNameUnique(String loginName)
+    {
+        int count = userMapper.checkLoginNameUnique(loginName);
+        if (count > 0)
+        {
+            return UserConstants.USER_NAME_NOT_UNIQUE;
+        }
+        return UserConstants.USER_NAME_UNIQUE;
+    }
+
+    /**
+     * 校验用户名称是否唯一
+     *
+     * @param user 用户信息
+     * @return
+     */
+    @Override
+    public String checkPhoneUnique(SysUser user)
+    {
+        Long userId = StringUtils.isNull(user.getUserId()) ? -1L : user.getUserId();
+        SysUser info = userMapper.checkPhoneUnique(user.getPhonenumber());
+        if (StringUtils.isNotNull(info) && info.getUserId().longValue() != userId.longValue())
+        {
+            return UserConstants.USER_PHONE_NOT_UNIQUE;
+        }
+        return UserConstants.USER_PHONE_UNIQUE;
+    }
+
+    /**
+     * 校验email是否唯一
+     *
+     * @param user 用户信息
+     * @return
+     */
+    @Override
+    public String checkEmailUnique(SysUser user)
+    {
+        Long userId = StringUtils.isNull(user.getUserId()) ? -1L : user.getUserId();
+        SysUser info = userMapper.checkEmailUnique(user.getEmail());
+        if (StringUtils.isNotNull(info) && info.getUserId().longValue() != userId.longValue())
+        {
+            return UserConstants.USER_EMAIL_NOT_UNIQUE;
+        }
+        return UserConstants.USER_EMAIL_UNIQUE;
+    }
 //
 //    /**
 //     * 查询用户所属角色组
@@ -457,21 +459,20 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 //        return successMsg.toString();
 //    }
 //
-//    /**
-//     * 用户状态修改
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    @Override
-//    public int changeStatus(SysUser user)
-//    {
-//        if (SysUser.isAdmin(user.getUserId()))
-//        {
-//            throw new BusinessException("不允许修改超级管理员用户");
-//        }
-//        return userMapper.updateUser(user);
-//    }
+    /**
+     * 用户状态修改
+     * @param user 用户信息
+     * @return 结果
+     */
+    @Override
+    public int changeStatus(SysUser user)
+    {
+        if (SysUser.isAdmin(user.getUserId()))
+        {
+            throw new BusinessException("不允许修改超级管理员用户");
+        }
+        return userMapper.updateUser(user);
+    }
 
     @Override
     public PageUtils selectPageUserList(PageDomain pageDomain, SysUser sysUser){

@@ -105,7 +105,7 @@
 			AND u.phonenumber like concat('%', #{phonenumber}, '%')
 		</if>
 		<!-- 数据范围过滤 -->
-		${params.dataScope}
+		/*${params.dataScope}*/
 	</select>
 
 	<select id="selectUnallocatedList" parameterType="com.cy.ruoyi.user.api.entity.SysUser" resultMap="SysUserResult">
@@ -123,7 +123,7 @@
 			AND u.phonenumber like concat('%', #{phonenumber}, '%')
 		</if>
 		<!-- 数据范围过滤 -->
-		${params.dataScope}
+		/*${params.dataScope}*/
 	</select>
 
 	<select id="selectUserByLoginName" parameterType="String" resultMap="SysUserResult">

@@ -1,4 +1,4 @@
-package com.cy.ruoyi.user.impl.constants;
+package com.cy.ruoyi.user.api.constants;
 
 /**
  * 用户常量信息

@@ -78,24 +78,24 @@ public interface ISysUserService extends IService<SysUser>
 //     * @return 结果
 //     */
 //    public int deleteUserById(Long userId);
-//
-//    /**
-//     * 批量删除用户信息
-//     *
-//     * @param ids 需要删除的数据ID
-//     * @return 结果
-//     * @throws Exception 异常
-//     */
-//    public int deleteUserByIds(String ids) throws Exception;
-//
-//    /**
-//     * 保存用户信息
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    public int insertUser(SysUser user);
-//
+
+    /**
+     * 批量删除用户信息
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     * @throws Exception 异常
+     */
+    int deleteUserByIds(String ids) throws Exception;
+
+    /**
+     * 保存用户信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    int insertUser(SysUser user);
+
     /**
      * 保存用户信息
      *
@@ -104,45 +104,45 @@ public interface ISysUserService extends IService<SysUser>
      */
     int updateUser(SysUser user);
 
-//    /**
-//     * 修改用户详细信息
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    public int updateUserInfo(SysUser user);
-//
-//    /**
-//     * 修改用户密码信息
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    public int resetUserPwd(SysUser user);
-//
-//    /**
-//     * 校验用户名称是否唯一
-//     *
-//     * @param loginName 登录名称
-//     * @return 结果
-//     */
-//    public String checkLoginNameUnique(String loginName);
-//
-//    /**
-//     * 校验手机号码是否唯一
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    public String checkPhoneUnique(SysUser user);
-//
-//    /**
-//     * 校验email是否唯一
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    public String checkEmailUnique(SysUser user);
+    /**
+     * 修改用户详细信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    int updateUserInfo(SysUser user);
+
+    /**
+     * 修改用户密码信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    int resetUserPwd(SysUser user);
+
+    /**
+     * 校验用户名称是否唯一
+     *
+     * @param loginName 登录名称
+     * @return 结果
+     */
+    String checkLoginNameUnique(String loginName);
+
+    /**
+     * 校验手机号码是否唯一
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    String checkPhoneUnique(SysUser user);
+
+    /**
+     * 校验email是否唯一
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    String checkEmailUnique(SysUser user);
 //
 //    /**
 //     * 根据用户ID查询用户所属角色组
@@ -170,13 +170,13 @@ public interface ISysUserService extends IService<SysUser>
 //     */
 //    public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName);
 //
-//    /**
-//     * 用户状态修改
-//     *
-//     * @param user 用户信息
-//     * @return 结果
-//     */
-//    public int changeStatus(SysUser user);
+    /**
+     * 用户状态修改
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    public int changeStatus(SysUser user);
 
 
     /**

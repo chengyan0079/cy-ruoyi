@@ -54,14 +54,8 @@
             <artifactId>ruoyi-user-api</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.cy.ruoyi.user.impl</groupId>
-            <artifactId>ruoyi-user-impl</artifactId>
-            <version>1.0.0</version>
-        </dependency>
 
     </dependencies>
-
 
     <build>
         <plugins>

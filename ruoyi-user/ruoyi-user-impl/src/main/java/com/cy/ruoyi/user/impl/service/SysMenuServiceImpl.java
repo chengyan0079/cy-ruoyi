@@ -4,13 +4,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.ruoyi.common.core.basic.entity.Ztree;
 import com.cy.ruoyi.common.redis.annotation.RedisCache;
 import com.cy.ruoyi.common.utils.util.StringUtils;
+import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.SysMenu;
 import com.cy.ruoyi.user.api.entity.SysRole;
 import com.cy.ruoyi.user.api.entity.SysUser;
 import com.cy.ruoyi.user.api.mapper.SysMenuMapper;
 import com.cy.ruoyi.user.api.mapper.SysRoleMenuMapper;
 import com.cy.ruoyi.user.api.service.ISysMenuService;
-import com.cy.ruoyi.user.impl.constants.UserConstants;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 

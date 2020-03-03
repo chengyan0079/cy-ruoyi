@@ -1,4 +1,4 @@
-package com.cy.ruoyi.user.app.config;
+package com.cy.ruoyi.common.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
