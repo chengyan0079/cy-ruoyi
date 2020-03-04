@@ -17,12 +17,12 @@ import java.util.List;
 public interface SysRoleMapper extends BaseMapper<SysRole>
 {
     /**
-     * 根据条件分页查询角色数据
+     * 根据条件查询所有角色数据
      * 
      * @param role 角色信息
      * @return 角色数据集合信息
      */
-//    List<SysRole> selectRoleList(SysRole role);
+    List<SysRole> selectRoleList(@Param("role") SysRole role);
 
     /**
      * 根据用户ID查询角色
@@ -79,4 +79,21 @@ public interface SysRoleMapper extends BaseMapper<SysRole>
      * @return
      */
     IPage<SysRole> selectRoleList(Page page, @Param("role") SysRole role);
+
+    /**
+     * 修改角色信息
+     *
+     * @param role 角色信息
+     * @return 结果
+     */
+    int updateRole(SysRole role);
+
+
+    /**
+     * 新增角色信息
+     *
+     * @param role 角色信息
+     * @return 结果
+     */
+    int insertRole(SysRole role);
 }

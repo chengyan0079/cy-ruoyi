@@ -168,7 +168,7 @@ export default {
       getDeptList(Object.assign(this.queryParam)).then(res => {
         this.data = treeData(res.data.rows, 'deptId')
         this.loading = false
-        console.log(this.data)
+        // console.log(this.data)
       })
     }
   },

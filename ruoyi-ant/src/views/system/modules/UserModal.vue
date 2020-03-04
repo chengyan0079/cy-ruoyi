@@ -149,7 +149,7 @@ export default {
     loadRoleAll () {
       getRoleAll().then(res => {
         this.roleAll = res.data.rows
-        console.log('roleALl', this.roleAll)
+        // console.log('roleALl', this.roleAll)
       })
     },
     handleSubmit (e) {
@@ -160,7 +160,7 @@ export default {
       }
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values)
+          // console.log('Received values of form: ', values)
           this.confirmLoading = true
           saveUser(values).then(res => {
             if (res.code === 0) {

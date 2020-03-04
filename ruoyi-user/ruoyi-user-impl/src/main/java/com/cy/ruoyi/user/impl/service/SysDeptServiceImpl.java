@@ -5,6 +5,7 @@ import cn.hutool.log.LogFactory;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.ruoyi.common.core.basic.entity.Ztree;
+import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
@@ -181,18 +182,17 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
     @Override
     public int insertDept(SysDept dept)
     {
-//        if(dept.getParentId()>0) {
-//
-//            SysDept info = deptMapper.selectDeptById(dept.getParentId());
-//            // 如果父节点不为"正常"状态,则不允许新增子节点
-//            if (!UserConstants.DEPT_NORMAL.equals(info.getStatus()))
-//            {
-//                throw new BusinessException("部门停用，不允许新增");
-//            }
-//            dept.setAncestors(info.getAncestors() + "," + dept.getParentId());
-//        }
-//        return deptMapper.insertDept(dept);
-        return 0;
+        if(dept.getParentId()>0) {
+
+            SysDept info = deptMapper.selectDeptById(dept.getParentId());
+            // 如果父节点不为"正常"状态,则不允许新增子节点
+            if (!UserConstants.DEPT_NORMAL.equals(info.getStatus()))
+            {
+                throw new BusinessException("部门停用，不允许新增");
+            }
+            dept.setAncestors(info.getAncestors() + "," + dept.getParentId());
+        }
+        return deptMapper.insertDept(dept);
     }
 
     /**
@@ -205,23 +205,22 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
     @Transactional(rollbackFor = Exception.class)
     public int updateDept(SysDept dept)
     {
-//        SysDept newParentDept = deptMapper.selectDeptById(dept.getParentId());
-//        SysDept oldDept = selectDeptById(dept.getDeptId());
-//        if (StringUtils.isNotNull(newParentDept) && StringUtils.isNotNull(oldDept))
-//        {
-//            String newAncestors = newParentDept.getAncestors() + "," + newParentDept.getDeptId();
-//            String oldAncestors = oldDept.getAncestors();
-//            dept.setAncestors(newAncestors);
-//            updateDeptChildren(dept.getDeptId(), newAncestors,oldAncestors);
-//        }
-//        int result = deptMapper.updateDept(dept);
-//        if (UserConstants.DEPT_NORMAL.equals(dept.getStatus()))
-//        {
-//            // 如果该部门是启用状态，则启用该部门的所有上级部门
-//            updateParentDeptStatus(dept);
-//        }
-//        return result;
-        return 0;
+        SysDept newParentDept = deptMapper.selectDeptById(dept.getParentId());
+        SysDept oldDept = selectDeptById(dept.getDeptId());
+        if (StringUtils.isNotNull(newParentDept) && StringUtils.isNotNull(oldDept))
+        {
+            String newAncestors = newParentDept.getAncestors() + "," + newParentDept.getDeptId();
+            String oldAncestors = oldDept.getAncestors();
+            dept.setAncestors(newAncestors);
+            updateDeptChildren(dept.getDeptId(), newAncestors,oldAncestors);
+        }
+        int result = deptMapper.updateDept(dept);
+        if (UserConstants.DEPT_NORMAL.equals(dept.getStatus()))
+        {
+            // 如果该部门是启用状态，则启用该部门的所有上级部门
+            updateParentDeptStatus(dept);
+        }
+        return result;
     }
 
     /**

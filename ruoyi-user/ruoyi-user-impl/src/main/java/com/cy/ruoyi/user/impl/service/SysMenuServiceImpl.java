@@ -1,8 +1,13 @@
 package com.cy.ruoyi.user.impl.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.ruoyi.common.core.basic.entity.Ztree;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.redis.annotation.RedisCache;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.SysMenu;
@@ -67,6 +72,17 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public List<SysMenu> selectMenuList(SysMenu menu)
     {
         return menuMapper.selectMenuList(menu);
+    }
+
+
+    @Override
+    public PageUtils selectMenuList(PageDomain pageDomain, SysMenu menu)
+    {
+        if (RegexUtil.isNull(menu)) {
+            menu = new SysMenu();
+        }
+        IPage<SysMenu> page = menuMapper.selectMenuList(new Query<SysMenu>(pageDomain).getPage(), menu);
+        return new PageUtils(page);
     }
 
     /**

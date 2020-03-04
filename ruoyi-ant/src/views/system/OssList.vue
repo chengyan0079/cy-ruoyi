@@ -217,7 +217,7 @@ export default {
     },
     uploadChange (info) {
       if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList)
+        // console.log(info.file, info.fileList)
       }
       if (info.file.status === 'done') {
         this.$refs.table.refresh(true)
@@ -230,7 +230,7 @@ export default {
       this.$refs.modal.edit(record)
     },
     handleChange (value, key, column, record) {
-      console.log(value, key, column)
+      // console.log(value, key, column)
       record[column] = value
     },
     edit (record) {

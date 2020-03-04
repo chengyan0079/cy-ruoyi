@@ -206,7 +206,7 @@ export default {
       loadData: parameter => {
         return getRoleList(parameter)
           .then(res => {
-            console.log('getRoleList', res)
+            // console.log('getRoleList', res)
             return res.result
           })
       },
@@ -217,11 +217,11 @@ export default {
   },
   created () {
     getServiceList().then(res => {
-      console.log('getServiceList.call()', res)
+      // console.log('getServiceList.call()', res)
     })
 
     getRoleList().then(res => {
-      console.log('getRoleList.call()', res)
+      // console.log('getRoleList.call()', res)
     })
   },
   methods: {

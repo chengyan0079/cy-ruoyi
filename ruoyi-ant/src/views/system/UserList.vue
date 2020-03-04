@@ -155,7 +155,7 @@ export default {
       loadData: parameter => {
         return getUserList(Object.assign(parameter, this.queryParam))
           .then(res => {
-            console.log('getUserList', res)
+            // console.log('getUserList', res)
             return res
           })
       },
@@ -184,7 +184,7 @@ export default {
   },
   methods: {
     onSelectChange (selectedRowKeys) {
-      console.log('selectedRowKeys changed: ', selectedRowKeys)
+      // console.log('selectedRowKeys changed: ', selectedRowKeys)
       this.selectedRowKeys = selectedRowKeys
     },
     handleEdit (record) {
@@ -199,7 +199,7 @@ export default {
     },
     handleOk () {
       this.$refs.table.refresh()
-      console.log('handleSaveOk')
+      // console.log('handleSaveOk')
     },
     delByIds (ids) {
       delUser({ ids: ids.join(',') }).then(res => {

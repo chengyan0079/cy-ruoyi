@@ -188,7 +188,7 @@ export default {
   },
   methods: {
     handleChange (value, key, column) {
-      console.log(value, key, column)
+      // console.log(value, key, column)
       const newData = [...this.data]
       const target = newData.filter(item => key === item.columnId)[0]
       if (target) {
@@ -258,7 +258,7 @@ export default {
         }).finally(() => {
           this.loading = false
         })
-        console.log('received values of form:', genTable)
+        // console.log('received values of form:', genTable)
       }).catch(() => {
         const tmp = { ...errors }
         this.errorList(tmp)
@@ -274,7 +274,7 @@ export default {
           key: key,
           message: errors[key][0]
         }))
-      console.log(this.errors)
+      // console.log(this.errors)
       // 这里只输出第一个错误,需要自己改
       this.$message.error(this.errors[0].message || '配置错误')
     },

@@ -149,12 +149,12 @@ export default {
       this.form.validateFields((err, values) => {
         // 验证表单没错误
         if (!err) {
-          console.log(this.checkedKeys)
+          // console.log(this.checkedKeys)
 
           values.deptIds = this.dataScope ? this.checkedKeys : []
           _this.confirmLoading = true
           authDataScope(Object.assign(values)).then(res => {
-            console.log(res)
+            // console.log(res)
             if (res.code === 0) {
               _this.$message.success('保存成功')
               _this.$emit('ok')

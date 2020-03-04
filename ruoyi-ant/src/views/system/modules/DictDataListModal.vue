@@ -150,7 +150,7 @@ export default {
     },
     handleOk () {
       this.$refs.table.refresh(true)
-      console.log('handleSaveOk')
+      // console.log('handleSaveOk')
     },
     delByIds (ids) {
       delDictData({ ids: ids.join(',') }).then(res => {

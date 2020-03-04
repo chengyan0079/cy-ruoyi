@@ -152,23 +152,23 @@ export default {
       this.visible = false
     },
     onExpand (expandedKeys) {
-      console.log('onExpand', expandedKeys)
+      // console.log('onExpand', expandedKeys)
       this.expandedKeys = expandedKeys
       this.autoExpandParent = false
     },
     onCheck (checkedKeys, info) {
       if (!this.treeCheck) this.treeCheck = true
-      console.log('onCheck', info)
+      // console.log('onCheck', info)
       this.checkedKeys = checkedKeys
       this.halfCheckedKeys = info.halfCheckedKeys
     },
     onSelect (selectedKeys, info) {
-      console.log('onSelect', info)
+      // console.log('onSelect', info)
       this.selectedKeys = selectedKeys
     },
     loadPermissions () {
       getPermissions().then(res => {
-        this.buildtree(res.rows, this.permissions, 0)
+        this.buildtree(res.data.rows, this.permissions, 0)
       })
     },
     buildtree (list, permissions, parentId) {

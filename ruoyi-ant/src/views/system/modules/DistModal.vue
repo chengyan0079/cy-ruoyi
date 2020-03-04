@@ -119,7 +119,7 @@ export default {
   },
   created () {
     getDistList(Object.assign({ deep: 0 })).then(res => {
-      this.options = res.rows.map(d => {
+      this.options = res.data.rows.map(d => {
         return { value: d.id, label: d.name, isLeaf: false }
       })
     })
@@ -142,7 +142,7 @@ export default {
 
       getDistList(Object.assign({ pid: targetOption.value })).then(res => {
         targetOption.loading = false
-        targetOption.children = res.rows.map(d => {
+        targetOption.children = res.data.rows.map(d => {
           return { value: d.id, label: d.name, isLeaf: d.deep === 2 }
         })
         this.options = [...this.options]
@@ -153,7 +153,7 @@ export default {
       this.$message.success('your select dist is ' + this.city)
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values)
+          // console.log('Received values of form: ', values)
           this.confirmLoading = true
           saveDist(values).then(res => {
             if (res.code === 0) {

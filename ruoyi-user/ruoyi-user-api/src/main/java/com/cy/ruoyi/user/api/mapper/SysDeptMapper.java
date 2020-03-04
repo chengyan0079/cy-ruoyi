@@ -112,4 +112,20 @@ public interface SysDeptMapper extends BaseMapper<SysDept>
      * @return
      */
     IPage<SysDept> selectDeptList(Page page, @Param("dept") SysDept dept);
+
+    /**
+     * 新增部门信息
+     *
+     * @param dept 部门信息
+     * @return 结果
+     */
+    int insertDept(SysDept dept);
+
+    /**
+     * 修改部门信息
+     *
+     * @param dept 部门信息
+     * @return 结果
+     */
+    int updateDept(SysDept dept);
 }

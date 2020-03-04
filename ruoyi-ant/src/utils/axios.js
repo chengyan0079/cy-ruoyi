@@ -9,7 +9,7 @@ const VueAxios = {
 
     if (!instance) {
       // eslint-disable-next-line no-console
-      console.error('You have to install axios')
+      // console.error('You have to install axios')
       return
     }
 

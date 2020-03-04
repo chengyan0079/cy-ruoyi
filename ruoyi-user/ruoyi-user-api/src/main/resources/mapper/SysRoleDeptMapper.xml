@@ -26,5 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(#{item.roleId},#{item.deptId})
 		</foreach>
 	</insert>
+
+	<delete id="deleteRoleDeptByRoleId" parameterType="Long">
+		delete from sys_role_dept where role_id=#{roleId}
+	</delete>
 	
 </mapper> 

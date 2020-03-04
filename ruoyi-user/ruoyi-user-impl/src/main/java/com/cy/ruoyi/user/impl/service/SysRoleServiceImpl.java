@@ -4,9 +4,11 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.utils.text.Convert;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.user.api.constants.UserConstants;
@@ -50,12 +52,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
      * @param role 角色信息
      * @return 角色数据集合信息
      */
-//    @Override
+    @Override
 //    @DataScope(deptAlias = "d")
-//    public List<SysRole> selectRoleList(SysRole role)
-//    {
-//        return roleMapper.selectRoleList(role);
-//    }
+    public List<SysRole> selectRoleList(SysRole role)
+    {
+        return roleMapper.selectRoleList(role);
+    }
 
     /**
      * 根据条件分页查询部门信息
@@ -161,17 +163,19 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public int deleteRoleByIds(String ids)
     {
-//        Long[] roleIds = Convert.toLongArray(ids);
-//        for (Long roleId : roleIds)
-//        {
-//            SysRole role = selectRoleById(roleId);
-//            if (countUserRoleByRoleId(roleId) > 0)
-//            {
-//                throw new BusinessException(String.format("%1$s已分配,不能删除", role.getRoleName()));
-//            }
-//        }
-//       if (roleIds.length>0) return roleMapper.deleteRoleByIds(roleIds);
-       return 0;
+        Long[] roleIds = Convert.toLongArray(ids);
+        for (Long roleId : roleIds)
+        {
+            SysRole role = selectRoleById(roleId);
+            if (countUserRoleByRoleId(roleId) > 0)
+            {
+                throw new BusinessException(String.format("%1$s已分配,不能删除", role.getRoleName()));
+            }
+        }
+       if (roleIds.length>0) {
+           return roleMapper.deleteRoleByIds(roleIds);
+       }
+        return 0;
     }
 
     /**
@@ -184,10 +188,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Transactional
     public int insertRole(SysRole role)
     {
-//        // 新增角色信息
-//        roleMapper.insertRole(role);
-//        return insertRoleMenu(role);
-        return 0;
+        // 新增角色信息
+        roleMapper.insertRole(role);
+        return insertRoleMenu(role);
     }
 
     /**
@@ -200,12 +203,11 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Transactional
     public int updateRole(SysRole role)
     {
-//        // 修改角色信息
-//        roleMapper.updateRole(role);
-//        // 删除角色与菜单关联
-//        roleMenuMapper.deleteRoleMenuByRoleId(role.getRoleId());
-//        return insertRoleMenu(role);
-        return 0;
+        // 修改角色信息
+        roleMapper.updateRole(role);
+        // 删除角色与菜单关联
+        roleMenuMapper.deleteRoleMenuByRoleId(role.getRoleId());
+        return insertRoleMenu(role);
     }
 
     /**
@@ -218,13 +220,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Transactional
     public int authDataScope(SysRole role)
     {
-//        // 修改角色信息
-//        roleMapper.updateRole(role);
-//        // 删除角色与部门关联
-//        roleDeptMapper.deleteRoleDeptByRoleId(role.getRoleId());
-//        // 新增角色和部门信息（数据权限）
-//        return insertRoleDept(role);
-        return 0;
+        // 修改角色信息
+        roleMapper.updateRole(role);
+        // 删除角色与部门关联
+        roleDeptMapper.deleteRoleDeptByRoleId(role.getRoleId());
+        // 新增角色和部门信息（数据权限）
+        return insertRoleDept(role);
     }
 
     /**
@@ -332,8 +333,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public int changeStatus(SysRole role)
     {
-//        return roleMapper.updateRole(role);
-        return 0;
+        return roleMapper.updateRole(role);
     }
 
     /**

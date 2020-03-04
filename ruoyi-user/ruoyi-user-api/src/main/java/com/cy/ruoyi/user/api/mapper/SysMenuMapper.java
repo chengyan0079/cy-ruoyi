@@ -1,8 +1,11 @@
 package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cy.ruoyi.user.api.entity.SysLogininfor;
 import com.cy.ruoyi.user.api.entity.SysMenu;
+import com.cy.ruoyi.user.api.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -68,7 +71,15 @@ public interface SysMenuMapper extends BaseMapper<SysMenu>
      * @param menu 菜单信息
      * @return 菜单列表
      */
-    List<SysMenu> selectMenuList(SysMenu menu);
+    List<SysMenu> selectMenuList(@Param("menu") SysMenu menu);
+
+    /**
+     * 根据条件分页查询用户列表
+     * @param page
+     * @param menu
+     * @return
+     */
+    IPage<SysMenu> selectMenuList(Page page, @Param("menu") SysMenu menu);
 
     /**
      * 删除菜单管理信息

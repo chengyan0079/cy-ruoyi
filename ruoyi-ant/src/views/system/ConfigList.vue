@@ -173,8 +173,8 @@ export default {
     onSelectChange (selectedRowKeys, selectedRows) {
       this.selectedRowKeys = selectedRowKeys
       this.selectedRows = selectedRows
-      console.log(this.selectedRowKeys)
-      console.log(this.selectedRows)
+      // console.log(this.selectedRowKeys)
+      // console.log(this.selectedRows)
     },
     handleOk () {
       this.$refs.table.refresh(true)

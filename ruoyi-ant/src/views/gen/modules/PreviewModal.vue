@@ -29,11 +29,11 @@ export default {
       this.visible = true
     },
     handleOk (e) {
-      console.log(e)
+      // console.log(e)
       this.visible = false
     },
     callback (key) {
-      console.log(key)
+      // console.log(key)
     }
   }
 }

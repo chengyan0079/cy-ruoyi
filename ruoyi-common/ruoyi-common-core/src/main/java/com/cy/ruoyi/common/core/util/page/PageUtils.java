@@ -25,21 +25,27 @@ public class PageUtils implements Serializable {
 	 * 列表数据
 	 */
 	private List<?> rows;
+
+	/**
+	 *  共页码
+	 */
+	private long totalPage;
+
+	/**
+	 * 每页记录数
+	 */
+	private long pageSize;
 	
-//	/**
-//	 * 分页
-//	 * @param list        列表数据
-//	 * @param totalCount  总记录数
-//	 * @param pageSize    每页记录数
-//	 * @param currPage    当前页数
-//	 */
-//	public PageUtils(List<?> list, int totalCount, int pageSize, int currPage) {
-//		this.list = list;
-//		this.totalCount = totalCount;
-//		this.pageSize = pageSize;
-//		this.currPage = currPage;
-//		this.totalPage = (int) Math.ceil((double)totalCount/pageSize);
-//	}
+	/**
+	 *  结果封装，不分页
+	 * @param rows        列表数据
+	 * @param total  	总记录数
+	 */
+	public PageUtils(List<?> rows, int total) {
+		this.rows = rows;
+		this.total = total;
+		this.pageNum = 1;
+	}
 
 	/**
 	 * 分页

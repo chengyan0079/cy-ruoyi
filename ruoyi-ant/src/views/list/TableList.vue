@@ -190,10 +190,10 @@ export default {
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
-        console.log('loadData.parameter', parameter)
+        // console.log('loadData.parameter', parameter)
         return getServiceList(Object.assign(parameter, this.queryParam))
           .then(res => {
-            console.log('res', res)
+            // console.log('res', res)
             return res.result
           })
       },
@@ -250,7 +250,7 @@ export default {
     },
 
     handleEdit (record) {
-      console.log(record)
+      // console.log(record)
       this.$refs.modal.edit(record)
     },
     handleSub (record) {

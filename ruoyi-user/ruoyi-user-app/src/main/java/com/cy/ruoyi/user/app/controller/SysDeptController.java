@@ -8,6 +8,9 @@ import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.user.api.entity.SysDept;
 import com.cy.ruoyi.user.api.service.ISysDeptService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +22,12 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("dept")
+@Api(value = "SysDeptController",description = "部门")
 public class SysDeptController extends BaseController
 {
     private static final Log log = LogFactory.get();
 
-    @Autowired
+    @Reference(validation = "true", version = "${dubbo.provider.ISysDeptService.version}")
     private ISysDeptService sysDeptService;
 
 //    /**
@@ -39,6 +43,7 @@ public class SysDeptController extends BaseController
      * 查询部门列表
      */
     @GetMapping("list")
+    @ApiOperation(value = "查询部门列表")
     public R list(SysDept sysDept)
     {
         PageDomain pageDomain = getPageInfo();
@@ -47,40 +52,46 @@ public class SysDeptController extends BaseController
         return R.ok(page);
     }
 
-//    /**
-//     * 新增保存部门
-//     */
-//    @PostMapping("save")
-//    public R addSave(@RequestBody SysDept sysDept)
-//    {
-//        return toAjax(sysDeptService.insertDept(sysDept));
-//    }
-//
-//    /**
-//     * 修改保存部门
-//     */
-//    @PostMapping("update")
-//    public R editSave(@RequestBody SysDept sysDept)
-//    {
-//        return toAjax(sysDeptService.updateDept(sysDept));
-//    }
-//
-//    /**
-//     * 删除部门
-//     */
-//    @PostMapping("remove/{deptId}")
-//    public R remove(@PathVariable("deptId") Long deptId)
-//    {
-//        return toAjax(sysDeptService.deleteDeptById(deptId));
-//    }
-//
-//    /**
-//     * 加载角色部门（数据权限）列表树
-//     */
-//    @GetMapping("/role/{roleId}")
-//    public Set<String> deptTreeData(@PathVariable("roleId" )Long roleId)
-//    {
-//        if (null == roleId || roleId <= 0) return null;
-//        return sysDeptService.roleDeptIds(roleId);
-//    }
+    /**
+     * 新增保存部门
+     */
+    @PostMapping("save")
+    @ApiOperation(value = "新增保存部门")
+    public R addSave(@RequestBody SysDept sysDept)
+    {
+        return toAjax(sysDeptService.insertDept(sysDept));
+    }
+
+    /**
+     * 修改保存部门
+     */
+    @PostMapping("update")
+    @ApiOperation(value = "修改保存部门")
+    public R editSave(@RequestBody SysDept sysDept)
+    {
+        return toAjax(sysDeptService.updateDept(sysDept));
+    }
+
+    /**
+     * 删除部门
+     */
+    @PostMapping("remove/{deptId}")
+    @ApiOperation(value = "删除部门")
+    public R remove(@PathVariable("deptId") Long deptId)
+    {
+        return toAjax(sysDeptService.deleteDeptById(deptId));
+    }
+
+    /**
+     * 加载角色部门（数据权限）列表树
+     */
+    @GetMapping("/role/{roleId}")
+    @ApiOperation(value = "加载角色部门（数据权限）列表树")
+    public Set<String> deptTreeData(@PathVariable("roleId" )Long roleId)
+    {
+        if (null == roleId || roleId <= 0){
+            return null;
+        }
+        return sysDeptService.roleDeptIds(roleId);
+    }
 }

@@ -93,7 +93,7 @@ export const generatorDynamicRouter = () => {
     getRouterByUser().then(res => {
       const result = buildmenu(res)
       const routers = generator(result)
-      console.log('routers', routers)
+      // console.log('routers', routers)
       routers.push(notFoundRouter)
       resolve(routers)
     }).catch(err => {
@@ -110,7 +110,7 @@ export const generatorDynamicRouter = () => {
  * @returns {*}
  */
 export const generator = (routerMap, parent) => {
-  console.log(routerMap)
+  // console.log(routerMap)
   return routerMap.map(item => {
     const currentRouter = {
       // 路由地址 动态拼接生成如 /dashboard/workplace

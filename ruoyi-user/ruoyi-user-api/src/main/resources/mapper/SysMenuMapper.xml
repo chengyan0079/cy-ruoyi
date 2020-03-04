@@ -97,14 +97,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultMap="SysMenuResult">
 		<include refid="selectMenuVo" />
 		<where>
-			<if test="menuKey != null and menuKey != ''">
-				AND menu_key=#{menuKey}
+			<if test="menu.menuKey != null and menu.menuKey != ''">
+				AND menu_key=#{menu.menuKey}
 			</if>
-			<if test="menuName != null and menuName != ''">
-				AND menu_name like concat('%', #{menuName}, '%')
+			<if test="menu.menuName != null and menu.menuName != ''">
+				AND menu_name like concat('%', #{menu.menuName}, '%')
 			</if>
-			<if test="visible != null and visible != ''">
-				AND visible = #{visible}
+			<if test="menu.visible != null and menu.visible != ''">
+				AND visible = #{menu.visible}
 			</if>
 		</where>
 		order by order_num

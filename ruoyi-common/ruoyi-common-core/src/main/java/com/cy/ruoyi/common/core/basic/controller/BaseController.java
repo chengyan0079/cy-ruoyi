@@ -2,12 +2,14 @@ package com.cy.ruoyi.common.core.basic.controller;
 
 import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.TableSupport;
 import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.util.DateUtils;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.common.utils.util.SqlUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.beans.PropertyEditorSupport;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * web层通用数据处理
@@ -119,6 +124,17 @@ public class BaseController
             String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
         }
         return pageDomain;
+    }
+
+    /**
+     *  不分页结果封装
+     * @param list
+     * @return
+     */
+    protected R result(List<?> list)
+    {
+        PageUtils pageInfo = new PageUtils(list, list.size());
+        return R.ok(pageInfo);
     }
 
 }

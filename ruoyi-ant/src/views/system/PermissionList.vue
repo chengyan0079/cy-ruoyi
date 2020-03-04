@@ -172,7 +172,7 @@ export default {
     handleOk () {
       // this.$refs.table.refresh()
       this.fetch()
-      console.log('handleSaveOk')
+      // console.log('handleSaveOk')
     },
     delById (id) {
       delPerm(id).then(res => {
@@ -187,7 +187,7 @@ export default {
     fetch () {
       this.loading = true
       getPermissions(Object.assign(this.queryParam)).then(res => {
-        this.data = treeData(res.rows, 'menuId')
+        this.data = treeData(res.data.rows, 'menuId')
         this.loading = false
       })
     }

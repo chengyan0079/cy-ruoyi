@@ -143,11 +143,11 @@ export default {
   },
   methods: {
     handleChange (value) {
-      console.log(`selected ${value}`)
+      // console.log(`selected ${value}`)
     },
     getList () {
       this.$http.get('/list/article').then(res => {
-        console.log('res', res)
+        // console.log('res', res)
         this.data = res.result
         this.loading = false
       })
