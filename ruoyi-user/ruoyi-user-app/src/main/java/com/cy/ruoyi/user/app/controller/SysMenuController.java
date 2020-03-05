@@ -4,19 +4,16 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
-import com.cy.ruoyi.common.core.util.page.PageDomain;
-import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.log.annotation.OperLog;
 import com.cy.ruoyi.common.log.enums.BusinessType;
+import com.cy.ruoyi.common.utils.annotation.LoginUser;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.user.api.entity.SysMenu;
 import com.cy.ruoyi.user.api.entity.SysUser;
 import com.cy.ruoyi.user.api.service.ISysMenuService;
-import com.cy.ruoyi.user.app.annotation.LoginUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,20 +35,22 @@ public class SysMenuController extends BaseController
     @Reference(validation = "true", version = "${dubbo.provider.ISysMenuService.version}")
     private ISysMenuService sysMenuService;
 
-//    /**
-//     * 查询菜单权限
-//     */
-//    @GetMapping("get/{menuId}")
-//    public SysMenu get(@PathVariable("menuId") Long menuId)
-//    {
-//        return sysMenuService.selectMenuById(menuId);
-//    }
-//
-//    @GetMapping("perms/{userId}")
-//    public Set<String> perms(@PathVariable("userId") Long userId)
-//    {
-//        return sysMenuService.selectPermsByUserId(userId);
-//    }
+    /**
+     * 查询菜单权限
+     */
+    @GetMapping("get/{menuId}")
+    @ApiOperation(value = "查询菜单权限")
+    public SysMenu get(@PathVariable("menuId") Long menuId)
+    {
+        return sysMenuService.selectMenuById(menuId);
+    }
+
+    @GetMapping("perms/{userId}")
+    @ApiOperation(value = "perms/{userId}")
+    public Set<String> perms(@PathVariable("userId") Long userId)
+    {
+        return sysMenuService.selectPermsByUserId(userId);
+    }
 
     /**
      * 查询菜单权限

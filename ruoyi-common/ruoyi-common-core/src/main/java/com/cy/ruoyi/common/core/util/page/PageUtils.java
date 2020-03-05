@@ -32,11 +32,6 @@ public class PageUtils implements Serializable {
 	private long totalPage;
 
 	/**
-	 * 每页记录数
-	 */
-	private long pageSize;
-	
-	/**
 	 *  结果封装，不分页
 	 * @param rows        列表数据
 	 * @param total  	总记录数
@@ -45,6 +40,7 @@ public class PageUtils implements Serializable {
 		this.rows = rows;
 		this.total = total;
 		this.pageNum = 1;
+		this.totalPage = 0;
 	}
 
 	/**
@@ -54,6 +50,7 @@ public class PageUtils implements Serializable {
 		this.rows = page.getRecords();
 		this.total = page.getTotal();
 		this.pageNum = page.getCurrent();
+		this.totalPage = page.getPages();
 	}
 
 }

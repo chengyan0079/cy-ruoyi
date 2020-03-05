@@ -65,7 +65,7 @@ public class TestController extends BaseController {
     public R getPageUserList(SysUser user){
         PageDomain pageDomain = getPageInfo();
         log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
-        PageUtils page = userService.selectPageUserList(pageDomain, user);
+        PageUtils page = userService.selectUserList(pageDomain, user);
         return R.ok(page);
     }
 

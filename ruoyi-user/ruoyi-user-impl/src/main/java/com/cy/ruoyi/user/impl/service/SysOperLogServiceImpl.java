@@ -7,6 +7,8 @@ import com.cy.ruoyi.user.api.service.ISysOperLogService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Service(validation = "true", version = "${dubbo.provider.ISysOperLogService.version}")
 @org.springframework.stereotype.Service
 public class SysOperLogServiceImpl extends ServiceImpl<SysOperLogMapper, SysOperLog> implements ISysOperLogService {
@@ -23,5 +25,25 @@ public class SysOperLogServiceImpl extends ServiceImpl<SysOperLogMapper, SysOper
     public void insertOperlog(SysOperLog operLog)
     {
         operLogMapper.insertOperlog(operLog);
+    }
+
+    @Override
+    public List<SysOperLog> selectOperLogList(SysOperLog operLog) {
+        return null;
+    }
+
+    @Override
+    public int deleteOperLogByIds(String ids) {
+        return 0;
+    }
+
+    @Override
+    public SysOperLog selectOperLogById(Long operId) {
+        return null;
+    }
+
+    @Override
+    public void cleanOperLog() {
+
     }
 }

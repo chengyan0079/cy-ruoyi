@@ -10,9 +10,6 @@ import java.io.Serializable;
 
 /**
  * 地区表 districts
- * 
- * @author ruoyi
- * @date 2018-12-19
  */
 @Data
 @TableName("districts")
@@ -22,6 +19,7 @@ public class Districts extends BaseEntity implements Serializable
 
     /** 编号 */
     @TableId(value="ID", type= IdType.AUTO)
+    /** 编号 */
     private Integer id;
 
     /** 上级编号 */

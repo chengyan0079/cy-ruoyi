@@ -18,7 +18,7 @@ mybatis-plus:
     #数据库大写下划线转换
     #capital-mode: true
     #序列接口实现类配置
-    #    key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+    #    key-mapper: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
     #逻辑删除配置
     logic-delete-value: 1
     logic-not-delete-value: 0
@@ -60,6 +60,20 @@ dubbo:
     ISysDeptService:
       version: 1.0.0
     ISysRoleService:
+      version: 1.0.0
+    IDistrictsService:
+      version: 1.0.0
+    ISysConfigService:
+      version: 1.0.0
+    ISysDictDataService:
+      version: 1.0.0
+    ISysDictTypeService:
+      version: 1.0.0
+    ISysNoticeService:
+      version: 1.0.0
+    ISysPostService:
+      version: 1.0.0
+    ISysUserOnlineService:
       version: 1.0.0
 
 feign:

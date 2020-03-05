@@ -8,8 +8,6 @@ import java.util.List;
 
 /**
  * 角色与部门关联表 数据层
- * 
- * @author ruoyi
  */
 @Mapper
 public interface SysRoleDeptMapper extends BaseMapper<SysRoleDept>

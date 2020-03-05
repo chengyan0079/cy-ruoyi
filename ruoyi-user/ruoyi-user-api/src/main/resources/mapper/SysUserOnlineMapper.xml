@@ -17,12 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="lastAccessTime"    column="last_access_time"  />
 		<result property="expireTime"        column="expire_time"       />
 	</resultMap>
-	
+
 	<sql id="selectOnlineVo">
        select sessionId, login_name, dept_name, ipaddr, login_location, browser, os, status, status, start_timestamp, last_access_time, expire_time 
 	   from sys_user_online
     </sql>
-    
+
 	<select id="selectOnlineById" parameterType="String" resultMap="SysUserOnlineResult">
 		<include refid="selectOnlineVo"/>
 		where sessionid = #{sessionid}
@@ -32,13 +32,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		replace into sys_user_online(sessionId, login_name, dept_name, ipaddr, login_location, browser, os, status, start_timestamp, last_access_time, expire_time)
         values (#{sessionId}, #{loginName}, #{deptName}, #{ipaddr}, #{loginLocation}, #{browser}, #{os}, #{status}, #{startTimestamp}, #{lastAccessTime}, #{expireTime})
 	</insert>
-	
- 	<delete id="deleteOnlineById" parameterType="String">
+
+	<delete id="deleteOnlineById" parameterType="String">
  		delete from sys_user_online where sessionId = #{sessionId}
  	</delete>
- 	
+
+	<select id="selectUserOnlineList" parameterType="com.cy.ruoyi.user.api.entity.SysUserOnline" resultMap="SysUserOnlineResult">
+		<include refid="selectOnlineVo"/>
+		<where>
+			<if test="ipaddr != null and ipaddr != ''">
+				AND ipaddr like concat('%', #{ipaddr}, '%')
+			</if>
+			<if test="loginName != null and loginName != ''">
+				AND login_name like concat('%', #{loginName}, '%')
+			</if>
+		</where>
+	</select>
+
 	<select id="selectOnlineByExpired" parameterType="String" resultMap="SysUserOnlineResult">
-		<include refid="selectOnlineVo"/> o 
+		<include refid="selectOnlineVo"/> o
 		WHERE o.last_access_time <![CDATA[ <= ]]> #{lastAccessTime} ORDER BY o.last_access_time ASC
 	</select>
 

@@ -2,19 +2,26 @@ package com.cy.ruoyi.tool.gen.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.ruoyi.common.core.exception.RuoyiException;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.text.Convert;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.tool.gen.constant.GenConstants;
-import com.cy.ruoyi.tool.gen.domain.GenTable;
-import com.cy.ruoyi.tool.gen.domain.GenTableColumn;
+import com.cy.ruoyi.tool.gen.entity.GenTable;
+import com.cy.ruoyi.tool.gen.entity.GenTableColumn;
 import com.cy.ruoyi.tool.gen.mapper.GenTableColumnMapper;
 import com.cy.ruoyi.tool.gen.mapper.GenTableMapper;
 import com.cy.ruoyi.tool.gen.service.IGenTableService;
 import com.cy.ruoyi.tool.gen.util.GenUtils;
 import com.cy.ruoyi.tool.gen.util.VelocityInitializer;
 import com.cy.ruoyi.tool.gen.util.VelocityUtils;
+import com.cy.ruoyi.user.api.entity.SysDept;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -36,11 +43,10 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * 业务 服务层实现
- * 
- * @author ruoyi
  */
 @Service
-public class GenTableServiceImpl implements IGenTableService
+@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IGenTableService.version}")
+public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> implements IGenTableService
 {
     private static final Logger log = LoggerFactory.getLogger(GenTableServiceImpl.class);
 
@@ -342,5 +348,18 @@ public class GenTableServiceImpl implements IGenTableService
             genTable.setTreeParentCode(treeParentCode);
             genTable.setTreeName(treeName);
         }
+    }
+
+    /**
+     * 根据条件分页查询部门信息
+     */
+    @Override
+    public PageUtils selectGenTableList(PageDomain pageDomain, GenTable genTable)
+    {
+        if (RegexUtil.isNull(genTable)) {
+            genTable = new GenTable();
+        }
+        IPage<GenTable> page = genTableMapper.selectGenTableList(new Query<GenTable>(pageDomain).getPage(), genTable);
+        return new PageUtils(page);
     }
 }

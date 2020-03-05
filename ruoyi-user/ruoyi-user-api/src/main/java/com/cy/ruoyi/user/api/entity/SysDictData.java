@@ -10,8 +10,6 @@ import java.io.Serializable;
 
 /**
  * 字典数据表 sys_dict_data
- * 
- * @author ruoyi
  */
 @Data
 @TableName("sys_Dict_deta")

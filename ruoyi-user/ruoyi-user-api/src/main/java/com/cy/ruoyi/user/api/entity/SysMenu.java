@@ -60,7 +60,19 @@ public class SysMenu extends BaseEntity implements Serializable
     /** 菜单图标 */
     private String icon;
 
+    /** 链接地址 */
+    private String path;
+
+    /** 重定向地址 */
+    private String redirect;
+
+    /** 隐藏子菜单 */
+    private Boolean hiddenChildren;
+
+    /** 隐藏 PageHeader 组件中的页面带的 面包屑和页面标题栏 */
+    private Boolean hiddenHeader;
+
     /** 子菜单 */
-    private List<SysMenu> children         = new ArrayList<SysMenu>();
+    private List<SysMenu> children = new ArrayList<SysMenu>();
 
 }

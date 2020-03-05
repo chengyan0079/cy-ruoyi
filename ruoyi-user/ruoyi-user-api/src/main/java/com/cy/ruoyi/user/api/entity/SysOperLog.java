@@ -12,8 +12,6 @@ import java.util.Date;
 
 /**
  * 操作日志记录表 oper_log
- * 
- * @author ruoyi
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,7 +29,7 @@ public class SysOperLog extends BaseEntity implements Serializable
     private String title;
 
     /** 业务类型（0其它 1新增 2修改 3删除） */
-    private Integer businessType;
+    private Integer  businessType;
 
     /** 请求方法 */
     private String method;

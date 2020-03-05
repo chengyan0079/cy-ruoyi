@@ -16,8 +16,8 @@ public class PasswordUtil
     }
 
     public static void main(String[] args) {
-        Md5Utils.hash("admin123" + "JWaMVc");
-        System.out.println(Md5Utils.hash("admin123" + "JWaMVc"));
+        Md5Utils.hash("admin123" + "111111");
+        System.out.println(Md5Utils.hash("admin123" + "111111"));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.cy.ruoyi.tool.gen.config;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -7,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * 读取代码生成相关配置
- * 
- * @author ruoyi
  */
 @Component
 @ConfigurationProperties(prefix = "gen")
@@ -70,4 +69,5 @@ public class GenConfig
     {
         GenConfig.tablePrefix = tablePrefix;
     }
+
 }

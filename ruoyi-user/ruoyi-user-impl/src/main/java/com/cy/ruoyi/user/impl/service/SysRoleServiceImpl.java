@@ -119,16 +119,21 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         return null;
     }
 
+    @Override
+    public List<SysRole> selectRoleAll() {
+        return null;
+    }
+
     /**
      * 查询所有角色
      * 
      * @return 角色列表
      */
-    @Override
-    public PageUtils selectRoleAll(PageDomain pageDomain)
-    {
-        return selectRoleList(pageDomain, new SysRole());
-    }
+//    @Override
+//    public PageUtils selectRoleAll(PageDomain pageDomain)
+//    {
+//        return selectRoleList(pageDomain, new SysRole());
+//    }
 
     /**
      * 通过角色ID查询角色

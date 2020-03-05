@@ -23,15 +23,14 @@ cy-ruoyi
  ├──docs //文件
  |  ├──poms //相关依赖
  |  ├──server //服务包
- ├──ruoyi-common //通用包
+ ├──ruoyi-common //通用依赖
  |  ├──ruoyi-common-core //核心框架包
  |  ├──ruoyi-common-redis //redis工具包
  |  ├──ruoyi-common-log //通用日志工具包
- |  ├──ruoyi-common-alipay // 支付宝（尚未）
- |  ├──ruoyi-common-wechat // 微信（尚未）
+ |  ├──ruoyi-common-pay //支付工具包（尚未）
  |  ├──ruoyi-common-utils // 通用工具包
  |  ├──ruoyi-common-auth // 授权工具包
- |  ├──ruoyi-common-sms // 推送（短信，邮件）工具包（尚未）
+ |  ├──ruoyi-common-sms // 信息推送（短信，邮件）工具包（尚未）
 ├──ruoyi-user //用户 8081
  |  ├──ruoyi-user-application //用户启动
  |  ├──ruoyi-user-api //用户API
@@ -63,12 +62,13 @@ cy-ruoyi
  |  ├──ruoyi-logistics-impl //物流实现
  |  ├──sql //物流sql
  ├──ruoyi-tool //工具
- |  ├──ruoyi-gen //代码生成 8065
+ |  ├──ruoyi-gen // 代码生成 8065
  |  ├──ruoyi-auth // 授权鉴权  8070
  |  ├──ruoyi-io //文件系统（尚未）
  |  ├──ruoyi-demo // demo测试  8090
  |  ├──ruoyi-data // 数据收集（尚未）
  |  ├──ruoyi-monitor // 系统监控（尚未）
+ |  ├──ruoyi-activity //工作流 8060
  ├──ruoyi-gateway //网关 9527
  ├──ruoyi-ant --前端 使用ant design框架
  ```

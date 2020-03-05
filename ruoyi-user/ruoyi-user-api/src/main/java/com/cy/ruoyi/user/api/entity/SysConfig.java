@@ -10,8 +10,6 @@ import java.io.Serializable;
 
 /**
  * 参数配置表 sys_config
- * 
- * @author ruoyi
  */
 @Data
 @TableName("sys_config")

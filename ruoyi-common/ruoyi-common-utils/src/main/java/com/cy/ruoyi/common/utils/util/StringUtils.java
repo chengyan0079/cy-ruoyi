@@ -4,11 +4,12 @@ import com.cy.ruoyi.common.utils.text.StrFormatter;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 字符串工具类
  * 
- * @author ruoyi
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils
 {
@@ -395,4 +396,26 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return sb.toString();
     }
+
+    private static Pattern humpPattern = Pattern.compile("[A-Z]");
+
+    /**
+     *  驼峰转下划线
+     */
+    public static String humpToLine(String str) {
+        Matcher matcher = humpPattern.matcher(str);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
+
+//    public static void main(String[] args) {
+//
+//        String a = "createTime";
+//        System.out.println(humpToLine2(a));
+//
+//    }
 }

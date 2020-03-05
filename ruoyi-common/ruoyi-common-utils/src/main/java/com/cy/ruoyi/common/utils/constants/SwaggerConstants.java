@@ -27,5 +27,4 @@ public class SwaggerConstants {
     @Value("${swagger.service.version}")
     private String version;
 
-
 }

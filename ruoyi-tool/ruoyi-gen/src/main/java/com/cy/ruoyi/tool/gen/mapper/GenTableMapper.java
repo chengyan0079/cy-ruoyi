@@ -1,17 +1,20 @@
 package com.cy.ruoyi.tool.gen.mapper;
 
-import com.cy.ruoyi.tool.gen.domain.GenTable;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cy.ruoyi.tool.gen.entity.GenTable;
+import com.cy.ruoyi.user.api.entity.SysConfig;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
  * 业务 数据层
- * 
- * @author ruoyi
  */
 @Mapper
-public interface GenTableMapper
+public interface GenTableMapper extends BaseMapper<GenTable>
 {
     /**
      * 查询业务列表
@@ -19,7 +22,7 @@ public interface GenTableMapper
      * @param genTable 业务信息
      * @return 业务集合
      */
-    List<GenTable> selectGenTableList(GenTable genTable);
+    List<GenTable> selectGenTableList(@Param("gen") GenTable genTable);
 
     /**
      * 查询据库列表
@@ -76,4 +79,14 @@ public interface GenTableMapper
      * @return 结果
      */
     int deleteGenTableByIds(Long[] ids);
+
+    //************************************************************************
+    /**
+     * 根据条件分页查询列表
+     * @param page
+     * @param genTable
+     * @return
+     */
+    IPage<GenTable> selectGenTableList(Page page, @Param("gen") GenTable genTable);
+
 }

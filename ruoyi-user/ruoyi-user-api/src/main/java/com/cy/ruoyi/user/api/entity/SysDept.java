@@ -10,8 +10,6 @@ import java.io.Serializable;
 
 /**
  * 部门表 sys_dept
- * 
- * @author ruoyi
  */
 @Data
 @TableName("sys_dept")
@@ -21,6 +19,7 @@ public class SysDept extends BaseEntity implements Serializable
 
     /** 部门ID */
     @TableId(value="dept_id", type= IdType.AUTO)
+    /** 部门ID */
     private Long deptId;
 
     /** 父部门ID */
@@ -38,9 +37,12 @@ public class SysDept extends BaseEntity implements Serializable
     /** 负责人 */
     private String leader;
 
+    /** 负责人编号 */
+    private Long leaderId;
+
     /** 联系电话 */
     private String phone;
-    
+
     /** 邮箱 */
     private String email;
 

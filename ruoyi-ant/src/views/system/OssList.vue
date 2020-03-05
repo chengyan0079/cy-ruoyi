@@ -177,7 +177,7 @@ export default {
       selectedRowKeys: [],
       selectedRows: [],
       previewVisible: false,
-      uploadUrl: process.env.VUE_APP_API_BASE_URL + '/system/oss/upload',
+      uploadUrl: process.env.VUE_APP_API_BASE_URL + '/cyuser/oss/upload',
       headers: {
         token: Vue.ls.get(ACCESS_TOKEN)
       },

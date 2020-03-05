@@ -30,14 +30,15 @@ public class SysDeptController extends BaseController
     @Reference(validation = "true", version = "${dubbo.provider.ISysDeptService.version}")
     private ISysDeptService sysDeptService;
 
-//    /**
-//     * 查询部门
-//     */
-//    @GetMapping("get/{deptId}")
-//    public SysDept get(@PathVariable("deptId") Long deptId)
-//    {
-//        return sysDeptService.selectDeptById(deptId);
-//    }
+    /**
+     * 查询部门
+     */
+    @GetMapping("get/{deptId}")
+    @ApiOperation(value = "查询部门")
+    public SysDept get(@PathVariable("deptId") Long deptId)
+    {
+        return sysDeptService.getById(deptId);
+    }
 
     /**
      * 查询部门列表

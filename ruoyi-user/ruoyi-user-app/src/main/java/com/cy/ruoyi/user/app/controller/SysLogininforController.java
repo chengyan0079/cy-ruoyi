@@ -1,5 +1,7 @@
 package com.cy.ruoyi.user.app.controller;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.user.api.entity.SysLogininfor;
 import com.cy.ruoyi.user.api.service.ISysLogininforService;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "SysLogininforController",description = "系统访问记录")
 public class SysLogininforController extends BaseController
 {
+    private static final Log log = LogFactory.get();
+
     @Reference(validation = "true", version = "${dubbo.provider.ISysLogininforService.version}")
     private ISysLogininforService sysLogininforService;
 
@@ -24,6 +28,7 @@ public class SysLogininforController extends BaseController
      * 新增保存系统访问记录
      */
     @PostMapping("save")
+    @ApiOperation(value = "新增保存系统访问记录")
     public void addSave(@RequestBody SysLogininfor sysLogininfor)
     {
         sysLogininforService.insertLogininfor(sysLogininfor);

@@ -1,10 +1,10 @@
 package com.cy.ruoyi.user.app.resolver;
 
+import com.cy.ruoyi.common.utils.annotation.LoginUser;
 import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.user.api.entity.SysUser;
 import com.cy.ruoyi.user.api.service.ISysUserService;
-import com.cy.ruoyi.user.app.annotation.LoginUser;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.MethodParameter;

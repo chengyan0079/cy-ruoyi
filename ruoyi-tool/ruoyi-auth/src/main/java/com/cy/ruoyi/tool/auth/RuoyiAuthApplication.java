@@ -14,10 +14,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableDiscoveryClient
 @EnableCyFeignClients
 @EnableCircuitBreaker
-@EnableWebMvc
 @EnableHystrixDashboard
 @EnableHystrix
 @ComponentScan(basePackages = "com.cy.ruoyi.*")
+@EnableWebMvc
 public class RuoyiAuthApplication {
 
     public static void main(String[] args) {

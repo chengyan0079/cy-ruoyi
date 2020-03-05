@@ -35,6 +35,7 @@ public class SysRoleController extends BaseController
      * 查询角色
      */
     @GetMapping("get/{roleId}")
+    @ApiOperation(value = "查询角色")
     public SysRole get(@PathVariable("roleId") Long roleId)
     {
         return sysRoleService.selectRoleById(roleId);

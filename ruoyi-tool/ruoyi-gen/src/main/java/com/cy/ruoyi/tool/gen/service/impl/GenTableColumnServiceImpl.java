@@ -1,7 +1,8 @@
 package com.cy.ruoyi.tool.gen.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.ruoyi.common.utils.text.Convert;
-import com.cy.ruoyi.tool.gen.domain.GenTableColumn;
+import com.cy.ruoyi.tool.gen.entity.GenTableColumn;
 import com.cy.ruoyi.tool.gen.mapper.GenTableColumnMapper;
 import com.cy.ruoyi.tool.gen.service.IGenTableColumnService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,10 @@ import java.util.List;
 
 /**
  * 业务字段 服务层实现
- * 
- * @author ruoyi
  */
 @Service
-public class GenTableColumnServiceImpl implements IGenTableColumnService
+@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IGenTableColumnService.version}")
+public class GenTableColumnServiceImpl extends ServiceImpl<GenTableColumnMapper, GenTableColumn> implements IGenTableColumnService
 {
     @Autowired
     private GenTableColumnMapper genTableColumnMapper;

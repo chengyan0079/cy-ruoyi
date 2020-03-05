@@ -290,4 +290,9 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
     {
         return deptMapper.selectRoleDeptIds(roleId);
     }
+
+    @Override
+    public List<SysDept> selectDeptList(SysDept dept) {
+        return deptMapper.selectDeptList(dept);
+    }
 }

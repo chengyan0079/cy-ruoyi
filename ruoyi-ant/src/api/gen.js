@@ -1,7 +1,7 @@
 import { axios } from '@/utils/request'
 
 const api = {
-  gen: '/gen'
+  gen: '/cygen'
 }
 
 export default api

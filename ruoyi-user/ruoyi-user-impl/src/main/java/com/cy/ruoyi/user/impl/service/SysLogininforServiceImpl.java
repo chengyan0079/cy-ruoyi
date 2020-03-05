@@ -7,6 +7,8 @@ import com.cy.ruoyi.user.api.service.ISysLogininforService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Service(validation = "true", version = "${dubbo.provider.ISysLogininforService.version}")
 @org.springframework.stereotype.Service
 public class SysLogininforServiceImpl extends ServiceImpl<SysLogininforMapper, SysLogininfor> implements ISysLogininforService {
@@ -23,6 +25,21 @@ public class SysLogininforServiceImpl extends ServiceImpl<SysLogininforMapper, S
     public void insertLogininfor(SysLogininfor logininfor)
     {
         logininforMapper.insertLogininfor(logininfor);
+    }
+
+    @Override
+    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor) {
+        return null;
+    }
+
+    @Override
+    public int deleteLogininforByIds(String ids) {
+        return 0;
+    }
+
+    @Override
+    public void cleanLogininfor() {
+
     }
 
 }

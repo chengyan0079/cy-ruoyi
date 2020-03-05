@@ -32,7 +32,6 @@ public class SysUser extends BaseEntity implements Serializable
     private Long deptId;
 
     /** 部门父ID */
-    @TableField(exist = false)
     private Long parentId;
 
     /** 登录名称 */

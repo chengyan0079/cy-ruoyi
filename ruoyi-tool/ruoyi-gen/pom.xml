@@ -44,6 +44,11 @@
             <artifactId>ruoyi-common-utils</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.auth</groupId>
+            <artifactId>ruoyi-common-auth</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!--velocity代码生成使用模板 -->
         <dependency>
             <groupId>org.apache.velocity</groupId>

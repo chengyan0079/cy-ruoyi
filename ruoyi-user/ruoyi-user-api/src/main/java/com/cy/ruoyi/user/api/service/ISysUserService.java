@@ -7,6 +7,7 @@ import com.cy.ruoyi.user.api.entity.SysOperLog;
 import com.cy.ruoyi.user.api.entity.SysUser;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 用户 业务层
@@ -15,30 +16,31 @@ import java.util.List;
  */
 public interface ISysUserService extends IService<SysUser>
 {
+
     /**
      * 根据条件分页查询用户列表
      *
      * @param user 用户信息
      * @return 用户信息集合信息
      */
-    PageUtils selectUserList(PageDomain pageDomain, SysUser user);
-//
-//    /**
-//     * 根据条件分页查询已分配用户角色列表
-//     *
-//     * @param user 用户信息
-//     * @return 用户信息集合信息
-//     */
-//    public List<SysUser> selectAllocatedList(SysUser user);
-//
-//    /**
-//     * 根据条件分页查询未分配用户角色列表
-//     *
-//     * @param user 用户信息
-//     * @return 用户信息集合信息
-//     */
-//    public List<SysUser> selectUnallocatedList(SysUser user);
-//
+    List<SysUser> selectUserList(SysUser user);
+
+    /**
+     * 根据条件分页查询已分配用户角色列表
+     *
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
+    List<SysUser> selectAllocatedList(SysUser user);
+
+    /**
+     * 根据条件分页查询未分配用户角色列表
+     *
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
+    List<SysUser> selectUnallocatedList(SysUser user);
+
     /**
      * 通过用户名查询用户
      *
@@ -46,23 +48,23 @@ public interface ISysUserService extends IService<SysUser>
      * @return 用户对象信息
      */
     SysUser selectUserByLoginName(String userName);
-//
-//    /**
-//     * 通过手机号码查询用户
-//     *
-//     * @param phoneNumber 手机号码
-//     * @return 用户对象信息
-//     */
-//    public SysUser selectUserByPhoneNumber(String phoneNumber);
-//
-//    /**
-//     * 通过邮箱查询用户
-//     *
-//     * @param email 邮箱
-//     * @return 用户对象信息
-//     */
-//    public SysUser selectUserByEmail(String email);
-//
+
+    /**
+     * 通过手机号码查询用户
+     *
+     * @param phoneNumber 手机号码
+     * @return 用户对象信息
+     */
+    SysUser selectUserByPhoneNumber(String phoneNumber);
+
+    /**
+     * 通过邮箱查询用户
+     *
+     * @param email 邮箱
+     * @return 用户对象信息
+     */
+    SysUser selectUserByEmail(String email);
+
     /**
      * 通过用户ID查询用户
      *
@@ -71,13 +73,13 @@ public interface ISysUserService extends IService<SysUser>
      */
     SysUser selectUserById(Long userId);
 
-//    /**
-//     * 通过用户ID删除用户
-//     *
-//     * @param userId 用户ID
-//     * @return 结果
-//     */
-//    public int deleteUserById(Long userId);
+    /**
+     * 通过用户ID删除用户
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    int deleteUserById(Long userId);
 
     /**
      * 批量删除用户信息
@@ -143,47 +145,64 @@ public interface ISysUserService extends IService<SysUser>
      * @return 结果
      */
     String checkEmailUnique(SysUser user);
-//
-//    /**
-//     * 根据用户ID查询用户所属角色组
-//     *
-//     * @param userId 用户ID
-//     * @return 结果
-//     */
-//    public String selectUserRoleGroup(Long userId);
-//
-//    /**
-//     * 根据用户ID查询用户所属岗位组
-//     *
-//     * @param userId 用户ID
-//     * @return 结果
-//     */
-//    public String selectUserPostGroup(Long userId);
-//
-//    /**
-//     * 导入用户数据
-//     *
-//     * @param userList 用户数据列表
-//     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-//     * @param operName 操作用户
-//     * @return 结果
-//     */
-//    public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName);
-//
+
+    /**
+     * 根据用户ID查询用户所属角色组
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    String selectUserRoleGroup(Long userId);
+
+    /**
+     * 根据用户ID查询用户所属岗位组
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    String selectUserPostGroup(Long userId);
+
+    /**
+     * 导入用户数据
+     *
+     * @param userList 用户数据列表
+     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
+     * @param operName 操作用户
+     * @return 结果
+     */
+    String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName);
+
     /**
      * 用户状态修改
      *
      * @param user 用户信息
      * @return 结果
      */
-    public int changeStatus(SysUser user);
-
+    int changeStatus(SysUser user);
 
     /**
-     *  分页获取用户数据
-     * @param pageDomain
-     * @param sysUser
+     * 查询拥有当前角色的所有用户
+     * @param roleId
      * @return
+     * @author zmr
      */
-    PageUtils selectPageUserList(PageDomain pageDomain, SysUser sysUser);
+    Set<Long> selectUserIdsHasRoles(Long[] roleIds);
+
+    /**
+     * 查询所有当前部门中的用户
+     * @param deptId
+     * @return
+     * @author zmr
+     */
+    Set<Long> selectUserIdsInDepts(Long[] deptIds);
+
+    //*************************************************************************************
+
+    /**
+     * 根据条件分页查询用户列表
+     *
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
+    PageUtils selectUserList(PageDomain pageDomain, SysUser user);
 }

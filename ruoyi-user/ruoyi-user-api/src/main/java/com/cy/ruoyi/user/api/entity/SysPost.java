@@ -10,8 +10,6 @@ import java.io.Serializable;
 
 /**
  * 岗位表 sys_post
- * 
- * @author ruoyi
  */
 @Data
 @TableName("Sys_Post")

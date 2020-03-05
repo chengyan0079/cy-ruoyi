@@ -181,8 +181,8 @@ export default {
     const { tableId } = this.$route.query
     if (tableId) {
       editGen({ tableId: tableId }).then(res => {
-        this.data = res.rows
-        this.info = res.data
+        this.data = res.data.rows
+        this.info = res.data.child
       })
     }
   },

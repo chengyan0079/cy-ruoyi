@@ -5,8 +5,8 @@ import com.cy.ruoyi.common.utils.util.DateUtils;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.tool.gen.config.GenConfig;
 import com.cy.ruoyi.tool.gen.constant.GenConstants;
-import com.cy.ruoyi.tool.gen.domain.GenTable;
-import com.cy.ruoyi.tool.gen.domain.GenTableColumn;
+import com.cy.ruoyi.tool.gen.entity.GenTable;
+import com.cy.ruoyi.tool.gen.entity.GenTableColumn;
 import org.apache.velocity.VelocityContext;
 
 import java.util.ArrayList;
@@ -126,9 +126,9 @@ public class VelocityUtils
         String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
         String mybatisPath = MYBATIS_PATH + "/" + moduleName;
         String vuePath = "vue";
-        if (template.contains("domain.java.vm"))
+        if (template.contains("entity.java.vm"))
         {
-            fileName = StringUtils.format("{}/domain/{}.java", javaPath, className);
+            fileName = StringUtils.format("{}/entity/{}.java", javaPath, className);
         }
         else if (template.contains("mapper.java.vm"))
         {

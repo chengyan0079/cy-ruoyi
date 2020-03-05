@@ -32,7 +32,8 @@
         :wrapperCol="wrapperCol"
         label="参数键值"
       >
-        <a-input v-decorator="['configValue',{rules: [{ required: true, message: '请输入参数键值' }]}]" placeholder="参数键值"/>
+        <!-- <a-input v-decorator="['configValue',{rules: [{ required: true, message: '请输入参数键值' }]}]" placeholder="参数键值"/> -->
+        <a-textarea :rows="5" placeholder="参数键值" v-decorator="['configValue', {rules: [{ required: true, message: '请输入参数键值' }]}]"/>
       </a-form-item>
       <a-form-item
         label="系统内置"

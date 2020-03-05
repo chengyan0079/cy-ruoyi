@@ -10,18 +10,22 @@ import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.text.Convert;
+import com.cy.ruoyi.common.utils.util.Md5Utils;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.*;
 import com.cy.ruoyi.user.api.mapper.*;
+import com.cy.ruoyi.user.api.service.ISysConfigService;
 import com.cy.ruoyi.user.api.service.ISysUserService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 用户 业务层处理
@@ -49,8 +53,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Autowired
     SysUserRoleMapper userRoleMapper;
 
-//    @Autowired
-//    private ISysConfigService configService;
+    @Reference(validation = "true", version = "${dubbo.provider.ISysConfigService.version}")
+    ISysConfigService configService;
 
     /**
      * 根据条件分页查询用户列表
@@ -70,29 +74,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 
 
-//    /**
-//     * 根据条件分页查询已分配用户角色列表
-//     *
-//     * @param user 用户信息
-//     * @return 用户信息集合信息
-//     */
+    /**
+     * 根据条件分页查询已分配用户角色列表
+     *
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
 //    @DataScope(deptAlias = "d", userAlias = "u")
-//    public List<SysUser> selectAllocatedList(SysUser user)
-//    {
-//        return userMapper.selectAllocatedList(user);
-//    }
-//
-//    /**
-//     * 根据条件分页查询未分配用户角色列表
-//     *
-//     * @param user 用户信息
-//     * @return 用户信息集合信息
-//     */
-//    @DataScope(deptAlias = "d", userAlias = "u")
-//    public List<SysUser> selectUnallocatedList(SysUser user)
-//    {
-//        return userMapper.selectUnallocatedList(user);
-//    }
+    public List<SysUser> selectAllocatedList(SysUser user)
+    {
+        return userMapper.selectAllocatedList(user);
+    }
+
+
 
     /**
      * 通过用户名查询用户
@@ -106,29 +100,29 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return userMapper.selectUserByLoginName(userName);
     }
 
-//    /**
-//     * 通过手机号码查询用户
-//     *
-//     * @param phoneNumber 手机号码
-//     * @return 用户对象信息
-//     */
-//    @Override
-//    public SysUser selectUserByPhoneNumber(String phoneNumber)
-//    {
-//        return userMapper.selectUserByPhoneNumber(phoneNumber);
-//    }
-//
-//    /**
-//     * 通过邮箱查询用户
-//     *
-//     * @param email 邮箱
-//     * @return 用户对象信息
-//     */
-//    @Override
-//    public SysUser selectUserByEmail(String email)
-//    {
-//        return userMapper.selectUserByEmail(email);
-//    }
+    /**
+     * 通过手机号码查询用户
+     *
+     * @param phoneNumber 手机号码
+     * @return 用户对象信息
+     */
+    @Override
+    public SysUser selectUserByPhoneNumber(String phoneNumber)
+    {
+        return userMapper.selectUserByPhoneNumber(phoneNumber);
+    }
+
+    /**
+     * 通过邮箱查询用户
+     *
+     * @param email 邮箱
+     * @return 用户对象信息
+     */
+    @Override
+    public SysUser selectUserByEmail(String email)
+    {
+        return userMapper.selectUserByEmail(email);
+    }
 
     /**
      * 通过用户ID查询用户
@@ -141,22 +135,22 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     {
         return userMapper.selectUserById(userId);
     }
-//
-//    /**
-//     * 通过用户ID删除用户
-//     *
-//     * @param userId 用户ID
-//     * @return 结果
-//     */
-//    @Override
-//    public int deleteUserById(Long userId)
-//    {
-//        // 删除用户与角色关联
-//        userRoleMapper.deleteUserRoleByUserId(userId);
-//        // 删除用户与岗位表
-//        userPostMapper.deleteUserPostByUserId(userId);
-//        return userMapper.deleteUserById(userId);
-//    }
+
+    /**
+     * 通过用户ID删除用户
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    @Override
+    public int deleteUserById(Long userId)
+    {
+        // 删除用户与角色关联
+        userRoleMapper.deleteUserRoleByUserId(userId);
+        // 删除用户与岗位表
+        userPostMapper.deleteUserPostByUserId(userId);
+        return userMapper.deleteUserById(userId);
+    }
 
     /**
      * 批量删除用户信息
@@ -347,118 +341,118 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         }
         return UserConstants.USER_EMAIL_UNIQUE;
     }
-//
-//    /**
-//     * 查询用户所属角色组
-//     *
-//     * @param userId 用户ID
-//     * @return 结果
-//     */
-//    @Override
-//    public String selectUserRoleGroup(Long userId)
-//    {
-//        List<SysRole> list = roleMapper.selectRolesByUserId(userId);
-//        StringBuffer idsStr = new StringBuffer();
-//        for (SysRole role : list)
-//        {
-//            idsStr.append(role.getRoleName()).append(",");
-//        }
-//        if (StringUtils.isNotEmpty(idsStr.toString()))
-//        {
-//            return idsStr.substring(0, idsStr.length() - 1);
-//        }
-//        return idsStr.toString();
-//    }
-//
-//    /**
-//     * 查询用户所属岗位组
-//     *
-//     * @param userId 用户ID
-//     * @return 结果
-//     */
-//    @Override
-//    public String selectUserPostGroup(Long userId)
-//    {
-//        List<SysPost> list = postMapper.selectPostsByUserId(userId);
-//        StringBuffer idsStr = new StringBuffer();
-//        for (SysPost post : list)
-//        {
-//            idsStr.append(post.getPostName()).append(",");
-//        }
-//        if (StringUtils.isNotEmpty(idsStr.toString()))
-//        {
-//            return idsStr.substring(0, idsStr.length() - 1);
-//        }
-//        return idsStr.toString();
-//    }
-//
-//    /**
-//     * 导入用户数据
-//     *
-//     * @param userList 用户数据列表
-//     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-//     * @param operName 操作用户
-//     * @return 结果
-//     */
-//    @Override
-//    public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName)
-//    {
-//        if (StringUtils.isNull(userList) || userList.size() == 0)
-//        {
-//            throw new BusinessException("导入用户数据不能为空！");
-//        }
-//        int successNum = 0;
-//        int failureNum = 0;
-//        StringBuilder successMsg = new StringBuilder();
-//        StringBuilder failureMsg = new StringBuilder();
+
+    /**
+     * 查询用户所属角色组
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    @Override
+    public String selectUserRoleGroup(Long userId)
+    {
+        List<SysRole> list = roleMapper.selectRolesByUserId(userId);
+        StringBuffer idsStr = new StringBuffer();
+        for (SysRole role : list)
+        {
+            idsStr.append(role.getRoleName()).append(",");
+        }
+        if (StringUtils.isNotEmpty(idsStr.toString()))
+        {
+            return idsStr.substring(0, idsStr.length() - 1);
+        }
+        return idsStr.toString();
+    }
+
+    /**
+     * 查询用户所属岗位组
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    @Override
+    public String selectUserPostGroup(Long userId)
+    {
+        List<SysPost> list = postMapper.selectPostsByUserId(userId);
+        StringBuffer idsStr = new StringBuffer();
+        for (SysPost post : list)
+        {
+            idsStr.append(post.getPostName()).append(",");
+        }
+        if (StringUtils.isNotEmpty(idsStr.toString()))
+        {
+            return idsStr.substring(0, idsStr.length() - 1);
+        }
+        return idsStr.toString();
+    }
+
+    /**
+     * 导入用户数据
+     *
+     * @param userList 用户数据列表
+     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
+     * @param operName 操作用户
+     * @return 结果
+     */
+    @Override
+    public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName)
+    {
+        if (StringUtils.isNull(userList) || userList.size() == 0)
+        {
+            throw new BusinessException("导入用户数据不能为空！");
+        }
+        int successNum = 0;
+        int failureNum = 0;
+        StringBuilder successMsg = new StringBuilder();
+        StringBuilder failureMsg = new StringBuilder();
 //        String password = configService.selectConfigByKey("sys.user.initPassword");
-//        for (SysUser user : userList)
-//        {
-//            try
-//            {
-//                // 验证是否存在这个用户
-//                SysUser u = userMapper.selectUserByLoginName(user.getLoginName());
-//                if (StringUtils.isNull(u))
-//                {
+        for (SysUser user : userList)
+        {
+            try
+            {
+                // 验证是否存在这个用户
+                SysUser u = userMapper.selectUserByLoginName(user.getLoginName());
+                if (StringUtils.isNull(u))
+                {
 //                    user.setPassword(Md5Utils.hash(user.getLoginName() + password));
-//                    user.setCreateBy(operName);
-//                    this.insertUser(user);
-//                    successNum++;
-//                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 导入成功");
-//                }
-//                else if (isUpdateSupport)
-//                {
-//                    user.setUpdateBy(operName);
-//                    this.updateUser(user);
-//                    successNum++;
-//                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 更新成功");
-//                }
-//                else
-//                {
-//                    failureNum++;
-//                    failureMsg.append("<br/>" + failureNum + "、账号 " + user.getLoginName() + " 已存在");
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//                failureNum++;
-//                String msg = "<br/>" + failureNum + "、账号 " + user.getLoginName() + " 导入失败：";
-//                failureMsg.append(msg + e.getMessage());
-//                log.error(msg, e);
-//            }
-//        }
-//        if (failureNum > 0)
-//        {
-//            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
-//            throw new BusinessException(failureMsg.toString());
-//        }
-//        else
-//        {
-//            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
-//        }
-//        return successMsg.toString();
-//    }
-//
+                    user.setCreateBy(operName);
+                    this.insertUser(user);
+                    successNum++;
+                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 导入成功");
+                }
+                else if (isUpdateSupport)
+                {
+                    user.setUpdateBy(operName);
+                    this.updateUser(user);
+                    successNum++;
+                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 更新成功");
+                }
+                else
+                {
+                    failureNum++;
+                    failureMsg.append("<br/>" + failureNum + "、账号 " + user.getLoginName() + " 已存在");
+                }
+            }
+            catch (Exception e)
+            {
+                failureNum++;
+                String msg = "<br/>" + failureNum + "、账号 " + user.getLoginName() + " 导入失败：";
+                failureMsg.append(msg + e.getMessage());
+                log.error(msg, e);
+            }
+        }
+        if (failureNum > 0)
+        {
+            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
+            throw new BusinessException(failureMsg.toString());
+        }
+        else
+        {
+            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+        }
+        return successMsg.toString();
+    }
+
     /**
      * 用户状态修改
      * @param user 用户信息
@@ -475,17 +469,23 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
-    public PageUtils selectPageUserList(PageDomain pageDomain, SysUser sysUser){
-        //此处新建对象是为了防止下面条件查询空指针,若查询条件很多就会有很多 "cbpTransferRe != null&&" 要写,jdk11的gc很牛,不用担心
-        if (RegexUtil.isNull(sysUser)) {
-            sysUser = new SysUser();
-        }
-        IPage<SysUser> page = this.page(
-                new Query<SysUser>(pageDomain).getPage(),
-                //若存在ID,则模糊查询
-                new QueryWrapper<SysUser>()
-        );
-
-        return new PageUtils(page);
+    public Set<Long> selectUserIdsHasRoles(Long[] roleIds) {
+        return null;
     }
+
+    @Override
+    public Set<Long> selectUserIdsInDepts(Long[] deptIds) {
+        return null;
+    }
+
+    @Override
+    public List<SysUser> selectUnallocatedList(SysUser user) {
+        return null;
+    }
+
+    @Override
+    public List<SysUser> selectUserList(SysUser user) {
+        return null;
+    }
+
 }

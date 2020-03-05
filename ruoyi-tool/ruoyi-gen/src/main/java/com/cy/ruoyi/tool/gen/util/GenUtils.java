@@ -3,14 +3,14 @@ package com.cy.ruoyi.tool.gen.util;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.tool.gen.config.GenConfig;
 import com.cy.ruoyi.tool.gen.constant.GenConstants;
-import com.cy.ruoyi.tool.gen.domain.GenTable;
-import com.cy.ruoyi.tool.gen.domain.GenTableColumn;
+import com.cy.ruoyi.tool.gen.entity.GenTable;
+import com.cy.ruoyi.tool.gen.entity.GenTableColumn;
+import org.springframework.context.annotation.Configuration;
+
 import java.util.Arrays;
 
 /**
  * 代码生成器 工具类
- * 
- * @author ruoyi
  */
 public class GenUtils
 {
