@@ -11,11 +11,10 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = org.activiti.spring.boot.SecurityAutoConfiguration.class)
 @EnableDiscoveryClient
 @EnableCyFeignClients
 @EnableCircuitBreaker
-@EnableWebMvc
 @EnableHystrixDashboard
 @EnableHystrix
 @MapperScan("com.cy.ruoyi.*.*.mapper")

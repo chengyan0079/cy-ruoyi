@@ -1,6 +1,13 @@
 package com.cy.ruoyi.user.impl.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.utils.text.Convert;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
+import com.cy.ruoyi.user.api.entity.SysLogininfor;
 import com.cy.ruoyi.user.api.entity.SysOperLog;
 import com.cy.ruoyi.user.api.mapper.SysOperLogMapper;
 import com.cy.ruoyi.user.api.service.ISysOperLogService;
@@ -29,21 +36,31 @@ public class SysOperLogServiceImpl extends ServiceImpl<SysOperLogMapper, SysOper
 
     @Override
     public List<SysOperLog> selectOperLogList(SysOperLog operLog) {
-        return null;
+        return operLogMapper.selectOperLogList(operLog);
     }
 
     @Override
     public int deleteOperLogByIds(String ids) {
-        return 0;
+        return operLogMapper.deleteOperLogByIds(Convert.toStrArray(ids));
     }
 
     @Override
     public SysOperLog selectOperLogById(Long operId) {
-        return null;
+        return operLogMapper.selectOperLogById(operId);
     }
 
     @Override
     public void cleanOperLog() {
-
+        operLogMapper.cleanOperLog();
     }
+
+    @Override
+    public PageUtils selectOperLogList(PageDomain pageDomain, SysOperLog operLog){
+        if (RegexUtil.isNull(operLog)) {
+            operLog = new SysOperLog();
+        }
+        IPage<SysOperLog> page = operLogMapper.selectOperLogList(new Query<SysOperLog>(pageDomain).getPage(), operLog);
+        return new PageUtils(page);
+    }
+
 }

@@ -24,14 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectLogininforList" parameterType="com.cy.ruoyi.user.api.entity.SysLogininfor" resultMap="SysLogininforResult">
 		select info_id,login_name,ipaddr,login_location,browser,os,status,msg,login_time from sys_logininfor
 		<where>
-			<if test="ipaddr != null and ipaddr != ''">
-				AND ipaddr like concat('%', #{ipaddr}, '%')
+			<if test="logininfor.ipaddr != null and logininfor.ipaddr != ''">
+				AND ipaddr like concat('%', #{logininfor.ipaddr}, '%')
 			</if>
-			<if test="status != null and status != ''">
-				AND status = #{status}
+			<if test="logininfor.status != null and logininfor.status != ''">
+				AND status = #{logininfor.status}
 			</if>
-			<if test="loginName != null and loginName != ''">
-				AND login_name like concat('%', #{loginName}, '%')
+			<if test="logininfor.loginName != null and logininfor.loginName != ''">
+				AND login_name like concat('%', #{logininfor.loginName}, '%')
 			</if>
 			<!--<if test="beginTime != null and beginTime != ''">&lt;!&ndash; 开始时间检索 &ndash;&gt;-->
 				<!--and date_format(login_time,'%y%m%d') &gt;= date_format(#{beginTime},'%y%m%d')-->

@@ -1,9 +1,13 @@
 package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cy.ruoyi.user.api.entity.SysDictType;
 import com.cy.ruoyi.user.api.entity.SysLogininfor;
+import com.cy.ruoyi.user.api.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,7 +30,7 @@ public interface SysLogininforMapper extends BaseMapper<SysLogininfor>
      * @param logininfor 访问日志对象
      * @return 登录记录集合
      */
-    List<SysLogininfor> selectLogininforList(SysLogininfor logininfor);
+    List<SysLogininfor> selectLogininforList(@Param("logininfor") SysLogininfor logininfor);
 
     /**
      * 批量删除系统登录日志
@@ -42,4 +46,13 @@ public interface SysLogininforMapper extends BaseMapper<SysLogininfor>
      * @return 结果
      */
     int cleanLogininfor();
+
+    //**************************************************************************8
+    /**
+     * 根据条件分页查询
+     * @param page
+     * @param logininfor
+     * @return
+     */
+    IPage<SysLogininfor> selectLogininforList(Page page, @Param("logininfor") SysLogininfor logininfor);
 }

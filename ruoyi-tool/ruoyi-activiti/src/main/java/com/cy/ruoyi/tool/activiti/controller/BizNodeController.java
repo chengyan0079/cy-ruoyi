@@ -31,7 +31,7 @@ public class BizNodeController extends BaseController
     @Autowired
     private RepositoryService repositoryService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizNodeService.version}")
+    @Autowired
     private IBizNodeService bizNodeService;
 
     /**

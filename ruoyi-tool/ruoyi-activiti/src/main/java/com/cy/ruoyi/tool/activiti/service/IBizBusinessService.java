@@ -29,7 +29,7 @@ public interface IBizBusinessService extends IService<BizBusiness>
      * @param bizBusiness 流程业务
      * @return 流程业务集合
      */
-//    List<BizBusiness> selectBizBusinessList(BizBusiness bizBusiness);
+    List<BizBusiness> selectBizBusinessList(BizBusiness bizBusiness);
 
     /**
      * 新增流程业务

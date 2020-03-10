@@ -1,9 +1,17 @@
 package com.cy.ruoyi.tool.activiti.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.text.Convert;
 import com.cy.ruoyi.common.utils.util.DateUtils;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
+import com.cy.ruoyi.tool.activiti.VO.HiTaskVo;
 import com.cy.ruoyi.tool.activiti.entity.ActReModel;
+import com.cy.ruoyi.tool.activiti.entity.ActReProcdef;
 import com.cy.ruoyi.tool.activiti.mapper.ActReModelMapper;
 import com.cy.ruoyi.tool.activiti.service.IActReModelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +22,6 @@ import java.util.List;
  * 流程设计模型部署Service业务层处理
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IActReModelService.version}")
 public class ActReModelServiceImpl extends ServiceImpl<ActReModelMapper, ActReModel> implements IActReModelService
 {
     @Autowired
@@ -92,5 +99,19 @@ public class ActReModelServiceImpl extends ServiceImpl<ActReModelMapper, ActReMo
     public int deleteActReModelById(String id)
     {
         return actReModelMapper.deleteActReModelById(id);
+    }
+
+
+    /**
+     * 根据条件分页查询部门信息
+     */
+    @Override
+    public PageUtils selectActReModelList(PageDomain pageDomain, ActReModel actReModel)
+    {
+        if(RegexUtil.isNull(actReModel)){
+            actReModel = new ActReModel();
+        }
+        IPage<ActReModel> page = actReModelMapper.selectActReModelList(new Query<ActReModel>(pageDomain).getPage(), actReModel);
+        return new PageUtils(page);
     }
 }

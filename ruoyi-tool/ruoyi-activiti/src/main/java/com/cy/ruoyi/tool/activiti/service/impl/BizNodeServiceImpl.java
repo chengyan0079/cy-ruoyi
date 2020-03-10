@@ -18,7 +18,9 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,53 +28,49 @@ import java.util.stream.Collectors;
  * 节点Service业务层处理
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IBizNodeService.version}")
 public class BizNodeServiceImpl extends ServiceImpl<BizNodeMapper, BizNode> implements IBizNodeService
 {
     @Autowired
-    private BizNodeMapper bizNodeMapper;
+    private BizNodeMapper     bizNodeMapper;
 
-    @Reference(validation = "true", version = "${dubbo.consumer.ISysUserService.version}")
-    private ISysUserService sysUserService;
+    @Autowired
+    private RemoteUserService remoteUserService;
 
-    @Reference(validation = "true", version = "${dubbo.consumer.ISysDeptService.version}")
-    private ISysDeptService sysDeptService;
+    /**
+     * 查询节点
+     *
+     * @param id 节点ID
+     * @return 节点
+     */
+    @Override
+    public BizNode selectBizNodeById(Long id)
+    {
+        return bizNodeMapper.selectById(id);
+    }
 
-//    /**
-//     * 查询节点
-//     *
-//     * @param id 节点ID
-//     * @return 节点
-//     */
-//    @Override
-//    public BizNode selectBizNodeById(Long id)
-//    {
-//        return bizNodeMapper.selectByPrimaryKey(id);
-//    }
+    /**
+     * 查询节点列表
+     *
+     * @param map 节点
+     * @return 节点
+     */
+    @Override
+    public List<BizNode> selectBizNodeList(Map<String, Object> map)
+    {
+        return bizNodeMapper.selectByMap(map);
+    }
 
-//    /**
-//     * 查询节点列表
-//     *
-//     * @param bizNode 节点
-//     * @return 节点
-//     */
-//    @Override
-//    public List<BizNode> selectBizNodeList(BizNode bizNode)
-//    {
-//        return bizNodeMapper.select(bizNode);
-//    }
-
-//    /**
-//     * 新增节点
-//     *
-//     * @param bizNode 节点
-//     * @return 结果
-//     */
-//    @Override
-//    public int insertBizNode(BizNode bizNode)
-//    {
-//        return bizNodeMapper.insertSelective(bizNode);
-//    }
+    /**
+     * 新增节点
+     *
+     * @param bizNode 节点
+     * @return 结果
+     */
+    @Override
+    public int insertBizNode(BizNode bizNode)
+    {
+        return bizNodeMapper.insert(bizNode);
+    }
 
     /* (non-Javadoc)
      * @see com.ruoyi.activiti.service.IBizNodeService#setAuditors(java.lang.String)
@@ -80,8 +78,10 @@ public class BizNodeServiceImpl extends ServiceImpl<BizNodeMapper, BizNode> impl
     @Override
     public ProcessNodeVo setAuditors(ProcessNodeVo node)
     {
-//        List<BizNode> bizNodes = selectBizNodeList(new BizNode().setNodeId(node.getNodeId()));
-        List<BizNode> bizNodes = null;
+        Map<String, Object> map = new HashMap<>();
+        map.put("node_id", node.getNodeId());
+
+        List<BizNode> bizNodes = selectBizNodeList(map);
         List<Long> roleIds = Lists.newArrayList();
         List<Long> userIds = Lists.newArrayList();
         List<Long> deptIds = Lists.newArrayList();
@@ -124,7 +124,7 @@ public class BizNodeServiceImpl extends ServiceImpl<BizNodeMapper, BizNode> impl
     public int updateBizNode(ProcessNodeVo node)
     {
         // 删除所有节点信息
-//        bizNodeMapper.delete(new BizNode().setNodeId(node.getNodeId()));
+        bizNodeMapper.deleteById(new BizNode().setNodeId(node.getNodeId()));
         List<BizNode> bizNodes = Lists.newArrayList();
         List<Long> roleIds = node.getRoleIds();
         if (null != roleIds && roleIds.size() > 0)
@@ -157,7 +157,15 @@ public class BizNodeServiceImpl extends ServiceImpl<BizNodeMapper, BizNode> impl
         {
             bizNodes.add(new BizNode().setNodeId(node.getNodeId()).setType(ActivitiConstant.NODE_DEP_HEADER));
         }
-//        return bizNodes.isEmpty() ? 0 : bizNodeMapper.insertList(bizNodes);
+        if(!bizNodes.isEmpty()){
+            int count = 0;
+            for(int i = 0;i < bizNodes.size(); i ++){
+                BizNode biz = bizNodes.get(i);
+                bizNodeMapper.insert(biz);
+                count++;
+            }
+            return count;
+        }
         return 0;
     }
 
@@ -168,8 +176,9 @@ public class BizNodeServiceImpl extends ServiceImpl<BizNodeMapper, BizNode> impl
     public Set<String> getAuditors(String nodeId, long userId)
     {
         // TODO 优化查询次数可以将同类型审核人一次性查询得到
-//        List<BizNode> bizNodes = selectBizNodeList(new BizNode().setNodeId(nodeId));
-        List<BizNode> bizNodes = null;
+        Map<String, Object> map = new HashMap<>();
+        map.put("node_id", nodeId);
+        List<BizNode> bizNodes = selectBizNodeList(map);
         Set<Long> auditors = Sets.newHashSet();
         Set<Long> roleIds = Sets.newHashSet();
         Set<Long> deptIds = Sets.newHashSet();
@@ -193,20 +202,20 @@ public class BizNodeServiceImpl extends ServiceImpl<BizNodeMapper, BizNode> impl
                 }
                 else if (node.getType().equals(ActivitiConstant.NODE_DEP_HEADER))
                 {
-//                    SysUser user = remoteUserService.selectSysUserByUserId(userId);
-//                    SysDept dept = remoteDeptService.selectSysDeptByDeptId(user.getDeptId());
+                    SysUser user = remoteUserService.selectSysUserByUserId(userId);
+                    SysDept dept = remoteUserService.selectSysDeptByDeptId(user.getDeptId());
                     // 查询所有用有当前用户部门的负责人
-//                    auditors.add(dept.getLeaderId());
+                    auditors.add(dept.getLeaderId());
                 }
             }
         }
         if (roleIds.size() > 0)
         {
-//            auditors.addAll(remoteUserService.selectUserIdsHasRoles(StrUtil.join(",", roleIds.toArray())));
+            auditors.addAll(remoteUserService.selectUserIdsHasRoles(StrUtil.join(",", roleIds.toArray())));
         }
         if (deptIds.size() > 0)
         {
-//            auditors.addAll(remoteUserService.selectUserIdsInDepts(StrUtil.join(",", deptIds.toArray())));
+            auditors.addAll(remoteUserService.selectUserIdsInDepts(StrUtil.join(",", deptIds.toArray())));
         }
         return auditors.stream().map(m -> m.toString()).collect(Collectors.toSet());
     }

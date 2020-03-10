@@ -1,6 +1,9 @@
 package com.cy.ruoyi.user.api.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.user.api.entity.SysLogininfor;
 import com.cy.ruoyi.user.api.entity.SysOperLog;
 
 import java.util.List;
@@ -42,5 +45,11 @@ public interface ISysOperLogService extends IService<SysOperLog> {
      * 清空操作日志
      */
     void cleanOperLog();
+
+    //****************************************************************************
+    /**
+     * 根据条件分页查询
+     */
+    PageUtils selectOperLogList(PageDomain pageDomain, SysOperLog operLog);
 
 }

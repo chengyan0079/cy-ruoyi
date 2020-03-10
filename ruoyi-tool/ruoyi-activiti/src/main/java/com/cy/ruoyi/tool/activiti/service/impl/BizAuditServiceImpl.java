@@ -5,8 +5,14 @@
  */
 package com.cy.ruoyi.tool.activiti.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.tool.activiti.VO.HiTaskVo;
+import com.cy.ruoyi.tool.activiti.entity.ActReProcdef;
 import com.cy.ruoyi.tool.activiti.entity.BizAudit;
 import com.cy.ruoyi.tool.activiti.mapper.BizAuditMapper;
 import com.cy.ruoyi.tool.activiti.service.IBizAuditService;
@@ -18,7 +24,6 @@ import java.util.List;
 /**
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IBizAuditService.version}")
 public class BizAuditServiceImpl extends ServiceImpl<BizAuditMapper, BizAudit> implements IBizAuditService
 {
     @Autowired
@@ -115,4 +120,16 @@ public class BizAuditServiceImpl extends ServiceImpl<BizAuditMapper, BizAudit> i
     {
         return auditMapper.getHistoryTaskList(hiTaskVo);
     }
+
+    /**
+     * 根据条件分页查询部门信息
+     */
+    @Override
+    public PageUtils getHistoryTaskList(PageDomain pageDomain, HiTaskVo hiTaskVo)
+    {
+        IPage<HiTaskVo> page = auditMapper.getHistoryTaskList(new Query<HiTaskVo>(pageDomain).getPage(), hiTaskVo);
+        return new PageUtils(page);
+    }
+
+
 }

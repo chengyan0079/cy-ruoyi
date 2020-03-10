@@ -3,6 +3,8 @@ package com.cy.ruoyi.tool.activiti.controller;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.VO.ReProcdef;
 import com.cy.ruoyi.tool.activiti.entity.ActReProcdef;
@@ -36,7 +38,7 @@ public class ActivitiController extends BaseController
     @Autowired
     private RuntimeService runtimeService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IActReProcdefService.version}")
+    @Autowired
     private IActReProcdefService procdefService;
 
     /**
@@ -66,7 +68,6 @@ public class ActivitiController extends BaseController
             ReProcdef reProcdef = new ReProcdef(processDefinition);
             list.add(reProcdef);
         }
-//        return R.ok().put("rows", list);
         return R.ok();
     }
 
@@ -74,8 +75,10 @@ public class ActivitiController extends BaseController
     @ApiOperation(value = "列表")
     public R list(ActReProcdef actReProcdef)
     {
-//        return result(procdefService.selectList(actReProcdef));
-        return null;
+        PageDomain pageDomain = getPageInfo();
+        log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
+        PageUtils page = procdefService.selectList(pageDomain, actReProcdef);
+        return R.ok(page);
     }
 
     @PostMapping("remove")

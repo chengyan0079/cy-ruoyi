@@ -1,8 +1,12 @@
 package com.cy.ruoyi.tool.activiti.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cy.ruoyi.tool.activiti.VO.HiTaskVo;
 import com.cy.ruoyi.tool.activiti.entity.BizLeave;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,7 +30,7 @@ public interface BizLeaveMapper extends BaseMapper<BizLeave>
      * @param actLeave 请假
      * @return 请假集合
      */
-    List<BizLeave> selectBizLeaveList(BizLeave actLeave);
+    List<BizLeave> selectBizLeaveList(@Param("act") BizLeave actLeave);
 
     /**
      * 新增请假
@@ -59,4 +63,14 @@ public interface BizLeaveMapper extends BaseMapper<BizLeave>
      * @return 结果
      */
     int deleteBizLeaveByIds(String[] ids);
+
+
+    //************************************************************************
+    /**
+     * 根据条件分页查询列表
+     * @param page
+     * @param actLeave
+     * @return
+     */
+    IPage<BizLeave> selectBizLeaveList(Page page, @Param("act") BizLeave actLeave);
 }

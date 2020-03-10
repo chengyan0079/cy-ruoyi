@@ -45,7 +45,7 @@ export default {
   },
   created () {
     getProfAllLatest().then(res => {
-      this.profList = res.rows.map(r => { return r })
+      this.profList = res.data.map(r => { return r })
     })
   },
   methods: {

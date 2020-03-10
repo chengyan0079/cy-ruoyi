@@ -1,7 +1,13 @@
 package com.cy.ruoyi.tool.activiti.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.text.Convert;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
+import com.cy.ruoyi.tool.activiti.VO.HiTaskVo;
 import com.cy.ruoyi.tool.activiti.entity.BizLeave;
 import com.cy.ruoyi.tool.activiti.mapper.BizLeaveMapper;
 import com.cy.ruoyi.tool.activiti.service.IBizLeaveService;
@@ -14,7 +20,6 @@ import java.util.List;
  * 请假Service业务层处理
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IBizLeaveService.version}")
 public class BizLeaveServiceImpl extends ServiceImpl<BizLeaveMapper, BizLeave> implements IBizLeaveService
 {
     @Autowired
@@ -22,7 +27,7 @@ public class BizLeaveServiceImpl extends ServiceImpl<BizLeaveMapper, BizLeave> i
 
     /**
      * 查询请假
-     * 
+     *
      * @param id 请假ID
      * @return 请假
      */
@@ -46,7 +51,7 @@ public class BizLeaveServiceImpl extends ServiceImpl<BizLeaveMapper, BizLeave> i
 
     /**
      * 新增请假
-     * 
+     *
      * @param bizLeave 请假
      * @return 结果
      */
@@ -58,7 +63,7 @@ public class BizLeaveServiceImpl extends ServiceImpl<BizLeaveMapper, BizLeave> i
 
     /**
      * 修改请假
-     * 
+     *
      * @param bizLeave 请假
      * @return 结果
      */
@@ -82,12 +87,23 @@ public class BizLeaveServiceImpl extends ServiceImpl<BizLeaveMapper, BizLeave> i
 
     /**
      * 删除请假信息
-     * 
+     *
      * @param id 请假ID
      * @return 结果
      */
-//    public int deleteBizLeaveById(String id)
-//    {
-//        return leaveMapper.deleteBizLeaveById(id);
-//    }
+    @Override
+    public int deleteBizLeaveById(String id)
+    {
+        return leaveMapper.deleteBizLeaveById(id);
+    }
+
+    @Override
+    public PageUtils selectBizLeaveList(PageDomain pageDomain, BizLeave bizLeave)
+    {
+        if(RegexUtil.isNull(bizLeave)){
+            bizLeave = new BizLeave();
+        }
+        IPage<BizLeave> page = leaveMapper.selectBizLeaveList(new Query<BizLeave>(pageDomain).getPage(), bizLeave);
+        return new PageUtils(page);
+    }
 }

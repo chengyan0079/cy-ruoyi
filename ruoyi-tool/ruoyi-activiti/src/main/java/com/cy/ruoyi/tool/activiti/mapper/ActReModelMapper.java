@@ -1,8 +1,12 @@
 package com.cy.ruoyi.tool.activiti.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cy.ruoyi.tool.activiti.entity.ActReModel;
+import com.cy.ruoyi.tool.activiti.entity.BizLeave;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,7 +30,7 @@ public interface ActReModelMapper extends BaseMapper<ActReModel>
      * @param actReModel 流程设计模型部署
      * @return 流程设计模型部署集合
      */
-    List<ActReModel> selectActReModelList(ActReModel actReModel);
+    List<ActReModel> selectActReModelList(@Param("act") ActReModel actReModel);
 
     /**
      * 新增流程设计模型部署
@@ -59,4 +63,13 @@ public interface ActReModelMapper extends BaseMapper<ActReModel>
      * @return 结果
      */
     int deleteActReModelByIds(String[] ids);
+
+    //************************************************************************
+    /**
+     * 根据条件分页查询列表
+     * @param page
+     * @param actReModel
+     * @return
+     */
+    IPage<ActReModel> selectActReModelList(Page page, @Param("act") ActReModel actReModel);
 }

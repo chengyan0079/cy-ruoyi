@@ -5,6 +5,7 @@ import com.cy.ruoyi.tool.activiti.VO.ProcessNodeVo;
 import com.cy.ruoyi.tool.activiti.entity.BizNode;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -18,15 +19,15 @@ public interface IBizNodeService extends IService<BizNode>
      * @param id 节点ID
      * @return 节点
      */
-//    BizNode selectBizNodeById(Long id);
+    BizNode selectBizNodeById(Long id);
 
     /**
      * 查询节点列表
      * 
-     * @param bizNode 节点
+     * @param map 节点
      * @return 节点集合
      */
-//    List<BizNode> selectBizNodeList(BizNode bizNode);
+    List<BizNode> selectBizNodeList(Map<String, Object> map);
 
     /**
      * 新增节点
@@ -34,7 +35,7 @@ public interface IBizNodeService extends IService<BizNode>
      * @param bizNode 节点
      * @return 结果
      */
-//    int insertBizNode(BizNode bizNode);
+    int insertBizNode(BizNode bizNode);
 
     /**
      * 设置节点视图

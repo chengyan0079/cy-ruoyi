@@ -44,25 +44,6 @@ dubbo:
 #    address: spring-cloud://192.168.31.138
   application:
     qos-enable: false
-  provider:
-    timeout: 10000
-    filter: -exception
-    IActReModelService:
-      version: 1.0.0
-    IActReProcdefService:
-      version: 1.0.0
-    IBizAuditService:
-      version: 1.0.0
-    IBizBusinessService:
-      version: 1.0.0
-    IBizLeaveService:
-      version: 1.0.0
-    IBizNodeService:
-      version: 1.0.0
-    IBizPurchaseService:
-      version: 1.0.0
-    IHistoryInfoService:
-      version: 1.0.0
   cloud:
     subscribed-services: ruoyi-user
   consumer:

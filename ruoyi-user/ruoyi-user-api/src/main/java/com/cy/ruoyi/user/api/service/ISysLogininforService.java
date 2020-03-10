@@ -1,7 +1,13 @@
 package com.cy.ruoyi.user.api.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.user.api.entity.SysLogininfor;
+import com.cy.ruoyi.user.api.entity.SysRole;
 
 import java.util.List;
 
@@ -34,4 +40,12 @@ public interface ISysLogininforService extends IService<SysLogininfor> {
      * 清空系统登录日志
      */
     void cleanLogininfor();
+
+    //****************************************************************************
+    /**
+     * 根据条件分页查询
+     */
+    PageUtils selectLogininforList(PageDomain pageDomain, SysLogininfor logininfor);
+
+
 }

@@ -1,7 +1,10 @@
 package com.cy.ruoyi.tool.activiti.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.tool.activiti.entity.ActReModel;
+import com.cy.ruoyi.tool.activiti.entity.ActReProcdef;
 
 import java.util.List;
 
@@ -57,4 +60,10 @@ public interface IActReModelService extends IService<ActReModel>
      * @return 结果
      */
     int deleteActReModelById(String id);
+
+    //***************************************************************************
+    /**
+     * 根据条件分页查询列表
+     */
+    PageUtils selectActReModelList(PageDomain pageDomain, ActReModel actReModel);
 }

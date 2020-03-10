@@ -5,6 +5,7 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.VO.HiProcInsVo;
 import com.cy.ruoyi.tool.activiti.VO.ProcessInsVo;
@@ -55,13 +56,13 @@ public class ProcessInsController extends BaseController
     @Autowired
     private HistoryService      historyService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IHistoryInfoService.version}")
+    @Autowired
     private IHistoryInfoService historyInfoService;
 
     @Autowired
     private RemoteUserService userService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizBusinessService.version}")
+    @Autowired
     private IBizBusinessService bizBusinessService;
 
     /**
@@ -137,7 +138,7 @@ public class ProcessInsController extends BaseController
                 // 关联发起人
                 if ("starter".equals(hik.getType()) && StrUtil.isNotBlank(hik.getUserId()))
                 {
-//                    e.setApplyer(userService.selectSysUserByUserId(Long.valueOf(hik.getUserId())).getLoginName());
+                    e.setApplyer(userService.selectSysUserByUserId(Long.valueOf(hik.getUserId())).getLoginName());
                 }
             }
             // 关联当前任务
@@ -158,8 +159,10 @@ public class ProcessInsController extends BaseController
     @ApiOperation(value = "finished")
     public R finush(HiProcInsVo hiProcInsVo)
     {
-//        return result(historyInfoService.getHiProcInsListDone(hiProcInsVo));
-        return null;
+        PageDomain pageDomain = getPageInfo();
+        log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
+        PageUtils page = historyInfoService.getHiProcInsListDone(pageDomain, hiProcInsVo);
+        return R.ok(page);
     }
 
 

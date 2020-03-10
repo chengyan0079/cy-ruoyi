@@ -1,9 +1,13 @@
 package com.cy.ruoyi.user.api.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cy.ruoyi.user.api.entity.SysLogininfor;
 import com.cy.ruoyi.user.api.entity.SysNotice;
 import com.cy.ruoyi.user.api.entity.SysOperLog;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -29,7 +33,7 @@ public interface SysOperLogMapper extends BaseMapper<SysOperLog>
      * @param operLog 操作日志对象
      * @return 操作日志集合
      */
-    List<SysOperLog> selectOperLogList(SysOperLog operLog);
+    List<SysOperLog> selectOperLogList(@Param("operLog") SysOperLog operLog);
 
     /**
      * 批量删除系统操作日志
@@ -51,4 +55,12 @@ public interface SysOperLogMapper extends BaseMapper<SysOperLog>
      * 清空操作日志
      */
     void cleanOperLog();
+
+    /**
+     * 根据条件分页查询
+     * @param page
+     * @param operLog
+     * @return
+     */
+    IPage<SysOperLog> selectOperLogList(Page page, @Param("operLog") SysOperLog operLog);
 }

@@ -3,6 +3,8 @@ package com.cy.ruoyi.tool.activiti.controller;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.consts.ActivitiConstant;
 import com.cy.ruoyi.tool.activiti.entity.BizBusiness;
@@ -31,10 +33,10 @@ public class BizLeaveController extends BaseController
 {
     private static final Log log = LogFactory.get();
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizLeaveService.version}")
+    @Autowired
     private IBizLeaveService leaveService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizBusinessService.version}")
+    @Autowired
     private IBizBusinessService bizBusinessService;
 
     @Autowired
@@ -70,8 +72,10 @@ public class BizLeaveController extends BaseController
     @ApiOperation(value = "查询请假列表")
     public R list(BizLeave leave)
     {
-//        return result(leaveService.selectBizLeaveList(leave));
-        return null;
+        PageDomain pageDomain = getPageInfo();
+        log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
+        PageUtils page = leaveService.selectBizLeaveList(pageDomain, leave);
+        return R.ok(page);
     }
 
     /**
@@ -113,8 +117,8 @@ public class BizLeaveController extends BaseController
         business.setProcName(leave.getProcName());
         long userId = getCurrentUserId();
         business.setUserId(userId);
-//        SysUser user = remoteUserService.selectSysUserByUserId(userId);
-//        business.setApplyer(user.getUserName());
+        SysUser user = remoteUserService.selectSysUserByUserId(userId);
+        business.setApplyer(user.getUserName());
         business.setStatus(ActivitiConstant.STATUS_DEALING);
         business.setResult(ActivitiConstant.RESULT_DEALING);
         business.setApplyTime(new Date());

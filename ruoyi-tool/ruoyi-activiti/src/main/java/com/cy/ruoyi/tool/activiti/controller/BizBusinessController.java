@@ -6,10 +6,15 @@ import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.entity.BizBusiness;
 import com.cy.ruoyi.tool.activiti.service.IBizBusinessService;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 流程业务 提供者
@@ -21,7 +26,7 @@ public class BizBusinessController extends BaseController
 {
     private static final Log log = LogFactory.get();
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizBusinessService.version}")
+    @Autowired
     private IBizBusinessService bizBusinessService;
 
     /**
@@ -43,8 +48,7 @@ public class BizBusinessController extends BaseController
     {
         bizBusiness.setUserId(getCurrentUserId());
         bizBusiness.setDelFlag(false);
-//        return result(bizBusinessService.selectBizBusinessList(bizBusiness));
-        return null;
+        return result(bizBusinessService.selectBizBusinessList(bizBusiness));
     }
 
     /**
@@ -72,11 +76,11 @@ public class BizBusinessController extends BaseController
      * 删除流程业务
      */
     @PostMapping("remove")
-    @ApiOperation(value = "删除流程业务")
+    @ApiOperation(value = "删除流程业务,逻辑删除")
     public R remove(String ids)
     {
-//        return toAjax(bizBusinessService.deleteBizBusinessLogic(ids));
-        return R.ok();
+        List<BizBusiness> list = (List)Lists.newArrayList(ids.split(","), new BizBusiness().setDelFlag(true));
+        return toAjax(bizBusinessService.updateBatchById(list));
     }
 
 }

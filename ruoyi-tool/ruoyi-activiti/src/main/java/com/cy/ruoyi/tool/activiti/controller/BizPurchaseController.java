@@ -31,10 +31,10 @@ public class BizPurchaseController extends BaseController
 {
     private static final Log log = LogFactory.get();
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizPurchaseService.version}")
+    @Autowired
     private IBizPurchaseService purchaseService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizBusinessService.version}")
+    @Autowired
     private IBizBusinessService bizBusinessService;
 
     @Autowired
@@ -100,8 +100,8 @@ public class BizPurchaseController extends BaseController
         business.setProcName(purchase.getProcName());
         long userId = getCurrentUserId();
         business.setUserId(userId);
-//        SysUser user = remoteUserService.selectSysUserByUserId(userId);
-//        business.setApplyer(user.getUserName());
+        SysUser user = remoteUserService.selectSysUserByUserId(userId);
+        business.setApplyer(user.getUserName());
         business.setStatus(ActivitiConstant.STATUS_DEALING);
         business.setResult(ActivitiConstant.RESULT_DEALING);
         business.setApplyTime(new Date());

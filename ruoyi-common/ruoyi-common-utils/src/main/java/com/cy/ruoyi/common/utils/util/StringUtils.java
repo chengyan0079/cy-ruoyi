@@ -403,13 +403,16 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
      *  驼峰转下划线
      */
     public static String humpToLine(String str) {
-        Matcher matcher = humpPattern.matcher(str);
-        StringBuffer sb = new StringBuffer();
-        while (matcher.find()) {
-            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
+        if(RegexUtil.isNotNull(str)){
+            Matcher matcher = humpPattern.matcher(str);
+            StringBuffer sb = new StringBuffer();
+            while (matcher.find()) {
+                matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
+            }
+            matcher.appendTail(sb);
+            return sb.toString();
         }
-        matcher.appendTail(sb);
-        return sb.toString();
+        return null;
     }
 
 //    public static void main(String[] args) {

@@ -1,11 +1,15 @@
 package com.cy.ruoyi.tool.activiti.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.tool.activiti.consts.ActivitiConstant;
+import com.cy.ruoyi.tool.activiti.entity.ActReProcdef;
 import com.cy.ruoyi.tool.activiti.entity.BizBusiness;
 import com.cy.ruoyi.tool.activiti.mapper.BizBusinessMapper;
 import com.cy.ruoyi.tool.activiti.service.IBizBusinessService;
 import com.cy.ruoyi.tool.activiti.service.IBizNodeService;
+import com.google.common.collect.Lists;
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -22,7 +26,6 @@ import java.util.Set;
 /**
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IBizBusinessService.version}")
 public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBusiness> implements IBizBusinessService
 {
     @Autowired
@@ -37,7 +40,7 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
     @Autowired
     private TaskService       taskService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IBizNodeService.version}")
+    @Autowired
     private IBizNodeService bizNodeService;
 
     /**
@@ -58,11 +61,17 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
      * @param bizBusiness 流程业务
      * @return 流程业务
      */
-//    @Override
-//    public List<BizBusiness> selectBizBusinessList(BizBusiness bizBusiness)
-//    {
-//        return businessMapper.select(bizBusiness);
-//    }
+    @Override
+    public List<BizBusiness> selectBizBusinessList(BizBusiness bizBusiness)
+    {
+        return businessMapper.selectList(new QueryWrapper<BizBusiness>()
+        .eq("user_id", bizBusiness.getUserId())
+        .eq("del_flag", bizBusiness.getDelFlag())
+        .eq(RegexUtil.isNotNull(bizBusiness.getTitle()), "title", bizBusiness.getTitle())
+        .eq(RegexUtil.isNotNull(bizBusiness.getStatus()), "status", bizBusiness.getStatus())
+        .eq(RegexUtil.isNotNull(bizBusiness.getResult()), "result", bizBusiness.getResult())
+        );
+    }
 
     /**
      * 新增流程业务
@@ -78,7 +87,7 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
 
     /**
      * 修改流程业务
-     * 
+     *
      * @param bizBusiness 流程业务
      * @return 结果
      */

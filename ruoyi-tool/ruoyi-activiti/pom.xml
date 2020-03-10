@@ -54,7 +54,6 @@
             <artifactId>ruoyi-common-auth</artifactId>
             <version>1.0.0</version>
         </dependency>
-
         <!-- Activiti -->
         <dependency>
             <groupId>org.activiti</groupId>

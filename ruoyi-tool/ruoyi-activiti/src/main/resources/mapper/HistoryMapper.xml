@@ -44,7 +44,7 @@
 			LEFT JOIN biz_business b ON hp.BUSINESS_KEY_ = b.id 
 		WHERE
 			hp.END_TIME_ IS NOT NULL 
-		<if test="procDefKey != null and procDefKey !=''"> and b.proc_def_key=#{procDefKey}</if>
+		<if test="hip.procDefKey != null and hip.procDefKey !=''"> and b.proc_def_key=#{hip.procDefKey}</if>
 		ORDER BY hp.END_TIME_ DESC
     </select>
 

@@ -13,7 +13,6 @@ import java.util.List;
  * 报销Service业务层处理
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IBizPurchaseService.version}")
 public class BizPurchaseServiceImpl extends ServiceImpl<BizPurchaseMapper, BizPurchase> implements IBizPurchaseService
 {
     @Autowired

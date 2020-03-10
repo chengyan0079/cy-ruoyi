@@ -2,7 +2,14 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.log.annotation.OperLog;
+import com.cy.ruoyi.common.log.enums.BusinessType;
+import com.cy.ruoyi.common.utils.util.ExcelUtil;
+import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.user.api.entity.SysOperLog;
 import com.cy.ruoyi.user.api.service.ISysOperLogService;
 import io.swagger.annotations.Api;
@@ -35,6 +42,62 @@ public class SysOperLogController extends BaseController
     public void addSave(@RequestBody SysOperLog sysOperLog)
     {
         sysOperLogService.insertOperlog(sysOperLog);
+    }
+
+    /**
+     * 查询操作日志记录
+     */
+    @GetMapping("get/{operId}")
+    @ApiOperation(value = "查询操作日志记录")
+    public SysOperLog get(@PathVariable("operId") Long operId)
+    {
+        return sysOperLogService.selectOperLogById(operId);
+    }
+
+    /**
+     * 查询操作日志记录列表
+     */
+    @HasPermissions("monitor:operlog:list")
+    @RequestMapping("list")
+    @ApiOperation(value = "查询操作日志记录列表")
+    public R list(SysOperLog sysOperLog)
+    {
+        PageDomain pageDomain = getPageInfo();
+        log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
+        PageUtils page = sysOperLogService.selectOperLogList(pageDomain, sysOperLog);
+        return R.ok(page);
+    }
+
+    @OperLog(title = "操作日志", businessType = BusinessType.EXPORT)
+    @HasPermissions("monitor:operlog:export")
+    @PostMapping("/export")
+    @ApiOperation(value = "导出操作日志记录列表")
+    public R export(SysOperLog operLog)
+    {
+        List<SysOperLog> list = sysOperLogService.selectOperLogList(operLog);
+        ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
+        return util.exportExcel(list, "操作日志");
+    }
+
+    /**
+     * 删除操作日志记录
+     */
+    @HasPermissions("monitor:operlog:remove")
+    @PostMapping("remove")
+    @ApiOperation(value = "删除操作日志记录")
+    public R remove(String ids)
+    {
+        return toAjax(sysOperLogService.deleteOperLogByIds(ids));
+    }
+
+    @OperLog(title = "操作日志", businessType = BusinessType.CLEAN)
+    @HasPermissions("monitor:operlog:remove")
+    @PostMapping("/clean")
+    @ApiOperation(value = "清空日志记录")
+    public R clean()
+    {
+        sysOperLogService.cleanOperLog();
+        return R.ok();
     }
 
 }

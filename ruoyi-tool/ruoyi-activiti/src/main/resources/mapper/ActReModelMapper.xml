@@ -27,8 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectActReModelList" parameterType="com.cy.ruoyi.tool.activiti.entity.ActReModel" resultMap="ActReModelResult">
         <include refid="selectActReModelVo"/>
         <where>
-        	<if test="name != null  and name != ''">and NAME_ like concat('%', #{name}, '%')</if>
-        	<if test="key != null  and key != ''">and KEY_ = #{key},</if>  
+        	<if test="act.name != null  and act.name != ''">and NAME_ like concat('%', #{act.name}, '%')</if>
+        	<if test="act.key != null  and act.key != ''">and KEY_ = #{act.key},</if>
         </where>
     </select>
     

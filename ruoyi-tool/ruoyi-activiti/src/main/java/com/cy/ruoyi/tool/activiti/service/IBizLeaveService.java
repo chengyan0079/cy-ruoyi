@@ -1,6 +1,9 @@
 package com.cy.ruoyi.tool.activiti.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cy.ruoyi.common.core.util.page.PageDomain;
+import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.tool.activiti.VO.HiTaskVo;
 import com.cy.ruoyi.tool.activiti.entity.BizLeave;
 
 import java.util.List;
@@ -56,5 +59,11 @@ public interface IBizLeaveService extends IService<BizLeave>
      * @param id 请假ID
      * @return 结果
      */
-//    int deleteBizLeaveById(String id);
+    int deleteBizLeaveById(String id);
+
+    //***************************************************************************
+    /**
+     * 根据条件分页查询列表
+     */
+    PageUtils selectBizLeaveList(PageDomain pageDomain, BizLeave bizLeave);
 }
