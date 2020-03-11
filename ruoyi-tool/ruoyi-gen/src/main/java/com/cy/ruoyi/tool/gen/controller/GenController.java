@@ -37,10 +37,10 @@ public class GenController extends BaseController
 {
     private static final Log log = LogFactory.get();
 
-    @Reference(validation = "true", version = "${dubbo.provider.IGenTableService.version}")
+    @Autowired
     private IGenTableService genTableService;
 
-    @Reference(validation = "true", version = "${dubbo.provider.IGenTableColumnService.version}")
+    @Autowired
     private IGenTableColumnService genTableColumnService;
 
     /**

@@ -46,10 +46,6 @@ dubbo:
   provider:
     timeout: 10000
     filter: -exception
-    IGenTableService:
-      version: 1.0.0
-    IGenTableColumnService:
-      version: 1.0.0
 
 feign:
   #开启GZIP压缩

@@ -45,7 +45,6 @@ import java.util.zip.ZipOutputStream;
  * 业务 服务层实现
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IGenTableService.version}")
 public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> implements IGenTableService
 {
     private static final Logger log = LoggerFactory.getLogger(GenTableServiceImpl.class);

@@ -14,7 +14,6 @@ import java.util.List;
  * 业务字段 服务层实现
  */
 @Service
-@org.apache.dubbo.config.annotation.Service(validation = "true", version = "${dubbo.provider.IGenTableColumnService.version}")
 public class GenTableColumnServiceImpl extends ServiceImpl<GenTableColumnMapper, GenTableColumn> implements IGenTableColumnService
 {
     @Autowired
