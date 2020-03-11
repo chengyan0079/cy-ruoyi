@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @TableName("act_re_procdef")
-public class ActReProcdef extends BaseEntity implements Serializable
+public class ActReProcdef implements Serializable
 {
     /** id */
     @TableId(value="ID_", type= IdType.AUTO)

@@ -155,7 +155,7 @@ export default {
   created () {
     const procDefId = this.$route.query.procDefId
     getNodeList(procDefId).then(res => {
-      this.nodes = res.rows.map(n => {
+      this.nodes = res.data.rows.map(n => {
         let icon = ''
         switch (n.type) {
           case 0:
@@ -171,14 +171,14 @@ export default {
       })
     })
     getRoleAll().then(res => {
-      this.roles = res.rows
+      this.roles = res.data.rows
     })
     getDeptList().then(res => {
-      const data = res.rows
+      const data = res.data.rows
       this.buildtree(data, this.depts, 0)
     })
     getUserList().then(res => {
-      this.users = res.rows
+      this.users = res.data.rows
     })
   },
   methods: {

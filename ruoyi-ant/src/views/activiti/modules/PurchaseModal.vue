@@ -114,7 +114,7 @@ export default {
       }
       getPurchaseByBusiness(record.businessKey).then(res => {
         if (res.code === 0) {
-          this.mdl = Object.assign(res.data)
+          this.mdl = Object.assign(res.data.rows)
           this.visible = true
         }
       })

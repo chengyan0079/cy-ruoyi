@@ -68,7 +68,7 @@ public class ActivitiController extends BaseController
             ReProcdef reProcdef = new ReProcdef(processDefinition);
             list.add(reProcdef);
         }
-        return R.ok();
+        return R.ok(list);
     }
 
     @GetMapping("list")

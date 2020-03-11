@@ -49,11 +49,11 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
      * @param id 流程业务ID
      * @return 流程业务
      */
-//    @Override
-//    public BizBusiness selectBizBusinessById(String id)
-//    {
-//        return businessMapper.selectByPrimaryKey(id);
-//    }
+    @Override
+    public BizBusiness selectBizBusinessById(String id)
+    {
+        return businessMapper.selectById(id);
+    }
 
     /**
      * 查询流程业务列表
@@ -79,11 +79,11 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
      * @param bizBusiness 流程业务
      * @return 结果
      */
-//    @Override
-//    public int insertBizBusiness(BizBusiness bizBusiness)
-//    {
-//        return businessMapper.insertSelective(bizBusiness);
-//    }
+    @Override
+    public int insertBizBusiness(BizBusiness bizBusiness)
+    {
+        return businessMapper.insert(bizBusiness);
+    }
 
     /**
      * 修改流程业务
@@ -91,11 +91,11 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
      * @param bizBusiness 流程业务
      * @return 结果
      */
-//    @Override
-//    public int updateBizBusiness(BizBusiness bizBusiness)
-//    {
-//        return businessMapper.updateByPrimaryKeySelective(bizBusiness);
-//    }
+    @Override
+    public int updateBizBusiness(BizBusiness bizBusiness)
+    {
+        return businessMapper.updateById(bizBusiness);
+    }
 
 //    /**
 //     * 删除流程业务对象
@@ -109,16 +109,17 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
 //        return businessMapper.deleteByIds(ids);
 //    }
 
-//    /**
-//     * 删除流程业务信息
-//     *
-//     * @param id 流程业务ID
-//     * @return 结果
-//     */
-//    public int deleteBizBusinessById(Long id)
-//    {
-//        return businessMapper.deleteByPrimaryKey(id);
-//    }
+    /**
+     * 删除流程业务信息
+     *
+     * @param id 流程业务ID
+     * @return 结果
+     */
+    @Override
+    public int deleteBizBusinessById(Long id)
+    {
+        return businessMapper.deleteById(id);
+    }
 
     /* (non-Javadoc)
      * @see com.ruoyi.activiti.service.IBizBusinessService#deleteBizBusinessLogic(java.lang.String)
@@ -181,7 +182,6 @@ public class BizBusinessServiceImpl extends ServiceImpl<BizBusinessMapper, BizBu
             business.setCurrentTask(ActivitiConstant.END_TASK_NAME).setStatus(ActivitiConstant.STATUS_FINISH)
                     .setResult(result);
         }
-//        return updateBizBusiness(business);
-        return 0;
+        return updateBizBusiness(business);
     }
 }

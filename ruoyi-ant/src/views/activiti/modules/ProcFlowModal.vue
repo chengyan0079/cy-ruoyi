@@ -107,7 +107,7 @@ export default {
       this.loading = true
       getTaskFlow({ procInstId: procInstId }).then(res => {
         if (res.code === 0) {
-          this.taskList = res.rows
+          this.taskList = res.data.rows
           hightlightFlow(procInstId).then(data => {
             const raw = data.data
             this.procFlowUrl = URL.createObjectURL(raw)

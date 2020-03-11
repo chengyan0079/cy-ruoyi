@@ -24,7 +24,7 @@ export default {
   methods: {
     show (tableId) {
       preview(tableId).then(res => {
-        this.codes = res.data
+        this.codes = res.data.rows
       })
       this.visible = true
     },

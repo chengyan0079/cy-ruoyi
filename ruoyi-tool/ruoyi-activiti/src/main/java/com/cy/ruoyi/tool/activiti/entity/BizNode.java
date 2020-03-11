@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @Accessors(chain=true)
 @TableName("biz_node")
-public class BizNode extends BaseEntity implements Serializable
+public class BizNode implements Serializable
 {
     private static final long serialVersionUID =1L;
 

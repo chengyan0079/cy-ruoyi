@@ -106,7 +106,6 @@ public class BizLeaveController extends BaseController
      * 
      * @param leave
      * @return
-     * @author zmr
      */
     private BizBusiness initBusiness(BizLeave leave)
     {

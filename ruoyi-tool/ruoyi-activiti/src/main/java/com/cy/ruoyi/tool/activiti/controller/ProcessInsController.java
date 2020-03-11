@@ -187,7 +187,7 @@ public class ProcessInsController extends BaseController
             bizBusiness.setCurrentTask(ActivitiConstant.END_TASK_NAME);
             bizBusiness.setStatus(ActivitiConstant.STATUS_CANCELED);
             bizBusiness.setResult(ActivitiConstant.RESULT_CANCELED);
-            bizBusinessService.saveOrUpdate(bizBusiness);
+            bizBusinessService.updateBizBusiness(bizBusiness);
             runtimeService.deleteProcessInstance(id, reason);
         }
         return R.ok();

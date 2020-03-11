@@ -195,7 +195,7 @@ export default {
     },
     handleShowImage (did) {
       diagram(did).then(res => {
-        const raw = res.data
+        const raw = res.data.rows
         this.previewImage = URL.createObjectURL(raw)
       })
       this.previewVisible = true
@@ -211,7 +211,7 @@ export default {
     handleModelXml (record) {
       modelXml(record.deploymentId).then(res => {
         const aLink = document.createElement('a')
-        var blob = new Blob([res.data], { type: 'application/xml' })
+        var blob = new Blob([res.data.rows], { type: 'application/xml' })
         var fileName = record.resourceName
         aLink.href = URL.createObjectURL(blob)
         aLink.setAttribute('download', fileName) // 设置下载文件名称

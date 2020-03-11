@@ -76,8 +76,8 @@
 
 <script>
 import { STable } from '@/components'
-// import { getOperLogList, delOperLog, cleanOperLog, operLogExport } from '@/api/monitor'
-import { getOperLogList, operLogExport } from '@/api/monitor'
+import { getOperLogList, delOperLog, cleanOperLog, operLogExport } from '@/api/monitor'
+// import { getOperLogList, operLogExport } from '@/api/monitor'
 import OperLogModal from './modules/OperLogModal.vue'
 import { getDictArray } from '@/utils/dict'
 import { exportExcel } from '@/utils/download'
@@ -205,21 +205,21 @@ export default {
     },
     delByIds (ids) {
       this.$message.success(`你删除了` + ids)
-      // delOperLog({ ids: ids.join(',') }).then(res => {
-      //   if (res.code === 0) {
-      //     this.$message.success(`删除成功`)
-      //     this.handleOk()
-      //   } else {
-      //     this.$message.error(res.msg)
-      //   }
-      //   this.selectedRowKeys = []
-      // })
+      delOperLog({ ids: ids.join(',') }).then(res => {
+        if (res.code === 0) {
+          this.$message.success(`删除成功`)
+          this.handleOk()
+        } else {
+          this.$message.error(res.msg)
+        }
+        this.selectedRowKeys = []
+      })
     },
     clean () {
       this.$message.success(`你点击了清空`)
-      // cleanOperLog().then(res => {
-      //   this.handleOk()
-      // })
+      cleanOperLog().then(res => {
+        this.handleOk()
+      })
     }
   },
   watch: {

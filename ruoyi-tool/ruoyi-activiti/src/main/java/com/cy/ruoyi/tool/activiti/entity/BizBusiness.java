@@ -17,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("biz_business")
-public class BizBusiness extends BaseEntity implements Serializable
+public class BizBusiness implements Serializable
 {
     private static final long serialVersionUID = -7562556845627977390L;
 

@@ -21,7 +21,7 @@ public interface IBizBusinessService extends IService<BizBusiness>
      * @param id 流程业务ID
      * @return 流程业务
      */
-//    BizBusiness selectBizBusinessById(String id);
+    BizBusiness selectBizBusinessById(String id);
 
     /**
      * 查询流程业务列表
@@ -37,7 +37,7 @@ public interface IBizBusinessService extends IService<BizBusiness>
      * @param bizBusiness 流程业务
      * @return 结果
      */
-//    int insertBizBusiness(BizBusiness bizBusiness);
+    int insertBizBusiness(BizBusiness bizBusiness);
 
     /**
      * 修改流程业务
@@ -45,7 +45,7 @@ public interface IBizBusinessService extends IService<BizBusiness>
      * @param bizBusiness 流程业务
      * @return 结果
      */
-//    int updateBizBusiness(BizBusiness bizBusiness);
+    int updateBizBusiness(BizBusiness bizBusiness);
 
     /**
      * 批量删除流程业务
@@ -70,7 +70,7 @@ public interface IBizBusinessService extends IService<BizBusiness>
      * @param id 流程业务ID
      * @return 结果
      */
-//    int deleteBizBusinessById(Long id);
+    int deleteBizBusinessById(Long id);
 
     /**
      * start 启动流程

@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Data
 @TableName("act_ru_task")
-public class ActRuTask extends BaseEntity implements Serializable
+public class ActRuTask implements Serializable
 {
 
     private static final long serialVersionUID = 1L;
