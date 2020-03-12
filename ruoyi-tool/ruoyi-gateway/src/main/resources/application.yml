@@ -58,6 +58,27 @@ spring:
           - Path=/cygen/**
           filters:
           - StripPrefix=1
+        # product
+        - id: ruoyi-product
+          uri: lb://ruoyi-product
+          predicates:
+          - Path=/cyprod/**
+          filters:
+          - StripPrefix=1
+        # order
+        - id: ruoyi-order
+          uri: lb://ruoyi-order
+          predicates:
+          - Path=/cyorder/**
+          filters:
+          - StripPrefix=1
+        # stock
+        - id: ruoyi-stock
+          uri: lb://ruoyi-stock
+          predicates:
+          - Path=/cystock/**
+          filters:
+          - StripPrefix=1
 
 hystrix:
     command:

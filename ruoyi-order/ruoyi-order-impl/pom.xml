@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cy.ruoyi.order.impl</groupId>
+    <artifactId>ruoyi-order-impl</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>ruoyi-order-impl</name>
+    <description>订单实现</description>
+
+    <parent>
+        <groupId>com.cy.ruoyi.order</groupId>
+        <artifactId>ruoyi-order</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.cy.ruoyi.order.api</groupId>
+            <artifactId>ruoyi-order-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.log</groupId>
+            <artifactId>ruoyi-common-log</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.redis</groupId>
+            <artifactId>ruoyi-common-redis</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.cy.ruoyi.common.auth</groupId>-->
+            <!--<artifactId>ruoyi-common-auth</artifactId>-->
+            <!--<version>1.0.0</version>-->
+        <!--</dependency>-->
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+        </plugins>
+    </build>
+
+</project>

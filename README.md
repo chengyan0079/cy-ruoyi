@@ -36,41 +36,92 @@ cy-ruoyi
  |  ├──ruoyi-user-api //用户API
  |  ├──ruoyi-user-impl //用户实现
  |  ├──sql //用户sql
-├──ruoyi-order //订单 （尚未）
+├──ruoyi-order //订单 8071
  |  ├──ruoyi-order-application //订单启动
  |  ├──ruoyi-order-api //订单API
  |  ├──ruoyi-order-impl //订单实现
  |  ├──sql //订单sql
- ├──ruoyi-product // 商品（尚未）
- |  ├──ruoyi-order-application //商品启动
- |  ├──ruoyi-order-api //商品API
- |  ├──ruoyi-order-impl //商品实现
+ ├──ruoyi-product // 商品 8061
+ |  ├──ruoyi-product-application //商品启动
+ |  ├──ruoyi-product-api //商品API
+ |  ├──ruoyi-product-impl //商品实现
  |  ├──sql //商品sql
- ├──ruoyi-pay //收银台（尚未）
+ ├──ruoyi-pay //收银台 8021（尚未）
  |  ├──ruoyi-pay-application //收银台启动
  |  ├──ruoyi-pay-api //收银台API
  |  ├──ruoyi-pay-impl //收银台实现
  |  ├──sql //收银台sql
- ├──ruoyi-stock //库存（尚未）
+ ├──ruoyi-stock //库存 8051
  |  ├──ruoyi-stock-application //库存启动
  |  ├──ruoyi-stock-api //库存API
  |  ├──ruoyi-stock-impl //库存实现
  |  ├──sql //库存sql
- ├──ruoyi-logistics //物流（尚未）
+ ├──ruoyi-logistics //物流 8041（尚未）
  |  ├──ruoyi-logistics-application //物流启动
  |  ├──ruoyi-logistics-api //物流API
  |  ├──ruoyi-logistics-impl //物流实现
  |  ├──sql //物流sql
+ ├──ruoyi-demo //Demo 7070
+ |  ├──ruoyi-demo-application //Demo启动
+ |  ├──ruoyi-demo-api //Demo API
+ |  ├──ruoyi-demo-impl //Demo 实现
+ |  ├──sql //Demo sql
  ├──ruoyi-tool //工具
- |  ├──ruoyi-gen // 代码生成 8065
- |  ├──ruoyi-auth // 授权鉴权  8070
- |  ├──ruoyi-io //文件系统（尚未）
- |  ├──ruoyi-demo // demo测试  8090
- |  ├──ruoyi-data // 数据收集（尚未）
- |  ├──ruoyi-monitor // 系统监控（尚未）
- |  ├──ruoyi-activity //工作流 8060
- ├──ruoyi-gateway //网关 9527
+ |  ├──ruoyi-gen // 代码生成 7065
+ |  ├──ruoyi-auth // 授权鉴权  8090
+ |  ├──ruoyi-io //文件系统 7050（尚未）
+ |  ├──ruoyi-mock // 数据收集 7021（尚未）
+ |  ├──ruoyi-monitor // 系统监控 7060（尚未）
+ |  ├──ruoyi-activity //工作流 8031
+ |  ├──ruoyi-quartz //定时任务 8011（尚未）
+ |  ├──ruoyi-gateway //网关 9527
  ├──ruoyi-ant --前端 使用ant design框架
  ```
 
+## 前端菜单
+ ```
+  ├──仪表盘
+  |  ├──欢迎页
+  |  ├──工作台
+  |  ├──我的申请
+  |  ├──我的待办
+  |  ├──我的已办
+  ├──个人页
+  |  ├──个人中心
+  |  ├──个人设置
+  ├──商品管理
+  |  ├──商品列表
+  ├──库存管理
+  |  ├──库存列表
+  ├──交易管理
+  |  ├──订单管理
+  ├──账务管理
+  |  ├──账务明细
+  ├──物流管理
+  |  ├──物流公司管理
+  ├──报表统计
+  ├──定时任务
+  ├──权限管理
+  |  ├──用户管理
+  |  ├──角色管理
+  |  ├──菜单管理
+  |  ├──部门管理
+  ├──系统参数
+  |  ├──参数管理
+  |  ├──字典管理
+  |  ├──文件管理
+  |  ├──地区管理
+  ├──系统监控
+  |  ├──操作日志
+  |  ├──登陆日志
+  |  ├──服务监控（尚未）
+  ├──系统工具
+  |  ├──代码生成
+  ├──流程管理
+  |  ├──模型管理
+  |  ├──流程定义
+  |  ├──运行中流程
+  |  ├──结束的流程 
+
+ ```
 

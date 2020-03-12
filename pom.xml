@@ -44,6 +44,11 @@
         <module>ruoyi-user</module>
         <module>ruoyi-common</module>
         <module>ruoyi-tool</module>
+        <module>ruoyi-order</module>
+        <module>ruoyi-demo</module>
+        <module>ruoyi-stock</module>
+        <module>ruoyi-product</module>
+
     </modules>
 
     <dependencyManagement>

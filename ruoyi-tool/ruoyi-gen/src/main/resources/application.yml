@@ -1,5 +1,5 @@
 server:
-  port: 8065
+  port: 7065
 
 #Mybatis-plus配置
 mybatis-plus:
