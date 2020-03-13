@@ -102,38 +102,31 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public List<SysRole> selectRolesByUserId(Long userId)
     {
-//        List<SysRole> userRoles = roleMapper.selectRolesByUserId(userId);
-//        List<SysRole> roles = selectRoleAll();
-//        for (SysRole role : roles)
-//        {
-//            for (SysRole userRole : userRoles)
-//            {
-//                if (role.getRoleId().longValue() == userRole.getRoleId().longValue())
-//                {
-//                    role.setFlag(true);
-//                    break;
-//                }
-//            }
-//        }
-//        return roles;
-        return null;
-    }
-
-    @Override
-    public List<SysRole> selectRoleAll() {
-        return null;
+        List<SysRole> userRoles = roleMapper.selectRolesByUserId(userId);
+        List<SysRole> roles = selectRoleAll();
+        for (SysRole role : roles)
+        {
+            for (SysRole userRole : userRoles)
+            {
+                if (role.getRoleId().longValue() == userRole.getRoleId().longValue())
+                {
+                    role.setFlag(true);
+                    break;
+                }
+            }
+        }
+        return roles;
     }
 
     /**
      * 查询所有角色
-     * 
+     *
      * @return 角色列表
      */
-//    @Override
-//    public PageUtils selectRoleAll(PageDomain pageDomain)
-//    {
-//        return selectRoleList(pageDomain, new SysRole());
-//    }
+    @Override
+    public List<SysRole> selectRoleAll() {
+        return selectRoleList(new SysRole());
+    }
 
     /**
      * 通过角色ID查询角色
@@ -350,8 +343,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public int deleteAuthUser(SysUserRole userRole)
     {
-//        return userRoleMapper.deleteUserRoleInfo(userRole);
-        return 0;
+        return userRoleMapper.deleteUserRoleInfo(userRole);
     }
 
     /**
@@ -364,8 +356,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public int deleteAuthUsers(Long roleId, String userIds)
     {
-//        return userRoleMapper.deleteUserRoleInfos(roleId, Convert.toLongArray(userIds));
-        return 0;
+        return userRoleMapper.deleteUserRoleInfos(roleId, Convert.toLongArray(userIds));
     }
 
     /**
@@ -378,17 +369,16 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public int insertAuthUsers(Long roleId, String userIds)
     {
-//        Long[] users = Convert.toLongArray(userIds);
-//        // 新增用户与角色管理
-//        List<SysUserRole> list = new ArrayList<SysUserRole>();
-//        for (Long userId : users)
-//        {
-//            SysUserRole ur = new SysUserRole();
-//            ur.setUserId(userId);
-//            ur.setRoleId(roleId);
-//            list.add(ur);
-//        }
-//        return userRoleMapper.batchUserRole(list);
-        return 0;
+        Long[] users = Convert.toLongArray(userIds);
+        // 新增用户与角色管理
+        List<SysUserRole> list = new ArrayList<SysUserRole>();
+        for (Long userId : users)
+        {
+            SysUserRole ur = new SysUserRole();
+            ur.setUserId(userId);
+            ur.setRoleId(roleId);
+            list.add(ur);
+        }
+        return userRoleMapper.batchUserRole(list);
     }
 }

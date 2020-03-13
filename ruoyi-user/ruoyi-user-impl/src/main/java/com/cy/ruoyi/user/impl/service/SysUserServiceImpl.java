@@ -2,7 +2,6 @@ package com.cy.ruoyi.user.impl.service;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cy.ruoyi.common.core.exception.BusinessException;
@@ -10,7 +9,6 @@ import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.text.Convert;
-import com.cy.ruoyi.common.utils.util.Md5Utils;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.user.api.constants.UserConstants;
@@ -81,6 +79,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return 用户信息集合信息
      */
 //    @DataScope(deptAlias = "d", userAlias = "u")
+    @Override
     public List<SysUser> selectAllocatedList(SysUser user)
     {
         return userMapper.selectAllocatedList(user);

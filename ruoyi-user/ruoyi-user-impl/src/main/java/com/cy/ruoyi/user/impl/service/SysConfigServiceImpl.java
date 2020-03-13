@@ -10,7 +10,6 @@ import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.SysConfig;
-import com.cy.ruoyi.user.api.entity.SysUser;
 import com.cy.ruoyi.user.api.mapper.SysConfigMapper;
 import com.cy.ruoyi.user.api.service.ISysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;

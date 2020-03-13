@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -60,10 +61,9 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
 //    @DataScope(deptAlias = "d")
     public List<Ztree> selectDeptTree(SysDept dept)
     {
-//        List<SysDept> deptList = deptMapper.selectDeptList(dept);
-//        List<Ztree> ztrees = initZtree(deptList);
-//        return ztrees;
-        return null;
+        List<SysDept> deptList = deptMapper.selectDeptList(dept);
+        List<Ztree> ztrees = initZtree(deptList);
+        return ztrees;
     }
 
     /**
@@ -75,20 +75,19 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
     @Override
     public List<Ztree> roleDeptTreeData(SysRole role)
     {
-//        Long roleId = role.getRoleId();
-//        List<Ztree> ztrees = new ArrayList<Ztree>();
-//        List<SysDept> deptList = selectDeptList(new SysDept());
-//        if (StringUtils.isNotNull(roleId))
-//        {
-//            List<String> roleDeptList = deptMapper.selectRoleDeptTree(roleId);
-//            ztrees = initZtree(deptList, roleDeptList);
-//        }
-//        else
-//        {
-//            ztrees = initZtree(deptList);
-//        }
-//        return ztrees;
-        return null;
+        Long roleId = role.getRoleId();
+        List<Ztree> ztrees = new ArrayList<Ztree>();
+        List<SysDept> deptList = selectDeptList(new SysDept());
+        if (StringUtils.isNotNull(roleId))
+        {
+            List<String> roleDeptList = deptMapper.selectRoleDeptTree(roleId);
+            ztrees = initZtree(deptList, roleDeptList);
+        }
+        else
+        {
+            ztrees = initZtree(deptList);
+        }
+        return ztrees;
     }
 
     /**
@@ -111,27 +110,25 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
      */
     public List<Ztree> initZtree(List<SysDept> deptList, List<String> roleDeptList)
     {
-
-//        List<Ztree> ztrees = new ArrayList<Ztree>();
-//        boolean isCheck = StringUtils.isNotNull(roleDeptList);
-//        for (SysDept dept : deptList)
-//        {
-//            if (UserConstants.DEPT_NORMAL.equals(dept.getStatus()))
-//            {
-//                Ztree ztree = new Ztree();
-//                ztree.setId(dept.getDeptId());
-//                ztree.setpId(dept.getParentId());
-//                ztree.setName(dept.getDeptName());
-//                ztree.setTitle(dept.getDeptName());
-//                if (isCheck)
-//                {
-//                    ztree.setChecked(roleDeptList.contains(dept.getDeptId() + dept.getDeptName()));
-//                }
-//                ztrees.add(ztree);
-//            }
-//        }
-//        return ztrees;
-        return null;
+        List<Ztree> ztrees = new ArrayList<Ztree>();
+        boolean isCheck = StringUtils.isNotNull(roleDeptList);
+        for (SysDept dept : deptList)
+        {
+            if (UserConstants.DEPT_NORMAL.equals(dept.getStatus()))
+            {
+                Ztree ztree = new Ztree();
+                ztree.setId(dept.getDeptId());
+                ztree.setPId(dept.getParentId());
+                ztree.setName(dept.getDeptName());
+                ztree.setTitle(dept.getDeptName());
+                if (isCheck)
+                {
+                    ztree.setChecked(roleDeptList.contains(dept.getDeptId() + dept.getDeptName()));
+                }
+                ztrees.add(ztree);
+            }
+        }
+        return ztrees;
     }
 
     /**
