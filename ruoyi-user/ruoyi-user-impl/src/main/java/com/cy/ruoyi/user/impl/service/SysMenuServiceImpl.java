@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.impl.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.auth.constants.UserConstants;
 import com.cy.ruoyi.common.core.basic.entity.Ztree;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -9,7 +10,6 @@ import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.redis.annotation.RedisCache;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
-import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.SysMenu;
 import com.cy.ruoyi.user.api.entity.SysRole;
 import com.cy.ruoyi.user.api.entity.SysUser;

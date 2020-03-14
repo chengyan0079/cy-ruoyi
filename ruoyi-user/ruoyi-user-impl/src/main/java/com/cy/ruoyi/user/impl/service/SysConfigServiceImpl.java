@@ -2,13 +2,13 @@ package com.cy.ruoyi.user.impl.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cy.ruoyi.common.auth.constants.UserConstants;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.text.Convert;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
-import com.cy.ruoyi.user.api.constants.UserConstants;
 import com.cy.ruoyi.user.api.entity.SysConfig;
 import com.cy.ruoyi.user.api.mapper.SysConfigMapper;
 import com.cy.ruoyi.user.api.service.ISysConfigService;

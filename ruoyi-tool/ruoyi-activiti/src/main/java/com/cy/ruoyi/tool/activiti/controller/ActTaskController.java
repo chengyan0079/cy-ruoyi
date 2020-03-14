@@ -7,15 +7,15 @@ import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
+import com.cy.ruoyi.tool.activiti.DTO.SysUserDTO;
 import com.cy.ruoyi.tool.activiti.VO.HiTaskVo;
 import com.cy.ruoyi.tool.activiti.VO.RuTask;
 import com.cy.ruoyi.tool.activiti.consts.ActivitiConstant;
 import com.cy.ruoyi.tool.activiti.entity.BizAudit;
 import com.cy.ruoyi.tool.activiti.entity.BizBusiness;
+import com.cy.ruoyi.tool.activiti.feign.RemoteUserService;
 import com.cy.ruoyi.tool.activiti.service.IBizAuditService;
 import com.cy.ruoyi.tool.activiti.service.IBizBusinessService;
-import com.cy.ruoyi.user.api.entity.SysUser;
-import com.cy.ruoyi.user.api.feign.RemoteUserService;
 import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -148,7 +148,7 @@ public class ActTaskController extends BaseController
         variables.put("result", bizAudit.getResult());
         // 审批
         taskService.complete(bizAudit.getTaskId(), variables);
-        SysUser user = remoteUserService.selectSysUserByUserId(getCurrentUserId());
+        SysUserDTO user = remoteUserService.selectSysUserByUserId(getCurrentUserId());
         bizAudit.setAuditor(user.getUserName() + "-" + user.getLoginName());
         bizAudit.setAuditorId(user.getUserId());
         bizAuditService.save(bizAudit);
@@ -162,7 +162,7 @@ public class ActTaskController extends BaseController
     @ApiOperation(value = "批量审核")
     public R auditBatch(@RequestBody BizAudit bizAudit)
     {
-        SysUser user = remoteUserService.selectSysUserByUserId(getCurrentUserId());
+        SysUserDTO user = remoteUserService.selectSysUserByUserId(getCurrentUserId());
         for (String taskId : bizAudit.getTaskIds())
         {
             Task task = taskService.createTaskQuery().taskId(taskId).singleResult();

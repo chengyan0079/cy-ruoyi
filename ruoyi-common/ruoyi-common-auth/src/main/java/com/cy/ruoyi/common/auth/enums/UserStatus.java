@@ -1,9 +1,7 @@
-package com.cy.ruoyi.user.api.enums;
+package com.cy.ruoyi.common.auth.enums;
 
 /**
  * 用户状态
- * 
- * @author ruoyi
  */
 public enum UserStatus
 {

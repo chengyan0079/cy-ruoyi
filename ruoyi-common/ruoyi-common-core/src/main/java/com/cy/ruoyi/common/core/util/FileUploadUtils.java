@@ -1,4 +1,4 @@
-package com.cy.ruoyi.user.api.utils;
+package com.cy.ruoyi.common.core.util;
 
 import com.cy.ruoyi.common.core.exception.file.FileNameLengthLimitExceededException;
 import com.cy.ruoyi.common.core.exception.file.FileSizeLimitExceededException;

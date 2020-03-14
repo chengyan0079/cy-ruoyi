@@ -4,17 +4,16 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
+import com.cy.ruoyi.tool.activiti.DTO.SysUserDTO;
 import com.cy.ruoyi.tool.activiti.consts.ActivitiConstant;
 import com.cy.ruoyi.tool.activiti.entity.BizBusiness;
 import com.cy.ruoyi.tool.activiti.entity.BizPurchase;
+import com.cy.ruoyi.tool.activiti.feign.RemoteUserService;
 import com.cy.ruoyi.tool.activiti.service.IBizBusinessService;
 import com.cy.ruoyi.tool.activiti.service.IBizPurchaseService;
-import com.cy.ruoyi.user.api.entity.SysUser;
-import com.cy.ruoyi.user.api.feign.RemoteUserService;
 import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -100,7 +99,7 @@ public class BizPurchaseController extends BaseController
         business.setProcName(purchase.getProcName());
         long userId = getCurrentUserId();
         business.setUserId(userId);
-        SysUser user = remoteUserService.selectSysUserByUserId(userId);
+        SysUserDTO user = remoteUserService.selectSysUserByUserId(userId);
         business.setApplyer(user.getUserName());
         business.setStatus(ActivitiConstant.STATUS_DEALING);
         business.setResult(ActivitiConstant.RESULT_DEALING);

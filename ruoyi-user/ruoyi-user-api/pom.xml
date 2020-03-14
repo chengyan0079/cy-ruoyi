@@ -34,6 +34,11 @@
             <artifactId>ruoyi-common-core</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.auth</groupId>
+            <artifactId>ruoyi-common-auth</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 

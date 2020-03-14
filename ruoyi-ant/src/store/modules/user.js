@@ -71,7 +71,8 @@ const user = {
           // console.log(result)
           commit('SET_NAME', { name: result.userName, welcome: welcome() })
           commit('SET_AVATAR', result.avatar || '/avatar2.jpg')
-          resolve(response)
+          //再一次获取GetInfo
+          resolve(response) 
         }).catch(error => {
           reject(error)
         })

@@ -2,19 +2,15 @@ package com.cy.ruoyi.tool.auth.service;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.cy.ruoyi.common.auth.constants.UserConstants;
+import com.cy.ruoyi.common.auth.enums.UserStatus;
 import com.cy.ruoyi.common.core.exception.RuoyiException;
 import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.log.publish.PublishFactory;
 import com.cy.ruoyi.common.utils.constants.Constants;
-import com.cy.ruoyi.common.utils.util.DateUtils;
-import com.cy.ruoyi.common.utils.util.IpUtils;
-import com.cy.ruoyi.common.utils.util.MessageUtils;
-import com.cy.ruoyi.common.utils.util.RegexUtil;
-import com.cy.ruoyi.user.api.constants.UserConstants;
-import com.cy.ruoyi.user.api.entity.SysUser;
-import com.cy.ruoyi.user.api.enums.UserStatus;
-import com.cy.ruoyi.user.api.feign.RemoteUserService;
-import com.cy.ruoyi.user.api.utils.PasswordUtil;
+import com.cy.ruoyi.common.utils.util.*;
+import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
+import com.cy.ruoyi.tool.auth.feign.RemoteUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,7 +27,7 @@ public class SysLoginService
     /**
      * 登录
      */
-    public SysUser login(String username, String password)
+    public SysUserDTO login(String username, String password)
     {
         log.info("进入登陆请求。。。");
         // 验证码校验
@@ -67,7 +63,7 @@ public class SysLoginService
             throw new RuoyiException(MessageUtils.message("user.password.not.match"));
         }
         // 查询用户信息
-        SysUser user = userService.selectSysUserByUsername(username);
+        SysUserDTO user = userService.selectSysUserByUsername(username);
 //         if (user == null && maybeMobilePhoneNumber(username))
 //         {
 //         user = userService.selectUserByPhoneNumber(username);
@@ -93,7 +89,7 @@ public class SysLoginService
                     MessageUtils.message("user.blocked", user.getRemark()));
             throw new RuoyiException(MessageUtils.message("user.blocked"));
         }
-        if (!PasswordUtil.matches(user, password))
+        if (!PasswordUtil.matches(user.getLoginName(), user.getPassword(), user.getSalt(), password))
         {
             throw new RuoyiException("密码错误！");
         }
@@ -123,7 +119,7 @@ public class SysLoginService
     /**
      * 记录登录信息
      */
-    private void recordLoginInfo(SysUser user)
+    private void recordLoginInfo(SysUserDTO user)
     {
         user.setLoginIp(IpUtils.getIpAddr(ServletUtils.getRequest()));
         user.setLoginDate(DateUtils.getNowDate());

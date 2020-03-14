@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableHystrixDashboard
 @EnableHystrix
-@MapperScan("com.cy.ruoyi.*.*.mapper")
+@MapperScan("com.cy.ruoyi.tool.gen.mapper")
 @ComponentScan(basePackages = "com.cy.ruoyi.*")
 public class RuoyiGenApplication {
 

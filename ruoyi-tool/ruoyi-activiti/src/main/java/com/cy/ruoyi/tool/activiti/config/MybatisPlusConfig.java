@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.cy.ruoyi.*.mapper")
+@MapperScan("com.cy.ruoyi.tool.activiti.mapper")
 public class MybatisPlusConfig {
 
     /**

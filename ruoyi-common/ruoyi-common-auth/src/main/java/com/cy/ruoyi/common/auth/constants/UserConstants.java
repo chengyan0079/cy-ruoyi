@@ -1,9 +1,7 @@
-package com.cy.ruoyi.user.api.constants;
+package com.cy.ruoyi.common.auth.constants;
 
 /**
  * 用户常量信息
- * 
- * @author ruoyi
  */
 public class UserConstants
 {

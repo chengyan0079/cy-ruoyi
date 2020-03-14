@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.tool.gen.entity.GenTable;
-import com.cy.ruoyi.user.api.entity.SysDept;
 
 import java.util.List;
 import java.util.Map;

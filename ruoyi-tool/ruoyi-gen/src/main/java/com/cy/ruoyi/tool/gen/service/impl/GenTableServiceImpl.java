@@ -21,7 +21,6 @@ import com.cy.ruoyi.tool.gen.service.IGenTableService;
 import com.cy.ruoyi.tool.gen.util.GenUtils;
 import com.cy.ruoyi.tool.gen.util.VelocityInitializer;
 import com.cy.ruoyi.tool.gen.util.VelocityUtils;
-import com.cy.ruoyi.user.api.entity.SysDept;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -350,7 +349,7 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
     }
 
     /**
-     * 根据条件分页查询部门信息
+     * 根据条件分页查询信息
      */
     @Override
     public PageUtils selectGenTableList(PageDomain pageDomain, GenTable genTable)

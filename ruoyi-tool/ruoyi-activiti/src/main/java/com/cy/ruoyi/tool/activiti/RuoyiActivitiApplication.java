@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableCircuitBreaker
 @EnableHystrixDashboard
 @EnableHystrix
-@MapperScan("com.cy.ruoyi.*.*.mapper")
+@MapperScan("com.cy.ruoyi.tool.activiti.mapper")
 @ComponentScan(basePackages = "com.cy.ruoyi.*")
 public class RuoyiActivitiApplication {
 

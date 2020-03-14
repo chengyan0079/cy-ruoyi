@@ -6,7 +6,7 @@ import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.redis.annotation.RedisEvict;
 import com.cy.ruoyi.common.redis.util.RedisUtils;
 import com.cy.ruoyi.common.utils.constants.Constants;
-import com.cy.ruoyi.user.api.entity.SysUser;
+import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,13 +31,13 @@ public class AccessTokenService
 
     private final static String ACCESS_USERID = Constants.ACCESS_USERID;
 
-    public SysUser queryByToken(String token)
+    public SysUserDTO queryByToken(String token)
     {
-        return redis.get(ACCESS_TOKEN + token, SysUser.class);
+        return redis.get(ACCESS_TOKEN + token, SysUserDTO.class);
     }
 
     @RedisEvict(key = "user_perms", fieldKey = "#sysUser.userId")
-    public Map<String, Object> createToken(SysUser sysUser)
+    public Map<String, Object> createToken(SysUserDTO sysUser)
     {
         // 生成token
         String token = IdUtil.fastSimpleUUID();

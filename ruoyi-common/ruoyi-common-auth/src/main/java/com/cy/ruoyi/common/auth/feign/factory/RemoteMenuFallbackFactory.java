@@ -1,6 +1,6 @@
-package com.cy.ruoyi.user.api.feign.factory;
+package com.cy.ruoyi.common.auth.feign.factory;
 
-import com.cy.ruoyi.user.api.feign.RemoteMenuService;
+import com.cy.ruoyi.common.auth.feign.RemoteMenuService;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,6 @@ public class RemoteMenuFallbackFactory implements FallbackFactory<RemoteMenuServ
         log.error(throwable.getMessage());
         return new RemoteMenuService()
         {
-
             @Override
             public Set<String> selectPermsByUserId(Long userId)
             {

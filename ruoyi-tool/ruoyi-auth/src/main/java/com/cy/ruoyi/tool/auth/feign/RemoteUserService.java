@@ -1,9 +1,9 @@
-package com.cy.ruoyi.user.api.feign;
+package com.cy.ruoyi.tool.auth.feign;
 
 import com.cy.ruoyi.common.utils.util.R;
-import com.cy.ruoyi.user.api.entity.SysDept;
-import com.cy.ruoyi.user.api.entity.SysUser;
-import com.cy.ruoyi.user.api.feign.factory.RemoteUserFallbackFactory;
+import com.cy.ruoyi.tool.auth.DTO.SysDeptDTO;
+import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
+import com.cy.ruoyi.tool.auth.feign.factory.RemoteUserFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +16,13 @@ import java.util.Set;
 public interface RemoteUserService
 {
     @GetMapping("user/get/{userId}")
-    public SysUser selectSysUserByUserId(@PathVariable("userId") long userId);
+    SysUserDTO selectSysUserByUserId(@PathVariable("userId") long userId);
 
     @GetMapping("user/find/{username}")
-    public SysUser selectSysUserByUsername(@PathVariable("username") String username);
+    SysUserDTO selectSysUserByUsername(@PathVariable("username") String username);
 
     @PostMapping("user/update/login")
-    public R updateUserLoginRecord(@RequestBody SysUser user);
+    R updateUserLoginRecord(@RequestBody SysUserDTO user);
 
     /**
      * 查询拥有当前角色的所有用户
@@ -30,7 +30,7 @@ public interface RemoteUserService
      * @return
      */
     @GetMapping("user/hasRoles")
-    public Set<Long> selectUserIdsHasRoles(@RequestParam("roleIds") String roleIds);
+    Set<Long> selectUserIdsHasRoles(@RequestParam("roleIds") String roleIds);
 
     /**
      * 查询所有当前部门中的用户
@@ -39,8 +39,8 @@ public interface RemoteUserService
      * @return
      */
     @GetMapping("user/inDepts")
-    public Set<Long> selectUserIdsInDepts(@RequestParam("deptIds") String deptIds);
+    Set<Long> selectUserIdsInDepts(@RequestParam("deptIds") String deptIds);
 
     @GetMapping("dept/get/{deptId}")
-    public SysDept selectSysDeptByDeptId(@PathVariable("deptId") long deptId);
+    SysDeptDTO selectSysDeptByDeptId(@PathVariable("deptId") long deptId);
 }

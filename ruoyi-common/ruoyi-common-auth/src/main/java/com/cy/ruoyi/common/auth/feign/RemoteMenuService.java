@@ -1,6 +1,6 @@
-package com.cy.ruoyi.user.api.feign;
+package com.cy.ruoyi.common.auth.feign;
 
-import com.cy.ruoyi.user.api.feign.factory.RemoteMenuFallbackFactory;
+import com.cy.ruoyi.common.auth.feign.factory.RemoteMenuFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,5 +14,5 @@ import java.util.Set;
 public interface RemoteMenuService
 {
     @GetMapping("menu/perms/{userId}")
-    public Set<String> selectPermsByUserId(@PathVariable("userId") Long userId);
+    Set<String> selectPermsByUserId(@PathVariable("userId") Long userId);
 }

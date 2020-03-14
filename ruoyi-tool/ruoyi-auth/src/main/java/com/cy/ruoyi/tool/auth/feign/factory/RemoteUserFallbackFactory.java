@@ -1,9 +1,9 @@
-package com.cy.ruoyi.user.api.feign.factory;
+package com.cy.ruoyi.tool.auth.feign.factory;
 
 import com.cy.ruoyi.common.utils.util.R;
-import com.cy.ruoyi.user.api.entity.SysDept;
-import com.cy.ruoyi.user.api.entity.SysUser;
-import com.cy.ruoyi.user.api.feign.RemoteUserService;
+import com.cy.ruoyi.tool.auth.DTO.SysDeptDTO;
+import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
+import com.cy.ruoyi.tool.auth.feign.RemoteUserService;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -21,21 +21,21 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
         return new RemoteUserService()
         {
             @Override
-            public SysUser selectSysUserByUsername(String username)
+            public SysUserDTO selectSysUserByUsername(String username)
             {
                 return null;
             }
 
             @Override
-            public R updateUserLoginRecord(SysUser user)
+            public R updateUserLoginRecord(SysUserDTO user)
             {
                 return R.error();
             }
 
             @Override
-            public SysUser selectSysUserByUserId(long userId)
+            public SysUserDTO selectSysUserByUserId(long userId)
             {
-                SysUser user = new SysUser();
+                SysUserDTO user = new SysUserDTO();
                 user.setUserId(0l);
                 user.setLoginName("no user");
                 return user;
@@ -54,7 +54,7 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
             }
 
             @Override
-            public SysDept selectSysDeptByDeptId(long deptId)
+            public SysDeptDTO selectSysDeptByDeptId(long deptId)
             {
                 return null;
             }
