@@ -1,0 +1,33 @@
+server:
+  port: 7060
+
+spring:
+  application:
+    name: ruoyi-monitor
+  boot:
+    admin:
+      client:
+        url: http://localhost:7060
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 127.0.0.1:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# 服务信息
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+  author: chengyan
+  mail: 304338940@qq.com

@@ -84,3 +84,11 @@ hystrix:
           enabled: true
         isolation:
           thread.timeoutInMilliseconds: 5000 #一次请求服务的可用时间,若经常出错便会断路保护
+
+# 服务信息
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+  author: chengyan
+  mail: 304338940@qq.com

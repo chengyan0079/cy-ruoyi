@@ -3,6 +3,10 @@ spring:
     name: ruoyi-auth
   profiles:
     active: dev
+  boot:
+    admin:
+      client:
+        url: http://localhost:7060
   main:
     allow-bean-definition-overriding: true
   # 资源信息
@@ -14,8 +18,8 @@ spring:
       discovery:
         enabled: true
         register-enabled: true
-#        server-addr: 127.0.0.1:8848
-        server-addr: 192.168.0.101:8848
+        server-addr: 127.0.0.1:8848
+#        server-addr: 192.168.0.101:8848
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

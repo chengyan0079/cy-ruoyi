@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>ruoyi-user-app</name>
-    <description>用户启动</description>
+    <description>用户服务</description>
 
     <parent>
         <groupId>com.cy.ruoyi.user</groupId>
@@ -38,6 +38,12 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -49,6 +55,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>@</delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -3,6 +3,10 @@ spring:
     active: dev
   application:
     name: ruoyi-gen
+  boot:
+    admin:
+      client:
+        url: http://localhost:7060
   main:
     allow-bean-definition-overriding: true
   # 资源信息

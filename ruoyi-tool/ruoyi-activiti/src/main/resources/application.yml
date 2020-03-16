@@ -40,8 +40,8 @@ dubbo:
     # dubbo协议端口（-1表示自增，从20880开始）
     port: -1
   registry:
-#    address: spring-cloud://localhost
-    address: spring-cloud://192.168.0.101
+    address: spring-cloud://localhost
+#    address: spring-cloud://192.168.0.101
   application:
     qos-enable: false
   cloud:
@@ -94,3 +94,11 @@ hystrix:
           enabled: true
         isolation:
           thread.timeoutInMilliseconds: 5000 #一次请求服务的可用时间,若经常出错便会断路保护
+
+# 服务信息
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+  author: chengyan
+  mail: 304338940@qq.com

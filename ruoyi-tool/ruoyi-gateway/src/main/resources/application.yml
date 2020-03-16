@@ -6,13 +6,17 @@ spring:
     name: ruoyi-gateway
   profiles:
     active: dev
+  boot:
+    admin:
+      client:
+        url: http://localhost:7060
   cloud:
     nacos:
       discovery:
         enabled: true
         register-enabled: true
-#        server-addr: localhost:8848
-        server-addr: 192.168.0.101:8848
+        server-addr: localhost:8848
+#        server-addr: 192.168.0.101:8848
     gateway:
       discovery:
         locator:
@@ -83,12 +87,29 @@ spring:
           - StripPrefix=1
 
 hystrix:
-    command:
-      default:  #default全局有效，service id指定应用有效
-        execution:
-          timeout:
-            enabled: true
-          isolation:
-            thread:
-              timeoutInMilliseconds: 5000 #断路器超时时间，默认1000ms
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #断路器超时时间，默认1000ms
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# 服务信息
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+  author: chengyan
+  mail: 304338940@qq.com
 
