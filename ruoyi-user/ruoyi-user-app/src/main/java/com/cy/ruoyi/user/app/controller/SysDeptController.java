@@ -54,6 +54,19 @@ public class SysDeptController extends BaseController
     }
 
     /**
+     * 查询所有可用部门
+     */
+    @GetMapping("list/enable")
+    public R listEnable(SysDept sysDept)
+    {
+        sysDept.setStatus("0");
+        PageDomain pageDomain = getPageInfo();
+        log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
+        PageUtils page = sysDeptService.selectDeptList(pageDomain, sysDept);
+        return R.ok(page);
+    }
+
+    /**
      * 新增保存部门
      */
     @PostMapping("save")

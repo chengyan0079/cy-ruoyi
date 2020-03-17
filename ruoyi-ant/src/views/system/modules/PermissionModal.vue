@@ -64,7 +64,7 @@
         label="权限标识"
       >
         <a-input
-          v-decorator="['perms',{rules: [{ required: true, message: '请输入权限标识' }]}]"
+          v-decorator="['perms',{rules: [{ required: false, message: '请输入权限标识' }]}]"
           placeholder="权限标识"/>
       </a-form-item>
 
@@ -86,13 +86,78 @@
       <a-form-item
         :labelCol="labelCol"
         :wrapperCol="wrapperCol"
-        v-if="menuType==='M'"
+        v-if="menuType!=='F'"
         label="图标"
       >
-        <a-input v-decorator="['icon',{rules: [{ required: true, message: '请选择图标' }]}]" ref="iconInput" @click="iconselect()" enterButton="选择图标" placeholder="选择图标">
+        <a-input v-decorator="['icon',{rules: [{ required: false, message: '请选择图标' }]}]" ref="iconInput" @click="iconselect()" enterButton="选择图标" placeholder="选择图标">
           <a-icon slot="prefix" :type="icon" />
           <a-icon slot="suffix" type="close-circle" @click="emitEmpty"/>
         </a-input>
+      </a-form-item>
+
+      <a-form-item
+        :labelCol="labelCol"
+        :wrapperCol="wrapperCol"
+        v-if="menuType==='C'"
+        label="打开方式"
+      >
+        <a-select v-decorator="['target', {initialValue:'',rules: [{ required: false, message: '请选择打开方式' },{validator: validatePathTarget}]}]">
+          <a-select-option :value="''">当前窗口</a-select-option>
+          <a-select-option :value="'_blank'">新窗口</a-select-option>
+        </a-select>
+      </a-form-item>
+
+      <a-form-item
+        :labelCol="labelCol"
+        :wrapperCol="wrapperCol"
+        v-if="menuType==='C'"
+      >
+        <span slot="label">链接地址
+          <a-tooltip title="链接地址为外链时，打开方式必须为新窗口（antd限制）">
+            <a-icon type="question-circle-o" />
+          </a-tooltip>
+        </span>
+        <a-input
+          v-decorator="['path',{
+            rules: [
+              { required: false,type:'string', message: '请输入正确的路径' }
+            ]
+          }]"
+          placeholder="路径"
+        />
+      </a-form-item>
+
+      <a-form-item
+        :labelCol="labelCol"
+        :wrapperCol="wrapperCol"
+        v-if="menuType!=='F'"
+        label="重定向地址"
+      >
+        <a-input
+          v-decorator="['redirect',{rules: [{ required: false, message: '请输入重定向地址' }]}]"
+          placeholder="重定向地址"/>
+      </a-form-item>
+
+      <a-form-item
+        :labelCol="labelCol"
+        :wrapperCol="wrapperCol"
+        v-if="menuType!=='F'"
+        label="隐藏子菜单"
+      >
+        <a-switch v-decorator="['hiddenChildren',{initialValue:false}]" />
+      </a-form-item>
+
+      <a-form-item
+        :labelCol="labelCol"
+        :wrapperCol="wrapperCol"
+        v-if="menuType!=='F'"
+      >
+        <span slot="label">隐藏头部信息
+          <a-tooltip title="隐藏 PageHeader 组件中的页面带的 面包屑和页面标题栏">
+            <a-icon type="question-circle-o" />
+          </a-tooltip>
+        </span>
+        <a-switch v-decorator="['hiddenHeader',{initialValue:false}]" />
       </a-form-item>
 
       <a-form-item
@@ -179,9 +244,18 @@ export default {
       this.$nextTick(() => {
         this.mdl.icon ? this.icon = this.mdl.icon : this.icon = 'smile'
         this.mdl.parentId += ''
-        this.form.setFieldsValue(pick(this.mdl, 'icon', 'menuId', 'parentId', 'menuType', 'visible', 'perms', 'orderNum', 'menuName', 'menuKey', 'component'))
+        this.form.setFieldsValue(pick(this.mdl, 'icon', 'menuId', 'parentId', 'menuType', 'visible', 'perms', 'target',
+          'orderNum', 'menuName', 'menuKey', 'component', 'path', 'redirect', 'hiddenChildren', 'hiddenHeader'))
         // this.form.setFieldsValue({ ...record })
       })
+    },
+    validatePathTarget (rule, value, callback) {
+      const path = this.form.getFieldValue('path')
+      if (path && path.startsWith('http') && value !== '_blank') {
+        callback(new Error('链接地址为外链时，打开方式必须为新窗口（antd限制）'))
+      } else {
+        callback()
+      }
     },
     loadPermissions () {
       getPermissions().then(res => {

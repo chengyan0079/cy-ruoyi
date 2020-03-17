@@ -94,7 +94,7 @@
 <script>
 import { Tree } from 'ant-design-vue'
 import { STable, STree } from '@/components'
-import { getUserList, getDeptList, delUser, changUserStatus } from '@/api/system'
+import { getUserList, getDeptListEnable, delUser, changUserStatus } from '@/api/system'
 import UserModal from './modules/UserModal'
 import UserPwdModal from './modules/UserPwdModal'
 import pick from 'lodash.pick'
@@ -155,7 +155,7 @@ export default {
       loadData: parameter => {
         return getUserList(Object.assign(parameter, this.queryParam))
           .then(res => {
-            // console.log('getUserList', res)
+            console.log('getUserList', res)
             return res
           })
       },
@@ -173,7 +173,7 @@ export default {
     }
   },
   created () {
-    getDeptList().then(res => {
+    getDeptListEnable().then(res => {
       const data = res.data.rows
       this.buildtree(data, this.deptTree, 0)
       this.expandedKeys = data.map(m => m.parentId)
@@ -184,7 +184,7 @@ export default {
   },
   methods: {
     onSelectChange (selectedRowKeys) {
-      // console.log('selectedRowKeys changed: ', selectedRowKeys)
+      console.log('selectedRowKeys changed: ', selectedRowKeys)
       this.selectedRowKeys = selectedRowKeys
     },
     handleEdit (record) {
@@ -199,7 +199,7 @@ export default {
     },
     handleOk () {
       this.$refs.table.refresh()
-      // console.log('handleSaveOk')
+      console.log('handleSaveOk')
     },
     delByIds (ids) {
       delUser({ ids: ids.join(',') }).then(res => {

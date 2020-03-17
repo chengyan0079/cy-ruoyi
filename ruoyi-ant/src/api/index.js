@@ -19,7 +19,6 @@ const api = {
   config: '/cyuser/config',
   oss: '/cyuser/oss',
   donate: '/cyuser/donate',
-  // act
   models: '/cyact/models',
   prof: '/cyact/prof',
   process: '/cyact/process',

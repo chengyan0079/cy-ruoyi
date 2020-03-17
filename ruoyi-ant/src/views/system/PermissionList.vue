@@ -119,6 +119,14 @@ export default {
           scopedSlots: { customRender: 'menuType' }
         },
         {
+          title: '链接',
+          dataIndex: 'path'
+        },
+        {
+          title: '重定向',
+          dataIndex: 'redirect'
+        },
+        {
           title: '权限标识',
           dataIndex: 'perms'
         },
@@ -172,7 +180,7 @@ export default {
     handleOk () {
       // this.$refs.table.refresh()
       this.fetch()
-      // console.log('handleSaveOk')
+      console.log('handleSaveOk')
     },
     delById (id) {
       delPerm(id).then(res => {

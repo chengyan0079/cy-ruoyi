@@ -1,5 +1,5 @@
 # cy-ruoyi
-SpringCloud Alibaba2.1 + Dubbo + MybatisPlus + Mysql + Redis + RocketMQ
+SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 
 ---
 ## 中间件
@@ -12,6 +12,7 @@ SpringCloud Alibaba2.1 + Dubbo + MybatisPlus + Mysql + Redis + RocketMQ
 * 分库分表：Mycat
 * 分布式任务调度：XXL-Job   
 * 日志收集：ELK
+* 工作流：activiti
 * 容器：Docker
 
 ---
@@ -109,6 +110,7 @@ cy-ruoyi
   |  ├──操作日志
   |  ├──登陆日志
   |  ├──服务监控
+  |  ├──Nacos服务
   ├──系统工具
   |  ├──代码生成
   |  ├──定时任务（尚未）
