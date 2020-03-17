@@ -31,7 +31,7 @@ cy-ruoyi
  |  ├──ruoyi-common-pay //支付工具包（尚未）
  |  ├──ruoyi-common-utils // 通用工具包
  |  ├──ruoyi-common-auth // 授权工具包
- |  ├──ruoyi-common-sms // 信息推送（短信，邮件）工具包（尚未）
+ |  ├──ruoyi-common-sms // 信息推送工具包
 ├──ruoyi-user //用户 8081
  |  ├──ruoyi-user-application //用户启动
  |  ├──ruoyi-user-api //用户API

@@ -1,7 +1,7 @@
 <template>
   <div class="user-wrapper">
     <div class="content-box">
-      <a href="http://doc.rycloud.zmrit.com/#/quick-start" target="_blank">
+      <a href="#" target="_blank">
         <span class="action">
           <a-icon type="question-circle-o"></a-icon>
         </span>

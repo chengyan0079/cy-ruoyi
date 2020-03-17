@@ -8,6 +8,19 @@ spring:
     admin:
       client:
         url: http://localhost:7060
+      notify:
+        mail:
+          to: chengyan0079@126.com
+          from: 304338940@qq.com
+  mail:
+    host: smtp.qq.com
+    username: 304338940@qq.com
+    password: mrjmwxnliadebjie
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+        required: true
   cloud:
     nacos:
       discovery:

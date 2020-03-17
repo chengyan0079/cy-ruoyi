@@ -37,7 +37,7 @@
         <kaptcha.version>2.3.2</kaptcha.version>
         <velocity.version>1.7</velocity.version>
         <activiti.version>5.23.0</activiti.version>
-        <spring-boot-admin.version>2.1.0</spring-boot-admin.version>
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
 
     </properties>
 
