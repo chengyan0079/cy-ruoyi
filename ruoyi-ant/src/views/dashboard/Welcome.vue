@@ -25,17 +25,18 @@
             <p><strong>Spring Cloud Alibaba</strong> 版本的若依后台管理系统，集成 <strong>SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis</strong>，自定义token实现授权，直接存到Redis。</p>
             <p><strong>Github地址： </strong><a href="https://github.com/chengyan0079/cy-ruoyi.git" target="_blank">https://github.com/chengyan0079/cy-ruoyi.git</a></p>
             <p><strong>中间件：</strong></p>
-            <li>注册中心：Nacos</li>
-            <li>配置中心：Nacos</li>
-            <li>限流熔断：Sentinel</li>
-            <li>消息队列：RocketMQ</li>
-            <li>分布式事务：Seata</li>
-            <li>分布式调用链：SkyWalking</li>
-            <li>分库分表：Mycat</li>
-            <li>分布式任务调度：XXL-Job</li>
-            <li>日志收集：ELK</li>
-            <li>容器：Docker</li>
-            
+            <ul>
+              <li>注册中心：Nacos</li>
+              <li>配置中心：Nacos</li>
+              <li>限流熔断：Sentinel</li>
+              <li>消息队列：RocketMQ</li>
+              <li>分布式事务：Seata</li>
+              <li>分布式调用链：SkyWalking</li>
+              <li>分库分表：Mycat</li>
+              <li>分布式任务调度：XXL-Job</li>
+              <li>日志收集：ELK</li>
+              <li>容器：Docker</li>
+            </ul>       
           </a-card>
         </a-col>
         <a-col
@@ -126,6 +127,22 @@ export default {
         { item: '引用', a: 70, b: 50, c: 40 }
       ],
       changeList: [
+        { title: '1.1.0-SNAPSHOT 2020-03-12',
+          color: 'green',
+          list: [
+            '根据流程文件部署流程定义',
+            'fix:用户管理调用所有部门接口',
+            '工作流程追踪高亮连线',
+            '工作流高亮已执行环节',
+            '增加工作流activiti支持',
+            'fix:更新path等为空时无效',
+            'menu增加路径、重定向、隐藏等字段',
+            '增加捐赠内容板块',
+            'fix:代码生成调优',
+            'fix: gen bugs gitee !9',
+            '动态菜单优化'
+          ]
+        },
         { title: '1.0.2-SNAPSHOT 2019-09-30',
           color: 'green',
           list: [
@@ -169,7 +186,7 @@ export default {
           ]
         }
       ],
-      radarData: [],
+      radarData: []
     }
   },
   computed: {

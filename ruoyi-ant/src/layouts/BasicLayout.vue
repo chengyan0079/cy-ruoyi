@@ -71,6 +71,7 @@ import GlobalHeader from '@/components/GlobalHeader'
 import GlobalFooter from '@/components/GlobalFooter'
 import SettingDrawer from '@/components/SettingDrawer'
 import { updateTheme } from '@/components/SettingDrawer/settingConfig'
+import { convertRoutes } from '@/utils/routeConvert'
 
 export default {
   name: 'BasicLayout',
@@ -110,7 +111,8 @@ export default {
     }
   },
   created () {
-    this.menus = this.mainMenu.find(item => item.path === '/').children
+    const routes = convertRoutes(this.mainMenu.find(item => item.path === '/'))
+    this.menus = (routes && routes.children) || []
     this.collapsed = !this.sidebarOpened
   },
   mounted () {
@@ -154,7 +156,6 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../components/global.less');
 
 /*
  * The following styles are auto-applied to elements with

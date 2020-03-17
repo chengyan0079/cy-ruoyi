@@ -296,7 +296,7 @@ export default {
       if (k === 'rowSelection') {
         if (showAlert && this.rowSelection) {
           // 如果需要使用alert，则重新绑定 rowSelection 事件
-          // console.log('this.rowSelection', this.rowSelection)
+          console.log('this.rowSelection', this.rowSelection)
           props[k] = {
             ...this.rowSelection,
             selectedRows: this.selectedRows,
@@ -317,7 +317,7 @@ export default {
       return props[k]
     })
     const table = (
-      <a-table {...{ props, scopedSlots: { ...this.$scopedSlots } }} onChange={this.loadData}>
+      <a-table {...{ props, scopedSlots: { ...this.$scopedSlots } }} onChange={this.loadData} onExpand={ (expanded, record) => { this.$emit('expand', expanded, record) } }>
         { Object.keys(this.$slots).map(name => (<template slot={name}>{this.$slots[name]}</template>)) }
       </a-table>
     )

@@ -55,12 +55,8 @@
 
 </template>
 <script>
-import { VueCropper } from 'vue-cropper'
 
 export default {
-  components: {
-    VueCropper
-  },
   data () {
     return {
       visible: false,
@@ -118,7 +114,7 @@ export default {
 
     // 上传图片（点击上传按钮）
     finish (type) {
-      // console.log('finish')
+      console.log('finish')
       const _this = this
       const formData = new FormData()
       // 输出
@@ -130,7 +126,7 @@ export default {
           formData.append('file', data, this.fileName)
           this.$http.post('https://www.mocky.io/v2/5cc8019d300000980a055e76', formData, { contentType: false, processData: false, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .then((response) => {
-              // console.log(response)
+              console.log(response)
               // var res = response.data
               // if (response.status === 'done') {
               //   _this.imgFile = ''
