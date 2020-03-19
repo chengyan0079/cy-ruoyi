@@ -32,6 +32,7 @@ cy-ruoyi
  |  ├──ruoyi-common-utils // 通用工具包
  |  ├──ruoyi-common-auth // 授权工具包
  |  ├──ruoyi-common-sms // 信息推送工具包
+ |  ├──ruoyi-common-job // 定时任务核心包
 ├──ruoyi-user //用户 8081
  |  ├──ruoyi-user-application //用户启动
  |  ├──ruoyi-user-api //用户API
@@ -67,6 +68,10 @@ cy-ruoyi
  |  ├──ruoyi-demo-api //Demo API
  |  ├──ruoyi-demo-impl //Demo 实现
  |  ├──sql //Demo sql
+ ├──ruoyi-quartz // 定时任务
+ |  ├──ruoyi-quartz-admin //job调度中心  7080
+ |  ├──ruoyi-quartz-executor //job执行器  8011
+ |  ├──sql //quartz sql
  ├──ruoyi-tool //工具
  |  ├──ruoyi-gen // 代码生成 7065
  |  ├──ruoyi-auth // 授权鉴权  8090
@@ -74,7 +79,6 @@ cy-ruoyi
  |  ├──ruoyi-mock // 数据收集 7021（尚未）
  |  ├──ruoyi-monitor // 系统监控 7060
  |  ├──ruoyi-activity //工作流 8031
- |  ├──ruoyi-quartz //定时任务 8011（尚未）
  |  ├──ruoyi-gateway //网关 9527
  ├──ruoyi-ant --前端 使用ant design框架 8000
  ```

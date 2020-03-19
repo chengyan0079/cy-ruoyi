@@ -30,6 +30,7 @@
         <module>ruoyi-common-redis</module>
         <module>ruoyi-common-auth</module>
         <module>ruoyi-common-sms</module>
+        <module>ruoyi-common-job</module>
 
     </modules>
 

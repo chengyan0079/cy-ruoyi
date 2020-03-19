@@ -1,0 +1,42 @@
+server:
+  port: 7080
+
+mybatis:
+  mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
+
+management:
+  server:
+    servlet:
+      context-path: /actuator
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    org:
+      mybatis: debug
+
+# 服务信息
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+  author: chengyan
+  mail: 304338940@qq.com
+
+### xxl-job, access token
+xxl:
+  job:
+    accessToken:
+    i18n: zh_CN
+    triggerpool:
+      fastmax: 200
+      slowmax: 100
+    logretentiondays: 30
+

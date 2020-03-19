@@ -23,7 +23,7 @@ public class SendMailServiceImpl implements SendMailService {
         try {
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             //邮件发送人
-            simpleMailMessage.setFrom(mailConstants.getSendAddress());
+            simpleMailMessage.setFrom(mailConstants.getUsername());
             //邮件接收人
             simpleMailMessage.setTo(mailReceiveVo.getRecipient());
             //邮件主题

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
  * @date 2018/11/27 17:15
  */
 @Component
-@ConfigurationProperties(prefix = "mail")
+@ConfigurationProperties(prefix = "spring")
 @Data
 public class MailConstants {
 
-    @Value("${mail.send.address}")
-    private String sendAddress;
+    @Value("${spring.mail.username}")
+    private String username;
 
 }

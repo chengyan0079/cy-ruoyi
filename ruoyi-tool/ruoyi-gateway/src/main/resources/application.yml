@@ -10,6 +10,10 @@ spring:
     admin:
       client:
         url: http://localhost:7060
+      notify:
+        mail:
+          to: chengyan0079@126.com
+          from: 304338940@qq.com
   cloud:
     nacos:
       discovery:

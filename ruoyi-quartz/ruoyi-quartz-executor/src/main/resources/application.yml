@@ -1,0 +1,74 @@
+server:
+  port: 8011
+
+dubbo:
+  protocol:
+    name: dubbo
+    # dubbo协议端口（-1表示自增，从20880开始）
+    port: -1
+  registry:
+    address: spring-cloud://localhost
+    #    address: spring-cloud://192.168.0.101
+  application:
+    qos-enable: false
+  cloud:
+    subscribed-services: ruoyi-user
+  consumer:
+    check: false
+
+feign:
+  #开启GZIP压缩
+  compression:
+    request:
+      enable: true
+      mime-types: text/xml,application/xml,application.json
+      min-request-size: 2048 #通讯传输超过此大小便会进行压缩,减少通信性能损耗
+    response:
+      enable: true
+  #feign对hystrix的支持
+  hystrix:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.cy.ruoyi.quartz.executor.feign: debug
+
+#对某一路由单独进行熔断配置如下,若统一所有服务熔断配置,将下面的服务名mobaopay-schrodinger改为default
+hystrix:
+  command:
+    default: #feign的service指定的服务
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread.timeoutInMilliseconds: 5000 #一次请求服务的可用时间,若经常出错便会断路保护
+
+# 服务信息
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+  author: chengyan
+  mail: 304338940@qq.com
+
+xxl:
+  job:
+    accessToken:
+    admin:
+      addresses: http://localhost:7080
+    executor:
+      appname: ruoyi-quartz-executor
+      port: -1
+      ip:
+      logpath: /home/logs/ruoyi/quartz
+      logretentiondays: 30

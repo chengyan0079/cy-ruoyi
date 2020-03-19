@@ -9,6 +9,14 @@ spring:
   messages:
     # 国际化资源文件路径
     basename: i18n/messages
+  boot:
+    admin:
+      client:
+        url: http://localhost:7060
+      notify:
+        mail:
+          to: chengyan0079@126.com
+          from: 304338940@qq.com
   cloud:
     nacos:
       discovery:

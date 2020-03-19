@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ruoyi-quartz-admin
+  boot:
+    admin:
+      client:
+        url: http://localhost:7060
+      notify:
+        mail:
+          to: chengyan0079@126.com
+          from: 304338940@qq.com
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 127.0.0.1:8848
+#        server-addr: 192.168.0.101:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      maxFileSize: 5MB  #单位必须大写MB或不写(即为B)
+      maxRequestSize: 10MB
+  mvc:
+    servlet:
+      load-on-startup: 0
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    charset: utf-8
+    request-context-attribute: request
+    settings:
+      number_format: 0.##########
+  mail:
+    host: smtp.qq.com
+    username: 304338940@qq.com
+    password: mrjmwxnliadebjie
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+        required: true
+      socketFactory:
+        class: javax.net.ssl.SSLSocketFactory
+
+swagger:
+  service:
+    basePackage: com.cy.ruoyi.quartz.admin
+    title: 调度中心服务 RESTful APIs
+    description: 调度中心服务 RESTful APIs详情!
+    version: v1.0.0
