@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -35,6 +36,7 @@ public class SysDeptController extends BaseController
      */
     @GetMapping("get/{deptId}")
     @ApiOperation(value = "查询部门")
+    @SentinelResource("get/{deptId}")
     public SysDept get(@PathVariable("deptId") Long deptId)
     {
         return sysDeptService.getById(deptId);
@@ -45,6 +47,7 @@ public class SysDeptController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "查询部门列表")
+    @SentinelResource("list")
     public R list(SysDept sysDept)
     {
         PageDomain pageDomain = getPageInfo();
@@ -57,6 +60,7 @@ public class SysDeptController extends BaseController
      * 查询所有可用部门
      */
     @GetMapping("list/enable")
+    @SentinelResource("list/enable")
     public R listEnable(SysDept sysDept)
     {
         sysDept.setStatus("0");
@@ -71,6 +75,7 @@ public class SysDeptController extends BaseController
      */
     @PostMapping("save")
     @ApiOperation(value = "新增保存部门")
+    @SentinelResource("save")
     public R addSave(@RequestBody SysDept sysDept)
     {
         return toAjax(sysDeptService.insertDept(sysDept));
@@ -81,6 +86,7 @@ public class SysDeptController extends BaseController
      */
     @PostMapping("update")
     @ApiOperation(value = "修改保存部门")
+    @SentinelResource("update")
     public R editSave(@RequestBody SysDept sysDept)
     {
         return toAjax(sysDeptService.updateDept(sysDept));
@@ -91,6 +97,7 @@ public class SysDeptController extends BaseController
      */
     @PostMapping("remove/{deptId}")
     @ApiOperation(value = "删除部门")
+    @SentinelResource("remove/{deptId}")
     public R remove(@PathVariable("deptId") Long deptId)
     {
         return toAjax(sysDeptService.deleteDeptById(deptId));
@@ -101,6 +108,7 @@ public class SysDeptController extends BaseController
      */
     @GetMapping("/role/{roleId}")
     @ApiOperation(value = "加载角色部门（数据权限）列表树")
+    @SentinelResource("/role/{roleId}")
     public Set<String> deptTreeData(@PathVariable("roleId" )Long roleId)
     {
         if (null == roleId || roleId <= 0){

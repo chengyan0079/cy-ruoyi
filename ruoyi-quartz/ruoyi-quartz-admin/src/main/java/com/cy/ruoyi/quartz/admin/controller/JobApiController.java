@@ -1,5 +1,6 @@
 package com.cy.ruoyi.quartz.admin.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.job.biz.AdminBiz;
 import com.cy.ruoyi.common.job.biz.model.HandleCallbackParam;
 import com.cy.ruoyi.common.job.biz.model.RegistryParam;
@@ -71,6 +72,7 @@ public class JobApiController {
     @RequestMapping("/callback")
     @ResponseBody
     @PermissionLimit(limit=false)
+    @SentinelResource("callback")
     public ReturnT<String> callback(HttpServletRequest request, @RequestBody(required = false) String data) {
         // valid
         validAccessToken(request);
@@ -93,6 +95,7 @@ public class JobApiController {
     @RequestMapping("/registry")
     @ResponseBody
     @PermissionLimit(limit=false)
+    @SentinelResource("registry")
     public ReturnT<String> registry(HttpServletRequest request, @RequestBody(required = false) String data) {
         // valid
         validAccessToken(request);
@@ -113,6 +116,7 @@ public class JobApiController {
     @RequestMapping("/registryRemove")
     @ResponseBody
     @PermissionLimit(limit=false)
+    @SentinelResource("registryRemove")
     public ReturnT<String> registryRemove(HttpServletRequest request, @RequestBody(required = false) String data) {
         // valid
         validAccessToken(request);

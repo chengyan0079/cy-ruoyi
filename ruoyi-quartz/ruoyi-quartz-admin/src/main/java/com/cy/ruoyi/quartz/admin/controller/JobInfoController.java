@@ -1,5 +1,6 @@
 package com.cy.ruoyi.quartz.admin.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.job.biz.model.ReturnT;
 import com.cy.ruoyi.common.job.enums.ExecutorBlockStrategyEnum;
 import com.cy.ruoyi.common.job.glue.GlueTypeEnum;
@@ -92,6 +93,7 @@ public class JobInfoController {
 	
 	@RequestMapping("/pageList")
 	@ResponseBody
+	@SentinelResource("pageList")
 	public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,  
 			@RequestParam(required = false, defaultValue = "10") int length,
 			int jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author) {
@@ -101,36 +103,42 @@ public class JobInfoController {
 	
 	@RequestMapping("/add")
 	@ResponseBody
+	@SentinelResource("add")
 	public ReturnT<String> add(XxlJobInfo jobInfo) {
 		return xxlJobService.add(jobInfo);
 	}
 	
 	@RequestMapping("/update")
 	@ResponseBody
+	@SentinelResource("update")
 	public ReturnT<String> update(XxlJobInfo jobInfo) {
 		return xxlJobService.update(jobInfo);
 	}
 	
 	@RequestMapping("/remove")
 	@ResponseBody
+	@SentinelResource("remove")
 	public ReturnT<String> remove(int id) {
 		return xxlJobService.remove(id);
 	}
 	
 	@RequestMapping("/stop")
 	@ResponseBody
+	@SentinelResource("stop")
 	public ReturnT<String> pause(int id) {
 		return xxlJobService.stop(id);
 	}
 	
 	@RequestMapping("/start")
 	@ResponseBody
+	@SentinelResource("start")
 	public ReturnT<String> start(int id) {
 		return xxlJobService.start(id);
 	}
 	
 	@RequestMapping("/trigger")
 	@ResponseBody
+	@SentinelResource("trigger")
 	//@PermissionLimit(limit = false)
 	public ReturnT<String> triggerJob(int id, String executorParam) {
 		// force cover job param
@@ -144,6 +152,7 @@ public class JobInfoController {
 
 	@RequestMapping("/nextTriggerTime")
 	@ResponseBody
+	@SentinelResource("nextTriggerTime")
 	public ReturnT<List<String>> nextTriggerTime(String cron) {
 		List<String> result = new ArrayList<>();
 		try {

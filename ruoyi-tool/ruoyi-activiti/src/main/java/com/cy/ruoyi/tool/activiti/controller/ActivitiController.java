@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -50,6 +51,7 @@ public class ActivitiController extends BaseController
      */
     @GetMapping("start/{key}")
     @ApiOperation(value = "启动一个流程")
+    @SentinelResource("start/{key}")
     public R start(@PathVariable("key") String key)
     {
         runtimeService.startProcessInstanceByKey(key);
@@ -58,6 +60,7 @@ public class ActivitiController extends BaseController
 
     @GetMapping("allLatest")
     @ApiOperation(value = "所有列表")
+    @SentinelResource("allLatest")
     public R list()
     {
         ProcessDefinitionQuery query = repositoryService.createProcessDefinitionQuery().latestVersion();
@@ -73,6 +76,7 @@ public class ActivitiController extends BaseController
 
     @GetMapping("list")
     @ApiOperation(value = "列表")
+    @SentinelResource("list")
     public R list(ActReProcdef actReProcdef)
     {
         PageDomain pageDomain = getPageInfo();
@@ -83,6 +87,7 @@ public class ActivitiController extends BaseController
 
     @PostMapping("remove")
     @ApiOperation(value = "删除")
+    @SentinelResource("remove")
     public R deleteOne(String ids)
     {
         String[] idArr = ids.split(",");

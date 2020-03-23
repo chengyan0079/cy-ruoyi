@@ -1,5 +1,6 @@
 package com.cy.ruoyi.quartz.admin.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.job.biz.model.ReturnT;
 import com.cy.ruoyi.quartz.admin.controller.annotation.PermissionLimit;
 import com.cy.ruoyi.quartz.admin.core.model.XxlJobGroup;
@@ -48,6 +49,7 @@ public class UserController {
     @RequestMapping("/pageList")
     @ResponseBody
     @PermissionLimit(adminuser = true)
+    @SentinelResource("pageList")
     public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,
                                         @RequestParam(required = false, defaultValue = "10") int length,
                                         String username, int role) {
@@ -67,6 +69,7 @@ public class UserController {
     @RequestMapping("/add")
     @ResponseBody
     @PermissionLimit(adminuser = true)
+    @SentinelResource("add")
     public ReturnT<String> add(XxlJobUser xxlJobUser) {
 
         // valid username
@@ -102,6 +105,7 @@ public class UserController {
     @RequestMapping("/update")
     @ResponseBody
     @PermissionLimit(adminuser = true)
+    @SentinelResource("update")
     public ReturnT<String> update(HttpServletRequest request, XxlJobUser xxlJobUser) {
 
         // avoid opt login seft
@@ -130,6 +134,7 @@ public class UserController {
     @RequestMapping("/remove")
     @ResponseBody
     @PermissionLimit(adminuser = true)
+    @SentinelResource("remove")
     public ReturnT<String> remove(HttpServletRequest request, int id) {
 
         // avoid opt login seft
@@ -144,6 +149,7 @@ public class UserController {
 
     @RequestMapping("/updatePwd")
     @ResponseBody
+    @SentinelResource("updatePwd")
     public ReturnT<String> updatePwd(HttpServletRequest request, String password){
 
         // valid password

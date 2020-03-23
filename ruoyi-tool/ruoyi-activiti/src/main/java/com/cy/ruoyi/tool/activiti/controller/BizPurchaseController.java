@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.DTO.SysUserDTO;
@@ -44,6 +45,7 @@ public class BizPurchaseController extends BaseController
      */
     @GetMapping("get/{id}")
     @ApiOperation(value = "查询报销")
+    @SentinelResource("get/{id}")
     public R get(@PathVariable("id") String id)
     {
         return R.ok(purchaseService.getById(id));
@@ -54,6 +56,7 @@ public class BizPurchaseController extends BaseController
      */
     @GetMapping("biz/{businessKey}")
     @ApiOperation(value = "根据业务key获取数据")
+    @SentinelResource("biz/{businessKey}")
     public R biz(@PathVariable("businessKey") String businessKey)
     {
         BizBusiness business = bizBusinessService.getById(businessKey);
@@ -70,6 +73,7 @@ public class BizPurchaseController extends BaseController
      */
     @PostMapping("save")
     @ApiOperation(value = "新增保存报销")
+    @SentinelResource("save")
     public R addSave(@RequestBody BizPurchase purchase)
     {
         boolean index = purchaseService.save(purchase);

@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
@@ -36,6 +37,7 @@ public class SysRoleController extends BaseController
      */
     @GetMapping("get/{roleId}")
     @ApiOperation(value = "查询角色")
+    @SentinelResource("get/{roleId}")
     public SysRole get(@PathVariable("roleId") Long roleId)
     {
         return sysRoleService.selectRoleById(roleId);
@@ -46,6 +48,7 @@ public class SysRoleController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "查询角色列表")
+    @SentinelResource("list")
     public R list(SysRole sysRole)
     {
         PageDomain pageDomain = getPageInfo();
@@ -56,6 +59,7 @@ public class SysRoleController extends BaseController
 
     @GetMapping("all")
     @ApiOperation(value = "查询所有角色")
+    @SentinelResource("all")
     public R all()
     {
         return result(sysRoleService.selectRoleList(new SysRole()));
@@ -67,6 +71,7 @@ public class SysRoleController extends BaseController
     @PostMapping("save")
     @OperLog(title = "角色管理", businessType = BusinessType.INSERT)
     @ApiOperation(value = "新增保存角色")
+    @SentinelResource("save")
     public R addSave(@RequestBody SysRole sysRole)
     {
         return toAjax(sysRoleService.insertRole(sysRole));
@@ -78,6 +83,7 @@ public class SysRoleController extends BaseController
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
     @ApiOperation(value = "修改保存角色")
+    @SentinelResource("update")
     public R editSave(@RequestBody SysRole sysRole)
     {
         return toAjax(sysRoleService.updateRole(sysRole));
@@ -89,6 +95,7 @@ public class SysRoleController extends BaseController
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("status")
     @ApiOperation(value = "修改保存角色")
+    @SentinelResource("status")
     public R status(@RequestBody SysRole sysRole)
     {
         return toAjax(sysRoleService.changeStatus(sysRole));
@@ -101,6 +108,7 @@ public class SysRoleController extends BaseController
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("/authDataScope")
     @ApiOperation(value = "保存角色分配数据权限")
+    @SentinelResource("authDataScope")
     public R authDataScopeSave(@RequestBody SysRole role)
     {
         role.setUpdateBy(getLoginName());
@@ -118,6 +126,7 @@ public class SysRoleController extends BaseController
     @OperLog(title = "角色管理", businessType = BusinessType.DELETE)
     @PostMapping("remove")
     @ApiOperation(value = "删除角色")
+    @SentinelResource("remove")
     public R remove(String ids) throws Exception
     {
         return toAjax(sysRoleService.deleteRoleByIds(ids));

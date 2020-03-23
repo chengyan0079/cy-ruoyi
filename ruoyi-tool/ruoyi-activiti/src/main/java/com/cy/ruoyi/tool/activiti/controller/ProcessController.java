@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.exception.RuoyiException;
 import com.cy.ruoyi.common.utils.util.R;
@@ -65,6 +66,7 @@ public class ProcessController extends BaseController
 
     @RequestMapping("deployByFile")
     @ApiOperation(value = "deployByFile")
+    @SentinelResource("deployByFile")
     public R upload(MultipartFile file)
     {
         if (!file.isEmpty())
@@ -109,6 +111,7 @@ public class ProcessController extends BaseController
      */
     @GetMapping("show")
     @ApiOperation(value = "查看流程图")
+    @SentinelResource("show")
     public void show(@RequestParam("did") String did, @RequestParam("ext") String ext,
                      HttpServletResponse httpServletResponse) throws IOException
     {
@@ -156,6 +159,7 @@ public class ProcessController extends BaseController
      */
     @RequestMapping(value = "update/{processId}/{state}")
     @ApiOperation(value = "挂起、激活流程实例")
+    @SentinelResource("update/{processId}/{state}")
     public R updateState(@PathVariable("state") String state, @PathVariable("processId") String processId)
     {
         if (state.equals("active"))
@@ -182,6 +186,7 @@ public class ProcessController extends BaseController
      */
     @RequestMapping(value = "highlightImg/{procInstId}")
     @ApiOperation(value = "proc 实时高亮流程图")
+    @SentinelResource("highlightImg/{procInstId}")
     public void getHighlightImg(@PathVariable String procInstId, HttpServletResponse response)
     {
         if (StringUtils.isBlank(procInstId))

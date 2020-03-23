@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.auth.constants.UserConstants;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
@@ -42,6 +43,7 @@ public class SysUserController extends BaseController
      */
     @GetMapping("get/{userId}")
     @ApiOperation(value = "查询用户")
+    @SentinelResource("get/{userId}")
     public SysUser get(@PathVariable("userId") Long userId)
     {
         return sysUserService.selectUserById(userId);
@@ -49,6 +51,7 @@ public class SysUserController extends BaseController
 
     @GetMapping("info")
     @ApiOperation(value = "查询信息")
+    @SentinelResource("info")
     public SysUser info(@LoginUser SysUser sysUser)
     {
         sysUser.setButtons(sysMenuService.selectPermsByUserId(sysUser.getUserId()));
@@ -60,6 +63,7 @@ public class SysUserController extends BaseController
      */
     @GetMapping("find/{username}")
     @ApiOperation(value = "查询用户")
+    @SentinelResource("find/{username}")
     public SysUser findByUsername(@PathVariable("username") String username)
     {
         return sysUserService.selectUserByLoginName(username);
@@ -70,6 +74,7 @@ public class SysUserController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "分页用户列表")
+    @SentinelResource("list")
     public R list(SysUser sysUser)
     {
         PageDomain pageDomain = getPageInfo();
@@ -85,6 +90,7 @@ public class SysUserController extends BaseController
     @PostMapping("save")
     @OperLog(title = "用户管理", businessType = BusinessType.INSERT)
     @ApiOperation(value = "新增保存用户")
+    @SentinelResource("save")
     public R addSave(@RequestBody SysUser sysUser)
     {
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(sysUser.getLoginName())))
@@ -112,6 +118,7 @@ public class SysUserController extends BaseController
     @OperLog(title = "用户管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
     @ApiOperation(value = "修改保存用户")
+    @SentinelResource("update")
     public R editSave(@RequestBody SysUser sysUser)
     {
         if (null != sysUser.getUserId() && SysUser.isAdmin(sysUser.getUserId()))
@@ -138,6 +145,7 @@ public class SysUserController extends BaseController
     @PostMapping("update/info")
     @OperLog(title = "用户管理", businessType = BusinessType.UPDATE)
     @ApiOperation(value = "修改用户信息")
+    @SentinelResource("update/info")
     public R updateInfo(@RequestBody SysUser sysUser)
     {
         return toAjax(sysUserService.updateUserInfo(sysUser));
@@ -151,6 +159,7 @@ public class SysUserController extends BaseController
      */
     @PostMapping("update/login")
     @ApiOperation(value = "记录登陆信息")
+    @SentinelResource("update/login")
     public R updateLoginRecord(@RequestBody SysUser sysUser)
     {
         return toAjax(sysUserService.updateUser(sysUser));
@@ -160,6 +169,7 @@ public class SysUserController extends BaseController
     @OperLog(title = "重置密码", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
     @ApiOperation(value = "重置密码")
+    @SentinelResource("resetPwd")
     public R resetPwdSave(@RequestBody SysUser user)
     {
         user.setSalt(RandomUtil.randomStr(6));
@@ -177,6 +187,7 @@ public class SysUserController extends BaseController
     @PostMapping("status")
     @OperLog(title = "用户管理", businessType = BusinessType.UPDATE)
     @ApiOperation(value = "修改状态")
+    @SentinelResource("status")
     public R status(@RequestBody SysUser sysUser)
     {
         return toAjax(sysUserService.changeStatus(sysUser));
@@ -190,6 +201,7 @@ public class SysUserController extends BaseController
     @OperLog(title = "用户管理", businessType = BusinessType.DELETE)
     @PostMapping("remove")
     @ApiOperation(value = "删除用户")
+    @SentinelResource("remove")
     public R remove(String ids) throws Exception
     {
         return toAjax(sysUserService.deleteUserByIds(ids));

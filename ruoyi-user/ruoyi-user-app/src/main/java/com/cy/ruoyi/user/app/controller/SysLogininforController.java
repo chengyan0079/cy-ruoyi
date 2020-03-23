@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
@@ -35,6 +36,7 @@ public class SysLogininforController extends BaseController
      */
     @PostMapping("save")
     @ApiOperation(value = "新增保存系统访问记录")
+    @SentinelResource("save")
     public void addSave(@RequestBody SysLogininfor sysLogininfor)
     {
         sysLogininforService.insertLogininfor(sysLogininfor);
@@ -45,6 +47,7 @@ public class SysLogininforController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "查询系统访问记录列表")
+    @SentinelResource("list")
     public R list(SysLogininfor sysLogininfor)
     {
         PageDomain pageDomain = getPageInfo();
@@ -60,6 +63,7 @@ public class SysLogininforController extends BaseController
     @HasPermissions("monitor:loginlog:remove")
     @PostMapping("remove")
     @ApiOperation(value = "删除系统访问记录")
+    @SentinelResource("remove")
     public R remove(String ids)
     {
         return toAjax(sysLogininforService.deleteLogininforByIds(ids));
@@ -69,6 +73,7 @@ public class SysLogininforController extends BaseController
     @HasPermissions("monitor:loginlog:remove")
     @PostMapping("/clean")
     @ApiOperation(value = "清空访问记录")
+    @SentinelResource("clean")
     public R clean()
     {
         sysLogininforService.cleanLogininfor();

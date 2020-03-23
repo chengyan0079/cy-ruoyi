@@ -24,6 +24,9 @@ spring:
         register-enabled: true
         server-addr: 127.0.0.1:8848
 #        server-addr: 192.168.0.101:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8844
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

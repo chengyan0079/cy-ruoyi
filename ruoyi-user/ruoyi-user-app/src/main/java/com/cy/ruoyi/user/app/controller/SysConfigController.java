@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -32,6 +33,7 @@ public class SysConfigController extends BaseController
 	 */
 	@GetMapping("get/{configId}")
 	@ApiOperation(value = "查询参数配置")
+	@SentinelResource("get/{configId}")
 	public SysConfig get(@PathVariable("configId") Long configId)
 	{
 		return sysConfigService.selectConfigById(configId);
@@ -43,6 +45,7 @@ public class SysConfigController extends BaseController
 	 */
 	@GetMapping("list")
 	@ApiOperation(value = "查询参数配置列表")
+	@SentinelResource("list")
 	public R list(SysConfig sysConfig)
 	{
 		PageDomain pageDomain = getPageInfo();
@@ -57,6 +60,7 @@ public class SysConfigController extends BaseController
 	 */
 	@PostMapping("save")
 	@ApiOperation(value = "新增保存参数配置")
+	@SentinelResource("save")
 	public R addSave(@RequestBody SysConfig sysConfig)
 	{		
 		return toAjax(sysConfigService.save(sysConfig));
@@ -67,6 +71,7 @@ public class SysConfigController extends BaseController
 	 */
 	@PostMapping("update")
 	@ApiOperation(value = "修改保存参数配置")
+	@SentinelResource("update")
 	public R editSave(@RequestBody SysConfig sysConfig)
 	{		
 		return toAjax(sysConfigService.saveOrUpdate(sysConfig));
@@ -77,6 +82,7 @@ public class SysConfigController extends BaseController
 	 */
 	@PostMapping("remove")
 	@ApiOperation(value = "删除参数配置")
+	@SentinelResource("remove")
 	public R remove(String ids)
 	{		
 		return toAjax(sysConfigService.deleteConfigByIds(ids));

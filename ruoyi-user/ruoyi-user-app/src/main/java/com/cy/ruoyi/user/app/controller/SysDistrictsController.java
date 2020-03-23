@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
@@ -40,6 +41,7 @@ public class SysDistrictsController extends BaseController
     @HasPermissions("system:districts:list")
     @RequestMapping("/list")
     @ApiOperation(value = "查询地区列表")
+    @SentinelResource("list")
     public R list(Districts districts)
     {
         PageDomain pageDomain = getPageInfo();
@@ -55,6 +57,7 @@ public class SysDistrictsController extends BaseController
     @OperLog(title = "地区", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     @ApiOperation(value = "导出地区列表")
+    @SentinelResource("export")
     public R export(Districts districts)
     {
         List<Districts> list = districtsService.selectDistrictsList(districts);
@@ -68,6 +71,7 @@ public class SysDistrictsController extends BaseController
     @HasPermissions("system:districts:add")
     @OperLog(title = "地区", businessType = BusinessType.INSERT)
     @PostMapping("save")
+    @SentinelResource("save")
     public R addSave(@RequestBody Districts districts)
     {
         districts.setPid(districts.getId() / 100);
@@ -85,6 +89,7 @@ public class SysDistrictsController extends BaseController
     @HasPermissions("system:districts:edit")
     @OperLog(title = "地区", businessType = BusinessType.UPDATE)
     @PostMapping("update")
+    @SentinelResource("update")
     public R editSave(@RequestBody Districts districts)
     {
         districts.setPid(districts.getId() / 100);
@@ -99,6 +104,7 @@ public class SysDistrictsController extends BaseController
     @HasPermissions("system:districts:remove")
     @OperLog(title = "地区", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
+    @SentinelResource("remove")
     public R remove(String ids)
     {
         return toAjax(districtsService.deleteDistrictsByIds(ids));

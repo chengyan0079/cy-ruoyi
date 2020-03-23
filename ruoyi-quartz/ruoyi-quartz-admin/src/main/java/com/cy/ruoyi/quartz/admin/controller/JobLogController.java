@@ -1,5 +1,6 @@
 package com.cy.ruoyi.quartz.admin.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.job.biz.ExecutorBiz;
 import com.cy.ruoyi.common.job.biz.model.LogResult;
 import com.cy.ruoyi.common.job.biz.model.ReturnT;
@@ -76,6 +77,7 @@ public class JobLogController {
 
 	@RequestMapping("/getJobsByGroup")
 	@ResponseBody
+	@SentinelResource("getJobsByGroup")
 	public ReturnT<List<XxlJobInfo>> getJobsByGroup(int jobGroup){
 		List<XxlJobInfo> list = xxlJobInfoDao.getJobsByGroup(jobGroup);
 		return new ReturnT<List<XxlJobInfo>>(list);
@@ -83,6 +85,7 @@ public class JobLogController {
 	
 	@RequestMapping("/pageList")
 	@ResponseBody
+	@SentinelResource("pageList")
 	public Map<String, Object> pageList(HttpServletRequest request,
 										@RequestParam(required = false, defaultValue = "0") int start,
 										@RequestParam(required = false, defaultValue = "10") int length,
@@ -115,6 +118,7 @@ public class JobLogController {
 	}
 
 	@RequestMapping("/logDetailPage")
+	@SentinelResource("logDetailPage")
 	public String logDetailPage(int id, Model model){
 
 		// base check
@@ -134,6 +138,7 @@ public class JobLogController {
 
 	@RequestMapping("/logDetailCat")
 	@ResponseBody
+	@SentinelResource("logDetailCat")
 	public ReturnT<LogResult> logDetailCat(String executorAddress, long triggerTime, long logId, int fromLineNum){
 		try {
 			ExecutorBiz executorBiz = XxlJobScheduler.getExecutorBiz(executorAddress);
@@ -156,6 +161,7 @@ public class JobLogController {
 
 	@RequestMapping("/logKill")
 	@ResponseBody
+	@SentinelResource("logKill")
 	public ReturnT<String> logKill(int id){
 		// base check
 		XxlJobLog log = xxlJobLogDao.load(id);
@@ -190,6 +196,7 @@ public class JobLogController {
 
 	@RequestMapping("/clearLog")
 	@ResponseBody
+	@SentinelResource("clearLog")
 	public ReturnT<String> clearLog(int jobGroup, int jobId, int type){
 
 		Date clearBeforeTime = null;

@@ -1,5 +1,6 @@
 package com.cy.ruoyi.quartz.admin.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.job.biz.model.ReturnT;
 import com.cy.ruoyi.common.job.glue.GlueTypeEnum;
 import com.cy.ruoyi.quartz.admin.core.model.XxlJobInfo;
@@ -55,6 +56,7 @@ public class JobCodeController {
 	
 	@RequestMapping("/save")
 	@ResponseBody
+	@SentinelResource("save")
 	public ReturnT<String> save(Model model, int id, String glueSource, String glueRemark) {
 		// valid
 		if (glueRemark==null) {

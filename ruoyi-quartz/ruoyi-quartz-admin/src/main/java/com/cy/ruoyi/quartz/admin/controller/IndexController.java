@@ -1,5 +1,6 @@
 package com.cy.ruoyi.quartz.admin.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.job.biz.model.ReturnT;
 import com.cy.ruoyi.quartz.admin.controller.annotation.PermissionLimit;
 import com.cy.ruoyi.quartz.admin.service.LoginService;
@@ -34,6 +35,7 @@ public class IndexController {
 
 
 	@RequestMapping("/")
+	@SentinelResource("/")
 	public String index(Model model) {
 
 		Map<String, Object> dashboardMap = xxlJobService.dashboardInfo();
@@ -44,6 +46,7 @@ public class IndexController {
 
     @RequestMapping("/chartInfo")
 	@ResponseBody
+	@SentinelResource("chartInfo")
 	public ReturnT<Map<String, Object>> chartInfo(Date startDate, Date endDate) {
         ReturnT<Map<String, Object>> chartInfo = xxlJobService.chartInfo(startDate, endDate);
         return chartInfo;
@@ -51,6 +54,7 @@ public class IndexController {
 	
 	@RequestMapping("/toLogin")
 	@PermissionLimit(limit=false)
+	@SentinelResource("toLogin")
 	public String toLogin(HttpServletRequest request, HttpServletResponse response) {
 		if (loginService.ifLogin(request, response) != null) {
 			return "redirect:/";
@@ -61,6 +65,7 @@ public class IndexController {
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	@ResponseBody
 	@PermissionLimit(limit=false)
+	@SentinelResource("login")
 	public ReturnT<String> loginDo(HttpServletRequest request, HttpServletResponse response, String userName, String password, String ifRemember){
 		boolean ifRem = (ifRemember!=null && ifRemember.trim().length()>0 && "on".equals(ifRemember))?true:false;
 		return loginService.login(request, response, userName, password, ifRem);
@@ -69,6 +74,7 @@ public class IndexController {
 	@RequestMapping(value="logout", method=RequestMethod.POST)
 	@ResponseBody
 	@PermissionLimit(limit=false)
+	@SentinelResource("logout")
 	public ReturnT<String> logout(HttpServletRequest request, HttpServletResponse response){
 		return loginService.logout(request, response);
 	}

@@ -1,5 +1,6 @@
 package com.cy.ruoyi.quartz.admin.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.job.biz.model.ReturnT;
 import com.cy.ruoyi.common.job.enums.RegistryConfig;
 import com.cy.ruoyi.quartz.admin.core.model.XxlJobGroup;
@@ -43,6 +44,7 @@ public class JobGroupController {
 
 	@RequestMapping("/save")
 	@ResponseBody
+	@SentinelResource("save")
 	public ReturnT<String> save(XxlJobGroup xxlJobGroup){
 
 		// valid
@@ -73,6 +75,7 @@ public class JobGroupController {
 
 	@RequestMapping("/update")
 	@ResponseBody
+	@SentinelResource("update")
 	public ReturnT<String> update(XxlJobGroup xxlJobGroup){
 		// valid
 		if (xxlJobGroup.getAppName()==null || xxlJobGroup.getAppName().trim().length()==0) {
@@ -138,6 +141,7 @@ public class JobGroupController {
 
 	@RequestMapping("/remove")
 	@ResponseBody
+	@SentinelResource("remove")
 	public ReturnT<String> remove(int id){
 
 		// valid
@@ -157,6 +161,7 @@ public class JobGroupController {
 
 	@RequestMapping("/loadById")
 	@ResponseBody
+	@SentinelResource("loadById")
 	public ReturnT<XxlJobGroup> loadById(int id){
 		XxlJobGroup jobGroup = xxlJobGroupDao.load(id);
 		return jobGroup!=null?new ReturnT<XxlJobGroup>(jobGroup):new ReturnT<XxlJobGroup>(ReturnT.FAIL_CODE, null);

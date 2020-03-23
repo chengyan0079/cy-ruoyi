@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
@@ -37,6 +38,7 @@ public class SysDictTypeController extends BaseController
 	 */
 	@GetMapping("get/{dictId}")
 	@ApiOperation(value = "查询字典类型")
+	@SentinelResource("get/{dictId}")
 	public SysDictType get(@PathVariable("dictId") Long dictId)
 	{
 		return sysDictTypeService.selectDictTypeById(dictId);
@@ -49,6 +51,7 @@ public class SysDictTypeController extends BaseController
 	@GetMapping("list")
 	@HasPermissions("system:dict:list")
 	@ApiOperation(value = "查询字典类型列表")
+	@SentinelResource("list")
 	public R list(SysDictType sysDictType)
 	{
 		PageDomain pageDomain = getPageInfo();
@@ -65,6 +68,7 @@ public class SysDictTypeController extends BaseController
     @HasPermissions("system:dict:add")
 	@PostMapping("save")
 	@ApiOperation(value = "新增保存字典类型")
+	@SentinelResource("save")
 	public R addSave(@RequestBody SysDictType sysDictType)
 	{		
 		return toAjax(sysDictTypeService.insertDictType(sysDictType));
@@ -77,6 +81,7 @@ public class SysDictTypeController extends BaseController
     @HasPermissions("system:dict:edit")
 	@PostMapping("update")
 	@ApiOperation(value = "修改保存字典类型")
+	@SentinelResource("update")
 	public R editSave(@RequestBody SysDictType sysDictType)
 	{		
 		return toAjax(sysDictTypeService.updateDictType(sysDictType));
@@ -90,6 +95,7 @@ public class SysDictTypeController extends BaseController
 	@HasPermissions("system:dict:remove")
 	@PostMapping("remove")
 	@ApiOperation(value = "删除字典类型")
+	@SentinelResource("remove")
 	public R remove(String ids) throws Exception
 	{		
 		return toAjax(sysDictTypeService.deleteDictTypeByIds(ids));

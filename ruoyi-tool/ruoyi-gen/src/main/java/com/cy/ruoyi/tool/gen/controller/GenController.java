@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.gen.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
@@ -49,6 +50,7 @@ public class GenController extends BaseController
     @HasPermissions("tool:gen:list")
     @GetMapping("/list")
     @ApiOperation(value = "查询代码生成列表")
+    @SentinelResource("list")
     public R genList(GenTable genTable)
     {
         PageDomain pageDomain = getPageInfo();
@@ -62,6 +64,7 @@ public class GenController extends BaseController
      */
     @GetMapping("/get/{tableId}")
     @ApiOperation(value = "修改代码生成业务")
+    @SentinelResource("/get/{tableId}")
     public R get(@PathVariable("tableId") Long tableId)
     {
         GenTable table = genTableService.selectGenTableById(tableId);
@@ -74,6 +77,7 @@ public class GenController extends BaseController
     @HasPermissions("tool:gen:list")
     @GetMapping("/db/list")
     @ApiOperation(value = "查询数据库列表")
+    @SentinelResource("/db/list")
     public R dataList(GenTable genTable)
     {
         List<GenTable> list = genTableService.selectDbTableList(genTable);

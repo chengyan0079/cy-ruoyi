@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -46,6 +47,7 @@ public class BizLeaveController extends BaseController
      */
     @GetMapping("get/{id}")
     @ApiOperation(value = "查询id")
+    @SentinelResource("get/{id}")
     public BizLeave get(@PathVariable("id") String id)
     {
         return leaveService.selectBizLeaveById(id);
@@ -53,6 +55,7 @@ public class BizLeaveController extends BaseController
 
     @GetMapping("biz/{businessKey}")
     @ApiOperation(value = "biz/{businessKey}")
+    @SentinelResource("biz/{businessKey}")
     public R biz(@PathVariable("businessKey") String businessKey)
     {
         BizBusiness business = bizBusinessService.getById(businessKey);
@@ -69,6 +72,7 @@ public class BizLeaveController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "查询请假列表")
+    @SentinelResource("list")
     public R list(BizLeave leave)
     {
         PageDomain pageDomain = getPageInfo();
@@ -82,6 +86,7 @@ public class BizLeaveController extends BaseController
      */
     @PostMapping("save")
     @ApiOperation(value = "新增保存请假")
+    @SentinelResource("save")
     public R addSave(@RequestBody BizLeave leave)
     {
         int index = leaveService.insertBizLeave(leave);
@@ -128,6 +133,7 @@ public class BizLeaveController extends BaseController
      */
     @PostMapping("update")
     @ApiOperation(value = "修改保存请假")
+    @SentinelResource("update")
     public R editSave(@RequestBody BizLeave leave)
     {
         return toAjax(leaveService.updateBizLeave(leave));
@@ -138,6 +144,7 @@ public class BizLeaveController extends BaseController
      */
     @PostMapping("remove")
     @ApiOperation(value = "删除请假")
+    @SentinelResource("remove")
     public R remove(String ids)
     {
         return toAjax(leaveService.deleteBizLeaveByIds(ids));

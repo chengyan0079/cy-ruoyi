@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
@@ -38,6 +39,7 @@ public class SysDictDataController extends BaseController
 	 */
 	@GetMapping("get/{dictCode}")
 	@ApiOperation(value = "查询字典数据")
+	@SentinelResource("get/{dictCode}")
 	public SysDictData get(@PathVariable("dictCode") Long dictCode)
 	{
 		return sysDictDataService.selectDictDataById(dictCode);
@@ -50,6 +52,7 @@ public class SysDictDataController extends BaseController
 	@GetMapping("list")
 	@HasPermissions("system:dict:list")
 	@ApiOperation(value = "查询字典数据列表")
+	@SentinelResource("list")
 	public R list(SysDictData sysDictData)
 	{
 		PageDomain pageDomain = getPageInfo();
@@ -66,6 +69,7 @@ public class SysDictDataController extends BaseController
      */
 	@GetMapping("type")
 	@ApiOperation(value = "根据字典类型查询字典数据信息")
+	@SentinelResource("type")
     public List<SysDictData> getType(String dictType)
     {
         return sysDictDataService.selectDictDataByType(dictType);
@@ -80,6 +84,7 @@ public class SysDictDataController extends BaseController
      */
 	@GetMapping("label")
 	@ApiOperation(value = "根据字典类型和字典键值查询字典数据信息")
+	@SentinelResource("label")
     public String getLabel(String dictType, String dictValue)
     {
         return sysDictDataService.selectDictLabel(dictType, dictValue);
@@ -93,6 +98,7 @@ public class SysDictDataController extends BaseController
     @HasPermissions("system:dict:add")
 	@PostMapping("save")
 	@ApiOperation(value = "新增保存字典数据")
+	@SentinelResource("save")
 	public R addSave(@RequestBody SysDictData sysDictData)
 	{		
 		return toAjax(sysDictDataService.insertDictData(sysDictData));
@@ -105,6 +111,7 @@ public class SysDictDataController extends BaseController
     @HasPermissions("system:dict:edit")
 	@PostMapping("update")
 	@ApiOperation(value = "修改保存字典数据")
+	@SentinelResource("update")
 	public R editSave(@RequestBody SysDictData sysDictData)
 	{		
 		return toAjax(sysDictDataService.updateDictData(sysDictData));
@@ -117,6 +124,7 @@ public class SysDictDataController extends BaseController
     @HasPermissions("system:dict:remove")
 	@PostMapping("remove")
 	@ApiOperation(value = "删除字典数据")
+	@SentinelResource("remove")
 	public R remove(String ids)
 	{		
 		return toAjax(sysDictDataService.deleteDictDataByIds(ids));

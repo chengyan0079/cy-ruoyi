@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.log.annotation.OperLog;
@@ -40,6 +41,7 @@ public class SysMenuController extends BaseController
      */
     @GetMapping("get/{menuId}")
     @ApiOperation(value = "查询菜单权限")
+    @SentinelResource("get/{menuId}")
     public SysMenu get(@PathVariable("menuId") Long menuId)
     {
         return sysMenuService.selectMenuById(menuId);
@@ -47,6 +49,7 @@ public class SysMenuController extends BaseController
 
     @GetMapping("perms/{userId}")
     @ApiOperation(value = "perms/{userId}")
+    @SentinelResource("perms/{userId}")
     public Set<String> perms(@PathVariable("userId") Long userId)
     {
         return sysMenuService.selectPermsByUserId(userId);
@@ -57,6 +60,7 @@ public class SysMenuController extends BaseController
      */
     @GetMapping("user")
     @ApiOperation(value = "查询菜单权限")
+    @SentinelResource("user")
     public List<SysMenu> user(@LoginUser SysUser sysUser)
     {
         return sysMenuService.selectMenusByUser(sysUser);
@@ -70,6 +74,7 @@ public class SysMenuController extends BaseController
      */
     @GetMapping("role/{roleId}")
     @ApiOperation(value = "根据角色编号查询菜单编号（用于勾选）")
+    @SentinelResource("role/{roleId}")
     public List<SysMenu> role(@PathVariable("roleId") Long roleId)
     {
         if (null == roleId || roleId <= 0) {
@@ -84,6 +89,7 @@ public class SysMenuController extends BaseController
     @HasPermissions("system:menu:view")
     @GetMapping("list")
     @ApiOperation(value = "查询菜单权限列表")
+    @SentinelResource("list")
     public R list(SysMenu sysMenu)
     {
         return result(sysMenuService.selectMenuList(sysMenu));
@@ -95,6 +101,7 @@ public class SysMenuController extends BaseController
     @PostMapping("save")
     @OperLog(title = "菜单管理", businessType = BusinessType.INSERT)
     @ApiOperation(value = "新增保存菜单权限")
+    @SentinelResource("save")
     public R addSave(@RequestBody SysMenu sysMenu)
     {
         return toAjax(sysMenuService.insertMenu(sysMenu));
@@ -106,6 +113,7 @@ public class SysMenuController extends BaseController
     @OperLog(title = "菜单管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
     @ApiOperation(value = "修改保存菜单权限")
+    @SentinelResource("update")
     public R editSave(@RequestBody SysMenu sysMenu)
     {
         return toAjax(sysMenuService.updateMenu(sysMenu));
@@ -117,6 +125,7 @@ public class SysMenuController extends BaseController
     @OperLog(title = "菜单管理", businessType = BusinessType.DELETE)
     @PostMapping("remove/{menuId}")
     @ApiOperation(value = "删除菜单权限")
+    @SentinelResource("remove/{menuId}")
     public R remove(@PathVariable("menuId") Long menuId)
     {
         return toAjax(sysMenuService.deleteMenuById(menuId));

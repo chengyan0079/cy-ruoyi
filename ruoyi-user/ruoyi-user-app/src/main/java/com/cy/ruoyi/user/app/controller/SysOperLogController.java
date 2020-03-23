@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.auth.annotation.HasPermissions;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
@@ -39,6 +40,7 @@ public class SysOperLogController extends BaseController
      */
     @PostMapping("save")
     @ApiOperation(value = "新增保存操作日志记录")
+    @SentinelResource("save")
     public void addSave(@RequestBody SysOperLog sysOperLog)
     {
         sysOperLogService.insertOperlog(sysOperLog);
@@ -49,6 +51,7 @@ public class SysOperLogController extends BaseController
      */
     @GetMapping("get/{operId}")
     @ApiOperation(value = "查询操作日志记录")
+    @SentinelResource("get/{operId}")
     public SysOperLog get(@PathVariable("operId") Long operId)
     {
         return sysOperLogService.selectOperLogById(operId);
@@ -60,6 +63,7 @@ public class SysOperLogController extends BaseController
     @HasPermissions("monitor:operlog:list")
     @RequestMapping("list")
     @ApiOperation(value = "查询操作日志记录列表")
+    @SentinelResource("list")
     public R list(SysOperLog sysOperLog)
     {
         PageDomain pageDomain = getPageInfo();
@@ -72,6 +76,7 @@ public class SysOperLogController extends BaseController
     @HasPermissions("monitor:operlog:export")
     @PostMapping("/export")
     @ApiOperation(value = "导出操作日志记录列表")
+    @SentinelResource("export")
     public R export(SysOperLog operLog)
     {
         List<SysOperLog> list = sysOperLogService.selectOperLogList(operLog);
@@ -85,6 +90,7 @@ public class SysOperLogController extends BaseController
     @HasPermissions("monitor:operlog:remove")
     @PostMapping("remove")
     @ApiOperation(value = "删除操作日志记录")
+    @SentinelResource("remove")
     public R remove(String ids)
     {
         return toAjax(sysOperLogService.deleteOperLogByIds(ids));
@@ -94,6 +100,7 @@ public class SysOperLogController extends BaseController
     @HasPermissions("monitor:operlog:remove")
     @PostMapping("/clean")
     @ApiOperation(value = "清空日志记录")
+    @SentinelResource("clean")
     public R clean()
     {
         sysOperLogService.cleanOperLog();

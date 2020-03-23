@@ -12,8 +12,14 @@ SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 * 分库分表：Mycat
 * 分布式任务调度：XXL-Job   
 * 日志收集：ELK
-* 工作流：activiti
+* 工作流：Activiti
 * 容器：Docker
+
+---
+服务端：
+Nacos：localhost:8848
+Sentinel：localhost:8844
+XXL-Admin：localhost:7080
 
 ---
 

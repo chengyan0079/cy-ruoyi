@@ -1,11 +1,12 @@
 server: 
   port: 9527
- 
+
 spring: 
   application:
     name: ruoyi-gateway
   profiles:
     active: dev
+  # admin
   boot:
     admin:
       client:
@@ -21,6 +22,9 @@ spring:
         register-enabled: true
         server-addr: localhost:8848
 #        server-addr: 192.168.0.101:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8844
     gateway:
       discovery:
         locator:

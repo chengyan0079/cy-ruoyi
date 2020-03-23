@@ -3,6 +3,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -67,6 +68,7 @@ public class ActTaskController extends BaseController
      */
     @RequestMapping(value = "ing")
     @ApiOperation(value = "task待办")
+    @SentinelResource("ing")
     public R ing(RuTask ruTask, PageDomain page)
     {
         List<RuTask> list = new ArrayList<>();
@@ -113,6 +115,7 @@ public class ActTaskController extends BaseController
      */
     @RequestMapping(value = "done")
     @ApiOperation(value = "task 已办")
+    @SentinelResource("done")
     public R done(HiTaskVo hiTaskVo)
     {
         hiTaskVo.setAuditorId(getCurrentUserId());
@@ -129,6 +132,7 @@ public class ActTaskController extends BaseController
      */
     @RequestMapping(value = "flow")
     @ApiOperation(value = "task 流转历史")
+    @SentinelResource("flow")
     public R flow(HiTaskVo hiTaskVo)
     {
         PageDomain pageDomain = getPageInfo();
@@ -142,6 +146,7 @@ public class ActTaskController extends BaseController
      */
     @PostMapping("audit")
     @ApiOperation(value = "审批")
+    @SentinelResource("audit")
     public R audit(@RequestBody BizAudit bizAudit)
     {
         Map<String, Object> variables = Maps.newHashMap();
@@ -160,6 +165,7 @@ public class ActTaskController extends BaseController
 
     @PostMapping("audit/batch")
     @ApiOperation(value = "批量审核")
+    @SentinelResource("audit/batch")
     public R auditBatch(@RequestBody BizAudit bizAudit)
     {
         SysUserDTO user = remoteUserService.selectSysUserByUserId(getCurrentUserId());
@@ -192,6 +198,7 @@ public class ActTaskController extends BaseController
      */
     @PostMapping("remove")
     @ApiOperation(value = "remove审批记录 逻辑删除")
+    @SentinelResource("remove")
     public R remove(String ids)
     {
         return toAjax(bizAuditService.deleteBizAuditLogic(ids));

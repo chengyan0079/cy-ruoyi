@@ -2,6 +2,7 @@ package com.cy.ruoyi.user.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.DateUtils;
 import com.cy.ruoyi.common.utils.util.StringUtils;
@@ -31,6 +32,7 @@ public class CommonController extends BaseController
      */
     @GetMapping("common/download")
     @ApiOperation(value = "通用下载请求")
+    @SentinelResource("common/download")
     public void fileDownload(String fileName, Boolean delete, HttpServletResponse response, HttpServletRequest request)
     {
         try

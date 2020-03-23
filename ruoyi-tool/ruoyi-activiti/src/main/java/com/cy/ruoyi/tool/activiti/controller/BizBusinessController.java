@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.entity.BizBusiness;
@@ -34,6 +35,7 @@ public class BizBusinessController extends BaseController
      */
     @GetMapping("get/{id}")
     @ApiOperation(value = "查询流程业务")
+    @SentinelResource("get/{id}")
     public BizBusiness get(@PathVariable("id") String id)
     {
         return bizBusinessService.getById(id);
@@ -44,6 +46,7 @@ public class BizBusinessController extends BaseController
      */
     @GetMapping("list/my")
     @ApiOperation(value = "查询流程业务列表")
+    @SentinelResource("list/my")
     public R list(BizBusiness bizBusiness)
     {
         bizBusiness.setUserId(getCurrentUserId());
@@ -56,6 +59,7 @@ public class BizBusinessController extends BaseController
      */
     @PostMapping("save")
     @ApiOperation(value = "新增保存流程业务")
+    @SentinelResource("save")
     public R addSave(@RequestBody BizBusiness bizBusiness)
     {
         bizBusiness.setUserId(getCurrentUserId());
@@ -67,6 +71,7 @@ public class BizBusinessController extends BaseController
      */
     @PostMapping("update")
     @ApiOperation(value = "修改保存流程业务")
+    @SentinelResource("update")
     public R editSave(@RequestBody BizBusiness bizBusiness)
     {
         return toAjax(bizBusinessService.saveOrUpdate(bizBusiness));
@@ -77,6 +82,7 @@ public class BizBusinessController extends BaseController
      */
     @PostMapping("remove")
     @ApiOperation(value = "删除流程业务,逻辑删除")
+    @SentinelResource("remove")
     public R remove(String ids)
     {
         List<BizBusiness> list = (List)Lists.newArrayList(ids.split(","), new BizBusiness().setDelFlag(true));

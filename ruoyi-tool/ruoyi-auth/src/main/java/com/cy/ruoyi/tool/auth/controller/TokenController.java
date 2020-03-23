@@ -1,5 +1,6 @@
 package com.cy.ruoyi.tool.auth.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
@@ -28,6 +29,7 @@ public class TokenController extends BaseController
 
     @PostMapping("login")
     @ApiOperation(value = "login")
+    @SentinelResource("login")
     public R login(@RequestBody LoginDTO loginDTO)
     {
         logger.info("收到登陆请求。。。。");
@@ -39,6 +41,7 @@ public class TokenController extends BaseController
 
     @PostMapping("logout")
     @ApiOperation(value = "logout")
+    @SentinelResource("logout")
     public R logout(HttpServletRequest request)
     {
         String token = request.getHeader("token");

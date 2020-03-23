@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.VO.ProcessNodeVo;
@@ -39,6 +40,7 @@ public class BizNodeController extends BaseController
      */
     @GetMapping("list/{proDefId}")
     @ApiOperation(value = "获取节点列表")
+    @SentinelResource("remove")
     public R list(@PathVariable String proDefId)
     {
         List<ProcessNodeVo> list = new ArrayList<>();
@@ -82,6 +84,7 @@ public class BizNodeController extends BaseController
      */
     @GetMapping("get/{nodeId}")
     @ApiOperation(value = "获取节点属性")
+    @SentinelResource("remove")
     public R get(@PathVariable String nodeId)
     {
         ProcessNodeVo node = new ProcessNodeVo();
@@ -96,6 +99,7 @@ public class BizNodeController extends BaseController
      */
     @PostMapping("update")
     @ApiOperation(value = "修改节点属性")
+    @SentinelResource("update")
     public R update(@RequestBody ProcessNodeVo node)
     {
         bizNodeService.updateBizNode(node);

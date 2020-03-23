@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -53,6 +54,7 @@ public class ModelerController extends BaseController
      */
     @GetMapping("newModel")
     @ApiOperation(value = "新建一个空模型")
+    @SentinelResource("newModel")
     public Object newModel() throws UnsupportedEncodingException
     {
         // 初始化一个空模型
@@ -89,6 +91,7 @@ public class ModelerController extends BaseController
     @PostMapping("deploy/{id}")
     @ResponseBody
     @ApiOperation(value = "发布模型为流程定义")
+    @SentinelResource("deploy/{id}")
     public R deploy(@PathVariable("id") String id) throws Exception
     {
         // 获取模型
@@ -117,6 +120,7 @@ public class ModelerController extends BaseController
 
     @GetMapping("get/{id}")
     @ApiOperation(value = "get/{id}")
+    @SentinelResource("get/{id}")
     public R get(@PathVariable("id") String id)
     {
         Model model = repositoryService.createModelQuery().modelId(id).singleResult();
@@ -126,6 +130,7 @@ public class ModelerController extends BaseController
     @GetMapping("list")
     @ResponseBody
     @ApiOperation(value = "列表")
+    @SentinelResource("list")
     public R getList(ActReModel actReModel)
     {
         PageDomain pageDomain = getPageInfo();
@@ -139,6 +144,7 @@ public class ModelerController extends BaseController
     @PostMapping("remove")
     @ResponseBody
     @ApiOperation(value = "删除")
+    @SentinelResource("remove")
     public R deleteOne(String ids)
     {
         String[] idsArr = ids.split(",");

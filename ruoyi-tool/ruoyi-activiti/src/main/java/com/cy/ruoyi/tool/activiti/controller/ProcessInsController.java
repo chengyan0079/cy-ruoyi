@@ -3,6 +3,7 @@ package com.cy.ruoyi.tool.activiti.controller;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -69,6 +70,7 @@ public class ProcessInsController extends BaseController
      */
     @RequestMapping(value = "update/{processInstanceId}/{state}")
     @ApiOperation(value = "挂起、激活流程实例")
+    @SentinelResource("update/{processInstanceId}/{state}")
     public R updateState(@PathVariable("state") String state,
                          @PathVariable("processInstanceId") String processInstanceId)
     {
@@ -92,6 +94,7 @@ public class ProcessInsController extends BaseController
      */
     @RequestMapping(value = "tasks")
     @ApiOperation(value = "获取任务列表")
+    @SentinelResource("tasks")
     public R tasks(PageDomain page)
     {
         List<Task> tasks = taskService.createTaskQuery().listPage(page.getPageSize() * (page.getPageNum() - 1),
@@ -111,6 +114,7 @@ public class ProcessInsController extends BaseController
 
     @RequestMapping(value = "runs")
     @ApiOperation(value = "runs")
+    @SentinelResource("runs")
     public R getList(PageDomain page, String name, String key)
     {
         List<ProcessInsVo> list = new ArrayList<>();
@@ -156,6 +160,7 @@ public class ProcessInsController extends BaseController
 
     @RequestMapping(value = "finished")
     @ApiOperation(value = "finished")
+    @SentinelResource("finished")
     public R finush(HiProcInsVo hiProcInsVo)
     {
         PageDomain pageDomain = getPageInfo();
@@ -170,6 +175,7 @@ public class ProcessInsController extends BaseController
      */
     @PostMapping(value = "remove")
     @ApiOperation(value = "删除运行中实例")
+    @SentinelResource("remove")
     public R remove(String ids, String reason)
     {
         if (StrUtil.isBlank(reason))
@@ -197,6 +203,7 @@ public class ProcessInsController extends BaseController
      */
     @RequestMapping("remove/his")
     @ApiOperation(value = "删除已经结束的实例")
+    @SentinelResource("remove/his")
     public R removeHis(String ids)
     {
         String[] idArr = ids.split(",");
