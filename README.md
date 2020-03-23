@@ -22,9 +22,7 @@ Sentinel：localhost:8844
 XXL-Admin：localhost:7080
 
 ---
-
 ## 目录结构
-
  ```
 cy-ruoyi
  ├──docs //文件
@@ -44,12 +42,12 @@ cy-ruoyi
  |  ├──ruoyi-user-api //用户API
  |  ├──ruoyi-user-impl //用户实现
  |  ├──sql //用户sql
-├──ruoyi-order //订单 8071
+├──ruoyi-order //订单 8071（尚未）
  |  ├──ruoyi-order-application //订单启动
  |  ├──ruoyi-order-api //订单API
  |  ├──ruoyi-order-impl //订单实现
  |  ├──sql //订单sql
- ├──ruoyi-product // 商品 8061
+ ├──ruoyi-product // 商品 8061（尚未）
  |  ├──ruoyi-product-application //商品启动
  |  ├──ruoyi-product-api //商品API
  |  ├──ruoyi-product-impl //商品实现
@@ -59,7 +57,7 @@ cy-ruoyi
  |  ├──ruoyi-pay-api //收银台API
  |  ├──ruoyi-pay-impl //收银台实现
  |  ├──sql //收银台sql
- ├──ruoyi-stock //库存 8051
+ ├──ruoyi-stock //库存 8051（尚未）
  |  ├──ruoyi-stock-application //库存启动
  |  ├──ruoyi-stock-api //库存API
  |  ├──ruoyi-stock-impl //库存实现
@@ -88,7 +86,8 @@ cy-ruoyi
  |  ├──ruoyi-gateway //网关 9527
  ├──ruoyi-ant --前端 使用ant design框架 8000
  ```
-
+ 
+---
 ## 前端菜单
  ```
   ├──仪表盘
@@ -97,13 +96,6 @@ cy-ruoyi
   ├──个人页
   |  ├──个人中心
   |  ├──个人设置
-  ├──业务管理（尚未）
-  |  ├──商品管理（尚未）
-  |  ├──库存管理（尚未）
-  |  ├──交易管理（尚未）
-  |  ├──物流管理（尚未）
-  |  ├──账务管理（尚未）
-  |  ├──报表统计（尚未）
   ├──权限管理
   |  ├──用户管理
   |  ├──角色管理

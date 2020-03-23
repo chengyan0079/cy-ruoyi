@@ -44,17 +44,46 @@ dubbo:
 #    address: spring-cloud://192.168.31.138
   application:
     qos-enable: false
-#  cloud:
-##    subscribed-services: ruoyi-user
-#  consumer:
-#    timeout: 10000
-#    check: false
-#    filter: -exception
-#    ISysUserService:
-#      version: 1.0.0
+  cloud:
+    subscribed-services: ruoyi-user
+  consumer:
+    timeout: 10000
+    check: false
+    filter: -exception
+    TestService:
+      version: 1.0.0
+    ISysOperLogService:
+      version: 1.0.0
+    ISysLogininforService:
+      version: 1.0.0
+    ISysUserService:
+      version: 1.0.0
+    ISysMenuService:
+      version: 1.0.0
+    ISysDeptService:
+      version: 1.0.0
+    ISysRoleService:
+      version: 1.0.0
+    IDistrictsService:
+      version: 1.0.0
+    ISysConfigService:
+      version: 1.0.0
+    ISysDictDataService:
+      version: 1.0.0
+    ISysDictTypeService:
+      version: 1.0.0
+    ISysNoticeService:
+      version: 1.0.0
+    ISysPostService:
+      version: 1.0.0
+    ISysUserOnlineService:
+      version: 1.0.0
   provider:
     timeout: 10000
     filter: -exception
+    ITbOrderInfoService:
+      version: 1.0.0
+
 
 
 feign:

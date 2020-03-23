@@ -190,7 +190,7 @@ public interface ISysUserService extends IService<SysUser>
 
     /**
      * 查询所有当前部门中的用户
-     * @param deptId
+     * @param deptIds
      * @return
      * @author zmr
      */

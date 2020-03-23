@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.ruoyi.demo.api.mapper.TbOrderInfoMapper">
+
+	<resultMap type="com.cy.ruoyi.demo.api.entity.TbOrderInfo" id="TbOrderInfoResult">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="orderNo" column="order_no" />
+		<result property="payStatus" column="pay_status" />
+		<result property="payOrderNo" column="pay_order_no" />
+		<result property="payDate" column="pay_date" />
+		<result property="payTime" column="pay_time" />
+		<result property="createBy" column="create_by" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="updateBy" column="update_by" />
+		<result property="remark" column="remark" />
+	</resultMap>
+
+	<sql id="selectOrderInfoVo">
+		select id, user_id, order_no, pay_status, pay_order_no, pay_date, pay_time, remark, create_by,
+		create_time, update_by, update_time
+		from tb_order_info
+	</sql>
+
+	<select id="selectOrderList" parameterType="com.cy.ruoyi.demo.api.entity.TbOrderInfo"
+			resultMap="TbOrderInfoResult">
+		<include refid="selectOrderInfoVo" />
+		<where>
+			<if test="order.payStatus != null and order.payStatus != ''">
+				AND pay_status=#{order.payStatus}
+			</if>
+			<if test="order.orderNo != null and order.orderNo != ''">
+				AND order_No=#{order.orderNo}
+			</if>
+			<if test="order.payOrderNo != null and order.payOrderNo != ''">
+				AND pay_Order_No=#{order.payOrderNo}
+			</if>
+
+		</where>
+		order by create_time desc
+	</select>
+
+</mapper>
