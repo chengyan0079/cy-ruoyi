@@ -24,6 +24,8 @@ spring:
         register-enabled: true
         server-addr: 127.0.0.1:8848
     sentinel:
+      log:
+        dir: E:/home/logs/ruoyi/gen/
       transport:
         dashboard: localhost:8844
   jackson:

@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ruoyi-demo-consumer
+  main:
+    allow-bean-definition-overriding: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:7060
+      notify:
+        mail:
+          to: chengyan0079@126.com
+          from: 304338940@qq.com
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 127.0.0.1:8848
+    #        server-addr: 192.168.0.101:8848
+    sentinel:
+      log:
+        dir: E:/home/logs/ruoyi/demo/
+      transport:
+        dashboard: localhost:8844
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      maxFileSize: 5MB  #单位必须大写MB或不写(即为B)
+      maxRequestSize: 10MB
+
+swagger:
+  service:
+    basePackage: com.cy.ruoyi.demo.consumer
+    title: consumer服务 RESTful APIs
+    description: consumer服务 RESTful APIs详情!
+    version: v1.0.0

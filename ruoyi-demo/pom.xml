@@ -24,10 +24,8 @@
     </properties>
 
     <modules>
-        <module>ruoyi-demo-api</module>
-        <module>ruoyi-demo-impl</module>
-        <module>ruoyi-demo-app</module>
-
+        <module>ruoyi-demo-provider</module>
+        <module>ruoyi-demo-consumer</module>
     </modules>
 
 </project>

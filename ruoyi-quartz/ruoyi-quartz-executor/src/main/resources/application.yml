@@ -12,7 +12,7 @@ dubbo:
   application:
     qos-enable: false
   cloud:
-    subscribed-services: ruoyi-user
+    subscribed-services: ruoyi-user, ruoyi-demo
   consumer:
     check: false
 

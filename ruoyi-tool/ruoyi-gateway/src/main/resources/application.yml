@@ -23,6 +23,8 @@ spring:
         server-addr: localhost:8848
 #        server-addr: 192.168.0.101:8848
     sentinel:
+      log:
+        dir: E:/home/logs/ruoyi/gateway/
       transport:
         dashboard: localhost:8844
     gateway:
@@ -72,25 +74,11 @@ spring:
           - Path=/cygen/**
           filters:
           - StripPrefix=1
-        # product
-        - id: ruoyi-product
-          uri: lb://ruoyi-product
+        # 代码生成
+        - id: ruoyi-demo
+          uri: lb://ruoyi-demo
           predicates:
-          - Path=/cyprod/**
-          filters:
-          - StripPrefix=1
-        # order
-        - id: ruoyi-order
-          uri: lb://ruoyi-order
-          predicates:
-          - Path=/cyorder/**
-          filters:
-          - StripPrefix=1
-        # stock
-        - id: ruoyi-stock
-          uri: lb://ruoyi-stock
-          predicates:
-          - Path=/cystock/**
+          - Path=/cydemo/**
           filters:
           - StripPrefix=1
 
@@ -112,6 +100,9 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+logging:
+  config: classpath:logback-spring.xml
 
 # 服务信息
 info:

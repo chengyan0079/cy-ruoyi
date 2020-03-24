@@ -27,6 +27,11 @@ spring:
         enabled: true
         register-enabled: true
         server-addr: 127.0.0.1:8848
+    sentinel:
+      log:
+        dir: E:/home/logs/ruoyi/monitor/
+      transport:
+        dashboard: localhost:8844
 
 management:
   endpoints:
@@ -44,3 +49,6 @@ info:
   description: @project.description@
   author: chengyan
   mail: 304338940@qq.com
+
+logging:
+  config: classpath:logback-spring.xml

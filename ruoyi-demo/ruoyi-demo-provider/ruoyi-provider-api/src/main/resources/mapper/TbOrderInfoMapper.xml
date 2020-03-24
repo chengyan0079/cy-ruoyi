@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.ruoyi.demo.provider.api.mapper.TbOrderInfoMapper">
+
+	<resultMap type="com.cy.ruoyi.demo.provider.api.entity.TbOrderInfo" id="TbOrderInfoResult">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="orderNo" column="order_no" />
+		<result property="payStatus" column="pay_status" />
+		<result property="payOrderNo" column="pay_order_no" />
+		<result property="payDate" column="pay_date" />
+		<result property="payTime" column="pay_time" />
+		<result property="createBy" column="create_by" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="updateBy" column="update_by" />
+		<result property="remark" column="remark" />
+	</resultMap>
+
+	<sql id="selectOrderInfoVo">
+		select id, user_id, order_no, pay_status, pay_order_no, pay_date, pay_time, remark, create_by,
+		create_time, update_by, update_time
+		from tb_order_info
+	</sql>
+
+	<select id="selectOrderList" parameterType="com.cy.ruoyi.demo.provider.api.entity.TbOrderInfo"
+			resultMap="TbOrderInfoResult">
+		<include refid="selectOrderInfoVo" />
+		<where>
+			<if test="order.payStatus != null and order.payStatus != ''">
+				AND pay_status=#{order.payStatus}
+			</if>
+			<if test="order.orderNo != null and order.orderNo != ''">
+				AND order_No=#{order.orderNo}
+			</if>
+			<if test="order.payOrderNo != null and order.payOrderNo != ''">
+				AND pay_Order_No=#{order.payOrderNo}
+			</if>
+
+		</where>
+		order by create_time desc
+	</select>
+
+    <update id="updateOrder" parameterType="com.cy.ruoyi.demo.provider.api.entity.TbOrderInfo">
+        update tb_order_info
+        <set>
+            <if test="userId != null and userId != 0">user_id = #{userId},</if>
+            <if test="orderNo != null and orderNo != ''">order_no = #{orderNo},</if>
+            <if test="payStatus != null and payStatus != ''">pay_status = #{payStatus},</if>
+            <if test="payOrderNo != null and payOrderNo != ''">pay_order_no = #{payOrderNo},</if>
+            <if test="payDate != null and payDate != ''">pay_date = #{payDate},</if>
+            <if test="payTime != null and payTime != ''">pay_time = #{payTime},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            update_time = sysdate()
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertOrder" parameterType="com.cy.ruoyi.demo.provider.api.entity.TbOrderInfo">
+        insert into tb_order_info(
+        <if test="userId != null and userId != 0">user_id,</if>
+        <if test="orderNo != null and orderNo != ''">order_no,</if>
+        <if test="payStatus != null and payStatus != ''">pay_status,</if>
+        <if test="payOrderNo != null and payOrderNo != ''">pay_order_no,</if>
+        <if test="payDate != null and payDate != ''">pay_date,</if>
+        <if test="payTime != null and payTime != ''">pay_time,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        create_time
+        )values(
+        <if test="userId != null and userId != 0">#{userId},</if>
+        <if test="orderNo != null and orderNo != ''">#{orderNo},</if>
+        <if test="payStatus != null and payStatus != ''">#{payStatus},</if>
+        <if test="payOrderNo != null and payOrderNo != ''">#{payOrderNo},</if>
+        <if test="payDate != null and payDate != ''">#{payDate},</if>
+        <if test="payTime != null and payTime != ''">#{payTime},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        sysdate()
+        )
+    </insert>
+
+</mapper>
