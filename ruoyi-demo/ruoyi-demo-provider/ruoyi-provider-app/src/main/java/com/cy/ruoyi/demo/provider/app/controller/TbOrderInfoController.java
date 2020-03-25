@@ -2,12 +2,9 @@ package com.cy.ruoyi.demo.provider.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
-import com.cy.ruoyi.common.log.annotation.OperLog;
-import com.cy.ruoyi.common.log.enums.BusinessType;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.demo.provider.api.entity.TbOrderInfo;
 import com.cy.ruoyi.demo.provider.api.service.ITbOrderInfoService;
@@ -31,7 +28,7 @@ public class TbOrderInfoController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "分页查询订单列表")
-    @SentinelResource("list")
+//    @SentinelResource("list")
     public R list(TbOrderInfo orderInfo)
     {
         PageDomain pageDomain = getPageInfo();
@@ -46,7 +43,7 @@ public class TbOrderInfoController extends BaseController
     @PostMapping("save")
 //    @OperLog(title = "订单管理", businessType = BusinessType.INSERT)
     @ApiOperation(value = "新增保存订单")
-    @SentinelResource("save")
+//    @SentinelResource("save")
     public R addSave(@RequestBody TbOrderInfo orderInfo)
     {
         return toAjax(orderInfoService.insertOrder(orderInfo));
@@ -58,7 +55,7 @@ public class TbOrderInfoController extends BaseController
 //    @OperLog(title = "订单管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
     @ApiOperation(value = "修改保存订单")
-    @SentinelResource("update")
+//    @SentinelResource("update")
     public R editSave(@RequestBody TbOrderInfo orderInfo)
     {
         return toAjax(orderInfoService.updateOrder(orderInfo));

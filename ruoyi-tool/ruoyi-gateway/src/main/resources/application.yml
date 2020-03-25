@@ -74,11 +74,18 @@ spring:
           - Path=/cygen/**
           filters:
           - StripPrefix=1
-        # 代码生成
-        - id: ruoyi-demo
-          uri: lb://ruoyi-demo
+        # provider
+        - id: ruoyi-demo-provider
+          uri: lb://ruoyi-demo-provider
           predicates:
-          - Path=/cydemo/**
+          - Path=/cypro/**
+          filters:
+          - StripPrefix=1
+        # consumer
+        - id: ruoyi-demo-consumer
+          uri: lb://ruoyi-demo-consumer
+          predicates:
+          - Path=/cycon/**
           filters:
           - StripPrefix=1
 

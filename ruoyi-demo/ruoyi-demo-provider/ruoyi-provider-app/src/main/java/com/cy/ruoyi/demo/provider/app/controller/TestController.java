@@ -2,7 +2,6 @@ package com.cy.ruoyi.demo.provider.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.demo.consumer.api.service.ITestConsumerService;
 import io.swagger.annotations.Api;
@@ -25,7 +24,7 @@ public class TestController extends BaseController {
 
     @PostMapping("/echo/{msg}")
     @ApiOperation(value = "测试msg")
-    @SentinelResource("/echo/{msg}")
+//    @SentinelResource("/echo/{msg}")
     public String echo(@PathVariable String msg){
         return "proTest ===" + msg;
     }
@@ -33,7 +32,7 @@ public class TestController extends BaseController {
 
     @PostMapping("/testMsg/{msg}")
     @ApiOperation(value = "testConsumerMsg")
-    @SentinelResource("/testMsg/{msg}")
+//    @SentinelResource("/testMsg/{msg}")
     public String testConsumerMsg(@PathVariable String msg){
         return testConsumerService.testConsumerMsg(msg);
     }

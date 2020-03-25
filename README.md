@@ -16,11 +16,21 @@ SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 * 容器：Docker
 
 ---
-服务端：
-Nacos：localhost:8848
-Sentinel：localhost:8844
-XXL-Admin：localhost:7080
+## 服务端地址：
+* Redis：localhost:6379
+* Mysql：localhost:3306
+* Nacos：localhost:8848
+* Sentinel：localhost:8844
+* XXL-Admin：localhost:7080
+* SkyWalking：localhost:18080
+* Elasticsearch：localhost:9200
+* Kibana
+* Logstash
+* Filebeat
 
+---
+##  架构设计图
+![](docs/doc/ruoyi-cloud.png)
 ---
 ## 目录结构
  ```
