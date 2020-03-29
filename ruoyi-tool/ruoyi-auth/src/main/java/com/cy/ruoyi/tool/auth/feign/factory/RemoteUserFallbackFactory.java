@@ -1,8 +1,8 @@
 package com.cy.ruoyi.tool.auth.feign.factory;
 
+import com.cy.ruoyi.common.auth.DTO.SysDeptDTO;
+import com.cy.ruoyi.common.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.common.utils.util.R;
-import com.cy.ruoyi.tool.auth.DTO.SysDeptDTO;
-import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.tool.auth.feign.RemoteUserService;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;

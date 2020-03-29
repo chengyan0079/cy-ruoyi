@@ -1,6 +1,5 @@
-package com.cy.ruoyi.user.api.entity;
+package com.cy.ruoyi.common.auth.DTO;
 
-import com.cy.ruoyi.common.utils.enums.OnlineStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -8,25 +7,22 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 当前在线会话 sys_user_online
+ * 登录用户身份权限
  */
 @Data
-public class SysUserOnline implements Serializable
+public class LoginUserDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
-    /** 用户会话id */
+
+    /**
+     * 用户唯一标识
+     */
     private String token;
 
-    /** 部门名称 */
-    private String deptName;
-
-    /** 登录名称 */
-    private String loginName;
-
-    /** 创建时间 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String loginTime;
+
+    private String loginName;
 
     /**
      * 登录IP地址
@@ -48,7 +44,9 @@ public class SysUserOnline implements Serializable
      */
     private String os;
 
-//    /** 在线状态 */
-//    private OnlineStatus status = OnlineStatus.on_line;
+    /**
+     * 用户信息
+     */
+    private SysUserDTO user;
 
 }

@@ -59,7 +59,8 @@ public class AuthFilter implements GlobalFilter, Ordered
             return setUnauthorizedResponse(exchange, "token verify error");
         }
         JSONObject jo = JSONObject.parseObject(userStr);
-        String userId = jo.getString("userId");
+        JSONObject user = jo.getJSONObject("user");
+        String userId = user.getString("userId");
         // 查询token信息
         if (StringUtils.isBlank(userId))
         {
@@ -67,7 +68,7 @@ public class AuthFilter implements GlobalFilter, Ordered
         }
         // 设置userId到request里，后续根据userId，获取用户信息
         ServerHttpRequest mutableReq = exchange.getRequest().mutate().header(Constants.CURRENT_ID, userId)
-                .header(Constants.CURRENT_USERNAME, jo.getString("loginName")).build();
+                .header(Constants.CURRENT_USERNAME, user.getString("loginName")).build();
         ServerWebExchange mutableExchange = exchange.mutate().request(mutableReq).build();
         return chain.filter(mutableExchange);
     }

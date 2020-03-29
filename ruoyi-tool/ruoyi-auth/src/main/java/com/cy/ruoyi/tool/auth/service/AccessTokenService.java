@@ -1,12 +1,17 @@
 package com.cy.ruoyi.tool.auth.service;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.cy.ruoyi.common.auth.DTO.LoginUserDTO;
+import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.redis.annotation.RedisEvict;
 import com.cy.ruoyi.common.redis.util.RedisUtils;
 import com.cy.ruoyi.common.utils.constants.Constants;
-import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
+import com.cy.ruoyi.common.utils.util.AddressUtils;
+import com.cy.ruoyi.common.utils.util.IpUtils;
+import eu.bitwalker.useragentutils.UserAgent;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,33 +28,37 @@ public class AccessTokenService
     private RedisUtils redis;
 
     /**
-     * 12小时后过期
+     * 12分钟后过期
      */
-    private final static long   EXPIRE        = 12 * 60 * 60;
+    private final static long   EXPIRE        = 12 * 60;
 
     private final static String ACCESS_TOKEN  = Constants.ACCESS_TOKEN;
 
     private final static String ACCESS_USERID = Constants.ACCESS_USERID;
 
-    public SysUserDTO queryByToken(String token)
+    public LoginUserDTO queryByToken(String token)
     {
-        return redis.get(ACCESS_TOKEN + token, SysUserDTO.class);
+        return redis.get(ACCESS_TOKEN + token, LoginUserDTO.class);
     }
 
-    @RedisEvict(key = "user_perms", fieldKey = "#sysUser.userId")
-    public Map<String, Object> createToken(SysUserDTO sysUser)
+    @RedisEvict(key = "user_perms", fieldKey = "#sysUser.user.userId")
+    public Map<String, Object> createToken(LoginUserDTO sysUser)
     {
         // 生成token
         String token = IdUtil.fastSimpleUUID();
         log.info("生成token为:{}", token);
+
         // 保存或更新用户token
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userId", sysUser.getUserId());
+        map.put("userId", sysUser.getUser().getUserId());
         map.put("token", token);
         map.put("expire", EXPIRE);
+
+        sysUser.setToken(token);
+        setUserAgent(sysUser);
         // expireToken(userId);
         redis.set(ACCESS_TOKEN + token, sysUser, EXPIRE);
-        redis.set(ACCESS_USERID + sysUser.getUserId(), token, EXPIRE);
+        redis.set(ACCESS_USERID + sysUser.getUser().getUserId(), token, EXPIRE);
         return map;
     }
 
@@ -62,4 +71,21 @@ public class AccessTokenService
             redis.delete(ACCESS_TOKEN + token);
         }
     }
+
+    /**
+     * 设置用户代理信息
+     *
+     * @param userDTO 登录信息
+     */
+    private void setUserAgent(LoginUserDTO userDTO)
+    {
+        UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
+        String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        userDTO.setIpaddr(ip);
+        userDTO.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
+        userDTO.setBrowser(userAgent.getBrowser().getName());
+        userDTO.setOs(userAgent.getOperatingSystem().getName());
+        userDTO.setLoginTime(DateUtil.now());
+    }
+
 }

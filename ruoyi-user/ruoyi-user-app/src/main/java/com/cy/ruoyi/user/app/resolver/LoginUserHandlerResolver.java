@@ -1,5 +1,6 @@
 package com.cy.ruoyi.user.app.resolver;
 
+import com.cy.ruoyi.common.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.common.utils.annotation.LoginUser;
 import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.util.RegexUtil;

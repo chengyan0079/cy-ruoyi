@@ -1,4 +1,4 @@
-package com.cy.ruoyi.tool.auth.DTO;
+package com.cy.ruoyi.common.auth.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

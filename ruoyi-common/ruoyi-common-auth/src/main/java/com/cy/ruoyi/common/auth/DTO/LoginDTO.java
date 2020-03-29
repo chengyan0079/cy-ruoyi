@@ -1,4 +1,4 @@
-package com.cy.ruoyi.tool.auth.DTO;
+package com.cy.ruoyi.common.auth.DTO;
 
 import lombok.Data;
 
@@ -10,6 +10,5 @@ public class LoginDTO implements Serializable {
     private String username;
 
     private String password;
-
 
 }

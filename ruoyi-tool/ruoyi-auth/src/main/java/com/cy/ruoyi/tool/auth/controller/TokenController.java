@@ -1,11 +1,12 @@
 package com.cy.ruoyi.tool.auth.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.cy.ruoyi.common.auth.DTO.LoginDTO;
+import com.cy.ruoyi.common.auth.DTO.LoginUserDTO;
+import com.cy.ruoyi.common.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
-import com.cy.ruoyi.tool.auth.DTO.LoginDTO;
-import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.tool.auth.service.AccessTokenService;
 import com.cy.ruoyi.tool.auth.service.SysLoginService;
 import io.swagger.annotations.Api;
@@ -36,7 +37,9 @@ public class TokenController extends BaseController
         // 用户登录
         SysUserDTO user = sysLoginService.login(loginDTO.getUsername(), loginDTO.getPassword());
         // 获取登录token
-        return R.ok(tokenService.createToken(user));
+        LoginUserDTO userDTO = new LoginUserDTO();
+        userDTO.setUser(user);
+        return R.ok(tokenService.createToken(userDTO));
     }
 
     @PostMapping("logout")
@@ -45,11 +48,11 @@ public class TokenController extends BaseController
     public R logout(HttpServletRequest request)
     {
         String token = request.getHeader("token");
-        SysUserDTO user = tokenService.queryByToken(token);
+        LoginUserDTO user = tokenService.queryByToken(token);
         if (RegexUtil.isNotNull(user))
         {
-            sysLoginService.logout(user.getLoginName());
-            tokenService.expireToken(user.getUserId());
+            sysLoginService.logout(user.getUser().getLoginName());
+            tokenService.expireToken(user.getUser().getUserId());
         }
         return R.ok();
     }

@@ -1,4 +1,4 @@
-package com.cy.ruoyi.tool.auth.DTO;
+package com.cy.ruoyi.common.auth.DTO;
 
 import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;

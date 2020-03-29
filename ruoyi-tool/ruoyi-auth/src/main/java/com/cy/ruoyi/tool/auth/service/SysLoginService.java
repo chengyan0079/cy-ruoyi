@@ -2,6 +2,7 @@ package com.cy.ruoyi.tool.auth.service;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.cy.ruoyi.common.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.common.auth.constants.UserConstants;
 import com.cy.ruoyi.common.auth.enums.UserStatus;
 import com.cy.ruoyi.common.core.exception.RuoyiException;
@@ -9,7 +10,6 @@ import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.log.publish.PublishFactory;
 import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.util.*;
-import com.cy.ruoyi.tool.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.tool.auth.feign.RemoteUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

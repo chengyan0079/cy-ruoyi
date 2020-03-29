@@ -52,10 +52,10 @@ public class SysUserController extends BaseController
     @GetMapping("info")
     @ApiOperation(value = "查询信息")
     @SentinelResource("info")
-    public SysUser info(@LoginUser SysUser sysUser)
+    public SysUser info(@LoginUser SysUser user)
     {
-        sysUser.setButtons(sysMenuService.selectPermsByUserId(sysUser.getUserId()));
-        return sysUser;
+        user.setButtons(sysMenuService.selectPermsByUserId(user.getUserId()));
+        return user;
     }
 
     /**

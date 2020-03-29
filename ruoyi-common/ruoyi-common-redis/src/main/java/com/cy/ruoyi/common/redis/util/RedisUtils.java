@@ -1,13 +1,21 @@
 package com.cy.ruoyi.common.redis.util;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.alibaba.fastjson.JSON;
+import io.lettuce.core.*;
+import io.lettuce.core.ScanCursor;
+import io.lettuce.core.api.async.RedisAsyncCommands;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Redis工具类
@@ -15,6 +23,8 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtils
 {
+    private static final Log log = LogFactory.get();
+
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -86,6 +96,16 @@ public class RedisUtils
     }
 
     /**
+     * 删除集合对象
+     *
+     * @param collection
+     */
+    public void delete(Collection collection)
+    {
+        redisTemplate.delete(collection);
+    }
+
+    /**
      * Object转成JSON数据
      */
     private String toJson(Object object)
@@ -105,4 +125,122 @@ public class RedisUtils
     {
         return JSON.parseObject(json, clazz);
     }
+
+
+    /**
+     * 获得缓存的基本对象列表
+     *
+     * @param pattern 字符串前缀
+     * @return 对象列表
+     */
+    public Collection<String> keys(String pattern)
+    {
+        return KeyUtil.scanKeys(redisTemplate, pattern);
+    }
+
+
+    /**
+     * 缓存List数据
+     *
+     * @param key 缓存的键值
+     * @param dataList 待缓存的List数据
+     * @return 缓存的对象
+     */
+    public <T> ListOperations<String, T> setList(String key, List<T> dataList)
+    {
+        ListOperations listOperation = redisTemplate.opsForList();
+        if (null != dataList)
+        {
+            int size = dataList.size();
+            for (int i = 0; i < size; i++)
+            {
+                listOperation.leftPush(key, dataList.get(i));
+            }
+        }
+        return listOperation;
+    }
+
+    /**
+     * 获得缓存的list对象
+     *
+     * @param key 缓存的键值
+     * @return 缓存键值对应的数据
+     */
+    public <T> List<T> getList(String key)
+    {
+        List<T> dataList = new ArrayList<T>();
+        ListOperations<String, T> listOperation = (ListOperations<String, T>)redisTemplate.opsForList();
+        Long size = listOperation.size(key);
+
+        for (int i = 0; i < size; i++)
+        {
+            dataList.add(listOperation.index(key, i));
+        }
+        return dataList;
+    }
+
+    /**
+     * 缓存Set
+     *
+     * @param key 缓存键值
+     * @param dataSet 缓存的数据
+     * @return 缓存数据的对象
+     */
+    public <T> BoundSetOperations<String, T> setSet(String key, Set<T> dataSet)
+    {
+        BoundSetOperations<String, T> setOperation = (BoundSetOperations<String, T>)redisTemplate.boundSetOps(key);
+        Iterator<T> it = dataSet.iterator();
+        while (it.hasNext())
+        {
+            setOperation.add(it.next());
+        }
+        return setOperation;
+    }
+
+    /**
+     * 获得缓存的set
+     *
+     * @param key
+     * @return
+     */
+    public <T> Set<T> getSet(String key)
+    {
+        Set<T> dataSet = new HashSet<T>();
+        BoundSetOperations<String, T> operation = (BoundSetOperations<String, T>) redisTemplate.boundSetOps(key);
+        dataSet = operation.members();
+        return dataSet;
+    }
+
+    /**
+     * 缓存Map
+     *
+     * @param key
+     * @param dataMap
+     * @return
+     */
+    public <T> HashOperations<String, String, T> setMap(String key, Map<String, T> dataMap)
+    {
+        HashOperations hashOperations = redisTemplate.opsForHash();
+        if (null != dataMap)
+        {
+            for (Map.Entry<String, T> entry : dataMap.entrySet())
+            {
+                hashOperations.put(key, entry.getKey(), entry.getValue());
+            }
+        }
+        return hashOperations;
+    }
+
+    /**
+     * 获得缓存的Map
+     *
+     * @param key
+     * @return
+     */
+    public <T> Map<Object, T> getMap(String key)
+    {
+        Map<Object, T> map = (Map<Object, T>) redisTemplate.opsForHash().entries(key);
+        return map;
+    }
+
 }
