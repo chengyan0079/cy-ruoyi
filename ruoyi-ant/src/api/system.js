@@ -9,7 +9,8 @@ const api = {
   dictData: '/cyuser/dict/data',
   dist: '/cyuser/districts',
   config: '/cyuser/config',
-  oss: '/cyuser/oss'
+  oss: '/cyuser/oss',
+  onlineUser: '/cyuser/online'
 }
 
 export default api
@@ -317,5 +318,18 @@ export function saveOssConfig (parameter) {
     url: api.oss + '/saveConfig',
     method: 'post',
     params: parameter
+  })
+}
+export function getOnlineUserList (parameter) {
+  return axios({
+    url: api.onlineUser + '/list',
+    method: 'get',
+    params: parameter
+  })
+}
+export function delOnlineUser (userId) {
+  return axios({
+    url: api.onlineUser + '/forceLogout/' + `${userId}`,
+    method: 'post'
   })
 }

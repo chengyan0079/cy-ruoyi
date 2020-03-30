@@ -34,7 +34,10 @@
       <span slot="action" slot-scope="text, record">
         <a v-if="editEnabel" @click="handleEdit(record.id)">编辑</a>
         <a-divider v-if="removeEnable&&record.deploymentId==null" type="vertical" />
-        <a v-if="removeEnable&&record.deploymentId==null" @click="delByIds([record.id])">删除</a>
+        <!-- <a v-if="removeEnable&&record.deploymentId==null" @click="delByIds([record.id])">删除</a>-->
+        <a-popconfirm title="是否要删除此行？" v-if="removeEnable&&record.deploymentId==null" @confirm="delByIds([record.id])">
+          <a>删除</a>
+        </a-popconfirm>
         <a-divider type="vertical" />
         <a v-if="removeEnable" @click="deploy(record.id)">发布</a>
       </span>

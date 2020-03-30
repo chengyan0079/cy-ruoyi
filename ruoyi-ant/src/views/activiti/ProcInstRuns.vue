@@ -44,7 +44,10 @@
           <a>{{ record.isSuspended?'激活':'挂起' }}</a>
         </a-popconfirm>
         <a-divider type="vertical" />
-        <a @click="delByIds([record.id])">删除</a>
+        <!-- <a @click="delByIds([record.id])">删除</a> -->
+        <a-popconfirm title="是否要删除此行？" @confirm="delByIds([record.id])">
+          <a>删除</a>
+        </a-popconfirm>
       </span>
     </s-table>
   </a-card>

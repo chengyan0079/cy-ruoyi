@@ -32,7 +32,10 @@
         {{ text | resultFilter }}
       </span>
       <span slot="action" slot-scope="text, record">
-        <a v-if="removeEnable" @click="delByIds([record.id])">删除</a>
+        <!-- <a v-if="removeEnable" @click="delByIds([record.id])">删除</a> -->
+        <a-popconfirm title="是否要删除此行？" v-if="removeEnable" @confirm="delByIds([record.id])">
+          <a>删除</a>
+        </a-popconfirm>
       </span>
     </s-table>
   </a-card>

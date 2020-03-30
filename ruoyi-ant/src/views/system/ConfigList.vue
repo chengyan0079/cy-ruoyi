@@ -64,7 +64,10 @@
       <span slot="action" slot-scope="text, record">
         <a v-if="editEnabel" @click="handleEdit(record)">编辑</a>
         <a-divider type="vertical" />
-        <a v-if="removeEnable" @click="delByIds([record.configId])">删除</a>
+        <!-- <a v-if="removeEnable" @click="delByIds([record.configId])">删除</a> -->
+        <a-popconfirm title="是否要删除此行？" v-if="removeEnable" @confirm="delByIds([record.configId])">
+          <a>删除</a>
+        </a-popconfirm>
       </span>
     </s-table>
     <config-modal ref="modal" @ok="handleOk"/>

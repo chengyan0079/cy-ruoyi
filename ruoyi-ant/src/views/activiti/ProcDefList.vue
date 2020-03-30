@@ -63,7 +63,10 @@
         <a-divider v-if="editEnabel" type="vertical" />
         <a v-if="editEnabel" @click="handleNode(record.id)">节点配置</a>
         <a-divider v-if="removeEnable" type="vertical" />
-        <a v-if="removeEnable" @click="delByIds([record.deploymentId])">删除</a>
+        <!-- <a v-if="removeEnable" @click="delByIds([record.deploymentId])">删除</a> -->
+        <a-popconfirm title="是否要删除此行？" v-if="removeEnable" @confirm="delByIds([record.deploymentId])">
+          <a>删除</a>
+        </a-popconfirm>
       </span>
     </s-table>
     <a-modal :visible="previewVisible" :width="900" :footer="null" @cancel="previewCancel">

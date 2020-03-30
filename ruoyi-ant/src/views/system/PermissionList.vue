@@ -55,7 +55,10 @@
         <a-divider type="vertical" />
         <a v-if="addEnable" @click="handleAdd(record.menuId+'')">新增</a>
         <a-divider type="vertical" />
-        <a v-if="removeEnable" @click="delById(record.menuId)">删除</a>
+        <!-- <a v-if="removeEnable" @click="delById(record.menuId)">删除</a> -->
+        <a-popconfirm title="是否要删除此行？" v-if="removeEnable" @confirm="delById(record.menuId)">
+          <a>删除</a>
+        </a-popconfirm>
       </span>
     </a-table>
 

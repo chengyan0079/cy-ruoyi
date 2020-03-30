@@ -14,6 +14,7 @@ public class LoginUserDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
+    private Long userId;
     /**
      * 用户唯一标识
      */

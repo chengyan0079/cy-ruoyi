@@ -79,7 +79,9 @@
           <span slot="action" slot-scope="text, record">
             <a v-if="editEnabel" @click="handleEdit(record)">编辑</a>
             <a-divider type="vertical" />
-            <a v-if="removeEnable" @click="delByIds([record.userId])">删除</a>
+            <a-popconfirm title="是否要删除此行？" v-if="removeEnable" @confirm="delByIds([record.userId])">
+              <a>删除</a>
+            </a-popconfirm>
             <a-divider type="vertical" />
             <a v-if="resetPwdEnabel" @click="resetPwd(record)">重置密码</a>
           </span>

@@ -81,6 +81,7 @@ public class AccessTokenService
     {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
         String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        userDTO.setUserId(userDTO.getUser().getUserId());
         userDTO.setIpaddr(ip);
         userDTO.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
         userDTO.setBrowser(userAgent.getBrowser().getName());

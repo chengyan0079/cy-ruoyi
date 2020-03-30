@@ -49,7 +49,10 @@
         <a-divider type="vertical" />
         <a @click="handFlow(record.procInstId)">历史</a>
         <a-divider v-if="!record.delFlag" type="vertical" />
-        <a v-if="!record.delFlag" @click="delByIds([record.auditId])">删除</a>
+        <!-- <a v-if="!record.delFlag" @click="delByIds([record.auditId])">删除</a> -->
+        <a-popconfirm title="是否要删除此行？" v-if="!record.delFlag" @confirm="delByIds([record.auditId])">
+          <a>删除</a>
+        </a-popconfirm>
       </span>
     </s-table>
     <leave-modal ref="leavemodal" @ok="handleOk" :audit="audit"/>

@@ -45,7 +45,7 @@ public class SysUserOnlineController extends BaseController
 
     private final static String ACCESS_USERID = Constants.ACCESS_USERID;
 
-//    @HasPermissions("monitor:online:list")
+    @HasPermissions("monitor:online:list")
     @GetMapping("/list")
     public R list(String ipaddr, String userName)
     {
@@ -92,19 +92,17 @@ public class SysUserOnlineController extends BaseController
     /**
      * 强退用户
      */
-//    @HasPermissions("monitor:online:forceLogout")
+    @HasPermissions("monitor:online:forceLogout")
     @OperLog(title = "在线用户", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{userId}")
+    @PostMapping("/forceLogout/{userId}")
     public R forceLogout(@PathVariable String userId)
     {
-
         String token = redis.get(ACCESS_USERID + userId);
         if (org.apache.commons.lang3.StringUtils.isNotBlank(token))
         {
             redis.delete(ACCESS_USERID + userId);
             redis.delete(ACCESS_TOKEN + token);
         }
-
         return R.ok();
     }
 }

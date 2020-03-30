@@ -14,7 +14,9 @@ import java.util.Date;
 public class SysUserOnline implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
+    private Long userId;
+
     /** 用户会话id */
     private String token;
 

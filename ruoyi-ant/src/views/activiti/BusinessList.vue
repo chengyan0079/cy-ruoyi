@@ -58,9 +58,15 @@
       <span slot="action" slot-scope="text, record">
         <a @click="handelAudit(record)">详情</a>
         <a-divider type="vertical" />
-        <a :disabled="record.status!==1" @click="cancel([record.procInstId])">撤销</a>
+        <!-- <a :disabled="record.status!==1" @click="cancel([record.procInstId])">撤销</a> -->
+        <a-popconfirm title="是否要撤销？" @confirm="cancel([record.procInstId])">
+          <a :disabled="record.status!==1" >撤销</a>
+        </a-popconfirm>
         <a-divider type="vertical" />
-        <a :disabled="record.status===1" @click="delByIds([record.id])">删除</a>
+        <!-- <a :disabled="record.status===1" @click="delByIds([record.id])">删除</a> -->
+        <a-popconfirm title="是否要删除此行？"  @confirm="delByIds([record.id])">
+          <a :disabled="record.status===1">删除</a>
+        </a-popconfirm>
       </span>
     </s-table>
     <business-modal ref="modal" @ok="handleOk"/>
