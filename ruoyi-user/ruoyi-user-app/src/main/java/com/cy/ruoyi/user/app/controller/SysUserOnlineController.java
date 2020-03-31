@@ -30,7 +30,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/online")
-@Api(value = "SysUserOnlineController",description = "在线用户监控")
+@Api(value = "SysUserOnlineController",description = "在线用户")
 public class SysUserOnlineController extends BaseController
 {
     private static final Log log = LogFactory.get();

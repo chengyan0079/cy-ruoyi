@@ -6,7 +6,7 @@ SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 * 注册中心：Nacos
 * 配置中心：Nacos
 * 限流熔断：Sentinel
-* 消息队列：RocketMQ，Kafka
+* 消息队列：RocketMQ
 * 分布式事务：Seata
 * 分布式调用链：SkyWalking
 * 分库分表：Mycat
@@ -14,19 +14,18 @@ SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 * 日志收集：ELK
 * 工作流：Activiti
 * 容器：Docker
+* 监控体系：Prometheus
 
 ---
 ## 服务端地址：
-* Redis：localhost:6379
-* Mysql：localhost:3306
-* Nacos：localhost:8848
-* Sentinel：localhost:8844
-* XXL-Admin：localhost:7080
-* SkyWalking：localhost:18080
-* Elasticsearch：localhost:9200
-* Kibana
-* Logstash
-* Filebeat
+* Nacos Console：localhost:8848
+* Sentinel Console：localhost:8844
+* XXL-Admin Console：localhost:7080
+* SkyWalking UI：localhost:18080
+* RocketMQ Console：localhost:9899
+* Seata Console：localhost:9887
+* Kibana UI：localhost:5601
+* Grafana UI：localhost
 
 ---
 ##  架构设计图
@@ -75,7 +74,7 @@ cy-ruoyi
  ├──ruoyi-tool //工具
     ├──ruoyi-gen // 代码生成 7065
     ├──ruoyi-auth // 授权鉴权  8090
-    ├──ruoyi-io //文件系统 7050（尚未）
+    ├──ruoyi-io // 文件系统 7050（尚未）
     ├──ruoyi-mock // 数据收集 7021（尚未）
     ├──ruoyi-monitor // 系统监控 7060
     ├──ruoyi-activity //工作流 8031
@@ -104,11 +103,10 @@ cy-ruoyi
     ├──文件管理
     ├──地区管理
  ├──系统监控
-    ├──在线用户（尚未）
+    ├──在线用户
     ├──操作日志
     ├──登陆日志
     ├──服务监控
-    ├──Nacos服务
  ├──系统工具
     ├──代码生成
     ├──定时任务
