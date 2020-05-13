@@ -40,7 +40,7 @@ dubbo:
     # dubbo协议端口（-1表示自增，从20880开始）
     port: -1
   registry:
-    address: spring-cloud://localhost
+    address: spring-cloud://139.155.2.139
 #    address: spring-cloud://192.168.31.138
   application:
     qos-enable: false

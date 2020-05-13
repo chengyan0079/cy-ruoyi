@@ -32,7 +32,7 @@ public class TbOrderInfo extends BaseEntity implements Serializable {
 	private String orderNo;
 
     /** 订单交易状态 0-未支付 1-支付中 2-支付成功 3-支付失败*/
-	private Integer payStatus;
+	private String payStatus;
 
     /** 支付订单号*/
 	private String payOrderNo;

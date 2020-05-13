@@ -31,7 +31,6 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
 
-
 dubbo:
   scan:
     base-packages: com.cy.ruoyi.demo.provider.impl.service
@@ -40,12 +39,12 @@ dubbo:
     # dubbo协议端口（-1表示自增，从20880开始）
     port: -1
   registry:
-    address: spring-cloud://localhost
+    address: spring-cloud://139.155.2.139
 #    address: spring-cloud://192.168.31.138
   application:
     qos-enable: false
   cloud:
-    subscribed-services: ruoyi-demo-consumer
+    subscribed-services: ruoyi-demo-consumer, ruoyi-search
   consumer:
     timeout: 10000
     check: false
@@ -54,6 +53,8 @@ dubbo:
       version: 1.0.0
     ITestConsumerService:
       version: 1.0.0
+    ESRestHighLevelApiService:
+      version: 1.0.0
   provider:
     timeout: 10000
     filter: -exception
@@ -61,8 +62,6 @@ dubbo:
       version: 1.0.0
     ITestProviderService:
       version: 1.0.0
-
-
 
 feign:
   #开启GZIP压缩
