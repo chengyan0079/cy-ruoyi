@@ -1,5 +1,6 @@
 # cy-ruoyi
-SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
+一个基于Ruoyi重构的分布式后台综合管理系统
+基础框架：SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 
 ---
 ## 中间件
@@ -15,6 +16,7 @@ SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 * 工作流：Activiti
 * 容器：Docker
 * 监控体系：Prometheus
+* Java诊断：Arthas
 
 ---
 ## 服务端地址：
@@ -23,7 +25,6 @@ SpringCloud Alibaba + Dubbo + MybatisPlus + Mysql + Redis
 * XXL-Admin Console：localhost:7080
 * SkyWalking UI：localhost:18080
 * RocketMQ Console：localhost:9899
-* Seata Console：localhost:9887
 * Kibana UI：localhost:5601
 * Grafana UI：localhost
 
@@ -46,6 +47,9 @@ cy-ruoyi
     ├──ruoyi-common-auth // 授权工具包
     ├──ruoyi-common-sms // 信息推送工具包
     ├──ruoyi-common-job // 定时任务核心包
+    ├──ruoyi-common-rocketmq // rocketmq消息队列（尚未）
+    ├──ruoyi-common-kafka // kafka消息队列（尚未）
+    ├──ruoyi-common-mongodb // mongodb工具包（尚未）
  ├──ruoyi-user //用户 8081
     ├──ruoyi-user-application //用户启动
     ├──ruoyi-user-api //用户API
@@ -56,6 +60,7 @@ cy-ruoyi
  ├──ruoyi-pay //收银台 8021（尚未）
  ├──ruoyi-stock //库存 8051（尚未）
  ├──ruoyi-logistics //物流 8041（尚未）
+ ├──ruoyi-search // 搜索 8131
  ├──ruoyi-demo //Demo 
     ├──ruoyi-demo-provider //provider demo 7070
         ├──ruoyi-provider-api //api
@@ -79,7 +84,7 @@ cy-ruoyi
     ├──ruoyi-monitor // 系统监控 7060
     ├──ruoyi-activity //工作流 8031
     ├──ruoyi-gateway //网关 9527
- ├──ruoyi-ant --前端 使用ant design框架 8000
+ ├──ruoyi-ant //前端 使用ant design框架 8000
  ```
  
 ---

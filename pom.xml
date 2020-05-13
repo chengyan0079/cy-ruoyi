@@ -42,6 +42,7 @@
         <junit.version>4.13</junit.version>
         <xxl-rpc-core.version>1.5.0</xxl-rpc-core.version>
         <groovy.version>2.5.9</groovy.version>
+        <elasticsearch.version>7.6.0</elasticsearch.version>
 
     </properties>
 
@@ -51,6 +52,7 @@
         <module>ruoyi-tool</module>
         <module>ruoyi-demo</module>
         <module>ruoyi-quartz</module>
+        <module>ruoyi-search</module>
 
     </modules>
 

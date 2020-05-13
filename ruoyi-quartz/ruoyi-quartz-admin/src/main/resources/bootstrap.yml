@@ -20,6 +20,8 @@ spring:
         register-enabled: true
         server-addr: 127.0.0.1:8848
 #        server-addr: 192.168.0.101:8848
+      config:
+        enabled: false
     sentinel:
       log:
         dir: E:/home/logs/ruoyi/quartz/
