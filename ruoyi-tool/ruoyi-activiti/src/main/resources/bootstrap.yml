@@ -24,7 +24,7 @@ spring:
         enabled: false
     sentinel:
       log:
-        dir: E:/home/logs/ruoyi/activiti/
+        dir: /home/chengy/logs/activiti/
       transport:
         dashboard: localhost:8844
   jackson:

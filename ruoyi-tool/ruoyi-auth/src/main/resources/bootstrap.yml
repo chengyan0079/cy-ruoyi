@@ -28,7 +28,7 @@ spring:
         enabled: false
     sentinel:
       log:
-        dir: E:/home/logs/ruoyi/auth/
+        dir: /home/chengy/logs/auth/
       transport:
         dashboard: localhost:8844
   jackson:

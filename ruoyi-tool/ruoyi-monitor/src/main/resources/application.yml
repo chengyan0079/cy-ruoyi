@@ -31,7 +31,7 @@ spring:
         enabled: false
     sentinel:
       log:
-        dir: E:/home/logs/ruoyi/monitor/
+        dir: /home/chengy/logs/monitor/
       transport:
         dashboard: localhost:8844
 

@@ -1,0 +1,6 @@
+# ES
+es:
+  schme: http
+  node:
+    host: 172.27.0.7
+    port: 9200

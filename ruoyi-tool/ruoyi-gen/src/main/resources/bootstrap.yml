@@ -27,7 +27,7 @@ spring:
         enabled: false
     sentinel:
       log:
-        dir: E:/home/logs/ruoyi/gen/
+        dir: /home/chengy/logs/gen/
       transport:
         dashboard: localhost:8844
   jackson:

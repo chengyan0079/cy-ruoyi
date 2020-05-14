@@ -24,7 +24,7 @@ spring:
         enabled: false
     sentinel:
       log:
-        dir: E:/home/logs/ruoyi/quartz/
+        dir: /home/chengy/logs/quartz/
       transport:
         dashboard: localhost:8844
   jackson:
