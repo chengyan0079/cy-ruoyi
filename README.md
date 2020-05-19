@@ -47,9 +47,7 @@ cy-ruoyi
     ├──ruoyi-common-auth // 授权工具包
     ├──ruoyi-common-sms // 信息推送工具包
     ├──ruoyi-common-job // 定时任务核心包
-    ├──ruoyi-common-rocketmq // rocketmq消息队列（尚未）
-    ├──ruoyi-common-kafka // kafka消息队列（尚未）
-    ├──ruoyi-common-mongodb // mongodb工具包（尚未）
+    ├──ruoyi-common-mq // 消息队列（尚未）
  ├──ruoyi-user //用户 8081
     ├──ruoyi-user-application //用户启动
     ├──ruoyi-user-api //用户API
@@ -60,7 +58,7 @@ cy-ruoyi
  ├──ruoyi-pay //收银台 8021（尚未）
  ├──ruoyi-stock //库存 8051（尚未）
  ├──ruoyi-logistics //物流 8041（尚未）
- ├──ruoyi-search // 搜索 8131
+ ├──ruoyi-search // 数据搜索 8131
  ├──ruoyi-demo //Demo 
     ├──ruoyi-demo-provider //provider demo 7070
         ├──ruoyi-provider-api //api
