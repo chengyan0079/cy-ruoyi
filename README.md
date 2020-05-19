@@ -10,9 +10,10 @@
 * 消息队列：RocketMQ
 * 分布式事务：Seata
 * 分布式调用链：SkyWalking
-* 分库分表：Mycat
+* 分库分表：Sharding-JDBC
 * 分布式任务调度：XXL-Job
-* 日志收集：ELK
+* 日志收集：Filebeat、Logstash、Kibana
+* 搜索引擎：Elasticsearch
 * 工作流：Activiti
 * 容器：Docker
 * 监控体系：Prometheus
