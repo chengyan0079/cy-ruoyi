@@ -7,7 +7,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:7060
+        url: http://139.155.2.139:7060
       notify:
         mail:
           to: chengyan0079@126.com
@@ -26,14 +26,14 @@ spring:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 127.0.0.1:8848
-      config:
-        enabled: false
+        server-addr: 139.155.2.139:8848
+#      config:
+#        enabled: false
     sentinel:
       log:
         dir: /home/chengy/logs/monitor/
       transport:
-        dashboard: localhost:8844
+        dashboard: 139.155.2.139:8844
 
 management:
   endpoints:
