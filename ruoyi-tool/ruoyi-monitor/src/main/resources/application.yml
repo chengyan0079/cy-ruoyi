@@ -6,22 +6,29 @@ spring:
     name: ruoyi-monitor
   boot:
     admin:
-      client:
-        url: http://172.27.0.7:7060
       notify:
         mail:
           to: chengyan0079@126.com
           from: 304338940@qq.com
+      client:
+        enabled: true
+        url: http://172.27.0.7:7060
   mail:
+    port: 465
     host: smtp.qq.com
     username: 304338940@qq.com
     password: ktugntqhbcrlbjaa
     default-encoding: UTF-8
-    smtp:
-      auth: true
-      starttls:
-        enable: true
-        required: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 1000
+          starttls:
+            enable: true
+            required: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
   cloud:
     nacos:
       discovery:

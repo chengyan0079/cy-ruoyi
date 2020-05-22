@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: test
+    active: dev
   application:
     name: ruoyi-quartz-admin
   boot:
@@ -48,16 +48,24 @@ spring:
     settings:
       number_format: 0.##########
   mail:
+    port: 465
     host: smtp.qq.com
     username: 304338940@qq.com
     password: ktugntqhbcrlbjaa
-    smtp:
-      auth: true
-      starttls:
-        enable: true
-        required: true
-      socketFactory:
-        class: javax.net.ssl.SSLSocketFactory
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 1000
+          starttls:
+            enable: true
+            required: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+
+
+
 
 swagger:
   service:

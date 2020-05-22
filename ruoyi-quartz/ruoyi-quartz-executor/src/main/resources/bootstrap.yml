@@ -26,6 +26,11 @@ spring:
 #        server-addr: 139.155.70.19:8848
       config:
         enabled: false
+    sentinel:
+      log:
+        dir: /home/chengy/logs/quartz/executor/
+      transport:
+        dashboard: 172.27.0.7:8844
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
