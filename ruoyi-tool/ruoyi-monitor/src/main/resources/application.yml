@@ -7,7 +7,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://139.155.2.139:7060
+        url: http://172.27.0.7:7060
       notify:
         mail:
           to: chengyan0079@126.com
@@ -15,7 +15,8 @@ spring:
   mail:
     host: smtp.qq.com
     username: 304338940@qq.com
-    password: mrjmwxnliadebjie
+    password: ktugntqhbcrlbjaa
+    default-encoding: UTF-8
     smtp:
       auth: true
       starttls:
@@ -26,14 +27,19 @@ spring:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 139.155.2.139:8848
+        server-addr: 172.27.0.7:8848
+#        server-addr: 139.155.70.19:8848
 #      config:
 #        enabled: false
     sentinel:
       log:
         dir: /home/chengy/logs/monitor/
       transport:
-        dashboard: 139.155.2.139:8844
+        dashboard: 172.27.0.7:8844
+  security:
+    user:
+      name: "admin"
+      password: "123456"
 
 management:
   endpoints:

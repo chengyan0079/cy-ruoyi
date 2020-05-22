@@ -24,6 +24,7 @@
 * Nacos Console：localhost:8848
 * Sentinel Console：localhost:8844
 * XXL-Admin Console：localhost:7080
+* Monitor console: localhost:7060
 * SkyWalking UI：localhost:18080
 * RocketMQ Console：localhost:9899
 * Kibana UI：localhost:5601
