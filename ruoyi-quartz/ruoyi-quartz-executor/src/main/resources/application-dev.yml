@@ -1,9 +1,9 @@
 spring:
   redis:
     database: 0
-    host: localhost
+    host: 139.155.70.19
     port: 6379
-    password:
+    password: cy123456
     timeout: 5000
     jedis:
       pool:

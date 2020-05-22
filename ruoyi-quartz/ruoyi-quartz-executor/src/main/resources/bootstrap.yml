@@ -12,7 +12,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://139.155.2.139:7060
+        url: http://139.155.70.19:7060
       notify:
         mail:
           to: chengyan0079@126.com
@@ -22,7 +22,7 @@ spring:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 139.155.2.139:8848
+        server-addr: 139.155.70.19:8848
 #        server-addr: 192.168.0.101:8848
       config:
         enabled: false

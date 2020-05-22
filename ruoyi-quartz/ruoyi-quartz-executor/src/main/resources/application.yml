@@ -7,7 +7,7 @@ dubbo:
     # dubbo协议端口（-1表示自增，从20880开始）
     port: -1
   registry:
-    address: spring-cloud://139.155.2.139
+    address: spring-cloud://139.155.70.19
     #    address: spring-cloud://192.168.0.101
   application:
     qos-enable: false
@@ -65,7 +65,7 @@ xxl:
   job:
     accessToken:
     admin:
-      addresses: http://localhost:7080
+      addresses: http://139.155.70.19:7080
     executor:
       appname: ruoyi-quartz-executor
       port: -1
