@@ -64,9 +64,6 @@ spring:
           socketFactory:
             class: javax.net.ssl.SSLSocketFactory
 
-
-
-
 swagger:
   service:
     basePackage: com.cy.ruoyi.quartz.admin

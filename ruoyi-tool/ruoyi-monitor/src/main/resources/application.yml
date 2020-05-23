@@ -10,9 +10,6 @@ spring:
         mail:
           to: chengyan0079@126.com
           from: 304338940@qq.com
-      client:
-        enabled: true
-        url: http://172.27.0.7:7060
   mail:
     port: 465
     host: smtp.qq.com
