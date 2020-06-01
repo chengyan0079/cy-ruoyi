@@ -28,7 +28,6 @@
         <module>ruoyi-gen</module>
         <module>ruoyi-gateway</module>
         <module>ruoyi-activiti</module>
-        <module>ruoyi-monitor</module>
     </modules>
 
 </project>

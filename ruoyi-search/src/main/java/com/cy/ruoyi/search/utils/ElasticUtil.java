@@ -1,6 +1,5 @@
 package com.cy.ruoyi.search.utils;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;

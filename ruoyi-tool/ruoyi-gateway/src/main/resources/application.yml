@@ -6,22 +6,12 @@ spring:
     name: ruoyi-gateway
   profiles:
     active: dev
-  # admin
-  boot:
-    admin:
-      client:
-        url: http://172.27.0.7:7060
-      notify:
-        mail:
-          to: chengyan0079@126.com
-          from: 304338940@qq.com
   cloud:
     nacos:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 172.27.0.7:8848
-#        server-addr: 139.155.70.19:8848
+        server-addr: 139.155.70.19:8848
 #      config:
 #        enabled: false
     sentinel:
@@ -109,6 +99,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+    prometheus:
+      enabled: true
+  metrics:
+    tags: # 通用标签
+      application: ${spring.application.name}
 
 logging:
   config: classpath:logback-spring.xml

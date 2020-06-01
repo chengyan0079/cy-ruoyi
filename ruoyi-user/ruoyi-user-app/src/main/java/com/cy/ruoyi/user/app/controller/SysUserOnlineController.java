@@ -47,8 +47,7 @@ public class SysUserOnlineController extends BaseController
 
     @HasPermissions("monitor:online:list")
     @GetMapping("/list")
-    public R list(String ipaddr, String userName)
-    {
+    public R list(String ipaddr, String userName) throws Exception {
         PageDomain pageDomain = getPageInfo();
         log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
         Collection<String> keys = redis.keys(ACCESS_TOKEN + "*");

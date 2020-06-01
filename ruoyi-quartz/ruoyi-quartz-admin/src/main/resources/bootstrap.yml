@@ -3,14 +3,6 @@ spring:
     active: dev
   application:
     name: ruoyi-quartz-admin
-  boot:
-    admin:
-      client:
-        url: http://172.27.0.7:7060
-      notify:
-        mail:
-          to: chengyan0079@126.com
-          from: 304338940@qq.com
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -18,15 +10,14 @@ spring:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 172.27.0.7:8848
-#        server-addr: 139.155.70.19:8848
+        server-addr: 139.155.70.19:8848
       config:
         enabled: false
     sentinel:
       log:
         dir: /home/chengy/logs/quartz/admin/
       transport:
-        dashboard: 172.27.0.7:8844
+        dashboard: 139.155.70.19:8844
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -51,7 +42,7 @@ spring:
     port: 465
     host: smtp.qq.com
     username: 304338940@qq.com
-    password: ktugntqhbcrlbjaa
+    password: jktxivelgovnbhej
     default-encoding: UTF-8
     properties:
       mail:
@@ -67,6 +58,6 @@ spring:
 swagger:
   service:
     basePackage: com.cy.ruoyi.quartz.admin
-    title: 调度中心服务 RESTful APIs
+    title: ${spring.application.name}
     description: 调度中心服务 RESTful APIs详情!
     version: v1.0.0

@@ -3,14 +3,6 @@ spring:
     name: ruoyi-auth
   profiles:
     active: dev
-  boot:
-    admin:
-      client:
-        url: http://localhost:7060
-      notify:
-        mail:
-          to: chengyan0079@126.com
-          from: 304338940@qq.com
   main:
     allow-bean-definition-overriding: true
   # 资源信息
@@ -42,6 +34,6 @@ spring:
 swagger:
   service:
     basePackage: com.cy.ruoyi.tool.auth
-    title: 授权服务 RESTful APIs
+    title: ${spring.application.name}
     description: 授权服务 RESTful APIs详情!
     version: v1.0.0

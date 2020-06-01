@@ -1,31 +1,23 @@
 spring:
   profiles:
-    active: test
+    active: dev
   application:
     name: ruoyi-demo-provider
   main:
     allow-bean-definition-overriding: true
-  boot:
-    admin:
-      client:
-        url: http://172.27.0.7:7060
-      notify:
-        mail:
-          to: chengyan0079@126.com
-          from: 304338940@qq.com
   cloud:
     nacos:
       discovery:
         enabled: true
         register-enabled: true
-        server-addr: 172.27.0.7:8848
+        server-addr: 139.155.70.19:8848
       config:
         enabled: false
     sentinel:
       log:
         dir: /home/chengy/logs/provider
       transport:
-        dashboard: 172.27.0.7:8844
+        dashboard: 139.155.70.19:8844
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -37,6 +29,6 @@ spring:
 swagger:
   service:
     basePackage: com.cy.ruoyi.demo.provider
-    title: provider服务 RESTful APIs
+    title: ${spring.application.name}
     description: provider服务 RESTful APIs详情!
     version: v1.0.0

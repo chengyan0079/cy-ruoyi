@@ -2,20 +2,13 @@ package com.cy.ruoyi.common.redis.util;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import com.alibaba.fastjson.JSON;
-import io.lettuce.core.*;
-import io.lettuce.core.ScanCursor;
-import io.lettuce.core.api.async.RedisAsyncCommands;
+import com.cy.ruoyi.common.utils.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * Redis工具类
@@ -43,8 +36,7 @@ public class RedisUtils
      * @param value 值
      * @author zmr
      */
-    public void set(String key, Object value)
-    {
+    public void set(String key, Object value) throws Exception {
         set(key, value, DEFAULT_EXPIRE);
     }
 
@@ -55,8 +47,7 @@ public class RedisUtils
      * @param expire 过期时间(s)
      * @author zmr
      */
-    public void set(String key, Object value, long expire)
-    {
+    public void set(String key, Object value, long expire) throws Exception {
         valueOperations.set(key, toJson(value));
         redisTemplate.expire(key, expire, TimeUnit.SECONDS);
     }
@@ -79,8 +70,7 @@ public class RedisUtils
      * @return
      * @author zmr
      */
-    public <T> T get(String key, Class<T> clazz)
-    {
+    public <T> T get(String key, Class<T> clazz) throws Exception {
         String value = valueOperations.get(key);
         return value == null ? null : fromJson(value, clazz);
     }
@@ -108,22 +98,20 @@ public class RedisUtils
     /**
      * Object转成JSON数据
      */
-    private String toJson(Object object)
-    {
+    private String toJson(Object object) throws Exception {
         if (object instanceof Integer || object instanceof Long || object instanceof Float || object instanceof Double
                 || object instanceof Boolean || object instanceof String)
         {
             return String.valueOf(object);
         }
-        return JSON.toJSONString(object);
+        return JSON.marshal(object);
     }
 
     /**
      * JSON数据，转成Object
      */
-    private <T> T fromJson(String json, Class<T> clazz)
-    {
-        return JSON.parseObject(json, clazz);
+    private <T> T fromJson(String json, Class<T> clazz) throws Exception {
+        return JSON.unmarshal(json, clazz);
     }
 
 

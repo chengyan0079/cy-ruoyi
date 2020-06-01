@@ -31,7 +31,6 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
 
-
 dubbo:
   scan:
     base-packages: com.cy.ruoyi.demo.consumer.impl.service
@@ -40,8 +39,7 @@ dubbo:
     # dubbo协议端口（-1表示自增，从20880开始）
     port: -1
   registry:
-    address: spring-cloud://172.27.0.7
-#    address: spring-cloud://139.155.70.19
+    address: spring-cloud://139.155.70.19
   application:
     qos-enable: false
   cloud:
@@ -83,6 +81,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+    prometheus:
+      enabled: true
+  metrics:
+    tags: # 通用标签
+      application: ${spring.application.name}
 
 logging:
   config: classpath:logback-spring.xml

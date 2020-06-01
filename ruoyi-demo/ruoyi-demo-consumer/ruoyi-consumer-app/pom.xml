@@ -39,7 +39,12 @@
             <artifactId>ruoyi-provider-api</artifactId>
             <version>1.0.0</version>
         </dependency>
-
+        <!-- Micrometer 对 Prometheus 的支持 -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>1.1.14</version>
+        </dependency>
     </dependencies>
 
 

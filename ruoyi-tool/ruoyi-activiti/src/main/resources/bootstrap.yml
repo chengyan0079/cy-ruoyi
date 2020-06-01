@@ -3,14 +3,6 @@ spring:
     active: dev
   application:
     name: ruoyi-activiti
-  boot:
-    admin:
-      client:
-        url: http://localhost:7060
-      notify:
-        mail:
-          to: chengyan0079@126.com
-          from: 304338940@qq.com
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -40,6 +32,6 @@ spring:
 swagger:
   service:
     basePackage: com.cy.ruoyi.tool.activiti
-    title: 工作流服务 RESTful APIs
+    title: ${spring.application.name}
     description: 工作流服务 RESTful APIs详情!
     version: v1.0.0

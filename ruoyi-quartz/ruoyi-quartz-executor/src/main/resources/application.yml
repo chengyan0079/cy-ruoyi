@@ -7,7 +7,7 @@ dubbo:
     # dubbo协议端口（-1表示自增，从20880开始）
     port: -1
   registry:
-    address: spring-cloud://localhost
+    address: spring-cloud://139.155.70.19
   application:
     qos-enable: false
   cloud:
@@ -36,6 +36,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+    prometheus:
+      enabled: true
+  metrics:
+    tags: # 通用标签
+      application: ${spring.application.name}
 
 logging:
   config: classpath:logback-spring.xml
@@ -64,10 +69,9 @@ xxl:
   job:
     accessToken:
     admin:
-      addresses: http://172.27.0.12:7080
-#      addresses: http://139.155.2.139:7080
+      addresses: http://139.155.2.139:7080
     executor:
-      appname: ruoyi-quartz-executor
+      appname: @project.name@
       port: -1
       ip:
       logpath: /home/chengy/logs/quartz/executor

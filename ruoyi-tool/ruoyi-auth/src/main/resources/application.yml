@@ -19,7 +19,6 @@ dubbo:
     check: false
     filter: -exception
 
-
 management:
   endpoints:
     web:
@@ -28,6 +27,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+    prometheus:
+      enabled: true
+  metrics:
+    tags: # 通用标签
+      application: ${spring.application.name}
 
 logging:
   config: classpath:logback-spring.xml
