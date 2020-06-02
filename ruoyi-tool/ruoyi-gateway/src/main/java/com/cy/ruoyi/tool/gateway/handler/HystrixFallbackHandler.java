@@ -1,5 +1,6 @@
 package com.cy.ruoyi.tool.gateway.handler;
 
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +23,7 @@ public class HystrixFallbackHandler implements HandlerFunction<ServerResponse>
     public Mono<ServerResponse> handle(ServerRequest serverRequest)
     {
         Optional<Object> originalUris = serverRequest.attribute(GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
-        originalUris.ifPresent(originalUri -> log.error("网关执行请求:{}失败,hystrix服务降级处理", originalUri));
+        originalUris.ifPresent(originalUri -> log.error(TradeErrorEnum.GATEWAY_REQUEST_FAIL.msg, originalUri));
         return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).contentType(MediaType.TEXT_PLAIN)
                 .body(BodyInserters.fromObject("服务已被降级熔断"));
     }
@@ -31,7 +32,7 @@ public class HystrixFallbackHandler implements HandlerFunction<ServerResponse>
 //    public Mono<ServerResponse> handle(ServerRequest serverRequest)
 //    {
 //        Optional<Object> originalUris = serverRequest.attribute(GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
-//        originalUris.ifPresent(originalUri -> log.error("网关执行请求:{}失败,hystrix服务降级处理", originalUri));
+//        originalUris.ifPresent(originalUri -> log.error(TradeErrorEnum.GATEWAY_REQUEST_FAIL.msg, originalUri));
 //        return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).contentType(MediaType.APPLICATION_JSON)
 //                .body(BodyInserters.fromValue(JSON.toJSONString(R.error("服务已被降级熔断"))));
 //    }

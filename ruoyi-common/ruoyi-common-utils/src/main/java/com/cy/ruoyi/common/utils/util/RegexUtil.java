@@ -1,9 +1,7 @@
 package com.cy.ruoyi.common.utils.util;
 
-import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import lombok.extern.log4j.Log4j2;
 
-import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -11,9 +9,6 @@ import java.util.regex.Pattern;
 
 /**
  * 字段校驗
- * @author yanghongquan
- * @email 842592135@qq.com
- * @date 2017-04-01 16:16
  */
 @Log4j2
 public class RegexUtil {

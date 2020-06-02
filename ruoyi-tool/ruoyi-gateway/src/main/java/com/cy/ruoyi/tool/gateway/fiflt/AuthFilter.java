@@ -3,6 +3,7 @@ package com.cy.ruoyi.tool.gateway.fiflt;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cy.ruoyi.common.utils.constants.Constants;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -51,12 +52,12 @@ public class AuthFilter implements GlobalFilter, Ordered
         // token为空
         if (StringUtils.isBlank(token))
         {
-            return setUnauthorizedResponse(exchange, "token can't null or empty string");
+            return setUnauthorizedResponse(exchange, TradeErrorEnum.GATEWAY_TOKEN_NULL.msg);
         }
         String userStr = ops.get(Constants.ACCESS_TOKEN + token);
         if (StringUtils.isBlank(userStr))
         {
-            return setUnauthorizedResponse(exchange, "token verify error");
+            return setUnauthorizedResponse(exchange, TradeErrorEnum.GATEWAY_TOKEN_ERROR.msg);
         }
         JSONObject jo = JSONObject.parseObject(userStr);
         JSONObject user = jo.getJSONObject("user");
@@ -64,7 +65,7 @@ public class AuthFilter implements GlobalFilter, Ordered
         // 查询token信息
         if (StringUtils.isBlank(userId))
         {
-            return setUnauthorizedResponse(exchange, "token verify error");
+            return setUnauthorizedResponse(exchange, TradeErrorEnum.GATEWAY_TOKEN_ERROR.msg);
         }
         // 设置userId到request里，后续根据userId，获取用户信息
         ServerHttpRequest mutableReq = exchange.getRequest().mutate().header(Constants.CURRENT_ID, userId)

@@ -4,11 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.cy.ruoyi.common.core.exception.RuoyiException;
+import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
 import com.cy.ruoyi.common.utils.constants.Constants;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.text.Convert;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
@@ -275,7 +276,7 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
             }
             catch (IOException e)
             {
-                log.error("渲染模板失败，表名：" + table.getTableName(), e);
+                log.error(TradeErrorEnum.GEN_CODE_FAIL.msg + "：表名：" + table.getTableName(), e);
             }
         }
     }
@@ -294,15 +295,15 @@ public class GenTableServiceImpl extends ServiceImpl<GenTableMapper, GenTable> i
             JSONObject paramsObj = JSONObject.parseObject(options);
             if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_CODE)))
             {
-                throw new RuoyiException("树编码字段不能为空");
+                throw new BusinessException(TradeErrorEnum.GEN_TREE_NULL);
             }
             else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_PARENT_CODE)))
             {
-                throw new RuoyiException("树父编码字段不能为空");
+                throw new BusinessException(TradeErrorEnum.GEN_FATHER_TREE_NULL);
             }
             else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_NAME)))
             {
-                throw new RuoyiException("树名称字段不能为空");
+                throw new BusinessException(TradeErrorEnum.GEN_TREE_NAME_NULL);
             }
         }
     }

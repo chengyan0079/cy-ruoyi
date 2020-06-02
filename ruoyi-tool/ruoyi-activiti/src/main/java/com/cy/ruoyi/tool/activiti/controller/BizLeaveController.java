@@ -6,6 +6,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.DTO.SysUserDTO;
 import com.cy.ruoyi.tool.activiti.consts.ActivitiConstant;
@@ -64,7 +65,7 @@ public class BizLeaveController extends BaseController
             BizLeave leave = leaveService.selectBizLeaveById(business.getTableId());
             return R.ok(leave);
         }
-        return R.error("no record");
+        return R.error(TradeErrorEnum.ACTIVITI_NO_RECORD);
     }
 
     /**

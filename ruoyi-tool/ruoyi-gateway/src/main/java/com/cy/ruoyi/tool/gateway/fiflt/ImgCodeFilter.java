@@ -2,8 +2,9 @@ package com.cy.ruoyi.tool.gateway.fiflt;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.cy.ruoyi.common.core.exception.ValidateCodeException;
+import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.utils.constants.Constants;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
@@ -95,18 +96,18 @@ public class ImgCodeFilter extends AbstractGatewayFilterFactory<ImgCodeFilter.Co
     {
         if (StringUtils.isBlank(code))
         {
-            throw new ValidateCodeException("验证码不能为空");
+            throw new BusinessException(TradeErrorEnum.GATEWAY_IMGCODE_NULL);
         }
         if (StringUtils.isBlank(randomStr))
         {
-            throw new ValidateCodeException("验证码不合法");
+            throw new BusinessException(TradeErrorEnum.GATEWAY_IMGCODE_ERROR);
         }
         String key = Constants.DEFAULT_CODE_KEY + randomStr;
         String saveCode = redisTemplate.opsForValue().get(key);
         redisTemplate.delete(key);
         if (!code.equalsIgnoreCase(saveCode))
         {
-            throw new ValidateCodeException("验证码不合法");
+            throw new BusinessException(TradeErrorEnum.GATEWAY_IMGCODE_ERROR);
         }
     }
 

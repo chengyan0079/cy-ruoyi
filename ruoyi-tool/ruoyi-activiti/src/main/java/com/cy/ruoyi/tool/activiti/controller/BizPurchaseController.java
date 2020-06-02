@@ -4,6 +4,7 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.DTO.SysUserDTO;
 import com.cy.ruoyi.tool.activiti.consts.ActivitiConstant;
@@ -65,7 +66,7 @@ public class BizPurchaseController extends BaseController
             BizPurchase purchase = purchaseService.getById(business.getTableId());
             return R.ok(purchase);
         }
-        return R.error("no record");
+        return R.error(TradeErrorEnum.ACTIVITI_NO_RECORD);
     }
 
     /**

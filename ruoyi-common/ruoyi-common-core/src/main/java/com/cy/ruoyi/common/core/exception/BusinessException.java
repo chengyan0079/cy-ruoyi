@@ -1,13 +1,19 @@
 package com.cy.ruoyi.common.core.exception;
 
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
+import lombok.Data;
+
 /**
  * 业务异常
  */
+@Data
 public class BusinessException extends RuntimeException
 {
     private static final long serialVersionUID = 1L;
 
-    protected final String message;
+    protected String message;
+
+    protected String code = TradeErrorEnum.SYSTEM_DEFAULT_ERROR.code;
 
     public BusinessException(String message)
     {
@@ -19,10 +25,18 @@ public class BusinessException extends RuntimeException
         super(message, e);
         this.message = message;
     }
-
-    @Override
-    public String getMessage()
+    public BusinessException(TradeErrorEnum errorEnum)
     {
-        return message;
+        super(errorEnum.msg);
+        this.message = errorEnum.msg;
+        this.code = errorEnum.code;
     }
+
+    public BusinessException(TradeErrorEnum errorEnum, Throwable e)
+    {
+        super(errorEnum.msg, e);
+        this.message = errorEnum.msg;
+        this.code = errorEnum.code;
+    }
+
 }

@@ -4,7 +4,8 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
-import com.cy.ruoyi.common.core.exception.RuoyiException;
+import com.cy.ruoyi.common.core.exception.BusinessException;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.consts.ActivitiConstant;
 import com.cy.ruoyi.tool.activiti.cover.ICustomProcessDiagramGenerator;
@@ -90,7 +91,7 @@ public class ProcessController extends BaseController
                 }
                 else
                 {
-                    return R.error("不支持的文件格式");
+                    return R.error(TradeErrorEnum.ACTIVITI_EXTENSION_ERROR);
                 }
                 if (null != deployment)
                 {
@@ -99,7 +100,7 @@ public class ProcessController extends BaseController
             }
             catch (Exception e)
             {
-                return R.error("部署失败");
+                return R.error(TradeErrorEnum.ACTIVITI_CREATE_ERROR);
             }
         }
         return R.ok();
@@ -191,7 +192,7 @@ public class ProcessController extends BaseController
     {
         if (StringUtils.isBlank(procInstId))
         {
-            log.error("参数为空");
+            log.error(TradeErrorEnum.ACTIVITI_PARAMS_NULL.msg);
         }
         HistoricProcessInstance processInstance = historyService.createHistoricProcessInstanceQuery()
                 .processInstanceId(procInstId).singleResult();
@@ -229,8 +230,8 @@ public class ProcessController extends BaseController
         }
         catch (IOException e)
         {
-            log.error(e.toString());
-            throw new RuoyiException("读取流程图片失败");
+            log.error(TradeErrorEnum.ACTIVITI_CREATE_IMG_FAIL.msg, e);
+            throw new BusinessException(TradeErrorEnum.ACTIVITI_CREATE_IMG_FAIL);
         }
     }
 

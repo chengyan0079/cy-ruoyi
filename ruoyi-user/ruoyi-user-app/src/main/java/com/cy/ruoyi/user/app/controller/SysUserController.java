@@ -11,6 +11,7 @@ import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.log.annotation.OperLog;
 import com.cy.ruoyi.common.log.enums.BusinessType;
 import com.cy.ruoyi.common.utils.annotation.LoginUser;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.PasswordUtil;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.common.utils.util.RandomUtil;
@@ -95,15 +96,15 @@ public class SysUserController extends BaseController
     {
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(sysUser.getLoginName())))
         {
-            return R.error("新增用户'" + sysUser.getLoginName() + "'失败，登录账号已存在");
+            return R.error(sysUser.getLoginName() + TradeErrorEnum.USER_ADD_USERNAME_REPEAT_ERROR.msg);
         }
         else if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(sysUser)))
         {
-            return R.error("新增用户'" + sysUser.getLoginName() + "'失败，手机号码已存在");
+            return R.error(sysUser.getLoginName() + TradeErrorEnum.USER_ADD_PHONE_REPEAT_ERROR.msg);
         }
         else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(sysUser)))
         {
-            return R.error("新增用户'" + sysUser.getLoginName() + "'失败，邮箱账号已存在");
+            return R.error(sysUser.getLoginName() + TradeErrorEnum.USER_ADD_MAIL_REPEAT_ERROR.msg);
         }
         sysUser.setSalt(RandomUtil.randomStr(6));
         sysUser.setPassword(PasswordUtil.encryptPassword(sysUser.getLoginName(), sysUser.getPassword(), sysUser.getSalt()));
@@ -123,15 +124,15 @@ public class SysUserController extends BaseController
     {
         if (null != sysUser.getUserId() && SysUser.isAdmin(sysUser.getUserId()))
         {
-            return R.error("不允许修改超级管理员用户");
+            return R.error(TradeErrorEnum.USER_IS_ADMIN);
         }
         else if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(sysUser)))
         {
-            return R.error("修改用户'" + sysUser.getLoginName() + "'失败，手机号码已存在");
+            return R.error(sysUser.getLoginName() + TradeErrorEnum.USER_UPDATE_PHONE_REPEAT_ERROR.msg);
         }
         else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(sysUser)))
         {
-            return R.error("修改用户'" + sysUser.getLoginName() + "'失败，邮箱账号已存在");
+            return R.error(sysUser.getLoginName() + TradeErrorEnum.USER_UPDATE_MAIL_REPEAT_ERROR.msg);
         }
         return toAjax(sysUserService.updateUser(sysUser));
     }

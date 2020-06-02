@@ -5,10 +5,11 @@ import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.auth.DTO.SysUserDTO;
 import com.cy.ruoyi.common.auth.constants.UserConstants;
 import com.cy.ruoyi.common.auth.enums.UserStatus;
-import com.cy.ruoyi.common.core.exception.RuoyiException;
+import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.log.publish.PublishFactory;
 import com.cy.ruoyi.common.utils.constants.Constants;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.*;
 import com.cy.ruoyi.tool.auth.feign.RemoteUserService;
 import org.apache.commons.lang3.StringUtils;
@@ -43,24 +44,22 @@ public class SysLoginService
         // 用户名或密码为空 错误
         if (StringUtils.isAnyBlank(username, password))
         {
-            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("not.null"));
-            throw new RuoyiException(MessageUtils.message("not.null"));
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, TradeErrorEnum.AUTH_USER_OR_PWD_NULL.msg);
+            throw new BusinessException(TradeErrorEnum.AUTH_USER_OR_PWD_NULL);
         }
         // 密码如果不在指定范围内 错误
         if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
                 || password.length() > UserConstants.PASSWORD_MAX_LENGTH)
         {
-            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-                    MessageUtils.message("user.password.not.match"));
-            throw new RuoyiException(MessageUtils.message("user.password.not.match"));
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, TradeErrorEnum.AUTH_USER_PWD_MATCH_ERROR.msg);
+            throw new BusinessException(TradeErrorEnum.AUTH_USER_PWD_MATCH_ERROR);
         }
         // 用户名不在指定范围内 错误
         if (username.length() < UserConstants.USERNAME_MIN_LENGTH
                 || username.length() > UserConstants.USERNAME_MAX_LENGTH)
         {
-            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-                    MessageUtils.message("user.password.not.match"));
-            throw new RuoyiException(MessageUtils.message("user.password.not.match"));
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, TradeErrorEnum.AUTH_USER_PWD_MATCH_ERROR.msg);
+            throw new BusinessException(TradeErrorEnum.AUTH_USER_PWD_MATCH_ERROR);
         }
         // 查询用户信息
         SysUserDTO user = userService.selectSysUserByUsername(username);
@@ -74,24 +73,22 @@ public class SysLoginService
 //         }
         if (RegexUtil.isNull(user))
         {
-            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.not.exists"));
-            throw new RuoyiException(MessageUtils.message("user.not.exists"));
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, TradeErrorEnum.AUTH_USER_NOT_EXISTS.msg);
+            throw new BusinessException(TradeErrorEnum.AUTH_USER_NOT_EXISTS);
         }
         if (UserStatus.DELETED.getCode().equals(user.getDelFlag()))
         {
-            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-                    MessageUtils.message("user.password.delete"));
-            throw new RuoyiException(MessageUtils.message("user.password.delete"));
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, TradeErrorEnum.AUTH_USER_PWD_DELETE.msg);
+            throw new BusinessException(TradeErrorEnum.AUTH_USER_PWD_DELETE);
         }
         if (UserStatus.DISABLE.getCode().equals(user.getStatus()))
         {
-            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-                    MessageUtils.message("user.blocked", user.getRemark()));
-            throw new RuoyiException(MessageUtils.message("user.blocked"));
+            PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, TradeErrorEnum.AUTH_USER_BLOCKED.msg);
+            throw new BusinessException(TradeErrorEnum.AUTH_USER_BLOCKED);
         }
         if (!PasswordUtil.matches(user.getLoginName(), user.getPassword(), user.getSalt(), password))
         {
-            throw new RuoyiException("密码错误！");
+            throw new BusinessException(TradeErrorEnum.AUTH_PWD_ERROR);
         }
         PublishFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success"));
         recordLoginInfo(user);

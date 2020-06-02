@@ -2,6 +2,7 @@ package com.cy.ruoyi.search.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.search.base.ESDataEntity;
@@ -20,7 +21,6 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class ElasticsearchController {
 
     @PostMapping("/createIndex/{indexName}")
     @ApiOperation(value = "创建索引")
-    @Transactional
+//    @Transactional
 //    @SentinelResource("/echo/{msg}")
     public R createIndex(@PathVariable String indexName)
     {
@@ -50,12 +50,12 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return R.error("创建失败！");
+        return R.error(TradeErrorEnum.SEARCH_CREATE_FAIL);
     }
 
     @PostMapping("/deleteIndex/{indexName}")
     @ApiOperation(value = "删除索引")
-    @Transactional
+//    @Transactional
 //    @SentinelResource("/echo/{msg}")
     public R deleteIndex(@PathVariable String indexName)
     {
@@ -66,12 +66,12 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return R.error("删除索引失败！");
+        return R.error(TradeErrorEnum.SEARCH_DELETE_INDEX_FAIL);
     }
 
     @GetMapping("/existIndex/{indexName}")
     @ApiOperation(value = "查询是否存在索引")
-    @Transactional
+//    @Transactional
     //    @SentinelResource("/echo/{msg}")
     public R existIndex(@PathVariable String indexName){
         try {
@@ -79,16 +79,16 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return R.error("查询失败！");
+        return R.error(TradeErrorEnum.SEARCH_QUERY_FAIL);
     }
 
     @PostMapping("/addDoc")
     @ApiOperation(value = "添加文档")
-    @Transactional
+//    @Transactional
 //    @SentinelResource("/echo/{msg}")
     public R addDoc(@RequestBody ESDataVO vo){
         if(RegexUtil.isNull(vo)){
-            return R.error("参数不能为空！");
+            return R.error(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
         ESDataEntity entity = new ESDataEntity();
         entity.setId(vo.getDataEntity().getId());
@@ -100,16 +100,16 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return R.error("添加文档失败！");
+        return R.error(TradeErrorEnum.SEARCH_CREATE_DOC_FAIL);
     }
 
     @PostMapping("/getDoc")
     @ApiOperation(value = "按id查询文档")
-    @Transactional
+//    @Transactional
     public R getDoc(@RequestBody ESDataVO vo){
         try {
             if(RegexUtil.isNull(vo)){
-                return R.error("参数不能为空！");
+                return R.error(TradeErrorEnum.SEARCH_PARAMS_NULL);
             }
             ESDataEntity entity = new ESDataEntity();
             entity.setId(vo.getDataEntity().getId());
@@ -119,13 +119,13 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return R.error("查询文档失败！");
+        return R.error(TradeErrorEnum.SEARCH_QUERY_FAIL);
     }
 
 
     @PostMapping("/deleteDoc")
     @ApiOperation(value = "按id删除文档")
-    @Transactional
+//    @Transactional
     //    @SentinelResource("/echo/{msg}")
     public R deleteDoc(@RequestBody ESDataVO vo){
         try {
@@ -134,13 +134,13 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return R.error("删除文档失败！");
+        return R.error(TradeErrorEnum.SEARCH_DELETE_DOC_FAIL);
     }
 
 
     @PostMapping("/addDocBatch")
     @ApiOperation(value = "批量添加文档")
-    @Transactional
+//    @Transactional
     //    @SentinelResource("/echo/{msg}")
     public R addDocBatch(@RequestBody ESListDataVO vo){
         try{
@@ -149,12 +149,12 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return R.error("批量添加文档失败！");
+        return R.error(TradeErrorEnum.SEARCH_BATCH_CREATE_DOC_FAIL);
     }
 
     @PostMapping("/search")
     @ApiOperation(value = "按条件查询文档")
-    @Transactional
+//    @Transactional
     public R search(@RequestBody ESQueryVO vo){
         try {
             List<?> data = restHighLevelApiService.search(vo);
@@ -162,7 +162,7 @@ public class ElasticsearchController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return  R.error("查询失败");
+        return  R.error(TradeErrorEnum.SEARCH_QUERY_FAIL);
     }
 
 }

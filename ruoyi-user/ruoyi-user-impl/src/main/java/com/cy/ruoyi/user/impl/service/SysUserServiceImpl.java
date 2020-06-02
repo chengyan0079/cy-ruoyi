@@ -9,6 +9,7 @@ import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.text.Convert;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
@@ -165,7 +166,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         {
             if (SysUser.isAdmin(userId))
             {
-                throw new BusinessException("不允许删除超级管理员用户");
+                throw new BusinessException(TradeErrorEnum.USER_IS_ADMIN);
             }
         }
         return userMapper.deleteUserByIds(userIds);
@@ -398,7 +399,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     {
         if (StringUtils.isNull(userList) || userList.size() == 0)
         {
-            throw new BusinessException("导入用户数据不能为空！");
+            throw new BusinessException(TradeErrorEnum.USER_DATA_IMPORT_NULL);
         }
         int successNum = 0;
         int failureNum = 0;
@@ -462,7 +463,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     {
         if (SysUser.isAdmin(user.getUserId()))
         {
-            throw new BusinessException("不允许修改超级管理员用户");
+            throw new BusinessException(TradeErrorEnum.USER_IS_ADMIN);
         }
         return userMapper.updateUser(user);
     }

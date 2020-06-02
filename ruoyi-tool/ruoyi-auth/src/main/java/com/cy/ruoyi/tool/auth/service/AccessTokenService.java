@@ -5,10 +5,12 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cy.ruoyi.common.auth.DTO.LoginUserDTO;
+import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.ServletUtils;
 import com.cy.ruoyi.common.redis.annotation.RedisEvict;
 import com.cy.ruoyi.common.redis.util.RedisUtils;
 import com.cy.ruoyi.common.utils.constants.Constants;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.AddressUtils;
 import com.cy.ruoyi.common.utils.util.IpUtils;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -36,14 +38,18 @@ public class AccessTokenService
 
     private final static String ACCESS_USERID = Constants.ACCESS_USERID;
 
-    public LoginUserDTO queryByToken(String token)
-    {
-        return redis.get(ACCESS_TOKEN + token, LoginUserDTO.class);
+    public LoginUserDTO queryByToken(String token) {
+        try {
+            return redis.get(ACCESS_TOKEN + token, LoginUserDTO.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error(TradeErrorEnum.AUTH_REDIS_GET_ERROR.msg, e);
+        }
+        return null;
     }
 
     @RedisEvict(key = "user_perms", fieldKey = "#sysUser.user.userId")
-    public Map<String, Object> createToken(LoginUserDTO sysUser)
-    {
+    public Map<String, Object> createToken(LoginUserDTO sysUser) throws BusinessException {
         // 生成token
         String token = IdUtil.fastSimpleUUID();
         log.info("生成token为:{}", token);
@@ -57,8 +63,14 @@ public class AccessTokenService
         sysUser.setToken(token);
         setUserAgent(sysUser);
         // expireToken(userId);
-        redis.set(ACCESS_TOKEN + token, sysUser, EXPIRE);
-        redis.set(ACCESS_USERID + sysUser.getUser().getUserId(), token, EXPIRE);
+        try {
+            redis.set(ACCESS_TOKEN + token, sysUser, EXPIRE);
+            redis.set(ACCESS_USERID + sysUser.getUser().getUserId(), token, EXPIRE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error(TradeErrorEnum.AUTH_REDIS_SET_ERROR.msg, e);
+        }
+
         return map;
     }
 

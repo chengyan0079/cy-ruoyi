@@ -4,6 +4,8 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
+import com.cy.ruoyi.common.core.exception.BusinessException;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.DateUtils;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.common.utils.util.ToolUtil;
@@ -39,7 +41,7 @@ public class CommonController extends BaseController
         {
             if (!FileUtils.isValidFilename(fileName))
             {
-                throw new Exception(StringUtils.format("文件名称({})非法，不允许下载。 ", fileName));
+                throw new BusinessException(TradeErrorEnum.USER_FILENAME_ERROR.msg + ": 文件名：" + fileName);
             }
             String realFileName = DateUtils.dateTimeNow() + fileName.substring(fileName.indexOf("_") + 1);
             String filePath = ToolUtil.getDownloadPath() + fileName;
@@ -56,7 +58,7 @@ public class CommonController extends BaseController
         }
         catch (Exception e)
         {
-            log.error("下载文件失败", e);
+            log.error(TradeErrorEnum.USER_FILE_DOWNLOAD_FAIL.msg, e);
         }
     }
 }

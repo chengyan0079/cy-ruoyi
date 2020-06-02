@@ -1,6 +1,7 @@
 package com.cy.ruoyi.tool.gateway.handler;
 
 import com.cy.ruoyi.common.utils.constants.Constants;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.google.code.kaptcha.Producer;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ public class ImgCodeHandler implements HandlerFunction<ServerResponse>
         }
         catch (IOException e)
         {
-            log.error("ImageIO write err", e);
+            log.error(TradeErrorEnum.GATEWAY_IMGCODE_FAIL.msg, e);
             return Mono.error(e);
         }
         return ServerResponse.status(HttpStatus.OK).contentType(MediaType.IMAGE_JPEG).header("randomstr", randomStr)

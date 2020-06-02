@@ -212,43 +212,25 @@ public class CustomProcessDiagramCanvas extends DefaultProcessDiagramCanvas
         }
         try
         {
-            USERTASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/userTask.png", customClassLoader));
-            SCRIPTTASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/scriptTask.png", customClassLoader));
-            SERVICETASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/serviceTask.png", customClassLoader));
-            RECEIVETASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/receiveTask.png", customClassLoader));
-            SENDTASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/sendTask.png", customClassLoader));
-            MANUALTASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/manualTask.png", customClassLoader));
-            BUSINESS_RULE_TASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/businessRuleTask.png", customClassLoader));
-            SHELL_TASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/shellTask.png", customClassLoader));
-            CAMEL_TASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/camelTask.png", customClassLoader));
-            MULE_TASK_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/muleTask.png", customClassLoader));
+            USERTASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/userTask.png", customClassLoader));
+            SCRIPTTASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/scriptTask.png", customClassLoader));
+            SERVICETASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/serviceTask.png", customClassLoader));
+            RECEIVETASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/receiveTask.png", customClassLoader));
+            SENDTASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/sendTask.png", customClassLoader));
+            MANUALTASK_IMAGE = ImageIO .read(ReflectUtil.getResource("org/activiti/icons/manualTask.png", customClassLoader));
+            BUSINESS_RULE_TASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/businessRuleTask.png", customClassLoader));
+            SHELL_TASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/shellTask.png", customClassLoader));
+            CAMEL_TASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/camelTask.png", customClassLoader));
+            MULE_TASK_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/muleTask.png", customClassLoader));
             TIMER_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/timer.png", customClassLoader));
-            COMPENSATE_THROW_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/compensate-throw.png", customClassLoader));
-            COMPENSATE_CATCH_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/compensate.png", customClassLoader));
-            ERROR_THROW_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/error-throw.png", customClassLoader));
-            ERROR_CATCH_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/error.png", customClassLoader));
-            MESSAGE_THROW_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/message-throw.png", customClassLoader));
-            MESSAGE_CATCH_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/message.png", customClassLoader));
-            SIGNAL_THROW_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/signal-throw.png", customClassLoader));
-            SIGNAL_CATCH_IMAGE = ImageIO
-                    .read(ReflectUtil.getResource("org/activiti/icons/signal.png", customClassLoader));
+            COMPENSATE_THROW_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/compensate-throw.png", customClassLoader));
+            COMPENSATE_CATCH_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/compensate.png", customClassLoader));
+            ERROR_THROW_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/error-throw.png", customClassLoader));
+            ERROR_CATCH_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/error.png", customClassLoader));
+            MESSAGE_THROW_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/message-throw.png", customClassLoader));
+            MESSAGE_CATCH_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/message.png", customClassLoader));
+            SIGNAL_THROW_IMAGE = ImageIO.read(ReflectUtil.getResource("org/activiti/icons/signal-throw.png", customClassLoader));
+            SIGNAL_CATCH_IMAGE = ImageIO .read(ReflectUtil.getResource("org/activiti/icons/signal.png", customClassLoader));
             /*        String baseUrl = Thread.currentThread().getContextClassLoader().getResource("static/img/activiti/").getPath();
                       SCRIPTTASK_IMAGE = ImageIO.read(new FileInputStream(baseUrl+"scriptTask.png"));
                       USERTASK_IMAGE = ImageIO.read(new FileInputStream(baseUrl+"userTask.png"));
@@ -269,7 +251,8 @@ public class CustomProcessDiagramCanvas extends DefaultProcessDiagramCanvas
                       MESSAGE_THROW_IMAGE = ImageIO.read(new FileInputStream(baseUrl+"message-throw.png"));
                       MESSAGE_CATCH_IMAGE = ImageIO.read(new FileInputStream(baseUrl+"message.png"));
                       SIGNAL_THROW_IMAGE = ImageIO.read(new FileInputStream(baseUrl+"signal-throw.png"));
-                      SIGNAL_CATCH_IMAGE = ImageIO.read(new FileInputStream(baseUrl+"signal.png"));*/
+                      SIGNAL_CATCH_IMAGE = ImageIO.read(new FileInputStream(baseUrl+"signal.png"));
+                      */
             flag = true;
         }
         catch (IOException e)

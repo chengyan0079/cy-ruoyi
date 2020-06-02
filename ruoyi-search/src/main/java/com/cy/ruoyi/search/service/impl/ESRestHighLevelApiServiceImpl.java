@@ -3,14 +3,13 @@ package com.cy.ruoyi.search.service.impl;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.fastjson.JSON;
-import com.cy.ruoyi.common.core.exception.RuoyiException;
-import com.cy.ruoyi.common.utils.util.R;
+import com.cy.ruoyi.common.core.exception.BusinessException;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.search.base.ESDataEntity;
 import com.cy.ruoyi.search.service.ESRestHighLevelApiService;
 import com.cy.ruoyi.search.utils.ElasticUtil;
 import com.cy.ruoyi.search.vo.ESQueryVO;
-import org.apache.poi.ss.formula.functions.T;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -76,12 +75,12 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public boolean createIndex(String indexName) throws IOException {
         if (RegexUtil.isNull(indexName)) {
-            log.error("索引不能为空！");
-            new RuoyiException("索引不能为空！");
+            log.error(TradeErrorEnum.SEARCH_INDEX_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_INDEX_NULL);
         }
         if (existIndex(indexName)) {
-            log.error("该索引已存在，不能创建！");
-            new RuoyiException("该索引已存在，不能创建！");
+            log.error(TradeErrorEnum.SEARCH_CREATE_INDEX_ERROR.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_CREATE_INDEX_ERROR);
         }
         // 1、创建索引请求
         CreateIndexRequest request = new CreateIndexRequest(indexName);
@@ -112,8 +111,8 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public boolean existIndex(String indexName) throws IOException {
         if (RegexUtil.isNull(indexName)) {
-            log.error("索引不能为空！");
-            new Exception("索引不能为空！");
+            log.error(TradeErrorEnum.SEARCH_INDEX_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_INDEX_NULL);
         }
 
         GetIndexRequest request = new GetIndexRequest(indexName);
@@ -129,12 +128,12 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public boolean deleteIndex(String indexName) throws IOException {
         if(RegexUtil.isNull(indexName)){
-            log.error("索引不能为空！");
-            new RuoyiException("索引不能为空！");
+            log.error(TradeErrorEnum.SEARCH_INDEX_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_INDEX_NULL);
         }
         if (!existIndex(indexName)) {
-            log.error("该索引不存在，不能删除！");
-            new RuoyiException("该索引不存在，不能删除！");
+            log.error(TradeErrorEnum.SEARCH_DELETE_INDEX_ERROR.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_DELETE_INDEX_ERROR);
         }
 
         DeleteIndexRequest request = new DeleteIndexRequest(indexName);
@@ -150,12 +149,12 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public RestStatus addDoc(String indexName, ESDataEntity data) throws IOException {
         if(RegexUtil.isNull(indexName) || RegexUtil.isNull(data.getId()) || RegexUtil.isNull(data.getData())){
-            log.error("参数不能为空！");
-            new RuoyiException("参数不能为空！");
+            log.error(TradeErrorEnum.SEARCH_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
         if (!existIndex(indexName)){
-            log.error("该索引为空，添加文档失败！");
-            new RuoyiException("该索引为空，添加文档失败！");
+            log.error(TradeErrorEnum.SEARCH_CREATE_DOC_ERROR.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_CREATE_DOC_ERROR);
         }
 
         // 创建请求
@@ -180,8 +179,8 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public RestStatus addDocBatch(String indexName, List<ESDataEntity> list) throws IOException{
         if(RegexUtil.isNull(indexName) || RegexUtil.isNull(list)){
-            log.error("参数不能为空！");
-            new RuoyiException("参数不能为空！");
+            log.error(TradeErrorEnum.SEARCH_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
 
         BulkRequest request = new BulkRequest();
@@ -202,8 +201,8 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public boolean existDoc(String indexName, ESDataEntity data) throws IOException {
         if(RegexUtil.isNull(indexName) || RegexUtil.isNull(data.getId())){
-            log.error("参数不能为空！");
-            new RuoyiException("参数不能为空！");
+            log.error(TradeErrorEnum.SEARCH_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
 
         GetRequest getRequest = new GetRequest(indexName, data.getId());
@@ -223,8 +222,8 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public String getDoc(String indexName, ESDataEntity data) throws IOException {
         if(RegexUtil.isNull(indexName) || RegexUtil.isNull(data.getId())){
-            log.error("参数不能为空！");
-            new RuoyiException("参数不能为空！");
+            log.error(TradeErrorEnum.SEARCH_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
 
         GetRequest getRequest = new GetRequest(indexName, data.getId());
@@ -239,8 +238,8 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public RestStatus updateDoc(String indexName, ESDataEntity data) throws IOException {
         if(RegexUtil.isNull(indexName) || RegexUtil.isNull(data.getId()) || RegexUtil.isNull(data.getData())){
-            log.error("参数不能为空！");
-            new RuoyiException("参数不能为空！");
+            log.error(TradeErrorEnum.SEARCH_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
 
         UpdateRequest updateRequest = new UpdateRequest(indexName, data.getId());
@@ -260,12 +259,12 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public RestStatus deleteDoc(String indexName, ESDataEntity data) throws IOException {
         if(RegexUtil.isNull(indexName) || RegexUtil.isNull(data.getId())){
-            log.error("参数不能为空！");
-            new RuoyiException("参数不能为空！");
+            log.error(TradeErrorEnum.SEARCH_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
         if(!existIndex(indexName)){
-            log.error("该索引不存在");
-            new RuoyiException("该索引不存在");
+            log.error(TradeErrorEnum.SEARCH_DELETE_INDEX_ERROR.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_DELETE_INDEX_ERROR);
         }
 
         DeleteRequest request = new DeleteRequest(indexName, data.getId());
@@ -287,8 +286,8 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
     @Override
     public <T> List<T> search(ESQueryVO vo) throws IOException {
         if(RegexUtil.isNull(vo)){
-            log.error("参数不能为空！");
-            new RuoyiException("参数不能为空！");
+            log.error(TradeErrorEnum.SEARCH_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_PARAMS_NULL);
         }
         SearchRequest searchRequest = new SearchRequest(vo.getIndexName());
 
@@ -300,8 +299,8 @@ public class ESRestHighLevelApiServiceImpl implements ESRestHighLevelApiService 
             queryBuilder = QueryBuilders.matchQuery(kys, params.get(kys));
         }
         if(RegexUtil.isNull(queryBuilder)) {
-            log.error("搜索条件不能为空！");
-            new RuoyiException("搜索条件不能为空！");
+            log.error(TradeErrorEnum.SEARCH_QUERY_PARAMS_NULL.msg);
+            new BusinessException(TradeErrorEnum.SEARCH_QUERY_PARAMS_NULL);
         }
         SearchSourceBuilder searchSourceBuilder = ElasticUtil.initSearchSourceBuilder(queryBuilder);
         searchRequest.source(searchSourceBuilder);

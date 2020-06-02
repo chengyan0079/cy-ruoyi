@@ -6,6 +6,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.entity.ActReModel;
 import com.cy.ruoyi.tool.activiti.service.IActReModelService;
@@ -99,13 +100,13 @@ public class ModelerController extends BaseController
         byte[] bytes = repositoryService.getModelEditorSource(modelData.getId());
         if (bytes == null)
         {
-            return R.error("模型数据为空，请先设计流程并成功保存，再进行发布。");
+            return R.error(TradeErrorEnum.ACTIVITI_MODELER_NO_DATA);
         }
         JsonNode modelNode = new ObjectMapper().readTree(bytes);
         BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
         if (model.getProcesses().size() == 0)
         {
-            return R.error("数据模型不符要求，请至少设计一条主线流程。");
+            return R.error(TradeErrorEnum.ACTIVITI_MODELER_ERROR);
         }
         byte[] bpmnBytes = new BpmnXMLConverter().convertToXML(model);
         // 发布流程

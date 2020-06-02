@@ -6,6 +6,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.tool.activiti.VO.ReProcdef;
 import com.cy.ruoyi.tool.activiti.entity.ActReProcdef;
@@ -96,7 +97,7 @@ public class ActivitiController extends BaseController
             long count = runtimeService.createProcessInstanceQuery().deploymentId(id).count();
             if (count > 0)
             {
-                return R.error("流程正在运行中，无法删除");
+                return R.error(TradeErrorEnum.ACTIVITI_IS_RUNNING);
             }
             else
             {
