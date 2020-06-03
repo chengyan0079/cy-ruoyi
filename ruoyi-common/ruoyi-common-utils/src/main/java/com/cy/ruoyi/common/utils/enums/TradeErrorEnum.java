@@ -76,6 +76,7 @@ public enum TradeErrorEnum {
     USER_UPDATE_PHONE_REPEAT_ERROR("2003007", "修改用户失败，手机号码已存在！"),
     USER_UPDATE_MAIL_REPEAT_ERROR("2003008", "修改用户失败，邮箱账号已存在！"),
     USER_DATA_IMPORT_NULL("2003009", "导入用户数据不能为空！"),
+    USER_DEPT_LOCK("2003010", "该部门已停用！"),
 
     // 007 - 搜索服务
     SEARCH_INDEX_NULL("2007001", "索引不能为空！"),

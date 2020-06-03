@@ -8,6 +8,8 @@ spring:
   cloud:
     nacos:
       discovery:
+#        ip: 182.148.123.6
+        ip: 139.155.2.139
         enabled: true
         register-enabled: true
         server-addr: 139.155.70.19:8848

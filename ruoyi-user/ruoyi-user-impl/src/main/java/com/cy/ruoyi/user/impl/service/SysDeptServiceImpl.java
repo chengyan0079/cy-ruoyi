@@ -10,6 +10,7 @@ import com.cy.ruoyi.common.core.exception.BusinessException;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.utils.enums.TradeErrorEnum;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.user.api.entity.SysDept;
@@ -185,7 +186,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
             // 如果父节点不为"正常"状态,则不允许新增子节点
             if (!UserConstants.DEPT_NORMAL.equals(info.getStatus()))
             {
-                throw new BusinessException("部门停用，不允许新增");
+                throw new BusinessException(TradeErrorEnum.USER_DEPT_LOCK);
             }
             dept.setAncestors(info.getAncestors() + "," + dept.getParentId());
         }

@@ -12,16 +12,18 @@ spring:
   cloud:
     nacos:
       discovery:
+        # ip: 182.148.123.6
+        ip: 139.155.2.139
         enabled: true
         register-enabled: true
-        server-addr: 127.0.0.1:8848
+        server-addr: 139.155.70.19:8848
       config:
         enabled: false
     sentinel:
       log:
         dir: /home/chengy/logs/gen/
       transport:
-        dashboard: localhost:8844
+        dashboard: 139.155.70.19:8844
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

@@ -24,6 +24,16 @@ spring:
       min-evictable-idle-time-millis:  300000
       validation-query: select 1 from dual
       keep-alive: true
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMills=5000
+      filter:
+        stat:
+          merge-sql: true
+          enabled: true
+        wall:
+          enabled: true
+      web-stat-filter:
+        enabled: true
+      aop-patterns: com.cy.ruoyi.demo.provider.*
   redis:
     database: 0
     host: 139.155.70.19

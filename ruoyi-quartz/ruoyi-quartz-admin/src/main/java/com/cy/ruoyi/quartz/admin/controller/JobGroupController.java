@@ -9,6 +9,8 @@ import com.cy.ruoyi.quartz.admin.core.util.I18nUtil;
 import com.cy.ruoyi.quartz.admin.dao.XxlJobGroupDao;
 import com.cy.ruoyi.quartz.admin.dao.XxlJobInfoDao;
 import com.cy.ruoyi.quartz.admin.dao.XxlJobRegistryDao;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

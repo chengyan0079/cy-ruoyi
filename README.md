@@ -18,7 +18,7 @@
 * 搜索引擎：Elasticsearch
 * 工作流：Activiti
 * 容器：Docker
-* 监控体系：Prometheus、Grafana
+* 监控体系：Prometheus、Grafana、Druid
 * Java诊断：Arthas
 
 ---

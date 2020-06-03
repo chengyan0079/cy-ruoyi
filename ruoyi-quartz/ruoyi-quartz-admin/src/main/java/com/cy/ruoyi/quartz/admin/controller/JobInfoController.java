@@ -17,6 +17,8 @@ import com.cy.ruoyi.quartz.admin.core.util.I18nUtil;
 import com.cy.ruoyi.quartz.admin.dao.XxlJobGroupDao;
 import com.cy.ruoyi.quartz.admin.service.LoginService;
 import com.cy.ruoyi.quartz.admin.service.XxlJobService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,7 +96,7 @@ public class JobInfoController {
 	@RequestMapping("/pageList")
 	@ResponseBody
 	@SentinelResource("pageList")
-	public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,  
+	public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,
 			@RequestParam(required = false, defaultValue = "10") int length,
 			int jobGroup, int triggerStatus, String jobDesc, String executorHandler, String author) {
 		

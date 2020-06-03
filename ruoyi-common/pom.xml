@@ -31,6 +31,7 @@
         <module>ruoyi-common-auth</module>
         <module>ruoyi-common-sms</module>
         <module>ruoyi-common-job</module>
+        <module>ruoyi-common-mq</module>
 
     </modules>
 

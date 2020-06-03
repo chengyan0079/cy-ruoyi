@@ -10,6 +10,8 @@ import com.cy.ruoyi.quartz.admin.controller.annotation.PermissionLimit;
 import com.cy.ruoyi.quartz.admin.core.conf.XxlJobAdminConfig;
 import com.cy.ruoyi.quartz.admin.core.exception.XxlJobException;
 import com.cy.ruoyi.quartz.admin.core.util.JacksonUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
