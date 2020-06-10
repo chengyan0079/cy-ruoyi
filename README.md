@@ -5,6 +5,7 @@
 ---
 ## 中间件
 * 数据库：Mysql
+* 网关：Soul
 * 缓存数据库：Redis
 * 注册中心：Nacos
 * 配置中心：Nacos（尚未）
@@ -30,10 +31,12 @@
 * Kibana UI：localhost:5601
 * RocketMQ Console：localhost:9899（尚未）
 * Grafana UI：localhost:3000
+* Soul Admin：localhost
 
 ---
 ##  架构设计图
 ![](docs/doc/ruoyi-cloud.png)
+
 ---
 ## 目录结构
 ```
@@ -51,7 +54,7 @@ cy-ruoyi
     ├──ruoyi-common-job // 定时任务核心包
     ├──ruoyi-common-mq // 消息队列
  ├──ruoyi-user //用户 8081
-    ├──ruoyi-user-application //用户启动
+    ├──ruoyi-user-app //用户启动
     ├──ruoyi-user-api //用户API
     ├──ruoyi-user-impl //用户实现
     ├──sql //用户sql
@@ -110,7 +113,6 @@ cy-ruoyi
     ├──在线用户
     ├──操作日志
     ├──登陆日志
-    ├──服务监控
  ├──系统工具
     ├──代码生成
     ├──定时任务
