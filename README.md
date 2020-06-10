@@ -24,14 +24,14 @@
 
 ---
 ## 服务端地址：
-* Nacos Console：localhost:8848
+* Nacos Console：localhost:8848/nacos
 * Sentinel Console：localhost:8844
 * XXL-Admin Console：localhost:7080
 * SkyWalking UI：localhost:18080
 * Kibana UI：localhost:5601
 * RocketMQ Console：localhost:9899（尚未）
 * Grafana UI：localhost:3000
-* Soul Admin：localhost
+* Soul Admin：localhost:9095/index.html
 
 ---
 ##  架构设计图
@@ -79,6 +79,9 @@ cy-ruoyi
     ├──ruoyi-quartz-admin //job调度中心  7080
     ├──ruoyi-quartz-executor //job执行器  8011
     ├──sql //quartz sql
+ ├──ruoyi-soul // 网关服务
+    ├──ruoyi-soul-admin // 网关管理台  9095
+    ├──ruoyi-soul-bootstrap // 网关处理器 9195
  ├──ruoyi-tool //工具
     ├──ruoyi-gen // 代码生成 7065
     ├──ruoyi-auth // 授权鉴权  8090

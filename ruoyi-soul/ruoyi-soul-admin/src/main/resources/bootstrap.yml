@@ -1,0 +1,24 @@
+spring:
+#  profiles:
+#    active: dev
+#  application:
+#    name: ruoyi-soul-admin
+#  thymeleaf:
+#    cache: true
+#    encoding: utf-8
+#    enabled: true
+#    prefix: classpath:/static/
+#    suffix: .html
+#  main:
+#    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+#        ip: 139.155.2.139
+        enabled: true
+        register-enabled: true
+        server-addr: 139.155.70.19:8848
+      config:
+        enabled: false
+#  resources:
+#    static-locations: classpath:/static

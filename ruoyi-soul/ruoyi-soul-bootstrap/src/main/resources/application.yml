@@ -1,0 +1,49 @@
+server:
+  port: 9195
+
+soul :
+  filterTimeEnable : false
+  filterTime : 10
+  sync:
+    strategy: websocket
+    websocket :
+      url: ws://localhost:8887/websocket
+#        zookeeper:
+#             url: localhost:2181
+#             sessionTimeout: 5000
+#             connectionTimeout: 2000
+#        http:
+#             url : localhost:8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    prometheus:
+      enabled: true
+  metrics:
+    tags: # 通用标签
+      application: ${spring.application.name}
+
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    root: info
+    org.springframework.boot: info
+    org.apache.ibatis: info
+    org.dromara.soul.bonuspoint: info
+    org.dromara.soul.lottery: debug
+    org.dromara.soul: debug
+
+# 服务信息
+info:
+  name: @project.name@
+  version: @project.version@
+  description: @project.description@
+  author: chengyan
+  mail: 304338940@qq.com

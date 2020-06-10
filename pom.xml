@@ -50,6 +50,7 @@
         <module>ruoyi-demo</module>
         <module>ruoyi-quartz</module>
         <module>ruoyi-search</module>
+        <module>ruoyi-soul</module>
 
     </modules>
 
