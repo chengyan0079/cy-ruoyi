@@ -7,13 +7,13 @@ soul :
   sync:
     strategy: websocket
     websocket :
-      url: ws://localhost:8887/websocket
+      url: ws://localhost:9095/websocket
 #        zookeeper:
 #             url: localhost:2181
 #             sessionTimeout: 5000
 #             connectionTimeout: 2000
-#        http:
-#             url : localhost:8888
+#    http:
+#     url : localhost:8888
 
 management:
   endpoints:

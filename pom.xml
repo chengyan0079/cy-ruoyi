@@ -40,6 +40,7 @@
         <junit.version>4.13</junit.version>
         <xxl-rpc-core.version>1.5.0</xxl-rpc-core.version>
         <groovy.version>2.5.9</groovy.version>
+        <soul.version>2.1.2-RELEASE</soul.version>
 
     </properties>
 

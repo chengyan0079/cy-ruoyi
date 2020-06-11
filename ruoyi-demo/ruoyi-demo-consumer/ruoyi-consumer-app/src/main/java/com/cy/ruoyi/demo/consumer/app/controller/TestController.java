@@ -2,6 +2,7 @@ package com.cy.ruoyi.demo.consumer.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
@@ -13,6 +14,7 @@ import com.cy.ruoyi.demo.provider.api.service.ITestProviderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -39,14 +41,24 @@ public class TestController extends BaseController {
 
     @PostMapping("/echo/{msg}")
     @ApiOperation(value = "测试msg")
-//    @SentinelResource("/echo/{msg}")
+    @SoulClient(path = "/conTest/echo/{msg}", desc = "测试msg")
+    @SentinelResource("/echo/{msg}")
     public String echo(@PathVariable String msg){
-        return "conTest ===" + msg;
+        return "conTest === " + msg;
+    }
+
+    @PostMapping("/echo2")
+    @SoulClient(path = "/conTest/echo2", desc = "测试msg2")
+    @ApiOperation(value = "测试msg2")
+    @SentinelResource("/echo2")
+    public String echo2(@RequestParam("msg") String msg){
+        return "conTest2 === " + msg;
     }
 
     @PostMapping("/testMsg/{msg}")
     @ApiOperation(value = "testConsumerMsg")
-//    @SentinelResource("/testMsg/{msg}")
+    @SoulClient(path = "/conTest/testMsg/{msg}", desc = "testConsumerMsg")
+    @SentinelResource("/testMsg/{msg}")
     public String testConsumerMsg(@PathVariable String msg){
         return testProviderService.testProviderMsg(msg);
     }
@@ -54,6 +66,8 @@ public class TestController extends BaseController {
 
     @PostMapping("testSeata")
     @ApiOperation(value = "测试Seata,添加订单和商品")
+    @SoulClient(path = "/conTest/testSeata", desc = "测试Seata,添加订单和商品")
+    @SentinelResource("/testSeata")
     public R testSeata(@RequestBody TbGoodsInfo goodInfo){
         if(RegexUtil.isNull(goodInfo)){
             return R.error();

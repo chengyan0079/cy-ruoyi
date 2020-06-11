@@ -11,6 +11,7 @@ import com.cy.ruoyi.demo.consumer.api.service.ITbGoodsInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,7 @@ public class TbGoodsInfoController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "分页查询商品列表")
+    @SoulClient(path = "/goods/list", desc = "分页查询商品列表")
 //    @SentinelResource("list")
     public R list(TbGoodsInfo goodsInfo)
     {
@@ -44,6 +46,7 @@ public class TbGoodsInfoController extends BaseController
     @PostMapping("save")
 //    @OperLog(title = "商品管理", businessType = BusinessType.INSERT)
     @ApiOperation(value = "新增保存商品")
+    @SoulClient(path = "/goods/save", desc = "新增保存商品")
 //    @SentinelResource("save")
     public R addSave(@RequestBody TbGoodsInfo goodsInfo)
     {
@@ -56,6 +59,7 @@ public class TbGoodsInfoController extends BaseController
 //    @OperLog(title = "商品管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
     @ApiOperation(value = "修改保存商品")
+    @SoulClient(path = "/goods/update", desc = "修改保存商品")
 //    @SentinelResource("update")
     public R editSave(@RequestBody TbGoodsInfo goodsInfo)
     {

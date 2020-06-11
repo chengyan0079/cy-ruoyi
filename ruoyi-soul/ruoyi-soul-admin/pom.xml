@@ -27,13 +27,13 @@
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>soul-common</artifactId>
-            <version>2.1.2-RELEASE</version>
+            <version>${soul.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>soul-configuration</artifactId>
-            <version>2.1.2-RELEASE</version>
+            <version>${soul.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter-data-redis</artifactId>
