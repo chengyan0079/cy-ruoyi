@@ -2,6 +2,7 @@ package com.cy.ruoyi.demo.provider.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
@@ -13,6 +14,7 @@ import com.cy.ruoyi.demo.provider.api.service.ITbOrderInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -38,22 +40,34 @@ public class TestController extends BaseController {
 
     @PostMapping("/echo/{msg}")
     @ApiOperation(value = "测试msg")
-//    @SentinelResource("/echo/{msg}")
-    public String echo(@PathVariable String msg){
+    @SoulClient(path = "/proTest/echo/**", desc = "测试msg")
+    @SentinelResource("echo/{msg}")
+    public String echo(@PathVariable("msg") String msg){
         return "proTest ===" + msg;
+    }
+
+    @PostMapping("/echo2")
+    @ApiOperation(value = "测试msg2")
+    @SoulClient(path = "/proTest/echo2", desc = "测试msg2")
+    @SentinelResource("echo2")
+    public String echo2(@RequestParam("msg") String msg){
+        return "proTest2 ===" + msg;
     }
 
 
     @PostMapping("/testMsg/{msg}")
     @ApiOperation(value = "testConsumerMsg")
-//    @SentinelResource("/testMsg/{msg}")
-    public String testConsumerMsg(@PathVariable String msg){
+    @SoulClient(path = "/proTest/testMsg/**", desc = "testConsumerMsg")
+    @SentinelResource("testMsg/{msg}")
+    public String testConsumerMsg(@PathVariable("msg") String msg){
         return testConsumerService.testConsumerMsg(msg);
     }
 
 
     @PostMapping("testSeata")
     @ApiOperation(value = "测试Seata,添加订单和商品")
+    @SoulClient(path = "/proTest/testSeata", desc = "测试Seata,添加订单和商品")
+    @SentinelResource("testSeata")
     public R testSeata(@RequestBody TbOrderInfo orderInfo){
         if(RegexUtil.isNull(orderInfo)){
             return R.error();

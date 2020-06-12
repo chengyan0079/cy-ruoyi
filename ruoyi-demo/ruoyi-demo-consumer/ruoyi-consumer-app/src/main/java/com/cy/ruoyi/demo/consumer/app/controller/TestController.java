@@ -41,9 +41,9 @@ public class TestController extends BaseController {
 
     @PostMapping("/echo/{msg}")
     @ApiOperation(value = "测试msg")
-    @SoulClient(path = "/conTest/echo/{msg}", desc = "测试msg")
+    @SoulClient(path = "/conTest/echo/**", desc = "测试msg")
     @SentinelResource("/echo/{msg}")
-    public String echo(@PathVariable String msg){
+    public String echo(@PathVariable("msg") String msg){
         return "conTest === " + msg;
     }
 
@@ -57,9 +57,9 @@ public class TestController extends BaseController {
 
     @PostMapping("/testMsg/{msg}")
     @ApiOperation(value = "testConsumerMsg")
-    @SoulClient(path = "/conTest/testMsg/{msg}", desc = "testConsumerMsg")
+    @SoulClient(path = "/conTest/testMsg/**", desc = "testConsumerMsg")
     @SentinelResource("/testMsg/{msg}")
-    public String testConsumerMsg(@PathVariable String msg){
+    public String testConsumerMsg(@PathVariable("msg") String msg){
         return testProviderService.testProviderMsg(msg);
     }
 

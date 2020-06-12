@@ -2,6 +2,7 @@ package com.cy.ruoyi.demo.provider.app.controller;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
@@ -11,6 +12,7 @@ import com.cy.ruoyi.demo.provider.api.service.ITbOrderInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,7 +30,8 @@ public class TbOrderInfoController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "分页查询订单列表")
-//    @SentinelResource("list")
+    @SoulClient(path = "/order/list", desc = "分页查询订单列表")
+    @SentinelResource("list")
     public R list(TbOrderInfo orderInfo)
     {
         PageDomain pageDomain = getPageInfo();
@@ -41,9 +44,9 @@ public class TbOrderInfoController extends BaseController
      * 新增保存订单
      */
     @PostMapping("save")
-//    @OperLog(title = "订单管理", businessType = BusinessType.INSERT)
     @ApiOperation(value = "新增保存订单")
-//    @SentinelResource("save")
+    @SoulClient(path = "/order/save", desc = "新增保存订单")
+    @SentinelResource("save")
     public R addSave(@RequestBody TbOrderInfo orderInfo)
     {
         return toAjax(orderInfoService.insertOrder(orderInfo));
@@ -55,7 +58,8 @@ public class TbOrderInfoController extends BaseController
 //    @OperLog(title = "订单管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
     @ApiOperation(value = "修改保存订单")
-//    @SentinelResource("update")
+    @SoulClient(path = "/order/update", desc = "修改保存订单")
+    @SentinelResource("update")
     public R editSave(@RequestBody TbOrderInfo orderInfo)
     {
         return toAjax(orderInfoService.updateOrder(orderInfo));
