@@ -45,7 +45,7 @@ dubbo:
   cloud:
     subscribed-services: ruoyi-demo-provider
   consumer:
-    timeout: 10000
+    timeout: 20000
     check: false
     filter: -exception
     ITbOrderInfoService:
@@ -53,25 +53,25 @@ dubbo:
     ITestProviderService:
       version: 1.0.0
   provider:
-    timeout: 10000
+    timeout: 20000
     filter: -exception
     ITbGoodsInfoService:
       version: 1.0.0
     ITestConsumerService:
       version: 1.0.0
 
-feign:
-  #开启GZIP压缩
-  compression:
-    request:
-      enable: true
-      mime-types: text/xml,application/xml,application.json
-      min-request-size: 2048 #通讯传输超过此大小便会进行压缩,减少通信性能损耗
-    response:
-      enable: true
-  #feign对hystrix的支持
-  hystrix:
-    enabled: true
+#feign:
+#  #开启GZIP压缩
+#  compression:
+#    request:
+#      enable: true
+#      mime-types: text/xml,application/xml,application.json
+#      min-request-size: 2048 #通讯传输超过此大小便会进行压缩,减少通信性能损耗
+#    response:
+#      enable: true
+#  #feign对hystrix的支持
+#  hystrix:
+#    enabled: true
 
 management:
   endpoints:
@@ -90,7 +90,7 @@ management:
 logging:
   config: classpath:logback-spring.xml
   level:
-    com.cy.ruoyi.demo.consumer.api.feign: debug
+#    com.cy.ruoyi.demo.consumer.api.feign: debug
     org:
       mybatis: debug
 
@@ -113,8 +113,8 @@ info:
   mail: 304338940@qq.com
 
 # soul配置
-soul:
-  springcloud:
-    admin-url: http://127.0.0.1:9095
-    app-name: ${spring.application.name}
-    context-path: /con-api
+#soul:
+#  springcloud:
+#    admin-url: http://127.0.0.1:9095
+#    app-name: ${spring.application.name}
+#    context-path: /con-api

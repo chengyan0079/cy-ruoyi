@@ -3,7 +3,7 @@ package com.cy.ruoyi.user.api.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("Sys_Post")
-public class SysPost extends BaseEntity implements Serializable
+public class SysPost extends BaseDO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 

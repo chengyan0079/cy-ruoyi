@@ -1,12 +1,9 @@
 package com.cy.ruoyi.user.api.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * 角色和部门关联 sys_role_dept
@@ -15,7 +12,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("Sys_Role_Dept")
-public class SysRoleDept extends BaseEntity
+public class SysRoleDept extends BaseDO
 {
     /** 角色ID */
     @TableId(value="role_Id")

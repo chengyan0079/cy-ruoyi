@@ -3,7 +3,7 @@ package com.cy.ruoyi.tool.gen.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import com.cy.ruoyi.common.utils.util.StringUtils;
 import com.cy.ruoyi.tool.gen.constant.GenConstants;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Data
 @TableName("gen_table")
-public class GenTable extends BaseEntity
+public class GenTable extends BaseDO
 {
     private static final long    serialVersionUID = 1L;
 

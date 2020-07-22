@@ -1,6 +1,6 @@
 package com.cy.ruoyi.common.auth.DTO;
 
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.util.Set;
  * 用户对象 sys_user
  */
 @Data
-public class SysUserDTO extends BaseEntity implements Serializable
+public class SysUserDTO extends BaseDO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 

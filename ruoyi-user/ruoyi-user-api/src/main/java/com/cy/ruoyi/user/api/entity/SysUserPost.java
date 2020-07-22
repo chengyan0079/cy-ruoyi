@@ -1,9 +1,8 @@
 package com.cy.ruoyi.user.api.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("Sys_User_Post")
-public class SysUserPost extends BaseEntity implements Serializable
+public class SysUserPost extends BaseDO implements Serializable
 {
     /** 用户ID */
     @TableId(value="user_Id")

@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: mall-search
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 139.155.70.19:8848
+      config:
+        enabled: false
+    sentinel:
+      log:
+        dir: /home/chengy/logs/mall/search/
+      transport:
+        dashboard: 139.155.70.19:8844
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      maxFileSize: 5MB  #单位必须大写MB或不写(即为B)
+      maxRequestSize: 10MB
+
+swagger:
+  service:
+    basePackage: com.cy.ruoyi.mall.search
+    title: ${spring.application.name}
+    description: 搜索服务 RESTful APIs详情!
+    version: v1.0.0

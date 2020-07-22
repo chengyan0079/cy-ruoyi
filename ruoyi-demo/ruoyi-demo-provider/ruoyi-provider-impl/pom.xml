@@ -45,6 +45,11 @@
 
     <build>
         <plugins>
+            <!-- 提供给 mapstruct 使用 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 

@@ -7,8 +7,9 @@ import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
-import com.cy.ruoyi.demo.provider.api.entity.TbOrderInfo;
 import com.cy.ruoyi.demo.provider.api.service.ITbOrderInfoService;
+import com.cy.ruoyi.demo.provider.app.PO.OrderInfoPO;
+import com.cy.ruoyi.demo.provider.app.convert.OrderInfoAppConvert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
@@ -32,11 +33,11 @@ public class TbOrderInfoController extends BaseController
     @ApiOperation(value = "分页查询订单列表")
     @SoulClient(path = "/order/list", desc = "分页查询订单列表")
     @SentinelResource("list")
-    public R list(TbOrderInfo orderInfo)
+    public R list(OrderInfoPO orderInfo)
     {
         PageDomain pageDomain = getPageInfo();
         log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
-        PageUtils page = orderInfoService.selectOrderList(pageDomain, orderInfo);
+        PageUtils page = orderInfoService.selectOrderList(pageDomain, OrderInfoAppConvert.INSTANCE.converPO2DTO(orderInfo));
         return R.ok(page);
     }
 
@@ -47,9 +48,9 @@ public class TbOrderInfoController extends BaseController
     @ApiOperation(value = "新增保存订单")
     @SoulClient(path = "/order/save", desc = "新增保存订单")
     @SentinelResource("save")
-    public R addSave(@RequestBody TbOrderInfo orderInfo)
+    public R addSave(@RequestBody OrderInfoPO orderInfo)
     {
-        return toAjax(orderInfoService.insertOrder(orderInfo));
+        return toAjax(orderInfoService.insertOrder(OrderInfoAppConvert.INSTANCE.converPO2DTO(orderInfo)));
     }
 
     /**
@@ -60,9 +61,16 @@ public class TbOrderInfoController extends BaseController
     @ApiOperation(value = "修改保存订单")
     @SoulClient(path = "/order/update", desc = "修改保存订单")
     @SentinelResource("update")
-    public R editSave(@RequestBody TbOrderInfo orderInfo)
+    public R editSave(@RequestBody OrderInfoPO orderInfo)
     {
-        return toAjax(orderInfoService.updateOrder(orderInfo));
+        return toAjax(orderInfoService.updateOrder(OrderInfoAppConvert.INSTANCE.converPO2DTO(orderInfo)));
+    }
+
+    @GetMapping("quertAll")
+    @ApiOperation(value = "查询所有订单")
+    @SoulClient(path = "/order/quertAll", desc = "查询所有订单")
+    public R queryListOrder(OrderInfoPO orderInfo){
+        return R.ok(OrderInfoAppConvert.INSTANCE.converListBO2VO(orderInfoService.queryOrderInfo(OrderInfoAppConvert.INSTANCE.converPO2DTO(orderInfo))));
     }
 
 }

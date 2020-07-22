@@ -3,7 +3,6 @@ package com.cy.ruoyi.tool.activiti.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

@@ -34,17 +34,18 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.cy.ruoyi.demo.provider.api</groupId>
-            <artifactId>ruoyi-provider-api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <!-- Micrometer 对 Prometheus 的支持 -->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
             <version>1.1.14</version>
         </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.demo.provider.api</groupId>
+            <artifactId>ruoyi-provider-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -74,6 +75,11 @@
                     <delimiters>@</delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
                 </configuration>
+            </plugin>
+            <!-- 提供给 mapstruct 使用 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

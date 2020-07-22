@@ -22,6 +22,7 @@
 * 监控体系：Prometheus、Grafana、Druid
 * Java诊断：Arthas
 * 服务治理：Moss（尚未）
+* 认证中心：OAuth2 （尚未）
 
 ---
 ## 服务端地址：
@@ -35,8 +36,16 @@
 * Soul Admin：localhost:9095/index.html
 
 ---
-##  架构设计图
-![](docs/doc/ruoyi-cloud.png)
+##  系统架构设计图
+![](docs/doc/微服务架构设计.png)
+
+---
+##  业务架构设计图
+![](docs/doc/业务架构设计.png)
+
+---
+##  应用分层设计
+![](docs/doc/应用分层设计.png)
 
 ---
 ## 目录结构
@@ -45,26 +54,20 @@ cy-ruoyi
  ├──docs //文件
     ├──poms //相关依赖
  ├──ruoyi-common //通用依赖
-    ├──ruoyi-common-core //核心框架包
-    ├──ruoyi-common-redis //redis工具包
-    ├──ruoyi-common-log //通用日志工具包
-    ├──ruoyi-common-pay //支付工具包（尚未）
-    ├──ruoyi-common-utils // 通用工具包
-    ├──ruoyi-common-auth // 授权工具包
-    ├──ruoyi-common-sms // 信息推送工具包
-    ├──ruoyi-common-job // 定时任务核心包
-    ├──ruoyi-common-mq // 消息队列
+    ├──ruoyi-common-core //核心框架
+    ├──ruoyi-common-redis //redis通用
+    ├──ruoyi-common-log //日志通用
+    ├──ruoyi-common-pay //支付通用（尚未）
+    ├──ruoyi-common-utils // 工具通用
+    ├──ruoyi-common-auth // 授权通用
+    ├──ruoyi-common-sms // 消息推送通用
+    ├──ruoyi-common-job // 定时任务核心依赖
+    ├──ruoyi-common-mq // 消息队列通用
  ├──ruoyi-user //用户 8081
     ├──ruoyi-user-app //用户启动
     ├──ruoyi-user-api //用户API
     ├──ruoyi-user-impl //用户实现
     ├──sql //用户sql
- ├──ruoyi-order //订单 8071（尚未）
- ├──ruoyi-product // 商品 8061（尚未）
- ├──ruoyi-pay //收银台 8021（尚未）
- ├──ruoyi-stock //库存 8051（尚未）
- ├──ruoyi-logistics //物流 8041（尚未）
- ├──ruoyi-search // 数据搜索 8131
  ├──ruoyi-demo //Demo 
     ├──ruoyi-demo-provider //provider demo 7070
         ├──ruoyi-provider-api //api
@@ -86,15 +89,41 @@ cy-ruoyi
  ├──ruoyi-tool //工具
     ├──ruoyi-gen // 代码生成 7065
     ├──ruoyi-auth // 授权鉴权  8090
-    ├──ruoyi-io // 文件系统 7050（尚未）
-    ├──ruoyi-mock // 数据收集 7021（尚未）
+    ├──ruoyi-oss // 文件系统 7050（尚未）
     ├──ruoyi-activity //工作流 8031
     ├──ruoyi-gateway //网关 9527
- ├──ruoyi-ant //前端 使用ant design框架 8000
+    ├──ruoyi-mock // 数据收集 7021（尚未）
+ ├──ruoyi-mall //商城
+    ├──mall-oauth //OAuth2认证中心 8020
+    ├──mall-oms //订单 8071（尚未）
+        ├──mall-oms-app //订单启动
+        ├──mall-oms-api //订单API
+        ├──mall-oms-impl //订单实现
+    ├──mall-pms // 商品 8061（尚未）
+        ├──mall-pms-app //商品启动
+        ├──mall-pms-api //商品API
+        ├──mall-pms-impl //商品实现
+    ├──mall-pay //收银台 8021（尚未）
+    ├──mall-stock //库存 8051（尚未）
+        ├──mall-stock-app //库存启动
+        ├──mall-stock-api //库存API
+        ├──mall-stock-impl //库存实现
+    ├──mall-lms //物流 8041（尚未）
+        ├──mall-lms-app //物流启动
+        ├──mall-lms-api //物流API
+        ├──mall-lms-impl //物流实现
+    ├──mall-search // 数据搜索 8131
+    ├──mall-ums //会员  8121
+        ├──mall-ums-app //会员启动
+        ├──mall-ums-api //会员API
+        ├──mall-ums-impl //会员实现
+        ├──sql //会员sql
+ ├──ruoyi-ant //后台管理前端 使用ant design框架 8000
+ ├──ruoyi-mall //商城前端（尚未）
 ```
  
 ---
-## 前端菜单
+## 后台管理菜单
 ```
  ├──仪表盘
     ├──欢迎页

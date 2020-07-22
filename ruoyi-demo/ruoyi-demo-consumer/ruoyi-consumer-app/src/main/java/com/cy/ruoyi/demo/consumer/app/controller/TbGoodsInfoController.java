@@ -6,13 +6,14 @@ import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.core.util.page.PageDomain;
 import com.cy.ruoyi.common.core.util.page.PageUtils;
 import com.cy.ruoyi.common.utils.util.R;
-import com.cy.ruoyi.demo.consumer.api.entity.TbGoodsInfo;
+import com.cy.ruoyi.demo.consumer.api.DTO.GoodsInfoDTO;
 import com.cy.ruoyi.demo.consumer.api.service.ITbGoodsInfoService;
+import com.cy.ruoyi.demo.consumer.app.PO.GoodsInfoPO;
+import com.cy.ruoyi.demo.consumer.app.convert.GoodsInfoAppConvert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
 import org.dromara.soul.client.common.annotation.SoulClient;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,11 +33,11 @@ public class TbGoodsInfoController extends BaseController
     @ApiOperation(value = "分页查询商品列表")
     @SoulClient(path = "/goods/list", desc = "分页查询商品列表")
 //    @SentinelResource("list")
-    public R list(TbGoodsInfo goodsInfo)
+    public R list(GoodsInfoPO goodsInfo)
     {
         PageDomain pageDomain = getPageInfo();
         log.info("开始查询第[{}]页[{}]条的数据!",pageDomain.getPageNum(), pageDomain.getPageSize());
-        PageUtils page = goodsInfoService.selectGoodsList(pageDomain, goodsInfo);
+        PageUtils page = goodsInfoService.selectGoodsList(pageDomain, GoodsInfoAppConvert.INSTANCE.converPO2DTO(goodsInfo));
         return R.ok(page);
     }
 
@@ -48,9 +49,9 @@ public class TbGoodsInfoController extends BaseController
     @ApiOperation(value = "新增保存商品")
     @SoulClient(path = "/goods/save", desc = "新增保存商品")
 //    @SentinelResource("save")
-    public R addSave(@RequestBody TbGoodsInfo goodsInfo)
+    public R addSave(@RequestBody GoodsInfoPO goodsInfo)
     {
-        return toAjax(goodsInfoService.insertGoods(goodsInfo));
+        return toAjax(goodsInfoService.insertGoods(GoodsInfoAppConvert.INSTANCE.converPO2DTO(goodsInfo)));
     }
 
     /**
@@ -61,9 +62,16 @@ public class TbGoodsInfoController extends BaseController
     @ApiOperation(value = "修改保存商品")
     @SoulClient(path = "/goods/update", desc = "修改保存商品")
 //    @SentinelResource("update")
-    public R editSave(@RequestBody TbGoodsInfo goodsInfo)
+    public R editSave(@RequestBody GoodsInfoPO goodsInfo)
     {
-        return toAjax(goodsInfoService.updateGoods(goodsInfo));
+        return toAjax(goodsInfoService.updateGoods(GoodsInfoAppConvert.INSTANCE.converPO2DTO(goodsInfo)));
+    }
+
+    @GetMapping("quertAll")
+    @ApiOperation(value = "查询所有商品")
+    @SoulClient(path = "/goods/quertAll", desc = "查询所有商品")
+    public R queryListGoods(GoodsInfoPO goodsInfo){
+        return R.ok(GoodsInfoAppConvert.INSTANCE.converListBO2VO(goodsInfoService.queryGoodsInfo(GoodsInfoAppConvert.INSTANCE.converPO2DTO(goodsInfo))));
     }
 
 }

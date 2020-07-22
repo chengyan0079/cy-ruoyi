@@ -2,7 +2,7 @@ package com.cy.ruoyi.user.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import lombok.Data;
 
 /**
@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @TableName("Sys_User_Role")
-public class SysUserRole extends BaseEntity
+public class SysUserRole extends BaseDO
 {
     /** 用户ID */
     @TableId(value="user_Id")

@@ -1,6 +1,6 @@
 package com.cy.ruoyi.common.auth.DTO;
 
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import java.util.List;
  * 角色表 sys_role
  */
 @Data
-public class SysRoleDTO extends BaseEntity implements Serializable
+public class SysRoleDTO extends BaseDO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 

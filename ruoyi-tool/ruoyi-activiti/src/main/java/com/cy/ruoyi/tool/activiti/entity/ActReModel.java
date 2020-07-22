@@ -3,7 +3,7 @@ package com.cy.ruoyi.tool.activiti.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cy.ruoyi.common.core.basic.entity.BaseEntity;
+import com.cy.ruoyi.common.core.basic.entity.BaseDO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +17,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("ACT_RE_MODEL")
-public class ActReModel extends BaseEntity implements Serializable
+public class ActReModel extends BaseDO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 

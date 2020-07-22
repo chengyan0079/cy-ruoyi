@@ -5,10 +5,9 @@ import cn.hutool.log.LogFactory;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cy.ruoyi.common.core.basic.controller.BaseController;
 import com.cy.ruoyi.common.utils.util.R;
-import com.cy.ruoyi.common.utils.util.RegexUtil;
-import com.cy.ruoyi.demo.consumer.api.entity.TbGoodsInfo;
 import com.cy.ruoyi.demo.consumer.api.service.ITbGoodsInfoService;
-import com.cy.ruoyi.demo.provider.api.entity.TbOrderInfo;
+import com.cy.ruoyi.demo.consumer.app.PO.OrderInfoPO;
+import com.cy.ruoyi.demo.consumer.app.convert.OrderInfoAppConvert;
 import com.cy.ruoyi.demo.provider.api.service.ITbOrderInfoService;
 import com.cy.ruoyi.demo.provider.api.service.ITestProviderService;
 import io.swagger.annotations.Api;
@@ -64,27 +63,35 @@ public class TestController extends BaseController {
     }
 
 
-    @PostMapping("testSeata")
-    @ApiOperation(value = "测试Seata,添加订单和商品")
-    @SoulClient(path = "/conTest/testSeata", desc = "测试Seata,添加订单和商品")
-    @SentinelResource("/testSeata")
-    public R testSeata(@RequestBody TbGoodsInfo goodInfo){
-        if(RegexUtil.isNull(goodInfo)){
-            return R.error();
-        }
-        tbGoodsInfoService.insertGoods(goodInfo);
-        TbOrderInfo orderInfo = new TbOrderInfo();
-        orderInfo.setPayTime("2020-03-21 12:11:24");
-        orderInfo.setOrderNo("12ddfs123");
-        orderInfo.setPayAmt(new BigDecimal(80.2));
-        orderInfo.setPayDate("2020-04-22");
-        orderInfo.setPayOrderNo("443sss31121212");
-        orderInfo.setPayStatus("1");
-        orderInfo.setUserId(1);
-        orderInfo.setCreateBy("cy");
-        orderInfo.setRemark("ioioss");
-        int result = tbOrderInfoService.insertOrder(orderInfo);
-        return R.ok(result);
+//    @PostMapping("testSeata")
+//    @ApiOperation(value = "测试Seata,添加订单和商品")
+//    @SoulClient(path = "/conTest/testSeata", desc = "测试Seata,添加订单和商品")
+//    @SentinelResource("/testSeata")
+//    public R testSeata(@RequestBody TbGoodsInfo goodInfo){
+//        if(RegexUtil.isNull(goodInfo)){
+//            return R.error();
+//        }
+//        tbGoodsInfoService.insertGoods(goodInfo);
+//        TbOrderInfo orderInfo = new TbOrderInfo();
+//        orderInfo.setPayTime("2020-03-21 12:11:24");
+//        orderInfo.setOrderNo("12ddfs123");
+//        orderInfo.setPayAmt(new BigDecimal(80.2));
+//        orderInfo.setPayDate("2020-04-22");
+//        orderInfo.setPayOrderNo("443sss31121212");
+//        orderInfo.setPayStatus("1");
+//        orderInfo.setUserId(1);
+//        orderInfo.setCreateBy("cy");
+//        orderInfo.setRemark("ioioss");
+//        int result = tbOrderInfoService.insertOrder(orderInfo);
+//        return R.ok(result);
+//    }
+
+    @GetMapping("queryOrder")
+    @ApiOperation(value = "查询订单")
+//    @SoulClient(path = "/conTest/testSeata", desc = "测试Seata,添加订单和商品")
+//    @SentinelResource("/testSeata")
+    public R queryOrder(OrderInfoPO orderInfoPO){
+        return R.ok(OrderInfoAppConvert.INSTANCE.converListBO2VO(tbOrderInfoService.queryOrderInfo(OrderInfoAppConvert.INSTANCE.converPO2DTO(orderInfoPO))));
     }
 
 }

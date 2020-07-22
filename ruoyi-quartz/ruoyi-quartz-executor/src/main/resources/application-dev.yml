@@ -3,7 +3,7 @@ spring:
     database: 0
     host: 139.155.70.19
     port: 6379
-    password: cy123456
+    password: *******
     timeout: 5000
     jedis:
       pool:
