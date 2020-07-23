@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://cdb-35na54ha.cd.tencentcdb.com:10060/cy-ruoyi-order?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
     username: root
-    password: ********
+    password: cy123456*
     druid:
       # 初始化大小，最小，最大
       test-while-idle: true
@@ -38,7 +38,7 @@ spring:
     database: 0
     host: 139.155.70.19
     port: 6379
-    password: *******
+    password: cy123456
     timeout: 5000
     jedis:
       pool:

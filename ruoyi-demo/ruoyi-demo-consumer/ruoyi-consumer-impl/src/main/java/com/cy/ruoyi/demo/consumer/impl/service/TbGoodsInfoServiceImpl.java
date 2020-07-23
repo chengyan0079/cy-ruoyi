@@ -1,9 +1,9 @@
 package com.cy.ruoyi.demo.consumer.impl.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.cy.ruoyi.common.core.util.page.PageDomain;
-import com.cy.ruoyi.common.core.util.page.PageUtils;
-import com.cy.ruoyi.common.core.util.page.Query;
+import com.cy.ruoyi.common.sql.page.PageDomain;
+import com.cy.ruoyi.common.sql.page.PageUtils;
+import com.cy.ruoyi.common.sql.page.Query;
 import com.cy.ruoyi.common.utils.util.RegexUtil;
 import com.cy.ruoyi.demo.consumer.api.BO.GoodsInfoBO;
 import com.cy.ruoyi.demo.consumer.api.DTO.GoodsInfoDTO;

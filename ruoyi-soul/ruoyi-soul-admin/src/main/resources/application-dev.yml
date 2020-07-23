@@ -2,6 +2,6 @@ spring:
   datasource:
     url: jdbc:mysql://cdb-35na54ha.cd.tencentcdb.com:10060/cy-ruoyi-soul?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&failOverReadOnly=false&autoReconnect=true
     username: root
-    password: ********
+    password: cy123456*
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver

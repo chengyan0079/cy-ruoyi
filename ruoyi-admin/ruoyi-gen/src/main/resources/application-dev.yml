@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://cdb-35na54ha.cd.tencentcdb.com:10060/cy-ruoyi-sys?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+    username: root
+    password: cy123456*
+    druid:
+      # 初始化大小，最小，最大
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上 Cache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis:  300000
+      validation-query: select 1 from dual
+      keep-alive: true
+      filter:
+        stat:
+          merge-sql: true
+          enabled: true
+        wall:
+          enabled: true
+      web-stat-filter:
+        enabled: true
+      aop-patterns: com.cy.ruoyi.admin.gen.*

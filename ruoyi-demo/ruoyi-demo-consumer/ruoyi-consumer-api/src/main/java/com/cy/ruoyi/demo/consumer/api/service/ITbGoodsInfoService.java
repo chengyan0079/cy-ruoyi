@@ -1,7 +1,7 @@
 package com.cy.ruoyi.demo.consumer.api.service;
 
-import com.cy.ruoyi.common.core.util.page.PageDomain;
-import com.cy.ruoyi.common.core.util.page.PageUtils;
+import com.cy.ruoyi.common.sql.page.PageDomain;
+import com.cy.ruoyi.common.sql.page.PageUtils;
 import com.cy.ruoyi.demo.consumer.api.BO.GoodsInfoBO;
 import com.cy.ruoyi.demo.consumer.api.DTO.GoodsInfoDTO;
 

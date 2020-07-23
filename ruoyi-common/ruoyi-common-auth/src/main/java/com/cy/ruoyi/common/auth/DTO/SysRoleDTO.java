@@ -1,16 +1,19 @@
 package com.cy.ruoyi.common.auth.DTO;
 
 import com.cy.ruoyi.common.core.basic.entity.BaseDO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 角色表 sys_role
  */
 @Data
-public class SysRoleDTO extends BaseDO implements Serializable
+public class SysRoleDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -43,5 +46,29 @@ public class SysRoleDTO extends BaseDO implements Serializable
 
     /** 部门组（数据权限） */
     private Long[] deptIds;
+
+    /** 创建者 */
+    private String createBy;
+
+    /** 创建时间 */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+
+    /** 更新者 */
+    private String updateBy;
+
+    /** 更新时间 */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
+
+    /** 备注 */
+    private String remark;
+
+    private String beginTime;
+
+    private String endTime;
+
+    /** 请求参数 */
+    private Map<String, Object> params;
 
 }

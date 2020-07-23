@@ -62,21 +62,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.springframework.retry</groupId>-->
             <!--<artifactId>spring-retry</artifactId>-->
@@ -125,6 +110,11 @@
             <groupId>org.dromara</groupId>
             <artifactId>soul-client-springcloud</artifactId>
             <version>2.1.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cy.ruoyi.common.sql</groupId>
+            <artifactId>ruoyi-common-sql</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>

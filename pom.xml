@@ -46,9 +46,8 @@
     </properties>
 
     <modules>
-        <module>ruoyi-user</module>
         <module>ruoyi-common</module>
-        <module>ruoyi-tool</module>
+        <module>ruoyi-admin</module>
         <module>ruoyi-demo</module>
         <module>ruoyi-quartz</module>
         <module>ruoyi-soul</module>

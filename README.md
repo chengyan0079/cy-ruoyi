@@ -1,5 +1,5 @@
 # cy-ruoyi
-一个基于Ruoyi重构的分布式后台综合管理系统
+基于Ruoyi重构的分布式电商系统
 基础框架：SpringCloud Alibaba + Dubbo + MybatisPlus
 
 ---
@@ -63,11 +63,7 @@ cy-ruoyi
     ├──ruoyi-common-sms // 消息推送通用
     ├──ruoyi-common-job // 定时任务核心依赖
     ├──ruoyi-common-mq // 消息队列通用
- ├──ruoyi-user //用户 8081
-    ├──ruoyi-user-app //用户启动
-    ├──ruoyi-user-api //用户API
-    ├──ruoyi-user-impl //用户实现
-    ├──sql //用户sql
+    ├──ruoyi-common-sql // 持久化框架
  ├──ruoyi-demo //Demo 
     ├──ruoyi-demo-provider //provider demo 7070
         ├──ruoyi-provider-api //api
@@ -86,15 +82,16 @@ cy-ruoyi
  ├──ruoyi-soul // 网关服务
     ├──ruoyi-soul-admin // 网关管理台  9095
     ├──ruoyi-soul-bootstrap // 网关处理器 9195
- ├──ruoyi-tool //工具
+ ├──ruoyi-admin //综合后台服务
     ├──ruoyi-gen // 代码生成 7065
     ├──ruoyi-auth // 授权鉴权  8090
     ├──ruoyi-oss // 文件系统 7050（尚未）
     ├──ruoyi-activity //工作流 8031
     ├──ruoyi-gateway //网关 9527
     ├──ruoyi-mock // 数据收集 7021（尚未）
+    ├──ruoyi-sys // 系统服务 8081
  ├──ruoyi-mall //商城
-    ├──mall-oauth //OAuth2认证中心 8020
+    ├──mall-oauth //OAuth2认证中心 8020（尚未）
     ├──mall-oms //订单 8071（尚未）
         ├──mall-oms-app //订单启动
         ├──mall-oms-api //订单API
@@ -113,13 +110,13 @@ cy-ruoyi
         ├──mall-lms-api //物流API
         ├──mall-lms-impl //物流实现
     ├──mall-search // 数据搜索 8131
-    ├──mall-ums //会员  8121
+    ├──mall-ums //会员  8121（尚未）
         ├──mall-ums-app //会员启动
         ├──mall-ums-api //会员API
         ├──mall-ums-impl //会员实现
         ├──sql //会员sql
- ├──ruoyi-ant //后台管理前端 使用ant design框架 8000
- ├──ruoyi-mall //商城前端（尚未）
+ ├──ruoyi-ant //后台管理前端 8000
+ ├──ruoyi-mall //商城前端 8008（尚未）
 ```
  
 ---

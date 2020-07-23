@@ -1,9 +1,9 @@
 package com.cy.ruoyi.common.core.basic.controller;
 
 import com.cy.ruoyi.common.core.util.ServletUtils;
-import com.cy.ruoyi.common.core.util.page.PageDomain;
-import com.cy.ruoyi.common.core.util.page.PageUtils;
-import com.cy.ruoyi.common.core.util.page.TableSupport;
+import com.cy.ruoyi.common.core.util.TableSupport;
+import com.cy.ruoyi.common.sql.page.PageDomain;
+import com.cy.ruoyi.common.sql.page.PageUtils;
 import com.cy.ruoyi.common.utils.constants.Constants;
 import com.cy.ruoyi.common.utils.util.DateUtils;
 import com.cy.ruoyi.common.utils.util.R;
