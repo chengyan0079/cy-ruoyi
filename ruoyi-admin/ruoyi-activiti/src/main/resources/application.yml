@@ -43,7 +43,7 @@ dubbo:
   application:
     qos-enable: false
   cloud:
-    subscribed-services: ruoyi-user
+    subscribed-services: ruoyi-sys
   consumer:
     timeout: 10000
     check: false

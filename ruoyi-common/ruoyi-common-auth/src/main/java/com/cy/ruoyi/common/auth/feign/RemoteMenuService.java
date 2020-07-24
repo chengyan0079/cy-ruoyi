@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * 菜单 Feign服务层
  */
-@FeignClient(name = "ruoyi-user", fallbackFactory = RemoteMenuFallbackFactory.class)
+@FeignClient(name = "ruoyi-sys", fallbackFactory = RemoteMenuFallbackFactory.class)
 public interface RemoteMenuService
 {
     @GetMapping("menu/perms/{userId}")

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * 日志Feign服务层
  */
-@FeignClient(name = "ruoyi-user", fallbackFactory = RemoteLogFallbackFactory.class)
+@FeignClient(name = "ruoyi-sys", fallbackFactory = RemoteLogFallbackFactory.class)
 public interface RemoteLogService
 {
     @PostMapping("operLog/save")

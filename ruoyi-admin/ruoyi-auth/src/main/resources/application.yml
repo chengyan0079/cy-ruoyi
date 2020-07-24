@@ -12,7 +12,7 @@ dubbo:
     qos-enable: false
   # 订阅接口提供者服务名，用","分割
   cloud:
-    subscribed-services: ruoyi-user
+    subscribed-services: ruoyi-sys
   consumer:
     timeout: 10000
     check: false

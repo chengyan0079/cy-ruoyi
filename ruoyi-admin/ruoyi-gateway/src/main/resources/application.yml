@@ -37,8 +37,8 @@ spring:
             - ImgCodeFilter
             - StripPrefix=1
         # user
-        - id: ruoyi-user
-          uri: lb://ruoyi-user
+        - id: ruoyi-sys
+          uri: lb://ruoyi-sys
           predicates:
             - Path=/cyuser/**
           filters:

@@ -50,16 +50,8 @@
             <version>1.0.0</version>
             <exclusions>
                 <exclusion>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.alibaba</groupId>
-                    <artifactId>druid-spring-boot-starter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.baomidou</groupId>
-                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                    <groupId>com.cy.ruoyi.common.sql</groupId>
+                    <artifactId>ruoyi-common-sql</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

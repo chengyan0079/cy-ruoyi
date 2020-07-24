@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * 用户 Feign服务层
  */
-@FeignClient(name = "ruoyi-user", fallbackFactory = RemoteUserFallbackFactory.class)
+@FeignClient(name = "ruoyi-sys", fallbackFactory = RemoteUserFallbackFactory.class)
 public interface RemoteUserService
 {
     @GetMapping("user/get/{userId}")

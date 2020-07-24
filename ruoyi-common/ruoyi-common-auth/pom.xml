@@ -24,11 +24,6 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.cy.ruoyi.user.api</groupId>-->
-            <!--<artifactId>ruoyi-user-api</artifactId>-->
-            <!--<version>1.0.0</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>com.cy.ruoyi.common.core</groupId>
             <artifactId>ruoyi-common-core</artifactId>
