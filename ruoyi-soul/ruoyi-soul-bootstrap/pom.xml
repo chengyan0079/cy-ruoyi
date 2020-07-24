@@ -29,32 +29,28 @@
             <artifactId>soul-spring-boot-starter</artifactId>
             <version>${soul.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.projectreactor</groupId>
             <artifactId>reactor-spring</artifactId>
             <version>1.0.1.RELEASE</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!--dubbo start-->
-        <!--<dependency>
+        <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <version>2.7.5</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-registry-nacos</artifactId>
             <version>2.7.5</version>
@@ -82,7 +78,6 @@
             <artifactId>curator-recipes</artifactId>
             <version>4.0.1</version>
         </dependency>
-
         <!--dubbo end-->
 
         <!-- nacos -->

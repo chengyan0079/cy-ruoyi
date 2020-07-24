@@ -1,6 +1,9 @@
 # cy-ruoyi
 基于Ruoyi重构的分布式电商系统
-基础框架：SpringCloud Alibaba + Dubbo + MybatisPlus
+
+--- 
+##基础框架
+SpringCloud Alibaba + Dubbo + MybatisPlus
 
 ---
 ## 中间件
@@ -69,12 +72,10 @@ cy-ruoyi
         ├──ruoyi-provider-api //api
         ├──ruoyi-provider-impl //impl
         ├──ruoyi-provider-app //app
-        ├──sql //sql
     ├──ruoyi-demo-consumer //consumer demo 7075
         ├──ruoyi-consumer-api //api
         ├──ruoyi-consumer-impl //impl
         ├──ruoyi-consumer-app //app
-        ├──sql //sql
  ├──ruoyi-quartz // 定时任务
     ├──ruoyi-quartz-admin //job调度中心  7080
     ├──ruoyi-quartz-executor //job执行器  8011
@@ -108,12 +109,15 @@ cy-ruoyi
         ├──mall-lms-app //物流启动
         ├──mall-lms-api //物流API
         ├──mall-lms-impl //物流实现
+    ├──mall-acc //账务 （尚未）
+        ├──mall-acc-app //账务启动
+        ├──mall-acc-api //账务API
+        ├──mall-acc-impl //账务实现
     ├──mall-search // 数据搜索 8131
     ├──mall-ums //会员  8121（尚未）
         ├──mall-ums-app //会员启动
         ├──mall-ums-api //会员API
         ├──mall-ums-impl //会员实现
-        ├──sql //会员sql
  ├──ruoyi-ant //后台管理前端 8000
  ├──ruoyi-mall //商城前端 8008（尚未）
 ```
