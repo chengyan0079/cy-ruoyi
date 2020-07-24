@@ -243,6 +243,7 @@
         <appender-ref ref="INFO_FILE"/>
     </appender>
 
+    <logger name="com.cy.ruoyi.soul.admin.mapper" level="DEBUG" />
     <root level="INFO">
         <!--<appender-ref ref="KafkaAppender"/>-->
         <!--<appender-ref ref="logstash"/>-->

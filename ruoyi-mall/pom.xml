@@ -24,7 +24,6 @@
     </properties>
 
     <modules>
-        <module>mall-oauth</module>
         <module>mall-search</module>
     </modules>
 

@@ -91,7 +91,6 @@ cy-ruoyi
     ├──ruoyi-mock // 数据收集 7021（尚未）
     ├──ruoyi-sys // 系统服务 8081
  ├──ruoyi-mall //商城
-    ├──mall-oauth //OAuth2认证中心 8020（尚未）
     ├──mall-oms //订单 8071（尚未）
         ├──mall-oms-app //订单启动
         ├──mall-oms-api //订单API
