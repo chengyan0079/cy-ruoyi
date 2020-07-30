@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("order")
 @Api(value = "TbOrderInfoController",description = "订单")
+@SoulClient(path = "/order/**", desc = "订单")
 public class TbOrderInfoController extends BaseController
 {
     private static final Log log = LogFactory.get();
@@ -31,7 +32,6 @@ public class TbOrderInfoController extends BaseController
      */
     @GetMapping("list")
     @ApiOperation(value = "分页查询订单列表")
-    @SoulClient(path = "/order/list", desc = "分页查询订单列表")
     @SentinelResource("list")
     public R list(OrderInfoPO orderInfo)
     {
@@ -46,7 +46,6 @@ public class TbOrderInfoController extends BaseController
      */
     @PostMapping("save")
     @ApiOperation(value = "新增保存订单")
-    @SoulClient(path = "/order/save", desc = "新增保存订单")
     @SentinelResource("save")
     public R addSave(@RequestBody OrderInfoPO orderInfo)
     {
@@ -59,7 +58,6 @@ public class TbOrderInfoController extends BaseController
 //    @OperLog(title = "订单管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
     @ApiOperation(value = "修改保存订单")
-    @SoulClient(path = "/order/update", desc = "修改保存订单")
     @SentinelResource("update")
     public R editSave(@RequestBody OrderInfoPO orderInfo)
     {
@@ -68,7 +66,7 @@ public class TbOrderInfoController extends BaseController
 
     @GetMapping("quertAll")
     @ApiOperation(value = "查询所有订单")
-    @SoulClient(path = "/order/quertAll", desc = "查询所有订单")
+    @SentinelResource("quertAll")
     public R queryListOrder(OrderInfoPO orderInfo){
         return R.ok(OrderInfoAppConvert.INSTANCE.converListBO2VO(orderInfoService.queryOrderInfo(OrderInfoAppConvert.INSTANCE.converPO2DTO(orderInfo))));
     }

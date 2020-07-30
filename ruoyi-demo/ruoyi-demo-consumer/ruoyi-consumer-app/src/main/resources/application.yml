@@ -111,10 +111,3 @@ info:
   description: @project.description@
   author: chengyan
   mail: 304338940@qq.com
-
-# soul配置
-#soul:
-#  springcloud:
-#    admin-url: http://127.0.0.1:9095
-#    app-name: ${spring.application.name}
-#    context-path: /con-api

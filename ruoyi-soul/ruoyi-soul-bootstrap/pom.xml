@@ -29,70 +29,81 @@
             <artifactId>soul-spring-boot-starter</artifactId>
             <version>${soul.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectreactor</groupId>
-            <artifactId>reactor-spring</artifactId>
-            <version>1.0.1.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!--dubbo start-->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>2.7.5</version>
-        </dependency>
 
-        <!--<dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-registry-nacos</artifactId>
-            <version>2.7.5</version>
-        </dependency>
-
-        &lt;!&ndash; Keep latest Nacos client version &ndash;&gt;
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-            <version>1.1.4</version>
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>org.springframework.cloud</groupId>
+              <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+              <version>2.0.0.RELEASE</version>
+          </dependency> -->
+        <!--<dependency>-->
+          <!--<groupId>org.springframework.cloud</groupId>-->
+          <!--<artifactId>spring-cloud-commons</artifactId>-->
+          <!--<version>2.0.0.RELEASE</version>-->
+        <!--</dependency>-->
 
         <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-client</artifactId>
-            <version>4.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-framework</artifactId>
-            <version>4.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-recipes</artifactId>
-            <version>4.0.1</version>
-        </dependency>
-        <!--dubbo end-->
-
-        <!-- nacos -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+           <groupId>com.alibaba.cloud</groupId>
+           <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectreactor</groupId>
+            <artifactId>reactor-spring</artifactId>
+            <version>1.0.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--dubbo start-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.dubbo</groupId>-->
+            <!--<artifactId>dubbo</artifactId>-->
+            <!--<version>2.7.5</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.dubbo</groupId>-->
+            <!--<artifactId>dubbo-registry-nacos</artifactId>-->
+            <!--<version>2.7.5</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; Keep latest Nacos client version &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.alibaba.nacos</groupId>-->
+            <!--<artifactId>nacos-client</artifactId>-->
+            <!--<version>1.1.4</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.curator</groupId>-->
+            <!--<artifactId>curator-client</artifactId>-->
+            <!--<version>4.0.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.curator</groupId>-->
+            <!--<artifactId>curator-framework</artifactId>-->
+            <!--<version>4.0.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.curator</groupId>-->
+            <!--<artifactId>curator-recipes</artifactId>-->
+            <!--<version>4.0.1</version>-->
+        <!--</dependency>-->
+
+        <!--dubbo end-->
 
         <!-- Micrometer 对 Prometheus 的支持 -->
         <dependency>
@@ -100,6 +111,11 @@
             <artifactId>micrometer-registry-prometheus</artifactId>
             <version>1.1.14</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

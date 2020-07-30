@@ -29,14 +29,20 @@
               <li>注册中心：Nacos</li>
               <li>配置中心：Nacos</li>
               <li>限流熔断：Sentinel</li>
-              <li>消息队列：RocketMQ</li>
-              <li>分布式事务：Seata</li>
+              <li>消息队列：RocketMQ（尚未）</li>
+              <li>分布式事务：Seata（尚未）</li>
               <li>分布式调用链：SkyWalking</li>
-              <li>分库分表：Mycat</li>
+              <li>分库分表：ShardingSphere（尚未）</li>
               <li>分布式任务调度：XXL-Job</li>
               <li>日志收集：ELK</li>
+              <li>搜索引擎：Elasticsearch</li>
+              <li>工作流：Activiti</li>
+              <li>监控体系：Prometheus、Grafana、Druid</li>
+              <li>Java诊断：Arthas</li>
+              <li>服务治理：Moss（尚未）</li>
+              <li>认证中心：OAuth2 （尚未）</li>
               <li>容器：Docker</li>
-            </ul>       
+            </ul>
           </a-card>
         </a-col>
         <a-col

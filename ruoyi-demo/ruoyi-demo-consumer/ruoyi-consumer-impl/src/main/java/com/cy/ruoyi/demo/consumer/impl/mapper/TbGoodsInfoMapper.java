@@ -31,6 +31,7 @@ public interface TbGoodsInfoMapper extends BaseMapper<TbGoodsInfoDO> {
      */
     int updateGoods(TbGoodsInfoDO goodsInfo);
 
-    List<TbGoodsInfoDO> selectGoodsList(@Param("goods") TbGoodsInfoDO goodsInfo);
+
+    List<TbGoodsInfoDO> queryGoodsAllList();
 
 }

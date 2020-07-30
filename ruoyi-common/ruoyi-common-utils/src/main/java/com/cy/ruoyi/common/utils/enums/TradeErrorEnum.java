@@ -1,6 +1,9 @@
 package com.cy.ruoyi.common.utils.enums;
 
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
  * 交易错误枚举
  * 服务异常
@@ -25,6 +28,8 @@ package com.cy.ruoyi.common.utils.enums;
  *       不限制规则。
  *       一般建议，每个模块自增。
  */
+@Getter
+@RequiredArgsConstructor
 public enum TradeErrorEnum {
     // 999 - 默认系统异常
     SYSTEM_DEFAULT_ERROR("1999001", "默认系统异常"),
@@ -92,16 +97,10 @@ public enum TradeErrorEnum {
     SEARCH_DELETE_DOC_FAIL("2007011", "删除文档失败！"),
     SEARCH_BATCH_CREATE_DOC_FAIL("2007012", "批量添加文档失败！"),
 
-
     ;
 
     public final String code;
     public final String msg;
-
-    TradeErrorEnum(String mCode, String mMsg){
-        code = mCode;
-        msg = mMsg;
-    }
 
     /**
      * 根据CODE值获取异常状态内容

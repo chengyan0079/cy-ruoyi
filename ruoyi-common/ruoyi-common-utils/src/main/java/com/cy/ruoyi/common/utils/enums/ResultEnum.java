@@ -1,8 +1,13 @@
 package com.cy.ruoyi.common.utils.enums;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
  * 返回信息ENnum
  */
+@Getter
+@RequiredArgsConstructor
 public enum ResultEnum {
 
     /** 返回前端处理异常信息 */
@@ -17,10 +22,5 @@ public enum ResultEnum {
     public final Integer code;
     /** 属性备注 */
     public final String desc;
-
-    ResultEnum(Integer mValue, String mDesc){
-        code = mValue;
-        desc = mDesc;
-    }
 
 }

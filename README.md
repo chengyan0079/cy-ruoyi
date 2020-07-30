@@ -36,7 +36,7 @@ SpringCloud Alibaba + Dubbo + MybatisPlus
 * Kibana UI：localhost:5601
 * RocketMQ Console：localhost:9899（尚未）
 * Grafana UI：localhost:3000
-* Soul Admin：localhost:9095/index.html
+* Soul Admin：localhost:9095
 
 ---
 ##  系统架构设计图
@@ -80,9 +80,7 @@ cy-ruoyi
     ├──ruoyi-quartz-admin //job调度中心  7080
     ├──ruoyi-quartz-executor //job执行器  8011
     ├──sql //quartz sql
- ├──ruoyi-soul // 网关服务
-    ├──ruoyi-soul-admin // 网关管理台  9095
-    ├──ruoyi-soul-bootstrap // 网关处理器 9195
+ ├──ruoyi-soul-gateway // 网关服务 9527
  ├──ruoyi-admin //综合后台服务
     ├──ruoyi-gen // 代码生成 7065
     ├──ruoyi-auth // 授权鉴权  8090

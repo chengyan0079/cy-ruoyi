@@ -1,20 +1,6 @@
 server:
   port: 9195
 
-soul :
-  filterTimeEnable : false
-  filterTime : 10
-  sync:
-    strategy: websocket
-    websocket :
-      url: ws://139.155.2.139:9095/websocket
-#        zookeeper:
-#             url: localhost:2181
-#             sessionTimeout: 5000
-#             connectionTimeout: 2000
-#    http:
-#     url : localhost:8888
-
 management:
   endpoints:
     web:
@@ -37,8 +23,8 @@ logging:
     org.springframework.boot: info
     org.apache.ibatis: info
     org.dromara.soul.bonuspoint: info
-    org.dromara.soul.lottery: debug
-    org.dromara.soul: debug
+    org.dromara.soul.lottery: info
+    org.dromara.soul: info
 
 # 服务信息
 info:

@@ -14,3 +14,11 @@ spring:
         server-addr: 139.155.70.19:8848
       config:
         enabled: false
+
+soul:
+  sync:
+    strategy: websocket
+    websocket:
+      url: ws://localhost:9095/websocket
+  filter-time: 10
+  filter-time-enable: false

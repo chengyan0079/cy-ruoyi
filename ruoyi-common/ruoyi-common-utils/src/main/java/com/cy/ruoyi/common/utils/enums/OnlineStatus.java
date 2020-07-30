@@ -1,10 +1,13 @@
 package com.cy.ruoyi.common.utils.enums;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
  * 用户会话
- * 
- * @author ruoyi
  */
+@Getter
+@RequiredArgsConstructor
 public enum OnlineStatus
 {
     /** 用户状态 */
@@ -12,13 +15,4 @@ public enum OnlineStatus
 
     private final String info;
 
-    OnlineStatus(String info)
-    {
-        this.info = info;
-    }
-
-    public String getInfo()
-    {
-        return info;
-    }
 }

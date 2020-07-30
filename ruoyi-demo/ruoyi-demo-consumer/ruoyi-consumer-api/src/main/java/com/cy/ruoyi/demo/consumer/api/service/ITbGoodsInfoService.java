@@ -30,7 +30,7 @@ public interface ITbGoodsInfoService {
     /**
      * 查询所有商品
      */
-    List<GoodsInfoBO> queryGoodsInfo(GoodsInfoDTO goodsInfo);
+    List<GoodsInfoBO> queryGoodsInfo();
 
 }
 

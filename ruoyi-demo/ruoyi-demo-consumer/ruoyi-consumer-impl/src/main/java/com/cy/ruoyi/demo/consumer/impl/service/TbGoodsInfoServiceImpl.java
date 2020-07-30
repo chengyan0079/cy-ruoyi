@@ -44,8 +44,10 @@ public class TbGoodsInfoServiceImpl implements ITbGoodsInfoService {
     }
 
     @Override
-    public List<GoodsInfoBO> queryGoodsInfo(GoodsInfoDTO goodsInfo) {
-        return GoodsInfoImplConvert.INSTANCE.converListDO2BO(goodsInfoMapper.selectGoodsList(GoodsInfoImplConvert.INSTANCE.converDTO2DO(goodsInfo)));
+    public List<GoodsInfoBO> queryGoodsInfo() {
+        return GoodsInfoImplConvert.INSTANCE.converListDO2BO(goodsInfoMapper.queryGoodsAllList());
     }
+
+
 
 }

@@ -1,8 +1,10 @@
 package com.cy.ruoyi.common.job.enums;
 
-/**
- * Created by xuxueli on 17/5/9.
- */
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum ExecutorBlockStrategyEnum {
 
     SERIAL_EXECUTION("Serial execution"),
@@ -10,21 +12,11 @@ public enum ExecutorBlockStrategyEnum {
     DISCARD_LATER("Discard Later"),
     COVER_EARLY("Cover Early");
 
-    private String title;
-    private ExecutorBlockStrategyEnum (String title) {
-        this.title = title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getTitle() {
-        return title;
-    }
+    private final String title;
 
     public static ExecutorBlockStrategyEnum match(String name, ExecutorBlockStrategyEnum defaultItem) {
         if (name != null) {
-            for (ExecutorBlockStrategyEnum item:ExecutorBlockStrategyEnum.values()) {
+            for (ExecutorBlockStrategyEnum item : ExecutorBlockStrategyEnum.values()) {
                 if (item.name().equals(name)) {
                     return item;
                 }
