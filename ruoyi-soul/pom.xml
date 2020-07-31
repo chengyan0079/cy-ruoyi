@@ -24,7 +24,8 @@
     </properties>
 
     <modules>
-        <module>ruoyi-soul-bootstrap</module>
+        <module>ruoyi-soul-gateway</module>
+        <module>ruoyi-soul-admin</module>
     </modules>
 
 </project>
