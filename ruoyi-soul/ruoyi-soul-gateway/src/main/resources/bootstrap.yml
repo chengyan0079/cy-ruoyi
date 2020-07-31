@@ -19,6 +19,6 @@ soul:
   sync:
     strategy: websocket
     websocket:
-      url: ws://localhost:9095/websocket
+      url: ws://139.155.2.139:9095/websocket
   filter-time: 10
   filter-time-enable: false
