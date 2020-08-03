@@ -40,7 +40,6 @@
         <junit.version>4.13</junit.version>
         <xxl-rpc-core.version>1.5.0</xxl-rpc-core.version>
         <groovy.version>2.5.9</groovy.version>
-        <soul.version>2.1.2-RELEASE</soul.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 
     </properties>
@@ -50,7 +49,6 @@
         <module>ruoyi-admin</module>
         <module>ruoyi-demo</module>
         <module>ruoyi-quartz</module>
-        <module>ruoyi-soul</module>
         <module>ruoyi-mall</module>
 
     </modules>

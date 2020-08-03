@@ -13,7 +13,6 @@ import com.cy.ruoyi.demo.provider.api.service.ITestProviderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -41,7 +40,6 @@ public class TestController extends BaseController {
     @PostMapping("/echo/{msg}")
     @ApiOperation(value = "测试msg")
     @SentinelResource("/echo/{msg}")
-    @SoulClient(path = "/conTest/echo/{msg}", desc = "测试msg")
     public String echo(@PathVariable("msg") String msg){
         return "conTest === " + msg;
     }
@@ -49,7 +47,6 @@ public class TestController extends BaseController {
     @PostMapping("/echo2")
     @ApiOperation(value = "测试msg2")
     @SentinelResource("/echo2")
-    @SoulClient(path = "/conTest/echo2", desc = "测试msg2")
     public String echo2(@RequestParam("msg") String msg){
         return "conTest2 === " + msg;
     }
@@ -57,7 +54,6 @@ public class TestController extends BaseController {
     @PostMapping("/testMsg/{msg}")
     @ApiOperation(value = "testConsumerMsg")
     @SentinelResource("/testMsg/{msg}")
-    @SoulClient(path = "/conTest/testMsg/{msg}", desc = "testConsumerMsg")
     public String testConsumerMsg(@PathVariable("msg") String msg){
         return testProviderService.testProviderMsg(msg);
     }
@@ -88,7 +84,6 @@ public class TestController extends BaseController {
 //    @PostMapping("queryOrder")
 //    @ApiOperation(value = "查询订单")
 //    @SentinelResource("/queryOrder")
-//    @SoulClient(path = "/conTest/queryOrder", desc = "查询订单")
 //    public R queryOrder(@RequestBody OrderInfoPO orderInfoPO){
 //        return R.ok(OrderInfoAppConvert.INSTANCE.converListBO2VO(tbOrderInfoService.queryOrderInfo(OrderInfoAppConvert.INSTANCE.converPO2DTO(orderInfoPO))));
 //    }

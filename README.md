@@ -8,7 +8,6 @@ SpringCloud Alibaba + Dubbo + MybatisPlus
 ---
 ## 中间件
 * 数据库：Mysql
-* 网关：Soul
 * 缓存数据库：Redis
 * 注册中心：Nacos
 * 配置中心：Nacos（尚未）
@@ -36,7 +35,6 @@ SpringCloud Alibaba + Dubbo + MybatisPlus
 * Kibana UI：localhost:5601
 * RocketMQ Console：localhost:9899（尚未）
 * Grafana UI：localhost:3000
-* Soul Admin：localhost:9095
 
 ---
 ##  系统架构设计图
@@ -69,18 +67,11 @@ cy-ruoyi
     ├──ruoyi-common-sql // 持久化框架
  ├──ruoyi-demo //Demo 
     ├──ruoyi-demo-provider //provider demo 7070
-        ├──ruoyi-provider-api //api
-        ├──ruoyi-provider-impl //impl
-        ├──ruoyi-provider-app //app
     ├──ruoyi-demo-consumer //consumer demo 7075
-        ├──ruoyi-consumer-api //api
-        ├──ruoyi-consumer-impl //impl
-        ├──ruoyi-consumer-app //app
  ├──ruoyi-quartz // 定时任务
     ├──ruoyi-quartz-admin //job调度中心  7080
     ├──ruoyi-quartz-executor //job执行器  8011
     ├──sql //quartz sql
- ├──ruoyi-soul-gateway // 网关服务 9527
  ├──ruoyi-admin //综合后台服务
     ├──ruoyi-gen // 代码生成 7065
     ├──ruoyi-auth // 授权鉴权  8090
@@ -91,31 +82,13 @@ cy-ruoyi
     ├──ruoyi-sys // 系统服务 8081
  ├──ruoyi-mall //商城
     ├──mall-oms //订单 8071（尚未）
-        ├──mall-oms-app //订单启动
-        ├──mall-oms-api //订单API
-        ├──mall-oms-impl //订单实现
     ├──mall-pms // 商品 8061（尚未）
-        ├──mall-pms-app //商品启动
-        ├──mall-pms-api //商品API
-        ├──mall-pms-impl //商品实现
     ├──mall-pay //收银台 8021（尚未）
     ├──mall-stock //库存 8051（尚未）
-        ├──mall-stock-app //库存启动
-        ├──mall-stock-api //库存API
-        ├──mall-stock-impl //库存实现
     ├──mall-lms //物流 8041（尚未）
-        ├──mall-lms-app //物流启动
-        ├──mall-lms-api //物流API
-        ├──mall-lms-impl //物流实现
     ├──mall-acc //账务 （尚未）
-        ├──mall-acc-app //账务启动
-        ├──mall-acc-api //账务API
-        ├──mall-acc-impl //账务实现
     ├──mall-search // 数据搜索 8131
     ├──mall-ums //会员  8121（尚未）
-        ├──mall-ums-app //会员启动
-        ├──mall-ums-api //会员API
-        ├──mall-ums-impl //会员实现
  ├──ruoyi-ant //后台管理前端 8000
  ├──ruoyi-mall //商城前端 8008（尚未）
 ```

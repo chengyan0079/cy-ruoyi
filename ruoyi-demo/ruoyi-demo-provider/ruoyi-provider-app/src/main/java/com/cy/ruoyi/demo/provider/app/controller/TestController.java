@@ -10,7 +10,6 @@ import com.cy.ruoyi.demo.provider.api.service.ITbOrderInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/proTest")
 @Api(value = "proTest",description = "Demo测试")
-@SoulClient(path = "/proTest/**", desc = "Demo测试")
 public class TestController extends BaseController {
 
     private static final Log log = LogFactory.get();

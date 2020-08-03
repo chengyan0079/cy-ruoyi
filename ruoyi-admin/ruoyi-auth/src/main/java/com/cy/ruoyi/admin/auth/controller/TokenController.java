@@ -13,6 +13,7 @@ import com.cy.ruoyi.admin.auth.service.AccessTokenService;
 import com.cy.ruoyi.admin.auth.service.SysLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -11,6 +11,7 @@ import com.cy.ruoyi.common.utils.util.ToolUtil;
 import com.cy.ruoyi.common.utils.util.file.FileUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

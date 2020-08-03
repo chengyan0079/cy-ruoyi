@@ -13,7 +13,6 @@ import com.cy.ruoyi.demo.consumer.app.convert.GoodsInfoAppConvert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,7 +31,6 @@ public class TbGoodsInfoController extends BaseController
     @PostMapping("list")
     @ApiOperation(value = "分页查询商品列表")
     @SentinelResource("list")
-    @SoulClient(path = "/goods/list", desc = "分页查询商品列表")
     public R list(@RequestBody GoodsInfoPO goodsInfo)
     {
         PageDomain pageDomain = getPageInfo();
@@ -48,7 +46,6 @@ public class TbGoodsInfoController extends BaseController
 //    @OperLog(title = "商品管理", businessType = BusinessType.INSERT)
     @ApiOperation(value = "新增保存商品")
     @SentinelResource("save")
-    @SoulClient(path = "/goods/save", desc = "新增保存商品")
     public R addSave(@RequestBody GoodsInfoPO goodsInfo)
     {
         return toAjax(goodsInfoService.insertGoods(GoodsInfoAppConvert.INSTANCE.converPO2DTO(goodsInfo)));
@@ -61,7 +58,6 @@ public class TbGoodsInfoController extends BaseController
     @PutMapping("update")
     @ApiOperation(value = "修改保存商品")
     @SentinelResource("update")
-    @SoulClient(path = "/goods/update", desc = "修改保存商品")
     public R editSave(@RequestBody GoodsInfoPO goodsInfo)
     {
         return toAjax(goodsInfoService.updateGoods(GoodsInfoAppConvert.INSTANCE.converPO2DTO(goodsInfo)));
@@ -70,7 +66,6 @@ public class TbGoodsInfoController extends BaseController
     @GetMapping("quertAll")
     @ApiOperation(value = "查询所有商品")
     @SentinelResource("quertAll")
-    @SoulClient(path = "/goods/quertAll", desc = "查询所有商品")
     public R queryListGoods(){
         return R.ok(GoodsInfoAppConvert.INSTANCE.converListBO2VO(goodsInfoService.queryGoodsInfo()));
     }

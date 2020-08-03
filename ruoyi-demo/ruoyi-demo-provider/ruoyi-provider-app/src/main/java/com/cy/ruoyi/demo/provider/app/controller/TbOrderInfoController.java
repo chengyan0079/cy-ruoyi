@@ -13,13 +13,11 @@ import com.cy.ruoyi.demo.provider.app.convert.OrderInfoAppConvert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.dromara.soul.client.common.annotation.SoulClient;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("order")
 @Api(value = "TbOrderInfoController",description = "订单")
-@SoulClient(path = "/order/**", desc = "订单")
 public class TbOrderInfoController extends BaseController
 {
     private static final Log log = LogFactory.get();

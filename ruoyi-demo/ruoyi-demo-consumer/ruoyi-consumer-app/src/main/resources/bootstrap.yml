@@ -34,12 +34,3 @@ swagger:
     title: ${spring.application.name}
     description: consumer服务 RESTful APIs详情!
     version: v1.0.0
-
-# soul配置
-soul:
-  # Soul 针对 SpringMVC 的配置项，对应 SoulSpringCloudConfig 配置类
-  springcloud:
-    admin-url: http://localhost:9095 # Soul Admin 地址
-    context-path: /con-api # 设置在 Soul 网关的路由前缀，例如说 /order、/product 等等。
-    # 后续，网关会根据该 context-path 来进行路由
-    app-name: ${spring.application.name} # 应用名。未配置情况下，默认使用 `spring.application.name` 配置项

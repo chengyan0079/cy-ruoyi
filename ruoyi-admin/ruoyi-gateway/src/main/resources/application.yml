@@ -54,34 +54,34 @@ spring:
               args:
                 name: fallbackcmd
                 fallbackUri: 'forward:/fallback'
-        # activiti
-        - id: ruoyi-activiti
-          uri: lb://ruoyi-activiti
-          predicates:
-            - Path=/cyact/**
-          filters:
-            - StripPrefix=1
-        # 代码生成
-        - id: ruoyi-gen
-          uri: lb://ruoyi-gen
-          predicates:
-          - Path=/cygen/**
-          filters:
-          - StripPrefix=1
-        # provider
-        - id: ruoyi-demo-provider
-          uri: lb://ruoyi-demo-provider
-          predicates:
-          - Path=/cy pro/**
-          filters:
-          - StripPrefix=1
-        # consumer
-        - id: ruoyi-demo-consumer
-          uri: lb://ruoyi-demo-consumer
-          predicates:
-          - Path=/cycon/**
-          filters:
-          - StripPrefix=1
+#        # activiti
+#        - id: ruoyi-activiti
+#          uri: lb://ruoyi-activiti
+#          predicates:
+#            - Path=/cyact/**
+#          filters:
+#            - StripPrefix=1
+#        # 代码生成
+#        - id: ruoyi-gen
+#          uri: lb://ruoyi-gen
+#          predicates:
+#          - Path=/cygen/**
+#          filters:
+#          - StripPrefix=1
+#        # provider
+#        - id: ruoyi-demo-provider
+#          uri: lb://ruoyi-demo-provider
+#          predicates:
+#          - Path=/cy pro/**
+#          filters:
+#          - StripPrefix=1
+#        # consumer
+#        - id: ruoyi-demo-consumer
+#          uri: lb://ruoyi-demo-consumer
+#          predicates:
+#          - Path=/cycon/**
+#          filters:
+#          - StripPrefix=1
 
 hystrix:
   command:
