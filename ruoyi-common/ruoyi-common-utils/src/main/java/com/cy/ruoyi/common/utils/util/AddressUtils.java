@@ -12,7 +12,7 @@ public class AddressUtils
 {
     private static final Logger log    = LoggerFactory.getLogger(AddressUtils.class);
 
-    public static final String IP_URL = "http://region.zmrit.com";
+    public static final String IP_URL = "";
 
     public static String getRealAddressByIP(String ip)
     {

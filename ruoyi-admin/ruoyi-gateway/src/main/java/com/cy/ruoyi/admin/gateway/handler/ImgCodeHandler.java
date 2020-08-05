@@ -35,6 +35,8 @@ public class ImgCodeHandler implements HandlerFunction<ServerResponse>
     @Override
     public Mono<ServerResponse> handle(ServerRequest serverRequest)
     {
+        String url = serverRequest.path();
+        log.info("ImgCodeUrl:{}", url);
         // 生成验证码
         String capText = producer.createText();
         String capStr = capText.substring(0, capText.lastIndexOf("@"));
